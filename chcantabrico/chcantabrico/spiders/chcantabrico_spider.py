@@ -12,18 +12,7 @@ class ChcantabricoSpiderSpider(scrapy.Spider):
         for row in rows:
             paths = row.xpath('./td/a/@href').getall();
             estaciones = row.xpath('./td/a/text()').getall();
-            if(len(paths) == 4):
-                yield {
-                    'estacion': estaciones[2],
-                    'url': paths[2],
-                }
-            elif(len(paths) == 3):
-                yield {
-                    'estacion': estaciones[1],
-                    'url': paths[1],
-                }
-            elif(len(paths) == 2):
-                yield {
-                    'estacion': estaciones[0],
-                    'url': paths[0],
-                }
+            yield {
+                'estacion': estaciones[-3],
+                'codigo': paths[-1].split("=")[-1],
+            }
