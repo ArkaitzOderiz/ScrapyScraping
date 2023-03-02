@@ -4,12 +4,12 @@ import requests
 import json
 from pathlib import Path
 
-with open('chcantabrico/codigos_estaciones.json', 'r', encoding='utf-8') as f:
+with open('codigos_estaciones.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
     for item in data:
         print(item)
-        filepath_pluvio = Path(f'chcantabrico/datos/datosPluvio/{item["estacion"]}.csv')
+        filepath_pluvio = Path(f'datos/datosPluvio/{item["estacion"]}.csv')
         filepath_pluvio.parent.mkdir(parents=True, exist_ok=True)
 
         params_pluvio = {

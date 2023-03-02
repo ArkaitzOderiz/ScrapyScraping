@@ -4,12 +4,12 @@ import requests
 import json
 from pathlib import Path
 
-with open('chcantabrico/codigos_estaciones.json', 'r', encoding='utf-8') as f:
+with open('codigos_estaciones.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
     for item in data:
         print(item)
-        filepath_nivel = Path(f'chcantabrico/datos/datosNivel/{item["estacion"]}.csv')
+        filepath_nivel = Path(f'datos/datosNivel/{item["estacion"]}.csv')
         filepath_nivel.parent.mkdir(parents=True, exist_ok=True)
 
         params_nivel = {
