@@ -4,7 +4,7 @@ import requests
 import json
 from pathlib import Path
 
-with open('codigos_estaciones.json', 'r', encoding='utf-8') as f:
+with open('codigos_estaciones_chcantabrico.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
     for item in data:
