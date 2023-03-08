@@ -27,13 +27,11 @@ class AemetDataSpiderSpider(scrapy.Spider):
             dato = {
                 'fecha': fecha.split(' ')[0],
                 'hora': fecha.split(' ')[1],
-                'precipitacion': precipitacion[0],
+                'precipitacion': precipitacion[i],
             }
 
-            if dato['precipitacion'] == " ":
-                dato['precipitacion'] = "0.0";
-
-            precipitaciones.append(dato);
+            if dato['precipitacion'] != " ":
+                precipitaciones.append(dato);
 
         yield {
             'latitud': latitud,
