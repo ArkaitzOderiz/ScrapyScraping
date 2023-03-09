@@ -7,7 +7,7 @@ class MeteonavarraSpiderSpider(scrapy.Spider):
     start_urls = ["http://meteo.navarra.es/estaciones/mapadeestaciones.cfm#"]
 
     def parse(self, response):
-        rows = response.xpath('//div[@style="margin-left:5px;display:none;"]/script/text()').getall();
+        rows = response.xpath('//div[@style="margin-left:5px;display:none;"]/script/text()').getall()
 
         for row in rows:
             yield {

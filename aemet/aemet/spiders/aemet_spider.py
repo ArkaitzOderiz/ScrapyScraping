@@ -7,11 +7,11 @@ class AemetSpiderSpider(scrapy.Spider):
     start_urls = ["https://www.aemet.es/es/eltiempo/observacion/ultimosdatos?k=nav&w=0&datos=det&x=h24&f=temperatura"]
 
     def parse(self, response):
-        rows = response.xpath('//div[@id="contenedor_tabla"]/table/tbody/tr');
+        rows = response.xpath('//div[@id="contenedor_tabla"]/table/tbody/tr')
 
         for row in rows:
-            path = row.xpath('./td/a/@href').extract_first();
-            name = row.xpath('./td/a/text()').extract_first();
+            path = row.xpath('./td/a/@href').extract_first()
+            name = row.xpath('./td/a/text()').extract_first()
             yield {
                 'estacion': name,
                 'codigo': path.split('&')[1].split('=')[1],
