@@ -18,24 +18,24 @@ class AemetDataSpiderSpider(scrapy.Spider):
         latitud = response.xpath('//span/abbr[@class="latitude"]/text()').get()
         longitud = response.xpath('//span/abbr[@class="longitude"]/text()').get()
         municipio = response.xpath('//div[@class="contenedor_central_izq marginbottom35px"]/div[@class="notas_tabla"]/a[2]/text()').get()
-        fechas = response.xpath('//table/tbody/tr/td[1]/text()').getall()
-        precipitacion = response.xpath('//table/tbody/tr/td[7]/text()').getall()
+        rows = response.xpath('//table/tbody/tr')
 
-        precipitaciones = []
-        for i, fecha in enumerate(fechas):
-
+        datos = []
+        for row in rows:
             dato = {
-                'fecha': fecha.split(' ')[0],
-                'hora': fecha.split(' ')[1],
-                'precipitacion': precipitacion[i],
+                'fecha': row.xpath('./td[1]/text()').get().split(' ')[0],
+                'hora': row.xpath('./td[1]/text()').get().split(' ')[1],
+                'temperatura (ºC)': row.xpath('./td[2]/text()').get(),
+                'humedad (%)': row.xpath('./td[10]/text()').get(),
+                'precipitacion (mm)': row.xpath('./td[7]/text()').get(),
             }
 
-            if dato['precipitacion'] != " ":
-                precipitaciones.append(dato)
+            if dato['precipitacion (mm)'] != " ":
+                datos.append(dato)
 
         yield {
             'latitud': latitud,
             'longitud': longitud,
             'municipio':municipio.split(" ")[0],
-            'precipitaciones': precipitaciones,
+            'datos': datos,
         }
