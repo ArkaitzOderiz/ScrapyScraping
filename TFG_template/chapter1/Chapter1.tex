@@ -1,0 +1,38 @@
+\chapter[Introducción]{Introducción}
+\label{Chap1}
+
+\section{Esto es una sección}
+Aquí tenemos una imagen referenciada \ref{fig:ej1}. Una dirección \href{https://www.copernicus.eu/es}{Mi dirección}\footnotemark. 
+			\begin{figure} [h!]
+			\centering
+			\includegraphics[width=0.7\textwidth]{fig/example-image.png}
+			\caption[Nombre reducido para tabla de figuras]{Real caption}
+			\label{fig:ej1}
+		\end{figure}
+		\footnotetext{https://www.copernicus.eu/es}
+
+Para generar entradas en el índice de palabras\index{parabras}. SATA\index{SATA}.
+
+\subsection{Esto es una subsección}
+%un comentario
+Una lista de parámetros: % con itemize se muestra una lista
+	\begin{itemize}
+		\item uno.
+		\item dos.
+		\item tres.
+	\end{itemize}
+	Una lista enumerada
+	\begin{enumerate}
+		\item  uno.
+		\item  dos.
+	\end{enumerate}
+Vamos a citar \ldots \cite{lorenzi2011inpainting}
+\begin{table}[H]\caption{Mi tabla de ejemplo}\label{tab:ej}
+\begin{center}
+	\begin{tabular}{c c c}
+		Nombre & Medida & Otra cosa\\
+		\hline
+		10 & 10 & 4\\
+	\end{tabular}
+\end{center}
+\end{table}

@@ -1,0 +1,131 @@
+\documentclass[a4paper,11pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{graphicx,amsfonts,psfrag,fancyhdr,layout}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage[width=15cm, outer=2.5cm]{geometry}
+\usepackage[Bjornstrup]{fncychap}
+\usepackage[all]{hypcap}
+\usepackage{authorindex}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{pythonhighlight}
+\usepackage{amsthm,thmtools}
+\usepackage[final]{pdfpages}
+\usepackage{imakeidx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document language       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{style/language/euskara.tex}
+\input{style/language/castellano.tex}
+%\input{style/language/english.tex}
+
+\renewcommand*{\sectionautorefname}{\seccion}
+\let\subsectionautorefname\sectionautorefname
+\renewcommand*{\chapterautorefname}{\capitulo}
+
+\renewcommand{\figurename}{\nombrefigura}
+\renewcommand{\tablename}{\nombretabla}
+\renewcommand{\lstlistingname}{\nombrecodigo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Define theorems, definitions, lemmas and sublemmas %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{\nombreteorema}
+\newtheorem{definition}{\nombredefinicion}
+\newtheorem{lemma}{\nombrelema}
+\newtheorem{sublemma}{\nombrelema}[lemma]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Define the template, reference and toc colours %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{style/template.tex}
+\definecolor{refcolor1}{rgb}{0.00,0.00,0.63}
+\definecolor{refcolor2}{rgb}{0.00,0.00,1.00}
+
+\hypersetup{colorlinks=true,
+linkcolor={refcolor1},
+filecolor={refcolor1},
+urlcolor={refcolor2},
+citecolor={refcolor2}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Define programming languages for listing %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{style/proglang/R.tex}
+\input{style/proglang/java.tex}
+
+\makeindex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Document									 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%
+% Portada %%
+%%%%%%%%%%%%
+\input{style/titlepage.tex}
+% Una vez creada la portada en formato pdf con la platilla de la upna pegarla con esta instrucción 
+%\includepdf[scale=1]{portada.pdf}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Autorización deposito de tesis (opcional)  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\includepdf[scale=1]{AutorizacionDirectores.pdf}
+%
+%\clearpage
+%\thispagestyle{empty}
+%\hfill
+%\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dedicatoria + agradecimientos %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{style/Dedicatoria.tex}
+%\input{style/Thanks.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Table of contents %%
+%%%%%%%%%%%%%%%%%%%%%%%
+\input{style/toc/toc.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% List of figures, tables, codes, theorem and definitions %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{style/toc/figures.tex}
+\input{style/toc/tables.tex}
+\input{style/toc/codes.tex}
+\input{style/toc/theorems.tex}
+\input{style/toc/definitions.tex}
+\input{style/toc/lemmas.tex}
+
+\setlength\parindent{0pt}
+%%%%%%%%%%%%%%%
+%% Capítulos %%
+%%%%%%%%%%%%%%%
+\mainmatter
+\input{chapter1/Chapter1.tex}
+\input{chapter2/Chapter2.tex}
+\input{chapter3/Chapter3.tex}
+\input{chapter4/Chapter4.tex}
+\input{chapter5/Chapter5.tex}
+\backmatter
+
+%%%%%%%%%%%%%%%%%%
+%% Bibliography %%
+%%%%%%%%%%%%%%%%%%
+\input{bibliography/Bibliography.tex}
+
+%%%%%%%%%%%%%%%%%%
+%% Word index   %%
+%%%%%%%%%%%%%%%%%%
+\input{style/index.tex}
+
+%%%%%%%%%%%%%%%%%
+%% Anexos	   $$
+%%%%%%%%%%%%%%%%%
+\input{appendix/Appendix.tex}
+
+\end{document} 
