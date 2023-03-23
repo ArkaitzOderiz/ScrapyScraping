@@ -1,51 +1,27 @@
-\chapter[Recogida de datos]{Recogida de datos}
+\chapter[Tecnologías]{Tecnologías}
 \label{Chap2}
 
-Código en R del ejemplo \ref{code:ej}:
-	\begin{lstlisting}[language=R, caption=pie de código,label=code:ej]
-		# Establecer las credenciales de la API [1]
-		
-		library(rsat)
-		set_credentials("rsat.package", "UpnaSSG.2021")
-		
-		#Definir la region
-		
-		library(raster)
-		dir.create( "./RSATprueba/countries" ,recursive = TRUE)
-		spain<-getData('GADM', country= 'Spain', path= "./RSATprueba/countries", level=2)
-		
-	\end{lstlisting}
+\section{Debian}
 
+\subsection{Historia}
+Conforme la computación fue tomando terreno tanto en el ámbito comercial como en el escolar, no tener una forma de instalar y configurar los sistemas de una forma rápida sin tener que partir de cero y sin tener que compilar el software necesario manualmente se convirtió en un problema patente entre los usuarios.
+\newline
+\newline
+En 1993, tras varios intento fallidos por distintas empresas de solucionar el problema, Ian Murdock, por aquel entonces estudiante de la Universidad Purdue, encontró la solución al problema basándose en el reciente proyecto de Linus torvalds, el kernel Linux. tras el anuncio de Ian para crear un sistema operativo de forma descentralizada en paralelo como es el caso del kernel Linux, docenas de usuarios se unieron para formar el proyecto Debian Linux con la intención de crear un sistema operativo de gran calidad y mantenimiento, publicando en enero de 1994 la primera versión de Debian 0.91.
 
-\begin{theorem}[Sum]\label{th:ex1}
-$1+1=2$
-\end{theorem}
+\subsection{Filosofía}
+Debian no intenta seguir ni competir con los lideres del sector, por el contrario, desde sus inicios el proyecto se ha basado en una filosofía centrada en la robustez y estabilidad del sistema guiada por unos estrictos estándares de calidad, actualizándose conforme las necesidades de sus usuarios a la vez que promueve el software gratuito, lo que le ha ayudado a obtener fama entre los usuarios.
+\newline
+\newline
+A su vez, debido al apoyo del software libre, hace uso de múltiples licencias de software como la Licencia Pública General GNU (GPL), licencias artísticas o del tipo BSD, lo cual ha llevado al desarrollo de las Directrices de Software Libre de Debian (DFSG) con el fin de definir la construcción del software libre.
+\newpage
+Definido por estas licencias, el software libre debe cumplir al menos las que están consideradas la cuatro libertades esenciales:
+\begin{itemize}
+	\item Ejecutar el programa como se desee, con cualquier propósito.
+	\item Estudiar cómo funciona el programa, y cambiarlo para que haga lo que se desee.
+	\item Redistribuir copias para ayudar a otros.
+	\item Distribuir copias de sus versiones modificadas a terceros permitiendo ofrecer a toda la comunidad la oportunidad de beneficiarse de las modificaciones.
+\end{itemize}
 
-\begin{definition}[Nice numbers]\label{def:ex1}
-A number is \emph{nice} if it looks beautiful.
-\end{definition}
+\subsection{Modelo de negocio}
 
-\begin{theorem}[About $C^{1}(0,1)$]\label{th:ex2}
-The set $C^{1}(0,1)$ is interesting.
-\end{theorem}
-Teoremaren erreferentzia \ref{th:ex2}
-
-\begin{proof}\label{pf:ex1}
-To prove it by contradiction try and assume that the statemenet is false,
-proceed from there and at some point you will arrive to a contradiction.
-\end{proof}
-
-
-
-\begin{lemma}\label{lemma:ex1}
-To prove it by contradiction try and assume that the statemenet is false,
-proceed from there and at some point you will arrive to a contradiction.
-\end{lemma}
-
-Lemaren erreferentzia \ref{lemma:ex1}
-
-
-\begin{equation}\label{eq:ex2}
-  1 + e^{i \pi} = 0.
-\end{equation}
-Formularen erreferentzia \ref{eq:ex2}
