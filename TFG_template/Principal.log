@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  23 MAR 2023 12:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  27 MAR 2023 18:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -735,7 +735,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )) (style/titlepage.tex
-<style/fig/ROJO_UPNA_300ppp.png, id=82, 284.5029pt x 151.0443pt>
+<style/fig/ROJO_UPNA_300ppp.png, id=86, 284.5029pt x 151.0443pt>
 File: style/fig/ROJO_UPNA_300ppp.png Graphic file (type png)
 <use style/fig/ROJO_UPNA_300ppp.png>
 Package pdftex.def Info: style/fig/ROJO_UPNA_300ppp.png  used on input line 7.
@@ -834,7 +834,7 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-<fig/example-image.png, id=200, 252.19218pt x 188.95593pt>
+<fig/example-image.png, id=205, 252.19218pt x 188.95593pt>
 File: fig/example-image.png Graphic file (type png)
 <use fig/example-image.png>
 Package pdftex.def Info: fig/example-image.png  used on input line 8.
@@ -872,7 +872,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--17
 
 [3
 
-]) (chapter3/Chapter3.tex [4]
+]
+Underfull \hbox (badness 10000) in paragraph at lines 27--34
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--34
+
+ []
+
+) (chapter3/Chapter3.tex
+Underfull \hbox (badness 10000) in paragraph at lines 36--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--1
+
+ []
+
+[4]
 Chapter 3.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
@@ -945,13 +965,13 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
 Package rerunfilecheck Info: File `Principal.out' has not changed.
-(rerunfilecheck)             Checksum: E882C77E3E7F3B5140B2631A7CEBE4E8;2446.
+(rerunfilecheck)             Checksum: F8F4E5A81C64CA923CEA0A2F21CB7534;2592.
  ) 
 Here is how much of TeX's memory you used:
- 16629 strings out of 475385
- 273259 string characters out of 2776436
+ 16631 strings out of 475385
+ 273293 string characters out of 2776436
  814277 words of memory out of 3000000
- 37513 multiletter control sequences out of 15000+600000
+ 37514 multiletter control sequences out of 15000+600000
  487284 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,12n,77p,657b,1919s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -975,9 +995,9 @@ amsfonts/cm/cmmi8.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmr10.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Oderiz/AppData/Local/Programs/
 MiKTeX/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on Principal.pdf (31 pages, 397008 bytes).
+Output written on Principal.pdf (31 pages, 403051 bytes).
 PDF statistics:
- 732 PDF objects out of 1000 (max. 8388607)
- 85 named destinations out of 1000 (max. 500000)
- 171 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 748 PDF objects out of 1000 (max. 8388607)
+ 86 named destinations out of 1000 (max. 500000)
+ 179 words of extra memory for PDF output out of 10000 (max. 10000000)
 
