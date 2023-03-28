@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  27 MAR 2023 18:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  28 MAR 2023 17:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -882,17 +882,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--34
 
  []
 
-) (chapter3/Chapter3.tex
-Underfull \hbox (badness 10000) in paragraph at lines 36--1
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--43
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--1
+Underfull \hbox (badness 10000) in paragraph at lines 36--43
 
  []
 
 [4]
+Underfull \hbox (badness 10000) in paragraph at lines 44--48
+
+ []
+
+[5]) (chapter3/Chapter3.tex [6]
 Chapter 3.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
@@ -913,9 +918,9 @@ nput line 24.
 Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input 
 line 40.
 )
-(chapter4/Chapter4.tex [5
+(chapter4/Chapter4.tex [7
 
-] [6
+] [8
 
 ]
 Chapter 4.
@@ -924,7 +929,7 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-) (chapter5/Chapter5.tex [7] [8
+) (chapter5/Chapter5.tex [9] [10
 
 ]
 Chapter 5.
@@ -933,22 +938,22 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-) [9] [10
+) [11] [12
 
-] (bibliography/Bibliography.tex (Principal.bbl) [11
+] (bibliography/Bibliography.tex (Principal.bbl) [13
 
 
 ])
-(style/index.tex [12
+(style/index.tex [14
 
 
 ]
 runsystem(makeindex Principal.idx)...executed safely (allowed).
 
- (Principal.ind)) (appendix/Appendix.tex [13
+ (Principal.ind)) (appendix/Appendix.tex [15
 
 
-] [14
+] [16
 
 ]
 (code/Calendario.java
@@ -957,19 +962,25 @@ consecutive:
 \tf@loe=\write11
 \openout11 = `Principal.loe'.
 
- [15
+ [17
 
 ] (Principal.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
-Package rerunfilecheck Info: File `Principal.out' has not changed.
-(rerunfilecheck)             Checksum: F8F4E5A81C64CA923CEA0A2F21CB7534;2592.
+
+Package rerunfilecheck Warning: File `Principal.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Principal.out':
+(rerunfilecheck)             Before: F8F4E5A81C64CA923CEA0A2F21CB7534;2592
+(rerunfilecheck)             After:  5815793E2E80BAE086D9FE4814FC7885;2677.
  ) 
 Here is how much of TeX's memory you used:
- 16631 strings out of 475385
- 273293 string characters out of 2776436
+ 16634 strings out of 475385
+ 273318 string characters out of 2776436
  814277 words of memory out of 3000000
  37514 multiletter control sequences out of 15000+600000
  487284 words of font info for 71 fonts, out of 8000000 for 9000
@@ -995,9 +1006,9 @@ amsfonts/cm/cmmi8.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmr10.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Oderiz/AppData/Local/Programs/
 MiKTeX/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on Principal.pdf (31 pages, 403051 bytes).
+Output written on Principal.pdf (33 pages, 407373 bytes).
 PDF statistics:
- 748 PDF objects out of 1000 (max. 8388607)
- 86 named destinations out of 1000 (max. 500000)
+ 764 PDF objects out of 1000 (max. 8388607)
+ 89 named destinations out of 1000 (max. 500000)
  179 words of extra memory for PDF output out of 10000 (max. 10000000)
 
