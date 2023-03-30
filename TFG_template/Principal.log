@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  28 MAR 2023 17:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  30 MAR 2023 12:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -735,7 +735,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )) (style/titlepage.tex
-<style/fig/ROJO_UPNA_300ppp.png, id=86, 284.5029pt x 151.0443pt>
+<style/fig/ROJO_UPNA_300ppp.png, id=98, 284.5029pt x 151.0443pt>
 File: style/fig/ROJO_UPNA_300ppp.png Graphic file (type png)
 <use style/fig/ROJO_UPNA_300ppp.png>
 Package pdftex.def Info: style/fig/ROJO_UPNA_300ppp.png  used on input line 7.
@@ -834,7 +834,7 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-<fig/example-image.png, id=205, 252.19218pt x 188.95593pt>
+<fig/example-image.png, id=220, 252.19218pt x 188.95593pt>
 File: fig/example-image.png Graphic file (type png)
 <use fig/example-image.png>
 Package pdftex.def Info: fig/example-image.png  used on input line 8.
@@ -883,21 +883,63 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--34
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--43
+Underfull \hbox (badness 10000) in paragraph at lines 36--52
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--43
+Underfull \hbox (badness 10000) in paragraph at lines 36--52
 
  []
 
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 44--48
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--52
 
  []
 
-[5]) (chapter3/Chapter3.tex [6]
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--52
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--52
+
+ []
+
+[4] [5]
+Underfull \hbox (badness 10000) in paragraph at lines 58--62
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--80
+
+ []
+
+[6]) (chapter3/Chapter3.tex
+Underfull \hbox (badness 10000) in paragraph at lines 84--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--1
+
+ []
+
+[7] [8
+
+]
 Chapter 3.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
@@ -918,9 +960,7 @@ nput line 24.
 Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input 
 line 40.
 )
-(chapter4/Chapter4.tex [7
-
-] [8
+(chapter4/Chapter4.tex [9] [10
 
 ]
 Chapter 4.
@@ -929,7 +969,7 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-) (chapter5/Chapter5.tex [9] [10
+) (chapter5/Chapter5.tex [11] [12
 
 ]
 Chapter 5.
@@ -938,22 +978,22 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-) [11] [12
+) [13] [14
 
-] (bibliography/Bibliography.tex (Principal.bbl) [13
+] (bibliography/Bibliography.tex (Principal.bbl) [15
 
 
 ])
-(style/index.tex [14
+(style/index.tex [16
 
 
 ]
 runsystem(makeindex Principal.idx)...executed safely (allowed).
 
- (Principal.ind)) (appendix/Appendix.tex [15
+ (Principal.ind)) (appendix/Appendix.tex [17
 
 
-] [16
+] [18
 
 ]
 (code/Calendario.java
@@ -962,27 +1002,21 @@ consecutive:
 \tf@loe=\write11
 \openout11 = `Principal.loe'.
 
- [17
+ [19
 
 ] (Principal.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
-
-Package rerunfilecheck Warning: File `Principal.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Principal.out':
-(rerunfilecheck)             Before: F8F4E5A81C64CA923CEA0A2F21CB7534;2592
-(rerunfilecheck)             After:  5815793E2E80BAE086D9FE4814FC7885;2677.
+Package rerunfilecheck Info: File `Principal.out' has not changed.
+(rerunfilecheck)             Checksum: F72DA8496F1420A5445EAACFD3D40F5D;3028.
  ) 
 Here is how much of TeX's memory you used:
- 16634 strings out of 475385
- 273318 string characters out of 2776436
+ 16642 strings out of 475385
+ 273425 string characters out of 2776436
  814277 words of memory out of 3000000
- 37514 multiletter control sequences out of 15000+600000
+ 37517 multiletter control sequences out of 15000+600000
  487284 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,12n,77p,657b,1919s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -1006,9 +1040,9 @@ amsfonts/cm/cmmi8.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmr10.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Oderiz/AppData/Local/Programs/
 MiKTeX/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on Principal.pdf (33 pages, 407373 bytes).
+Output written on Principal.pdf (35 pages, 418363 bytes).
 PDF statistics:
- 764 PDF objects out of 1000 (max. 8388607)
- 89 named destinations out of 1000 (max. 500000)
- 179 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 803 PDF objects out of 1000 (max. 8388607)
+ 94 named destinations out of 1000 (max. 500000)
+ 203 words of extra memory for PDF output out of 10000 (max. 10000000)
 
