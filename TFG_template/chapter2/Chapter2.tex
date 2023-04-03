@@ -1,7 +1,15 @@
 \chapter[Tecnologías]{Tecnologías}
 \label{Chap2}
 
-\section{Debian}
+\section{Lenguaje de Programación Python}
+
+\subsection{Qué es Python?}
+
+\subsection{Por qué Python?}
+
+\newpage
+
+\section{Sistema Operativo Debian}
 
 \subsection{Historia}
 Conforme la computación fue tomando terreno tanto en el ámbito comercial como en el escolar, no tener una forma de instalar y configurar los sistemas de una forma rápida sin tener que partir de cero y sin tener que compilar el software necesario manualmente se convirtió en un problema patente entre los usuarios.
@@ -52,7 +60,7 @@ Una vez contado todo esto, puesto que no me afecta negativamente el no disponer 
 
 \newpage
 
-\section{Django}
+\section{Framework}
 
 \subsection{Qué es un framework?}
 Un framework es software que provee una infraestructura básica sobre la que desarrollar tus proyectos, aportando las funcionalidades y estructuras básicas necesarias para este sin la necesidad de programar todo desde cero, ahorrando tiempo de desarrollo y aportando robustez al proyecto.
@@ -71,7 +79,7 @@ Un framework full-stack es apto tanto para deserrollo back-end como front-end, a
 Los framework micro son ligeros por definición, siendo en cierta medida lo contrario de un framework full-stack, pues aunque los componentes que aportan como puede ser la gestión de bases de datos son los mismos, estos no vienen incluidos de forma nativa. Esto se debe a que buscan aportar flexibilidad y libertad a los desarrolladores para que incluyan unicamente aquellas herramientas que necesiten. 
 \newline
 \newline
-Como se explica en la documentación de Flask, uno de los framework tipo micro más relevante, el 'micro' de microframework significa que el nucleo del framework es simple pero extensible.
+Como se explica en la documentación de Flask, uno de los framework tipo micro más relevante, el 'micro' de microframework significa que el núcleo del framework es simple pero extensible.
 \newline
 \newline
 \textbf{Asíncrono}
@@ -88,3 +96,24 @@ Las librerías están compuestas por múltiples métodos para un uso especifico 
 \newline
 \newline
 Por el contrario, como los framework tienen en cuenta las posibles necesidades de tu proyecto, pudiéndose permitir ser aún más específicos, ofreciendo la arquitectura y comportamiento básico de la aplicación, dejando la flexibilidad de desarrollar las funcionalidades necesarias para su funcionamiento, aportando herramientas sobre las que trabajar.
+
+\subsection{Django}
+
+\subsubsection{Qué es Django?}
+Djanfo es un framework web de tipo full-stack gratuito y de código abierto para Python. Sigue el principio DRY "Don’t Repeat Yourself" por lo que se enfoca en el menor uso de codigo, el desarrollo rápido y la reutilización de componentes.
+\newline
+\newline
+Hace uso de su auto denominado patrón Modelo-Vista-Template (MVT) \ref{fig:ej1} una variante del conocido Modelo-Vista-Controlador (MVC).
+\newline
+\begin{figure} [h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/DjangoMTV.png}
+	\caption[Diagrama patrón MVT]{Diagrama patrón MVT}
+	\label{fig:ej1}
+\end{figure}
+\footnotetext{https://docs.hektorprofe.net/django/web-personal/patron-mvt-modelo-vista-template/}
+\newline
+Para poder trabajar con bases de datos relacionales tales como, Oracle, MySQL y PostgreSQL, Django usa un Mapeador Relacional de Objetos (ORM) permitiendo interactuar con ellas mediante SQL.
+\newpage
+
+\subsubsection{Por qué django?}
