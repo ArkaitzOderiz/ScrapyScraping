@@ -22,10 +22,13 @@
 \contentsline {subsection}{\numberline {2.3.2}Librería vs Framework}{8}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}Django}{8}{subsection.2.3.3}%
 \contentsline {subsubsection}{Qué es Django?}{8}{section*.10}%
-\contentsline {subsubsection}{Por qué django?}{9}{section*.12}%
+\contentsline {subsubsection}{Por qué Django?}{9}{section*.12}%
+\contentsline {subsection}{\numberline {2.3.4}Scrapy}{10}{subsection.2.3.4}%
+\contentsline {subsubsection}{Qué es Scrapy?}{10}{section*.13}%
+\contentsline {subsubsection}{Por qué Scrapy?}{10}{section*.14}%
 \contentsline {chapter}{\numberline {3}Algoritmo}{11}{chapter.3}%
 \contentsline {chapter}{\numberline {4}Evaluación}{13}{chapter.4}%
 \contentsline {chapter}{\numberline {5}Conclusiones y Trabajo Futuro}{15}{chapter.5}%
-\contentsline {chapter}{Referencias}{17}{section*.13}%
-\contentsline {chapter}{Glosario}{19}{section*.14}%
-\contentsline {chapter}{Anexos}{21}{section*.14}%
+\contentsline {chapter}{Referencias}{17}{section*.15}%
+\contentsline {chapter}{Glosario}{19}{section*.16}%
+\contentsline {chapter}{Anexos}{21}{section*.16}%
