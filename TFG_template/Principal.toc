@@ -24,11 +24,13 @@
 \contentsline {subsubsection}{Qué es Django?}{8}{section*.10}%
 \contentsline {subsubsection}{Por qué Django?}{9}{section*.12}%
 \contentsline {subsection}{\numberline {2.3.4}Scrapy}{10}{subsection.2.3.4}%
-\contentsline {subsubsection}{Qué es Scrapy?}{10}{section*.13}%
-\contentsline {subsubsection}{Por qué Scrapy?}{10}{section*.14}%
-\contentsline {chapter}{\numberline {3}Algoritmo}{11}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Evaluación}{13}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusiones y Trabajo Futuro}{15}{chapter.5}%
-\contentsline {chapter}{Referencias}{17}{section*.15}%
-\contentsline {chapter}{Glosario}{19}{section*.16}%
-\contentsline {chapter}{Anexos}{21}{section*.16}%
+\contentsline {subsubsection}{Qué es el Web Scraping?}{10}{section*.13}%
+\contentsline {subsubsection}{Procedimiento básico en Web Scraping}{10}{section*.14}%
+\contentsline {subsubsection}{Qué es Scrapy?}{11}{section*.16}%
+\contentsline {subsubsection}{Por qué Scrapy?}{11}{section*.17}%
+\contentsline {chapter}{\numberline {3}Algoritmo}{13}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Evaluación}{15}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusiones y Trabajo Futuro}{17}{chapter.5}%
+\contentsline {chapter}{Referencias}{19}{section*.18}%
+\contentsline {chapter}{Glosario}{21}{section*.19}%
+\contentsline {chapter}{Anexos}{23}{section*.19}%

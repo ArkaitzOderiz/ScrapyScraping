@@ -4,13 +4,13 @@
 \section{Lenguaje de Programación Python}
 
 \subsection{Qué es Python?}
-Siendo su primera aparición en el año 1991 por manos de Guido van Rossum, Python es un lenguaje de programación de alto nivel interpretado que prima la legibilidad del código, siendo este a veces nominado como "seudocódigo ejecutable".
+Siendo su primera aparición en el año 1991 por manos de Guido van Rossum, Python es un lenguaje de programación de alto nivel interpretado que prima la legibilidad del código, siendo este a veces nominado como "seudocódigo ejecutable". \cite{WinNT}
 \newline
 \newline
 Python a su vez es un lenguaje multiplataforma, fuertemente tipado, dinámico y multiparadigma, pues soporta programación orientada a objetos, imperativa y funcional.
 
 \subsection{Por qué Python?}
-La elección de Python sobre otros lenguajes se basa en su sintaxis sencilla y clara que facilita la programación, junto a la gran cantidad de librerías y frameworks potentes de los que dispone para satisfacer las necesidades que presenta este proyecto, como pueden ser la extracción de datos meteorológicos mediante web scraping como la creación de una API.
+La elección de Python sobre otros lenguajes se basa en su sintaxis sencilla y clara que facilita la programación, junto a la gran cantidad de librerías y frameworks potentes de los que dispone para satisfacer las necesidades que presenta este proyecto, como pueden ser la extracción de datos meteorológicos mediante web scraping y la creación de una API.
 
 \newpage
 
@@ -112,7 +112,7 @@ Hace uso de su auto denominado patrón Modelo-Vista-Template (MVT) \ref{fig:ej1}
 \newline
 \begin{figure} [h!]
 	\centering
-	\includegraphics[width=0.7\textwidth]{fig/DjangoMTV.png}
+	\includegraphics[width=0.7\textwidth]{fig/DjangoMVT.png}
 	\caption[Diagrama patrón MVT]{Diagrama patrón MVT}
 	\label{fig:ej1}
 \end{figure}
@@ -134,6 +134,31 @@ Otra característica por la que me he decantado por Django, aunque no sea única
 
 \subsection{Scrapy}
 
+\subsubsection{Qué es el Web Scraping?}
+Web scraping, también conocido como web extraction o web harvesting, es una técnica de extracción de datos desestructurados de la World Wide web (WWW) y guardarlos de forma estructurada en una base de datos o en un sistema de ficheros en formato XML, JSON o CSV para su posterior recuperación o análisis. Generalmente, los datos web son adquiridos mediante el uso de Hyper-text Transfer Protocol (HTTP) o a través de un navegador web, ya sea de forma manual o automática mediante web crawlers, herramientas diseñadas con este propósito, siendo capaces de convertir páginas web enteras en información bien estructurada.
+\newline
+\newline
+Debido a la gran cantidad de datos que son generados constantemente en la WWW, web scraping es considerado una forma eficiente y poderosa de amasar big data.
+\newline
+\newline
+Web scraping puede ser usado en una gran variedad de entornos, como la recolección de comentarios en redes sociales, listado de la propiedad inmobiliaria o en este caso el monitoreo y comparación de los niveles de los ríos y datos pluviométricos.
+
+\subsubsection{Procedimiento básico en Web Scraping}
+El proceso de recolección de datos de internet se puede dividir en dos procesos secuenciales, adquirir los recursos web y, luego, extraer la información deseada.
+\newline
+\newline
+Para realizar este primer paso de adquisición de los recursos, el proceso empieza con los programas de web scraping enviando un request, ya sea mediante GET o POST, a la página web deseada. Una vez el request sea recibido y procesado por la web, esta enviará los recursos solicitados al programa. Después, pasaríamos al segundo paso, en el que analizaríamos los recursos obtenidos y los filtraríamos de tal forma que nos quedásemos únicamente con la información que nos sea necesaria. Finalmente almacenaríamos la información obtenida para su posterior análisis.
+\newline
+\begin{figure} [h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png}
+	\caption[Web Scraping (Krotov y Tennyson 2018)]{Web Scraping}
+	\label{fig:ej2}
+\end{figure}
+\footnotetext{\url{https://www.researchgate.net/figure/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018_fig1_324907302}}
+\newline
+
 \subsubsection{Qué es Scrapy?}
+
 
 \subsubsection{Por qué Scrapy?}
