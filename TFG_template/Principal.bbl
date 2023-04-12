@@ -1,13 +1,91 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{lorenzi2011inpainting}
-L.~Lorenzi, F.~Melgani, and G.~Mercier, ``Inpainting strategies for
-  reconstruction of missing data in vhr images,'' {\em IEEE Geoscience and
-  remote sensing letters}, vol.~8, no.~5, pp.~914--918, 2011.
+\bibitem{dierbach2014python}
+C.~Dierbach, ``Python as a first programming language,'' {\em Journal of
+  Computing Sciences in Colleges}, vol.~29, no.~3, pp.~73--73, 2014.
 
-\bibitem{WinNT}
-``{MS Windows NT} kernel description.''
-  \url{http://web.archive.org/web/20080207010024/http://www.808multimedia.com/winnt/kernel.htm}.
-\newblock Accessed: 2010-09-30.
+\bibitem{PyDoc}
+``{Python 3.11.3 Documentation} general python faq.''
+  \url{https://docs.python.org/3/faq/general.html}.
+\newblock Accessed: 2023-04-07.
+
+\bibitem{borges2014python}
+L.~E. Borges, {\em Python para desenvolvedores: aborda Python 3.3}.
+\newblock Novatec Editora, 2014.
+
+\bibitem{krafft2005debian}
+M.~F. Krafft, {\em The Debian system: concepts and techniques}.
+\newblock No Starch Press, 2005.
+
+\bibitem{hertzog2015debian}
+R.~Hertzog and R.~Mas, {\em The Debian Administrator's Handbook: Debian Jessie
+  From Discovery To Mastery}.
+\newblock Freexian, 2015.
+
+\bibitem{DebHis}
+``{Debian Proyect Documentation} a brief history of debian.''
+  \url{https://www.debian.org/doc/manuals/project-history/index.en.html}.
+\newblock Accessed: 2023-04-12.
+
+\bibitem{DebFil}
+``{Debian Proyect Documentation} our philosophy: Why we do it and how we do
+  it.'' \url{https://www.debian.org/intro/philosophy.en.html}.
+\newblock Accessed: 2023-04-12.
+
+\bibitem{pollei2013debian}
+R.~P. Pollei, {\em Debian 7: System Administration Best Practices}.
+\newblock Packt Publishing, 2013.
+
+\bibitem{DebFree}
+``{Debian Proyect Documentation} what does free mean?.''
+  \url{https://www.debian.org/intro/free.en.html}.
+\newblock Accessed: 2023-04-12.
+
+\bibitem{GnuFS}
+``{GNU About Free Software Documentation} what is free software?.''
+  \url{https://www.gnu.org/philosophy/free-sw.en.html}.
+\newblock Accessed: 2023-04-12.
+
+\bibitem{DebCS}
+``{Debian Proyect Documentation} debian social contract version 1.2 ratified on
+  october 1st, 2022..'' \url{https://www.debian.org/social_contract.en.html}.
+\newblock Accessed: 2023-04-12.
+
+\bibitem{DebPP}
+``{Debian Proyect Documentation} what is the partners program?.''
+  \url{https://www.debian.org/partners/index.en.html}.
+\newblock Accessed: 2023-04-12.
+
+\bibitem{DebDon}
+``{Debian Proyect Documentation} how to donate to the debian project.''
+  \url{https://www.debian.org/donations.en.html}.
+\newblock Accessed: 2023-04-12.
+
+\bibitem{DebWhy}
+``{Debian Proyect Documentation} reasons to use debian.''
+  \url{https://www.debian.org/intro/why_debian.en.html}.
+\newblock Accessed: 2023-04-12.
+
+\bibitem{ghimire2020comparative}
+D.~Ghimire, ``Comparative study on python web frameworks: Flask and django,''
+  2020.
+
+\bibitem{WebFra}
+``{Python Documentation} web frameworks for python.''
+  \url{https://wiki.python.org/moin/WebFrameworks}.
+\newblock Accessed: 2023-04-12.
+
+\bibitem{DjDF}
+``{Django Documentation} design philosophies.''
+  \url{https://docs.djangoproject.com/en/3.0/misc/design-philosophies/}.
+\newblock Accessed: 2023-04-12.
+
+\bibitem{alchin2013pro}
+M.~Alchin, {\em Pro Django}.
+\newblock Apress, 2013.
+
+\bibitem{ravindran2015django}
+A.~Ravindran, {\em Django Design Patterns and Best Practices}.
+\newblock Packt Publishing Ltd, 2015.
 
 \end{thebibliography}
