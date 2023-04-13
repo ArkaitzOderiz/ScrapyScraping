@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  12 APR 2023 12:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  13 APR 2023 11:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -942,7 +942,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 97--104
 
  []
 
-<fig/DjangoMVT.png, id=322, 542.025pt x 239.89626pt>
+<fig/DjangoMVT.png, id=323, 542.025pt x 239.89626pt>
 File: fig/DjangoMVT.png Graphic file (type png)
 <use fig/DjangoMVT.png>
 Package pdftex.def Info: fig/DjangoMVT.png  used on input line 115.
@@ -978,7 +978,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 138--145
 
  []
 
-<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=338, 853.1875pt
+<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=343, 853.1875pt
  x 302.12875pt>
 File: fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png Graphic file (
 type png)
@@ -1005,47 +1005,45 @@ Overfull \hbox (4.32925pt too wide) in paragraph at lines 158--158
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--160
+Underfull \hbox (badness 10000) in paragraph at lines 147--159
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--160
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--165
 
  []
 
-[10 <./fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 162--166
-
- []
-
-) (chapter3/Chapter3.tex
-Underfull \hbox (badness 10000) in paragraph at lines 168--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 168--1
+[10]) (chapter3/Chapter3.tex
+Underfull \hbox (badness 10000) in paragraph at lines 167--1
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--1
+Underfull \hbox (badness 10000) in paragraph at lines 167--1
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--1
+Underfull \hbox (badness 10000) in paragraph at lines 167--1
 
  []
 
 
-Overfull \hbox (7.3974pt too wide) in paragraph at lines 168--1
+Underfull \hbox (badness 10000) in paragraph at lines 167--1
+
+ []
+
+
+Overfull \hbox (7.3974pt too wide) in paragraph at lines 167--1
 \T1/cmr/m/n/10.95 Finalmente, cabe men-cionar que Scrapy no dispone de rotación
  de IP, ren-der-izado JavaScript,
  []
 
-[11] [12
+[11 <./fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png>] [12
 
 ]
 Chapter 3.
@@ -1114,13 +1112,13 @@ Package rerunfilecheck Info: File `Principal.out' has not changed.
 (rerunfilecheck)             Checksum: 8F4516CDF137AEF33A452DDFE742D53B;3832.
  ) 
 Here is how much of TeX's memory you used:
- 16717 strings out of 475385
- 274799 string characters out of 2776436
+ 16725 strings out of 475385
+ 274935 string characters out of 2776436
  814277 words of memory out of 3000000
- 37554 multiletter control sequences out of 15000+600000
+ 37558 multiletter control sequences out of 15000+600000
  487597 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,12n,77p,696b,1919s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 72i,12n,77p,817b,1919s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ect
 i1095.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
 600\ectt1095.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen
@@ -1142,9 +1140,9 @@ public/amsfonts/cm/cmmi8.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fon
 ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Oderiz/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Oderiz/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on Principal.pdf (39 pages, 524529 bytes).
+Output written on Principal.pdf (39 pages, 531415 bytes).
 PDF statistics:
- 1028 PDF objects out of 1200 (max. 8388607)
- 129 named destinations out of 1000 (max. 500000)
+ 1051 PDF objects out of 1200 (max. 8388607)
+ 133 named destinations out of 1000 (max. 500000)
  253 words of extra memory for PDF output out of 10000 (max. 10000000)
 
