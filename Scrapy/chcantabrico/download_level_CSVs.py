@@ -2,15 +2,14 @@ import pandas as pd
 import io
 import requests
 import json
-from pathlib import Path
 
 with open('codigos_estaciones_chcantabrico.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
+    datos = []
+
     for item in data:
         print(item)
-        filepath_nivel = Path(f'datos/datosNivel/{item["estacion"]}.csv')
-        filepath_nivel.parent.mkdir(parents=True, exist_ok=True)
 
         params_nivel = {
             'p_p_id': 'GraficaEstacion_INSTANCE_wH0LL6jTUysu',
@@ -30,9 +29,13 @@ with open('codigos_estaciones_chcantabrico.json', 'r', encoding='utf-8') as f:
                 rawData = pd.read_csv(io.StringIO(urlData), delimiter=';', encoding='utf-8', header=1)
                 rawData[['FECHA', 'HORA']] = rawData['FECHA'].str.split(expand=True)
                 rawData = rawData.reindex(columns=['FECHA', 'HORA', 'VALOR(m)'])
-                print(f'Success creating {item["estacion"]}.csv')
+
+                estacion = {
+                    'estacion': item["estacion"],
+                    'datos': rawData.to_json(orient="records")
+                }
+                datos.append(estacion)
                 print("-------------------")
-                rawData.to_csv(filepath_nivel, index=False, header=False)
             else:
                 print("Error retrieving data: 404")
                 print("-------------------")
@@ -40,3 +43,5 @@ with open('codigos_estaciones_chcantabrico.json', 'r', encoding='utf-8') as f:
             print(f"Error retrieving data: {response_nivel.status_code}")
             print("-------------------")
 
+    with open('datos_nivel_chcantabrico.json', 'w', encoding='utf-8') as outfile:
+        json.dump(datos, outfile)
