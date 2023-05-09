@@ -1,5 +1,5 @@
 \addvspace {10\p@ }
-\contentsline {theorem}{\ifthmt@listswap Teorema\nobreakspace {}1\else \numberline {1}Teorema\fi \thmtformatoptarg {Sum}}{13}{theorem.1}%
-\contentsline {definition}{\ifthmt@listswap Definición\nobreakspace {}1\else \numberline {1}Definición\fi \thmtformatoptarg {Nice numbers}}{13}{definition.1}%
-\contentsline {theorem}{\ifthmt@listswap Teorema\nobreakspace {}2\else \numberline {2}Teorema\fi \thmtformatoptarg {About $C^{1}(0,1)$}}{13}{theorem.2}%
-\contentsline {lemma}{\ifthmt@listswap Lema\nobreakspace {}1\else \numberline {1}Lema\fi }{13}{lemma.1}%
+\contentsline {theorem}{\ifthmt@listswap Teorema\nobreakspace {}1\else \numberline {1}Teorema\fi \thmtformatoptarg {Sum}}{2}{theorem.1}%
+\contentsline {definition}{\ifthmt@listswap Definición\nobreakspace {}1\else \numberline {1}Definición\fi \thmtformatoptarg {Nice numbers}}{2}{definition.1}%
+\contentsline {theorem}{\ifthmt@listswap Teorema\nobreakspace {}2\else \numberline {2}Teorema\fi \thmtformatoptarg {About $C^{1}(0,1)$}}{2}{theorem.2}%
+\contentsline {lemma}{\ifthmt@listswap Lema\nobreakspace {}1\else \numberline {1}Lema\fi }{2}{lemma.1}%

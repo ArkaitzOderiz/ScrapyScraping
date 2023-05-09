@@ -79,6 +79,7 @@ Cada framework aportará su propia colección de módulos y paquetes específico
 Un framework full-stack es apto tanto para deserrollo back-end como front-end, aportando todas las herramientas posibles que ayuden con el desarrollo gráfico de la interfaz de usuario (UI), gestión de bases de datos, protocolos de seguridad y lógica de negocio entre tantos. Siendo Django un ejemplo de framework full-stack. 
 \newline
 \newline
+
 \textbf{Micro}
 \newline
 Los framework micro son ligeros por definición, siendo en cierta medida lo contrario de un framework full-stack, pues aunque los componentes que aportan como puede ser la gestión de bases de datos son los mismos, estos no vienen incluidos de forma nativa. Esto se debe a que buscan aportar flexibilidad y libertad a los desarrolladores para que incluyan unicamente aquellas herramientas que necesiten. 
@@ -87,6 +88,7 @@ Los framework micro son ligeros por definición, siendo en cierta medida lo cont
 Como se explica en la documentación de Flask, uno de los framework tipo micro más relevante, el 'micro' de microframework significa que el núcleo del framework es simple pero extensible.
 \newline
 \newline
+
 \textbf{Asíncrono}
 \newline
 Estos framework están dirigidos por eventos. en vez de hacer un manejo operacional linea a linea de las funciones en la que se van ejecutando una detrás de otra, el código asíncrono no es bloqueante por lo que no se espera que un evento termine para ejecutar el siguiente, ejecutándolo de forma simultanea. Debido a esto un framework asíncrono puede llegar a conseguir un gran rendimiento si se usa en un servidor que lo permita.
@@ -113,12 +115,13 @@ Hace uso de su auto denominado patrón Modelo-Vista-Template (MVT) \ref{fig:ej1}
 \begin{figure} [h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{fig/DjangoMVT.png}
-	\caption[Diagrama patrón MVT]{Diagrama patrón MVT}
+	\caption[Diagrama patrón MVT]{Diagrama patrón MVT \footnotemark}
 	\label{fig:ej1}
 \end{figure}
 \footnotetext{https://docs.hektorprofe.net/django/web-personal/patron-mvt-modelo-vista-template/}
 \newline
 Para poder trabajar con bases de datos relacionales tales como, Oracle, MySQL y PostgreSQL, Django usa un Mapeador Relacional de Objetos (ORM) permitiendo interactuar con ellas mediante SQL.
+
 \newpage
 
 \subsubsection{Por qué Django?}
@@ -152,7 +155,7 @@ El primer paso consiste en mirar la estructuración de la web para seleccionar a
 \begin{figure} [h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png}
-	\caption[Web Scraping (Krotov y Tennyson 2018)]{Web Scraping}
+	\caption[Web Scraping (Krotov y Tennyson 2018)]{Web Scraping \footnotemark}
 	\label{fig:ej2}
 \end{figure}
 \footnotetext{\url{https://www.researchgate.net/figure/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018_fig1_324907302}}
@@ -178,3 +181,13 @@ Scrapy fue elegida gracias a la flexibilidad y versatilidad que proporciona a la
 \newline
 \newline
 Finalmente, cabe mencionar que Scrapy no dispone de rotación de IP, renderizado JavaScript, ni geolocalización como pueden tener las alternativas de pago, cosa que no es un impedimento para llevar a cabo el proyecto. 
+
+\newpage
+
+\section{Base de Datos}
+
+\subsection{Relacional vs No Relacional}
+
+\subsection{PostGreSQL}
+
+\subsection{Por qué PostGreSQL?}

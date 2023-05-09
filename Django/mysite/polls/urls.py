@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
 
 from . import views
 
@@ -13,5 +14,5 @@ urlpatterns = [
     # ex: /polls/5/vote/
     path("<int:question_id>/vote/", views.vote, name="vote"),
     path("multiply/<int:number1>/<int:number2>/", views.multiply, name="multiply"),
-    path("store", views.store, name="store"),
+    path("store", csrf_exempt(views.store), name="store"),
 ]

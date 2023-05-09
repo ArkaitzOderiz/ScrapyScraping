@@ -18,19 +18,25 @@
 \contentsline {subsection}{\numberline {2.2.4}Por qué Debian?}{5}{subsection.2.2.4}%
 \contentsline {section}{\numberline {2.3}Framework}{7}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Qué es un framework?}{7}{subsection.2.3.1}%
-\contentsline {subsubsection}{Tipos de frameworks}{7}{section*.9}%
+\contentsline {subsubsection}{Tipos de frameworks}{7}{section*.8}%
 \contentsline {subsection}{\numberline {2.3.2}Librería vs Framework}{8}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}Django}{8}{subsection.2.3.3}%
-\contentsline {subsubsection}{Qué es Django?}{8}{section*.10}%
-\contentsline {subsubsection}{Por qué Django?}{9}{section*.12}%
+\contentsline {subsubsection}{Qué es Django?}{8}{section*.9}%
+\contentsline {subsubsection}{Por qué Django?}{9}{section*.11}%
 \contentsline {subsection}{\numberline {2.3.4}Scrapy}{10}{subsection.2.3.4}%
-\contentsline {subsubsection}{Qué es el Web Scraping?}{10}{section*.13}%
-\contentsline {subsubsection}{Procedimiento básico en Web Scraping}{10}{section*.14}%
-\contentsline {subsubsection}{Qué es Scrapy?}{10}{section*.16}%
-\contentsline {subsubsection}{Por qué Scrapy?}{11}{section*.17}%
-\contentsline {chapter}{\numberline {3}Algoritmo}{13}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Evaluación}{15}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusiones y Trabajo Futuro}{17}{chapter.5}%
-\contentsline {chapter}{Referencias}{19}{section*.18}%
-\contentsline {chapter}{Glosario}{21}{section*.19}%
-\contentsline {chapter}{Anexos}{23}{section*.19}%
+\contentsline {subsubsection}{Qué es el Web Scraping?}{10}{section*.12}%
+\contentsline {subsubsection}{Procedimiento básico en Web Scraping}{10}{section*.13}%
+\contentsline {subsubsection}{Qué es Scrapy?}{10}{section*.15}%
+\contentsline {subsubsection}{Por qué Scrapy?}{11}{section*.16}%
+\contentsline {section}{\numberline {2.4}Base de Datos}{12}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Relacional vs No Relacional}{12}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}PostGreSQL}{12}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Por qué PostGreSQL?}{12}{subsection.2.4.3}%
+\contentsline {chapter}{\numberline {3}Datos}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Aemet}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}El Agua en Navarra}{14}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Evaluación}{17}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusiones y Trabajo Futuro}{19}{chapter.5}%
+\contentsline {chapter}{Referencias}{21}{section*.20}%
+\contentsline {chapter}{Glosario}{23}{section*.21}%
+\contentsline {chapter}{Anexos}{25}{section*.21}%

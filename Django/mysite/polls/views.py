@@ -21,8 +21,8 @@ class IndexView(generic.ListView):
         published in the future).
         """
         return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")[
-            :5
-        ]
+               :5
+               ]
 
 
 class DetailView(generic.DetailView):
@@ -63,9 +63,13 @@ def vote(request, question_id):
         # user hits the Back button.
         return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
 
+
 def multiply(request, number1, number2):
     result = number1 * number2
     return JsonResponse({"result": result})
 
+
 def store(request):
-    json.loads(request.POST["info"])
+    data = json.loads(request.body.decode("utf-8"))
+    print(data)
+    return JsonResponse(data, safe=False)
