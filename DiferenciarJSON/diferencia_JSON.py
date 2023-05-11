@@ -1,8 +1,8 @@
 import json
 
-with open("datos_aemet1.json", "r") as f1:
+with open("datos_aemet1.json", "r", encoding="utf-8") as f1:
     file1 = json.loads(f1.read())
-with open("datos_aemet2.json", "r") as f2:
+with open("datos_aemet2.json", "r", encoding="utf-8") as f2:
     file2 = json.loads(f2.read())
 
 file3 = []
