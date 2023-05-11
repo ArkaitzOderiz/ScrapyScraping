@@ -12,6 +12,9 @@ BOT_NAME = "meteoNavarra"
 SPIDER_MODULES = ["meteoNavarra.spiders"]
 NEWSPIDER_MODULE = "meteoNavarra.spiders"
 
+LOG_LEVEL = 'WARNING'
+LOG_ENABLED = False
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "meteoNavarra (+http://www.yourdomain.com)"

@@ -10,8 +10,8 @@ class MeteonavarraSpiderSpider(scrapy.Spider):
         rows = response.xpath('//div[@style="margin-left:5px;display:none;"]/script/text()').getall()
 
         for row in rows:
-            yield {
-                'estacion': row.split(',')[3],
-                'codigo': row.split(',')[0].split('(')[1],
-                'tipo': row.split(',')[4].split(')')[0],
-            }
+            if row.split(',')[4].split(')')[0] == "'AUTO'":
+                yield {
+                    'estacion': row.split(',')[3],
+                    'codigo': row.split(',')[0].split('(')[1],
+                }
