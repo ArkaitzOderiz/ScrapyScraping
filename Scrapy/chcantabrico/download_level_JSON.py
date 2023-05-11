@@ -9,7 +9,6 @@ with open('codigos_estaciones_chcantabrico.json', 'r', encoding='utf-8') as f:
     datos = []
 
     for item in data:
-        print(item)
 
         params_nivel = {
             'p_p_id': 'GraficaEstacion_INSTANCE_wH0LL6jTUysu',
@@ -29,18 +28,20 @@ with open('codigos_estaciones_chcantabrico.json', 'r', encoding='utf-8') as f:
                 rawData = pd.read_csv(io.StringIO(urlData), delimiter=';', encoding='utf-8', header=1)
                 rawData[['FECHA', 'HORA']] = rawData['FECHA'].str.split(expand=True)
                 rawData = rawData.reindex(columns=['FECHA', 'HORA', 'VALOR(m)'])
+                rawData.columns = ['Fecha', 'Hora', 'Valor (m)']
+                parsedData = rawData.to_json(orient="records")
 
                 estacion = {
                     'estacion': item["estacion"],
-                    'datos': rawData.to_json(orient="records")
+                    'datos': json.loads(parsedData)
                 }
                 datos.append(estacion)
-                print("-------------------")
+
             else:
-                print("Error retrieving data: 404")
+                print(f'{item["estacion"]} Error retrieving data: 404')
                 print("-------------------")
         else:
-            print(f"Error retrieving data: {response_nivel.status_code}")
+            print(f'{item["estacion"]} Error retrieving data: {response_nivel.status_code}')
             print("-------------------")
 
     with open('datos_nivel_chcantabrico.json', 'w', encoding='utf-8') as outfile:
