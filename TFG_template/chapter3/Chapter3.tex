@@ -50,6 +50,22 @@ Debido a este problema, para la obtención de los datos primero cargamos la web 
 \begin{figure} [h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{fig/ErrorAguaEnNavarra.png}
-	\caption[Página principal de aforos de El Agua en Navarra]{Página El Agua en Navarra}
+	\caption[Error al cargar directamente la página de datos numéricos en El Agua en Navarra]{Error datos numéricos en El Agua en Navarra}
 	\label{fig:ej5}
+\end{figure}
+
+\section{MeteoNavarra}
+En la página de meteorología y climatología de Navarra encontramos una gran sección de estaciones de las cuales poder obtener datos.
+\newline
+\newline
+De entre los dos tipos e estaciones disponibles, automática y manual, únicamente tomamos los datos de las estaciones automáticas, esto se debe a que las manuales solo proveen datos diarios de la temperatura máxima, mínima y de la precipitación acumulada. Esto hace que no dispongamos de ningún dato hasta que finalice el día, cosa que no es viable si lo que se propone es predecir cambios radicales en un periodo de tiempo reducido.
+\newline
+\newline
+Las estaciones automáticas proporcionan tanto datos en periodos de diez minutos como datos diarios, siguiendo el mismo razonamiento que con las estaciones manuales no tomamos los datos diarios y, entre los actualizados cada diez minutos tomamos la temperatura, humedad relativa, radiación global y precipitación en un periodo de dos días.
+
+\begin{figure} [h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/DatosMeteoNavarra.png}
+	\caption[Apartado selección de datos MeteoNavarra]{Datos MeteoNavarra}
+	\label{fig:ej6}
 \end{figure}
