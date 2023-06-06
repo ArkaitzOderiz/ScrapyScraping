@@ -17,7 +17,7 @@ class AemetDataSpiderSpider(scrapy.Spider):
     def parse(self, response):
         latitud = response.xpath('//span/abbr[@class="latitude"]/text()').get()
         longitud = response.xpath('//span/abbr[@class="longitude"]/text()').get()
-        municipio = response.xpath('//div[@class="contenedor_central_izq marginbottom35px"]/div[@class="notas_tabla"]/a[2]/text()').get()
+        estacion = response.css("a.separador_pestanhas").get()
         rows = response.xpath('//table/tbody/tr')
 
         datos = []
@@ -36,6 +36,6 @@ class AemetDataSpiderSpider(scrapy.Spider):
         yield {
             'latitud': latitud,
             'longitud': longitud,
-            'municipio':municipio.split(" ")[0],
+            'estacion': estacion.split('=')[3].split('&')[0],
             'datos': datos,
         }

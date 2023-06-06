@@ -13,6 +13,10 @@ SPIDER_MODULES = ["aemet.spiders"]
 NEWSPIDER_MODULE = "aemet.spiders"
 
 
+LOG_LEVEL = 'WARNING'
+LOG_ENABLED = False
+
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "aemet (+http://www.yourdomain.com)"
 
