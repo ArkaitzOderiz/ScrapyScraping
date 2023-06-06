@@ -69,3 +69,24 @@ Las estaciones automáticas proporcionan tanto datos en periodos de diez minutos
 	\caption[Apartado selección de datos MeteoNavarra]{Datos MeteoNavarra}
 	\label{fig:ej6}
 \end{figure}
+
+\section{Creación de la Base de Datos}
+
+\subsection{Preparación de entorno}
+Partiendo de una instalación limpia de Debian primero instalaremos el entorno virtual sobre el que trabajar, para ello ejecutaremos los siguientes comandos:
+
+Instalamos las depandencias
+sudo apt install python3-venv python3-dev
+
+Creamos un nuevo directorio sobre el que trabajar
+mkdir ~/dirdemiproyecto
+cd ~/dirdemiproyecto
+
+Creamos el entorno virtual
+python3 -m venv envdemiproyecto
+
+activamos el entorno virtual
+source envdemiproyecto/bin/activate
+
+una vez seguidos los pasos nuestra terminal debe mostrarse así:
+(envdemiproyecto)user@host:~/dirdemiproyecto'$'
