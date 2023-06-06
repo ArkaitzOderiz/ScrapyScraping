@@ -1,0 +1,33 @@
+[
+  {
+    "estacion": "Ribera de Piquín",
+    "codigo": "A047"
+  },
+  {
+    "estacion": "Ribera de Piquín",
+    "codigo": "A047",
+    "seguimiento": "2.10",
+    "prealerta": "2.60",
+    "alerta": "3.50"
+  },
+  {
+    "estacion": "Ribera de Piquín",
+    "datos": [
+      {
+        "Fecha": "04/05/2023",
+        "Hora": "13:00:00",
+        "Valor (m)": 0.304
+      }
+    ]
+  },
+  {
+    "estacion": "Ribera de Piquín",
+    "datos": [
+      {
+        "Fecha": "04/05/2023",
+        "Hora": "13:00:00",
+        "Valor (mm)": 0.304
+      }
+    ]
+  }
+]

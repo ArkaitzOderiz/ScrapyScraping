@@ -1,0 +1,42 @@
+[
+  {
+    "aforo": "Ebro bajo",
+    "codigos": [
+      "55",
+      "64",
+      "61",
+      "60",
+      "59"
+    ]
+  },
+  {
+    "descripcion": "Río Alhama en Cintruénigo (CHE)",
+    "municipio": "Cintruénigo",
+    "rio": "Alhama",
+    "coordenadas": "X. 598270,3 | Y. 4659333 | Z. 37928",
+    "codigos": [
+      "374",
+      "380"
+    ]
+  },
+  {
+    "estacion": "Río Alhama en Cintruénigo (CHE)",
+    "datos": [
+      {
+        "fecha": "01/03/2023",
+        "hora": "12:10",
+        "nivel (m)": "0,03"
+      }
+    ]
+  },
+  {
+    "estacion": "Río Alhama en Cintruénigo (CHE)",
+    "datos": [
+      {
+        "fecha": "01/03/2023",
+        "hora": "12:10",
+        "caudal (m^3/s)": "0,03"
+      }
+    ]
+  }
+]
