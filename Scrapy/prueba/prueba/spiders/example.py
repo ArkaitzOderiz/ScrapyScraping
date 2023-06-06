@@ -26,7 +26,7 @@ class ExampleSpider(scrapy.Spider):
 
     def parse_data(self, response):
         tipo = response.css('span#lblSenal::text').get()
-        estacion = response.css('span#lblDescripcion::text').get()
+        estacion = response.css('li#cabecera_Li1 a::attr(href)').get()
         fechas = response.css('span.cont_fecha_gra::text').getall()
         valores = response.css('span.cont_valor_gra::text').getall()
 
@@ -49,6 +49,6 @@ class ExampleSpider(scrapy.Spider):
                 datos.append(dato)
 
         yield {
-            'estacion': estacion,
+            'estacion': estacion.split('=')[-1],
             'datos': datos,
         }

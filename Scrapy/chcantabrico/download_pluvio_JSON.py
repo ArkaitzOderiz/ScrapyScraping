@@ -28,11 +28,11 @@ with open('codigos_estaciones_chcantabrico.json', 'r', encoding='utf-8') as f:
                 rawData = pd.read_csv(io.StringIO(urlData), delimiter=';', encoding='utf-8', header=1)
                 rawData[['FECHA', 'HORA']] = rawData['FECHA'].str.split(expand=True)
                 rawData = rawData.reindex(columns=['FECHA', 'HORA', 'VALOR(mm)'])
-                rawData.columns = ['Fecha', 'Hora', 'Valor (mm)']
+                rawData.columns = ['fecha', 'hora', 'precipitacion (mm)']
                 parsedData = rawData.to_json(orient="records")
 
                 estacion = {
-                    'estacion': item["estacion"],
+                    'estacion': item["codigo"],
                     'datos': json.loads(parsedData)
                 }
                 datos.append(estacion)

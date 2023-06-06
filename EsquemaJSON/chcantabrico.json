@@ -11,22 +11,22 @@
     "alerta": "3.50"
   },
   {
-    "estacion": "Ribera de Piquín",
+    "estacion": "A047",
     "datos": [
       {
-        "Fecha": "04/05/2023",
-        "Hora": "13:00:00",
-        "Valor (m)": 0.304
+        "fecha": "04/05/2023",
+        "hora": "13:00:00",
+        "nivel (m)": 0.304
       }
     ]
   },
   {
-    "estacion": "Ribera de Piquín",
+    "estacion": "A047",
     "datos": [
       {
-        "Fecha": "04/05/2023",
-        "Hora": "13:00:00",
-        "Valor (mm)": 0.304
+        "fecha": "04/05/2023",
+        "hora": "13:00:00",
+        "precipitacion (mm)": 0.304
       }
     ]
   }

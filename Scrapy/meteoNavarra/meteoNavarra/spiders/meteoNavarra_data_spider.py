@@ -26,7 +26,7 @@ class MeteonavarraDataSpiderSpider(scrapy.Spider):
 
     def parse(self, response):
         rows = response.css('table.border tr:not([bgcolor*="#FFFFFF"])')
-        estacion = response.css('h1::text').get()
+        estacion = response.css('table a::attr(href)')[7].get()
 
         datos = []
         for row in rows:
@@ -43,7 +43,7 @@ class MeteonavarraDataSpiderSpider(scrapy.Spider):
                 datos.append(dato)
 
         yield {
-            'estacion': estacion,
+            'estacion': estacion.split('idestacion=')[1].split('&')[0],
             'datos': datos,
         }
 
