@@ -18,7 +18,7 @@ class AguaennavarraNewcodSpiderSpider(scrapy.Spider):
     def parse(self, response):
         urls = response.xpath('//span/a/@href').getall()
         estacion = response.xpath('//div[@id="bloq_iconos"]/div/span/span/text()').getall()
-
+        codigoEstacion = response.css("form#frmDatosEstacion::attr(action)").get()
         codigos = []
         for url in urls:
             codigos.append(url.split('=')[1])
@@ -28,5 +28,6 @@ class AguaennavarraNewcodSpiderSpider(scrapy.Spider):
             'municipio': estacion[1],
             'rio': estacion[2],
             'coordenadas': estacion[3],
+            'estacion': codigoEstacion.split('=')[-1],
             'codigos': codigos,
         }

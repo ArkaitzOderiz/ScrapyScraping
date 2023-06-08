@@ -14,13 +14,14 @@
     "municipio": "Cintruénigo",
     "rio": "Alhama",
     "coordenadas": "X. 598270,3 | Y. 4659333 | Z. 37928",
+    "estacion": "64",
     "codigos": [
       "374",
       "380"
     ]
   },
   {
-    "estacion": "381",
+    "estacion": "64",
     "datos": [
       {
         "fecha": "01/03/2023",
@@ -30,7 +31,7 @@
     ]
   },
   {
-    "estacion": "381",
+    "estacion": "64",
     "datos": [
       {
         "fecha": "01/03/2023",

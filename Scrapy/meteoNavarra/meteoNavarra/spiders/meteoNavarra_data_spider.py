@@ -42,10 +42,14 @@ class MeteonavarraDataSpiderSpider(scrapy.Spider):
             if dato['precipitacion (l/mm^2)'] != '- -':
                 datos.append(dato)
 
-        yield {
-            'estacion': estacion.split('idestacion=')[1].split('&')[0],
-            'datos': datos,
-        }
+            if dato['radiacion global (W/m^2)'] == '- -':
+                dato['radiacion global (W/m^2)'] = None
+
+        if datos:
+            yield {
+                'estacion': estacion.split('idestacion=')[1].split('&')[0],
+                'datos': datos,
+            }
 
         next_page = response.css("table a::attr(href)").getall()
         page_number = response.xpath("//b/text()").getall()

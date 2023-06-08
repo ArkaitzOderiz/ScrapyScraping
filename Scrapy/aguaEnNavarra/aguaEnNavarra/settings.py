@@ -22,6 +22,9 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy_selenium.SeleniumMiddleware': 800
 }
 
+LOG_LEVEL = 'WARNING'
+LOG_ENABLED = False
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "aguaEnNavarra (+http://www.yourdomain.com)"
 
