@@ -23,8 +23,7 @@ class AemetDataSpiderSpider(scrapy.Spider):
         datos = []
         for row in rows:
             dato = {
-                'fecha': row.xpath('./td[1]/text()').get().split(' ')[0],
-                'hora': row.xpath('./td[1]/text()').get().split(' ')[1],
+                'fecha y hora': row.xpath('./td[1]/text()').get(),
                 'temperatura (ºC)': row.xpath('./td[2]/text()').get(),
                 'humedad (%)': row.xpath('./td[10]/text()').get(),
                 'precipitacion (mm)': row.xpath('./td[7]/text()').get(),

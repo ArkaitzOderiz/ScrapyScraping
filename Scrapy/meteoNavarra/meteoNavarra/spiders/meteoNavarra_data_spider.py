@@ -31,19 +31,18 @@ class MeteonavarraDataSpiderSpider(scrapy.Spider):
         datos = []
         for row in rows:
             dato = {
-                'fecha': row.xpath('./td[1]/text()').get().strip().split(' ')[0],
-                'hora': row.xpath('./td[1]/text()').get().strip().split(' ')[1],
+                'fecha y hora': row.xpath('./td[1]/text()').get().strip().replace(' ', ' '),
                 'temperatura (ªC)': row.xpath('./td[2]/font/text()').get(),
                 'humedad relativa (%)': row.xpath('./td[3]/font/text()').get(),
                 'radiacion global (W/m^2)': row.xpath('./td[4]/font/text()').get(),
                 'precipitacion (l/mm^2)': row.xpath('./td[5]/font/text()').get(),
             }
 
-            if dato['precipitacion (l/mm^2)'] != '- -':
-                datos.append(dato)
-
             if dato['radiacion global (W/m^2)'] == '- -':
                 dato['radiacion global (W/m^2)'] = None
+
+            if dato['precipitacion (l/mm^2)'] != '- -':
+                datos.append(dato)
 
         if datos:
             yield {

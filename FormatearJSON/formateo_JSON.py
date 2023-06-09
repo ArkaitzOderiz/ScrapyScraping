@@ -13,8 +13,7 @@ def formatAemet(file):
         datos = []
         for data in line['datos']:
             dato = {
-                'fecha': data['fecha'],
-                'hora': data['hora'],
+                'fecha y hora': data['fecha y hora'],
                 'temperatura (ºC)': data['temperatura (ºC)'],
                 'humedad (%)': data['humedad (%)'],
                 'precipitacion (mm)': data['precipitacion (mm)'],
@@ -24,7 +23,7 @@ def formatAemet(file):
             }
             datos.append(dato)
         header = {
-            'coordenadas': line['latitud'] + ' - ' + line['longitud'],
+            'coordenadas': line['latitud'] + ' | ' + line['longitud'],
             'estacion': line['estacion'],
             'datos': datos
         }
@@ -39,8 +38,7 @@ def formatMeteoNavarra(file):
         datos = []
         for data in line['datos']:
             dato = {
-                'fecha': data['fecha'],
-                'hora': data['hora'],
+                'fecha y hora': data['fecha y hora'],
                 'temperatura (ºC)': data['temperatura (ªC)'],
                 'humedad (%)': data['humedad relativa (%)'],
                 'precipitacion (mm)': data['precipitacion (l/mm^2)'],
@@ -59,14 +57,18 @@ def formatMeteoNavarra(file):
         json.dump(formatedJSON, outfile)
 
 
-def searchAguaEnNavarraData(dataFile, code):
+def searchEstacionData(dataFile, code):
     datos = []
     for data in dataFile:
         if data['estacion'] == code:
             datos.append(data)
-    with open('p.json', 'w', encoding='utf-8') as outfile:
-        json.dump(datos, outfile)
     return datos
+
+
+def searchDateData(dataFile, date):
+    for data in dataFile:
+        if data['fecha y hora'] == date:
+            return data
 
 
 def formatAguaEnNavarra(file):
@@ -74,27 +76,45 @@ def formatAguaEnNavarra(file):
         dataFile = json.loads(f.read())
     formatedJSON = []
     for line in file:
-        lineData = searchAguaEnNavarraData(dataFile, line['estacion'])
+        lineData = searchEstacionData(dataFile, line['estacion'])
         datos = []
-        if len(lineData) == 1:
-            for data in lineData[0]['datos']:
-                dato = {
-                    'fecha': data['fecha'],
-                    'hora': data['hora'],
-                    'temperatura (ºC)': None,
-                    'humedad (%)': None,
-                    'precipitacion (mm)': None,
-                    'nivel (m)': None,
-                    'caudal (m^3/s)': None,
-                    'radiacion (W/m^2)': None,
-                }
+        index = 0
+        indexSecundario = 1
+        if len(lineData) == 2:
+            if len(lineData[0]) < len(lineData[1]):
+                index = 1
+                indexSecundario = 0
+        for i, data in enumerate(lineData[index]['datos']):
+            dato = {
+                'fecha y hora': data['fecha y hora'],
+                'temperatura (ºC)': None,
+                'humedad (%)': None,
+                'precipitacion (mm)': None,
+                'nivel (m)': None,
+                'caudal (m^3/s)': None,
+                'radiacion (W/m^2)': None,
+            }
 
-                if 'nivel (m)' in data:
-                    dato['nivel (m)'] = data['nivel (m)']
-                if 'caudal (m^3/s)' in data:
-                    dato['caudal (m^3/s)'] = data['caudal (m^3/s)']
+            if 'nivel (m)' in data:
+                dato['nivel (m)'] = data['nivel (m)']
+            elif 'caudal (m^3/s)' in data:
+                dato['caudal (m^3/s)'] = data['caudal (m^3/s)']
 
-                datos.append(dato)
+            if len(lineData) == 2:
+                try:
+                    dateData = lineData[indexSecundario]['datos'][i]
+                    if data['fecha y hora'] != dateData['fecha y hora']:
+                        dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
+                except IndexError:
+                    dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
+                try:
+                    if 'nivel (m)' in dateData:
+                        dato['nivel (m)'] = dateData['nivel (m)']
+                    if 'caudal (m^3/s)' in dateData:
+                        dato['caudal (m^3/s)'] = dateData['caudal (m^3/s)']
+                except TypeError:
+                    pass
+            datos.append(dato)
         header = {
             'coordenadas': line['coordenadas'],
             'estacion': line['estacion'],
