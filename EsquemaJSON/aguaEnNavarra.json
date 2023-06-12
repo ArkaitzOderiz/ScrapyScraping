@@ -24,7 +24,7 @@
     "estacion": "64",
     "datos": [
       {
-        "fecha y hora": "01/03/2023 12:10",
+        "fecha y hora": "01/03/2023 12:10:00",
         "nivel (m)": "0,03"
       }
     ]
@@ -33,7 +33,7 @@
     "estacion": "64",
     "datos": [
       {
-        "fecha y hora": "01/03/2023 12:10",
+        "fecha y hora": "01/03/2023 12:10:00",
         "caudal (m^3/s)": "0,03"
       }
     ]

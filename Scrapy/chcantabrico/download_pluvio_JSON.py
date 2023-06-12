@@ -26,9 +26,7 @@ with open('codigos_estaciones_chcantabrico.json', 'r', encoding='utf-8') as f:
             if not response_pluvio.text.startswith('-'):
                 urlData = response_pluvio.text
                 rawData = pd.read_csv(io.StringIO(urlData), delimiter=';', encoding='utf-8', header=1)
-                rawData[['FECHA', 'HORA']] = rawData['FECHA'].str.split(expand=True)
-                rawData = rawData.reindex(columns=['FECHA', 'HORA', 'VALOR(mm)'])
-                rawData.columns = ['fecha', 'hora', 'precipitacion (mm)']
+                rawData.columns = ['fecha y hora', 'precipitacion (mm)']
                 parsedData = rawData.to_json(orient="records")
 
                 estacion = {

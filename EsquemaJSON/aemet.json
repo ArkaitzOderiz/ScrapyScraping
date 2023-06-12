@@ -9,8 +9,7 @@
     "estacion": "9263X",
     "datos": [
       {
-        "fecha": "09/03/2023",
-        "hora": "10:00",
+        "fecha y hora": "09/03/2023 10:00:00",
         "temperatura (ºC)": "12.9",
         "humedad (%)": "77.0",
         "precipitacion (mm)": "0.0"

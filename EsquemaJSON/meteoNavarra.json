@@ -7,8 +7,7 @@
     "estacion": "274",
     "datos": [
       {
-        "fecha": "10/05/2023",
-        "hora": "0:00",
+        "fecha y hora": "04/05/2023 13:00:00",
         "temperatura (ªC)": "11.2",
         "humedad relativa (%)": "76",
         "radiacion global (W/m^2)": "0.0",

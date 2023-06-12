@@ -32,14 +32,14 @@ class AguaennavarraDataSpiderSpider(scrapy.Spider):
         if tipo == "Nivel Río":
             for i, fecha in enumerate(fechas):
                 dato = {
-                    'fecha y hora': fecha.strip(),
+                    'fecha y hora': fecha.strip() + ':00',
                     'nivel (m)': valores[i].strip(),
                 }
                 datos.append(dato)
         else:
             for i, fecha in enumerate(fechas):
                 dato = {
-                    'fecha y hora': fecha.strip(),
+                    'fecha y hora': fecha.strip() + ':00',
                     'caudal (m^3/s)': valores[i].strip(),
                 }
                 datos.append(dato)
