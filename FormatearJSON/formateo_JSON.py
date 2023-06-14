@@ -33,9 +33,18 @@ def formatAemet(file):
         json.dump(formatedJSON, outfile)
 
 
+def searchEstacionCoords(code, coordFile):
+    for data in coordFile:
+        if data['estacion'] == code:
+            return data['coordenadas']
+
+
 def formatMeteoNavarra(file):
+    with open('../Scrapy/meteoNavarra/coordenadas_meteoNavarra.json', "r", encoding="utf-8") as f:
+        coordFile = json.loads(f.read())
     formatedJSON = []
     for line in file:
+        lineCoords = searchEstacionCoords(line['estacion'], coordFile)
         datos = []
         for data in line['datos']:
             dato = {
@@ -49,7 +58,7 @@ def formatMeteoNavarra(file):
             }
             datos.append(dato)
         header = {
-            'coordenadas': None,
+            'coordenadas': lineCoords,
             'estacion': line['estacion'],
             'datos': datos
         }
