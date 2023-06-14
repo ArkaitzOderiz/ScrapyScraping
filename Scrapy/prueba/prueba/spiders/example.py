@@ -26,7 +26,7 @@ class ExampleSpider(scrapy.Spider):
 
     def parse_data(self, response):
         tipo = response.css('span#lblSenal::text').get()
-        estacion = response.css('li#cabecera_Li1 a::attr(href)').get()
+        estacion = response.css('li#cabecera_nombreEstacion a::attr(href)').get()
         fechas = response.css('span.cont_fecha_gra::text').getall()
         valores = response.css('span.cont_valor_gra::text').getall()
 
@@ -34,16 +34,14 @@ class ExampleSpider(scrapy.Spider):
         if tipo == "Nivel Río":
             for i, fecha in enumerate(fechas):
                 dato = {
-                    'fecha': fecha.strip().split(' ')[0],
-                    'hora': fecha.strip().split(' ')[1],
+                    'fecha y hora': fecha.strip() + ':00',
                     'nivel (m)': valores[i].strip(),
                 }
                 datos.append(dato)
         else:
             for i, fecha in enumerate(fechas):
                 dato = {
-                    'fecha': fecha.strip().split(' ')[0],
-                    'hora': fecha.strip().split(' ')[1],
+                    'fecha y hora': fecha.strip() + ':00',
                     'caudal (m^3/s)': valores[i].strip(),
                 }
                 datos.append(dato)
