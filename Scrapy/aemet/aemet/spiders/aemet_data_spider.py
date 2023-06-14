@@ -33,8 +33,7 @@ class AemetDataSpiderSpider(scrapy.Spider):
                 datos.append(dato)
 
         yield {
-            'latitud': latitud,
-            'longitud': longitud,
+            'coordenadas': latitud + ' | ' + longitud,
             'estacion': estacion.split('=')[3].split('&')[0],
             'datos': datos,
         }

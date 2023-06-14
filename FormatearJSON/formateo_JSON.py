@@ -24,7 +24,7 @@ def formatAemet(file):
             }
             datos.append(dato)
         header = {
-            'coordenadas': line['latitud'] + ' | ' + line['longitud'],
+            'coordenadas': line['coordenadas'],
             'estacion': line['estacion'],
             'datos': datos
         }
