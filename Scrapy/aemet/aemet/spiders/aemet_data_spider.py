@@ -8,14 +8,14 @@ class AemetDataSpiderSpider(scrapy.Spider):
     allowed_domains = ["www.aemet.es"]
     custom_settings = {
         'FEEDS': {
-            '../../JSONs/Datos/datos_aemet.json': {
+            '../../JSONs/RawData/datos_aemet.json': {
                 'format': 'json',
             }
         }
     }
 
     def start_requests(self):
-        with open("codigos_estaciones_aemet.json", encoding="utf-8") as f:
+        with open("../../JSONs/Codigos/codigos_aemet.json", encoding="utf-8") as f:
             data = json.load(f)
             for estacion in data:
                 url = f'https://www.aemet.es/es/eltiempo/observacion/ultimosdatos?k=nav&l={estacion["codigo"]}&w=0&datos=det&x=&f=temperatura'
