@@ -42,5 +42,5 @@ with open('codigos_estaciones_chcantabrico.json', 'r', encoding='utf-8') as f:
             print(f'{item["estacion"]} Error retrieving data: {response_nivel.status_code}')
             print("-------------------")
 
-    with open('../../JSONs/Datos/datos_nivel_chcantabrico.json', 'w', encoding='utf-8') as outfile:
+    with open('../../JSONs/RawData/datos_nivel_chcantabrico.json', 'w', encoding='utf-8') as outfile:
         json.dump(datos, outfile)
