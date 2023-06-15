@@ -5,6 +5,13 @@ class ExampleSpider(scrapy.Spider):
     name = "example"
     allowed_domains = ["administracionelectronica.navarra.es"]
     start_urls = ["https://administracionelectronica.navarra.es/aguaEnNavarra/ctaMapa.aspx?IDOrigenDatos=1&IDMapa=1"]
+    custom_settings = {
+        'FEEDS': {
+            '../../JSONs/Datos/datos_aguaEnNavarra.json': {
+                'format': 'json',
+            }
+        }
+    }
 
     def parse(self, response):
         for link in response.css('dl#navarramap a::attr(href)'):

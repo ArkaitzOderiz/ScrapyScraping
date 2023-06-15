@@ -7,6 +7,13 @@ from scrapy_selenium import SeleniumRequest
 class AguaennavarraDataSpiderSpider(scrapy.Spider):
     name = "aguaEnNavarra_data_spider"
     allowed_domains = ["administracionelectronica.navarra.es"]
+    custom_settings = {
+        'FEEDS': {
+            '../../JSONs/Datos/datos_aguaEnNavarra.json': {
+                'format': 'json',
+            }
+        }
+    }
 
     def start_requests(self):
         with open("codigos_datos_aguaEnNavarra.json", encoding="utf-8") as f:

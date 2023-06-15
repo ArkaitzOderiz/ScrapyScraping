@@ -6,6 +6,13 @@ import scrapy
 class AemetDataSpiderSpider(scrapy.Spider):
     name = "aemet_data_spider"
     allowed_domains = ["www.aemet.es"]
+    custom_settings = {
+        'FEEDS': {
+            '../../JSONs/Datos/datos_aemet.json': {
+                'format': 'json',
+            }
+        }
+    }
 
     def start_requests(self):
         with open("codigos_estaciones_aemet.json", encoding="utf-8") as f:

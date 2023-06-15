@@ -7,6 +7,13 @@ import scrapy
 class MeteonavarraDataSpiderSpider(scrapy.Spider):
     name = "meteoNavarra_data_spider"
     allowed_domains = ["meteo.navarra.es"]
+    custom_settings = {
+        'FEEDS': {
+            '../../JSONs/Datos/datos_meteoNavarra.json': {
+                'format': 'json',
+            }
+        }
+    }
 
     def start_requests(self):
 
