@@ -39,11 +39,32 @@ def searchEstacionCoords(code, coordFile):
             return data['coordenadas']
 
 
+def unifyData(dataFile, cod):
+    datos = []
+    for line in dataFile:
+        if line['estacion'] == cod:
+            for dato in line['datos']:
+                datos.append(dato)
+
+    unifiedData = {
+        'estacion': cod,
+        'datos': datos
+    }
+
+    return unifiedData
+
+
 def formatMeteoNavarra(file):
     with open('../Scrapy/meteoNavarra/coordenadas_meteoNavarra.json', "r", encoding="utf-8") as f:
         coordFile = json.loads(f.read())
+
+    unifiedJSON = []
+    for cod in coordFile:
+        data = unifyData(file, cod['estacion'])
+        unifiedJSON.append(data)
+
     formatedJSON = []
-    for line in file:
+    for line in unifiedJSON:
         lineCoords = searchEstacionCoords(line['estacion'], coordFile)
         datos = []
         for data in line['datos']:
