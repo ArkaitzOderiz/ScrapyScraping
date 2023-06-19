@@ -75,7 +75,7 @@ def formatAemet(file):
 
 
 def formatMeteoNavarra(file):
-    with open('../Scrapy/meteoNavarra/coordenadas_meteoNavarra.json', "r", encoding="utf-8") as f:
+    with open('../JSONs/RawData/coordenadas_meteoNavarra.json', "r", encoding="utf-8") as f:
         coordFile = json.loads(f.read())
 
     unifiedJSON = []
