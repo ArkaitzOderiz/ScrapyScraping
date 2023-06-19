@@ -166,9 +166,12 @@ def formatChcantabrico(file):
         levelDataFile = json.loads(f.read())
     with open('../JSONs/RawData/datos_pluvio_chcantabrico.json', "r", encoding="utf-8") as f:
         pluvioDataFile = json.loads(f.read())
+    with open('../Scrapy/chcantabrico/coordenadas_chcantabrico.json', "r", encoding="utf-8") as f:
+        coordFile = json.loads(f.read())
     formattedJSON = []
     for line in file:
         lineData = searchEstacionData(line['codigo'], levelDataFile, pluvioDataFile)
+        lineCoords = searchEstacionCoords(line['codigoSecundario'], coordFile)
         datos = []
         index = 0
         indexSecundario = 1
@@ -211,7 +214,7 @@ def formatChcantabrico(file):
 
             datos.append(dato)
         header = {
-            'coordenadas': None,
+            'coordenadas': lineCoords,
             'estacion': line['codigo'],
             'datos': datos
         }
@@ -221,6 +224,7 @@ def formatChcantabrico(file):
 
 for i, dataJSON in enumerate(jsonsDir):
     with open(dataJSON, "r", encoding="utf-8") as f:
+        print(dataJSON)
         file = json.loads(f.read())
         if i == 0:
             formatAemet(file)
