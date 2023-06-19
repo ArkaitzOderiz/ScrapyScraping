@@ -11,7 +11,7 @@ class ChcantabricoSpiderSpider(scrapy.Spider):
 
         for row in rows:
             codigoBusqueda = row.css('td.codigo::text').get()
-            limites = row.xpath('./td/table[@class="umbrales_gr"]/tr[3]/td/text()').getall()
+            limites = row.css('table.umbrales_gr td.datos::text').getall()
             paths = row.xpath('./td/a/@href').getall()
             estaciones = row.xpath('./td/a/text()').getall()
             yield {
