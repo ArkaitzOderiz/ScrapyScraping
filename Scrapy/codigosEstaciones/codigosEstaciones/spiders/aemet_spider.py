@@ -9,6 +9,7 @@ class AemetSpiderSpider(scrapy.Spider):
         'FEEDS': {
             '../../JSONs/Codigos/codigos_aemet.json': {
                 'format': 'json',
+                'overwrite': True,
             }
         }
     }

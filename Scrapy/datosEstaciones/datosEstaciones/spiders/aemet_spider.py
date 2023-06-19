@@ -10,6 +10,7 @@ class AemetDataSpiderSpider(scrapy.Spider):
         'FEEDS': {
             '../../JSONs/RawData/datos_aemet.json': {
                 'format': 'json',
+                'overwrite': True,
             }
         }
     }
