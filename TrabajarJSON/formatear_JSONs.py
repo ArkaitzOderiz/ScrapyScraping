@@ -4,7 +4,7 @@ jsonsDir = [
     "../JSONs/RawData/datos_aemet.json",
     "../JSONs/RawData/datos_meteoNavarra.json",
     "../Scrapy/aguaEnNavarra/codigos_datos_aguaEnNavarra.json",
-    "../Scrapy/chcantabrico/codigos_estaciones_chcantabrico.json",
+    "../JSONs/Codigos/codigos_chcantabrico.json",
 ]
 
 
@@ -166,7 +166,7 @@ def formatChcantabrico(file):
         levelDataFile = json.loads(f.read())
     with open('../JSONs/RawData/datos_pluvio_chcantabrico.json', "r", encoding="utf-8") as f:
         pluvioDataFile = json.loads(f.read())
-    with open('../Scrapy/chcantabrico/coordenadas_chcantabrico.json', "r", encoding="utf-8") as f:
+    with open('../JSONs/RawData/coordenadas_chcantabrico.json', "r", encoding="utf-8") as f:
         coordFile = json.loads(f.read())
     formattedJSON = []
     for line in file:
