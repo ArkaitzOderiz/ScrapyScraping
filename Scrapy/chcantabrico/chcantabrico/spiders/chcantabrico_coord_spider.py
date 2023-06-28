@@ -6,6 +6,14 @@ import scrapy
 class ChcantabricoCoordSpiderSpider(scrapy.Spider):
     name = "chcantabrico_coord_spider"
     allowed_domains = ["ceh.cedex.es"]
+    custom_settings = {
+        'FEEDS': {
+            '../../JSONs/RawData/coordenadas_chcantabrico.json': {
+                'format': 'json',
+                'overwrite': True,
+            }
+        }
+    }
 
     def start_requests(self):
         with open("codigos_estaciones_chcantabrico.json", encoding="utf-8") as f:
@@ -20,6 +28,6 @@ class ChcantabricoCoordSpiderSpider(scrapy.Spider):
         estacion = response.css('font::text')[14].get().strip()
 
         yield {
-            'coordenadas': latitud + ' | ' + longitud,
+            'coordenadas': f'Lat: {latitud} | Lon: {longitud}',
             'estacion': estacion,
         }
