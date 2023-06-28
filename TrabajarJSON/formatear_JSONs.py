@@ -8,6 +8,12 @@ jsonsDir = [
 ]
 
 
+def openFile(filename):
+    with open(f'../JSONs/RawData/{filename}', "r", encoding="utf-8") as f:
+        file = json.loads(f.read())
+    return file
+
+
 def saveFile(filename, data):
     with open(f'../JSONs/ParsedData/{filename}', 'w', encoding='utf-8') as outfile:
         json.dump(data, outfile)
@@ -75,9 +81,7 @@ def formatAemet(file):
 
 
 def formatMeteoNavarra(file):
-    with open('../JSONs/RawData/coordenadas_meteoNavarra.json', "r", encoding="utf-8") as f:
-        coordFile = json.loads(f.read())
-
+    coordFile = openFile('coordenadas_meteoNavarra.json')
     unifiedJSON = []
     for cod in coordFile:
         data = unifyData(file, cod['estacion'])
@@ -108,8 +112,7 @@ def formatMeteoNavarra(file):
 
 
 def formatAguaEnNavarra(file):
-    with open('../JSONs/RawData/datos_aguaEnNavarra.json', "r", encoding="utf-8") as f:
-        dataFile = json.loads(f.read())
+    dataFile = openFile('datos_aguaEnNavarra.json')
     formattedJSON = []
     for line in file:
         lineData = searchEstacionData(line['estacion'], dataFile)
@@ -162,12 +165,9 @@ def formatAguaEnNavarra(file):
 
 
 def formatChcantabrico(file):
-    with open('../JSONs/RawData/datos_nivel_chcantabrico.json', "r", encoding="utf-8") as f:
-        levelDataFile = json.loads(f.read())
-    with open('../JSONs/RawData/datos_pluvio_chcantabrico.json', "r", encoding="utf-8") as f:
-        pluvioDataFile = json.loads(f.read())
-    with open('../JSONs/RawData/coordenadas_chcantabrico.json', "r", encoding="utf-8") as f:
-        coordFile = json.loads(f.read())
+    levelDataFile = openFile('datos_nivel_chcantabrico.json')
+    pluvioDataFile = openFile('datos_pluvio_chcantabrico.json')
+    coordFile = openFile('coordenadas_chcantabrico.json')
     formattedJSON = []
     for line in file:
         lineData = searchEstacionData(line['codigo'], levelDataFile, pluvioDataFile)
@@ -224,13 +224,13 @@ def formatChcantabrico(file):
 
 for i, dataJSON in enumerate(jsonsDir):
     with open(dataJSON, "r", encoding="utf-8") as f:
-        print(dataJSON)
         file = json.loads(f.read())
-        if i == 0:
-            formatAemet(file)
-        elif i == 1:
-            formatMeteoNavarra(file)
-        elif i == 2:
-            formatAguaEnNavarra(file)
-        elif i == 3:
-            formatChcantabrico(file)
+
+    if i == 0:
+        formatAemet(file)
+    elif i == 1:
+        formatMeteoNavarra(file)
+    elif i == 2:
+        formatAguaEnNavarra(file)
+    elif i == 3:
+        formatChcantabrico(file)
