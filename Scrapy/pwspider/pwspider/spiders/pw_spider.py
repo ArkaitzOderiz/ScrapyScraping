@@ -32,6 +32,9 @@ class PwSpiderSpider(scrapy.Spider):
             )
 
     def parse_data(self, response):
+        page = response.meta["playwright_page"]
+        await page.close()
+
         tipo = response.css('span#lblSenal::text').get()
         estacion = response.css('li#cabecera_nombreEstacion a::attr(href)').get()
         fechas = response.css('span.cont_fecha_gra::text').getall()
