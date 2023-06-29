@@ -10,6 +10,7 @@ class ChcantabricoCoordSpiderSpider(scrapy.Spider):
         'FEEDS': {
             '../../JSONs/RawData/coordenadas_chcantabrico.json': {
                 'format': 'json',
+                'encoding': 'utf-8',
                 'overwrite': True,
             }
         }

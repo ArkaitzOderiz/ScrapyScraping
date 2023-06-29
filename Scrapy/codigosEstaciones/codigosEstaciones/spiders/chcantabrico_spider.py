@@ -9,6 +9,7 @@ class ChcantabricoSpiderSpider(scrapy.Spider):
         'FEEDS': {
             '../../JSONs/Codigos/codigos_chcantabrico.json': {
                 'format': 'json',
+                'encoding': 'utf-8',
                 'overwrite': True,
             }
         }

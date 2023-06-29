@@ -9,6 +9,7 @@ class MeteonavarraSpiderSpider(scrapy.Spider):
         'FEEDS': {
             '../../JSONs/Codigos/codigos_meteoNavarra.json': {
                 'format': 'json',
+                'encoding': 'utf-8',
                 'overwrite': True,
             }
         }

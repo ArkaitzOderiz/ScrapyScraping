@@ -12,6 +12,7 @@ class ChcantabricoCoordSpiderSpider(scrapy.Spider):
         'FEEDS': {
             '../../JSONs/RawData/datos_pluvio_chcantabrico.json': {
                 'format': 'json',
+                'encoding': 'utf-8',
                 'overwrite': True,
             }
         }
