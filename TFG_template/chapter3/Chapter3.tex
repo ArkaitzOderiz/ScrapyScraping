@@ -89,4 +89,15 @@ activamos el entorno virtual
 source envdemiproyecto/bin/activate
 
 una vez seguidos los pasos nuestra terminal debe mostrarse así:
-(envdemiproyecto)user@host:~/dirdemiproyecto'$'
+
+(envdemiproyecto)user@host:~/dirdemiproyecto'\$
+
+\subsection{Instalacion y configuracion de PostGreSQL}
+Instalamos PostGreSQL
+sudo apt install libpq-dev postgresql postgresql-contrib
+
+iniciamos sesion usando el role postgres
+sudo -u postgres
+
+accedemos a PostGreSQL
+psql

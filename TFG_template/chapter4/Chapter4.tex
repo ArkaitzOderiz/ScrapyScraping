@@ -1,6 +1,81 @@
 \chapter[Evaluación]{Evaluación}
 \label{Chap4}
 
+\section{Trabalho}
+Estructuras planteadas:\newline
+Scrapy -INSERT-> PostGreSQL <-SELECT- Django -POST-> App\newline
+Problema: aunque sea la estructura más simple y facil de implementar, pues scrapy mismo puede insertar los datos scrapeados de las web de forma directa en PostGreSQL, Djando hace uso de un sistema de gestion de versiones de los cambios realizados en la BBDD con el fin de reducir la carga de peticiones a la BBDD, esto se aplica desde el lado de Django, lo que supondria un problema a la hora de insertar datos directamente de Scrapy a PostGreSQL, pues los nuevos datos podrian no llegar a ser detectados por Django, generando la situacion de que una vez se vayan a pedir los nuevos datos Django no devuelva nada pues desde su punto de vista los datos que ya dispongo son la version mas reciente, luego no necesito realizar llamada alguna a la BBDD.
+\newline
+\newline
+Scrapy -POST JSON-> Django -INSERT-> PostGreSQL <-SELECT- Django -POST-> App\newline
+Solucion: Pasa solventar el problema hemos incluido un paso intermedio en el que inicialmente almacenamos los datos obtenidos de las distintas webs en formato JSON, para posteriormente enviarselos a Django, el cual se encargara de subir los datos a la BBDD, mientras, el resto de la arquitectura seria identico a la version original.
+
+\section{Trabalho 2}
+Flujo de datos:\newline
+
+1.- Pedir datos (JSON1)\newline
+2.- Formatear datos en un nuevo JSON (JSON1 -> JSON2)\newline
+3.- Mandar datos a la BBDD (JSON2)\newline
+4.- Marcar JSON como old (JSON2 -> JSON3)\newline
+5.- Borrar JSON original (JSON1)\newline
+
+While(true)\newline
+	1.- Pedir datos (JSON1)\newline
+	2.- Formatear datos en un nuevo JSON (JSON1 -> JSON2)\newline
+	6.- Crear JSON con las nuevas fechas (JSON2 != JSON3 y fecha de hoy -> JSON4)\newline
+	7.- Mandar datos a la BBDD (JSON4)\newline
+	4.- Marcar JSON como old (JSON2 -> JSON3)\newline
+	5.- Borrar JSON original (JSON1)\newline
+	8.- Borrar JSON viejo (JSON3)\newline
+	9.- Borrar JSON diferencias (JSON4)\newline
+\newline
+\newline
+Puesto que los datos obtenidos no son los mismos para cada web, antes de ser enviados a Django deben ser parseados para compartir una estructura heterogenea, una vez obtenido el JSON parseado, en caso de ser la primera iteracion se mandaran directamente los datos a la BBDD, de no ser la primera iteracion, se tomaran unicamente los nuevos datos obtenidos como datos a enviar, una vez enviados los datos el JSON parseado sera marcado como old (viejo) para ser el punto de comparacion respecto a los datos mas recientes que obtendremos de las webs.
+
+\subsection{Trabalho 2.1}
+Datos obtenidos:\newline
+Aemet:\newline
+temperatura, humedad, precipitacion
+\newline
+meteoNavarra:\newline
+temperatura, humedad, precipitacion, radiacion
+\newline
+aguaEnNavarra:\newline
+nivel, caudal
+\newline
+chcantabrico:\newline
+nivel, precipitacion, seguimiento, alerta, prealerta
+
+En todas las webs se proporciona las coordenadas junto con la fecha y hora en la que se ha hecho la medida
+
+\subsection{Trabalho 2.2}
+No todas las webs presentan sus datos de la misma manera, es por eso que nos encontramos con que los datos que hemos obtenido pueden llegar a estar repartidos en distintas páginas, haciendo necesario el uso de multiples spiders, resultando en multiples JSON.
+Es por eso que para cada web se ha creado una funcion para parsear (formatear) los datos obtenidos, de esta manera disponemos de una estructura unica para los datos recibidos, haciendo su uso posterior más facil, ya sea a la hora de tratarlos posteriormente como para almacenarlos en la base de datos
+
+Esquema obtenido:
+\newline
+\newline
+\newline
+[
+\{
+	"coordenadas": "X. 598270,3 | Y. 4659333 | Z. 37928",
+	"estacion": "64",
+	"datos": [
+	\{
+		"fecha y hora": "01/06/2023 11:20:00",
+		"temperatura (ºC)": null,
+		"humedad (\%)": null,
+		"precipitacion (mm)": null,
+		"nivel (m)": "0,05",
+		"caudal ($m^3/s$)": null,
+		"radiacion ($W/m^2$)": null
+	\}
+	]
+\}
+]
+
+\subsection{Trabalho 2.3}
+Una vez formateados los datos con el fin de reducir la carga a la base de datos, estos son filtrados mediante la comparacion con los ficheros anteriormente marcados como old, de esta forma nos aseguramos de mandar a la base de datos unicamente las instancias nuevas de los datos recogidos, pues no disponemos de ninguna forma para filtrar los datos a la hora de obtenerlos. Estos datos seran guardados en un tercer JSON.
 
 
 
