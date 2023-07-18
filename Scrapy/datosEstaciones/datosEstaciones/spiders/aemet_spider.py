@@ -3,7 +3,7 @@ import json
 import scrapy
 
 
-class AemetDataSpiderSpider(scrapy.Spider):
+class AemetDataSpider(scrapy.Spider):
     name = "aemet_spider"
     allowed_domains = ["www.aemet.es"]
     custom_settings = {

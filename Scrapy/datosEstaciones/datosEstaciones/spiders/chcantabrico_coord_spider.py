@@ -3,7 +3,7 @@ import json
 import scrapy
 
 
-class ChcantabricoCoordSpiderSpider(scrapy.Spider):
+class ChcantabricoCoordSpider(scrapy.Spider):
     name = "chcantabrico_coord_spider"
     allowed_domains = ["ceh.cedex.es"]
     custom_settings = {

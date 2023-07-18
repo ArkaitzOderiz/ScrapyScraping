@@ -4,7 +4,7 @@ import json
 import scrapy
 
 
-class MeteonavarraDataSpiderSpider(scrapy.Spider):
+class MeteonavarraDataSpider(scrapy.Spider):
     name = "meteoNavarra_spider"
     allowed_domains = ["meteo.navarra.es"]
     custom_settings = {

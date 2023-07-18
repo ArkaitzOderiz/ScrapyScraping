@@ -1,7 +1,7 @@
 import scrapy
 
 
-class AemetSpiderSpider(scrapy.Spider):
+class AemetSpider(scrapy.Spider):
     name = "aemet_spider"
     allowed_domains = ["www.aemet.es"]
     start_urls = ["https://www.aemet.es/es/eltiempo/observacion/ultimosdatos?k=nav&w=0&datos=det&x=h24&f=temperatura"]

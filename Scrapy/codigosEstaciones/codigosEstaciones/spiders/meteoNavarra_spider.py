@@ -1,7 +1,7 @@
 import scrapy
 
 
-class MeteonavarraSpiderSpider(scrapy.Spider):
+class MeteonavarraSpider(scrapy.Spider):
     name = "meteoNavarra_spider"
     allowed_domains = ["meteo.navarra.es"]
     start_urls = ["http://meteo.navarra.es/estaciones/mapadeestaciones.cfm#"]

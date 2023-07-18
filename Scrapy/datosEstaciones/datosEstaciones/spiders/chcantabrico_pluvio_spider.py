@@ -5,7 +5,7 @@ import pandas as pd
 import scrapy
 
 
-class ChcantabricoCoordSpiderSpider(scrapy.Spider):
+class ChcantabricoCoordSpider(scrapy.Spider):
     name = "chcantabrico_pluvio_spider"
     allowed_domains = ["www.chcantabrico.es"]
     custom_settings = {

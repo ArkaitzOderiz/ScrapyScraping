@@ -1,7 +1,7 @@
 import scrapy
 
 
-class ChcantabricoSpiderSpider(scrapy.Spider):
+class ChcantabricoSpider(scrapy.Spider):
     name = "chcantabrico_spider"
     allowed_domains = ["www.chcantabrico.es"]
     start_urls = ["https://www.chcantabrico.es/nivel-de-los-rios"]
