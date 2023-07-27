@@ -30,3 +30,14 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+
+class Datos(models.Model):
+    temperatura = models.FloatField(null=True)
+    humedad = models.FloatField(null=True)
+    precipitacion = models.FloatField(null=True)
+    nivel = models.FloatField(null=True)
+    caudal = models.FloatField(null=True)
+    radiacion = models.FloatField(null=True)
+    fecha = models.DateTimeField()
+    estacion = models.CharField(max_length=20)
