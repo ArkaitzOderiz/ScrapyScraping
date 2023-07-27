@@ -7,7 +7,7 @@ class ExampleSpider(scrapy.Spider):
     start_urls = ["https://administracionelectronica.navarra.es/aguaEnNavarra/ctaMapa.aspx?IDOrigenDatos=1&IDMapa=1"]
     custom_settings = {
         'FEEDS': {
-            '../../JSONs/Datos/datos_aguaEnNavarra.json': {
+            'JSONs/Datos/datos_aguaEnNavarra.json': {
                 'format': 'json',
             }
         }
