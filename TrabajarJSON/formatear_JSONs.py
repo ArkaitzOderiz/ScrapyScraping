@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 jsonsDir = [
     "../JSONs/RawData/datos_aemet.json",
@@ -62,7 +63,7 @@ def formatAemet(file):
         datos = []
         for data in line['datos']:
             dato = {
-                'fecha y hora': data['fecha y hora'],
+                'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
                 'temperatura (ºC)': data['temperatura (ºC)'],
                 'humedad (%)': data['humedad (%)'],
                 'precipitacion (mm)': data['precipitacion (mm)'],
@@ -93,7 +94,7 @@ def formatMeteoNavarra(file):
         datos = []
         for data in line['datos']:
             dato = {
-                'fecha y hora': data['fecha y hora'],
+                'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
                 'temperatura (ºC)': data['temperatura (ªC)'],
                 'humedad (%)': data['humedad relativa (%)'],
                 'precipitacion (mm)': data['precipitacion (l/mm^2)'],
@@ -125,7 +126,7 @@ def formatAguaEnNavarra(file):
                 indexSecundario = 0
         for i, data in enumerate(lineData[index]['datos']):
             dato = {
-                'fecha y hora': data['fecha y hora'],
+                'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
                 'temperatura (ºC)': None,
                 'humedad (%)': None,
                 'precipitacion (mm)': None,
@@ -135,9 +136,9 @@ def formatAguaEnNavarra(file):
             }
 
             if 'nivel (m)' in data:
-                dato['nivel (m)'] = data['nivel (m)']
+                dato['nivel (m)'] = data['nivel (m)'].replace(',', '.')
             elif 'caudal (m^3/s)' in data:
-                dato['caudal (m^3/s)'] = data['caudal (m^3/s)']
+                dato['caudal (m^3/s)'] = data['caudal (m^3/s)'].replace(',', '.')
 
             if len(lineData) == 2:
                 try:
@@ -148,9 +149,9 @@ def formatAguaEnNavarra(file):
                     dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
                 try:
                     if 'nivel (m)' in dateData:
-                        dato['nivel (m)'] = dateData['nivel (m)']
+                        dato['nivel (m)'] = dateData['nivel (m)'].replace(',', '.')
                     if 'caudal (m^3/s)' in dateData:
-                        dato['caudal (m^3/s)'] = dateData['caudal (m^3/s)']
+                        dato['caudal (m^3/s)'] = dateData['caudal (m^3/s)'].replace(',', '.')
                 except TypeError:
                     pass
 
@@ -181,7 +182,7 @@ def formatChcantabrico(file):
                 indexSecundario = 0
         for i, data in enumerate(lineData[index]['datos']):
             dato = {
-                'fecha y hora': data['fecha y hora'],
+                'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
                 'temperatura (ºC)': None,
                 'humedad (%)': None,
                 'precipitacion (mm)': None,
