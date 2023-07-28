@@ -14,5 +14,6 @@ urlpatterns = [
     # ex: /polls/5/vote/
     path("<int:question_id>/vote/", views.vote, name="vote"),
     path("multiply/<int:number1>/<int:number2>/", views.multiply, name="multiply"),
-    path("store", csrf_exempt(views.store), name="store"),
+    path("storeData", csrf_exempt(views.storeData), name="storeData"),
+    path("storeCode", csrf_exempt(views.storeCode), name="storeCode"),
 ]

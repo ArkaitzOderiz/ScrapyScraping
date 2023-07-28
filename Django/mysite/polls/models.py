@@ -32,7 +32,7 @@ class Choice(models.Model):
         return self.choice_text
 
 
-class Datos(models.Model):
+class Data(models.Model):
     temperatura = models.FloatField(null=True)
     humedad = models.FloatField(null=True)
     precipitacion = models.FloatField(null=True)
@@ -41,3 +41,12 @@ class Datos(models.Model):
     radiacion = models.FloatField(null=True)
     fecha = models.DateTimeField()
     estacion = models.CharField(max_length=20)
+
+
+class Code(models.Model):
+    estacion = models.CharField(max_length=50)
+    codigo = models.CharField(max_length=20)
+    coodenadas = models.CharField(max_length=50)
+    seguimiento = models.FloatField(null=True)
+    prealerta = models.FloatField(null=True)
+    alerta = models.FloatField(null=True)

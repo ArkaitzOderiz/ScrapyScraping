@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
-from .models import Question, Choice, Datos
+from .models import Question, Choice, Data, Code
 
 
 class IndexView(generic.ListView):
@@ -69,11 +69,11 @@ def multiply(request, number1, number2):
     return JsonResponse({"result": result})
 
 
-def store(request):
+def storeData(request):
     data = json.loads(request.body.decode("utf-8"))
     for estacion in data:
         for datos in estacion['datos']:
-            dato = Datos(
+            dato = Data(
                 temperatura=datos['temperatura (ºC)'],
                 humedad=datos['humedad (%)'],
                 precipitacion=datos['precipitacion (mm)'],
@@ -84,4 +84,18 @@ def store(request):
                 estacion=estacion['estacion']
             )
             dato.save()
+    return JsonResponse(data, safe=False)
+
+def storeCode(request):
+    data = json.loads(request.body.decode("utf-8"))
+    for estacion in data:
+        dato = Code(
+            estacion=estacion['estacion'],
+            codigo=estacion['codigo'],
+            coodenadas=estacion['coodenadas'],
+            seguimiento=estacion['seguimiento'],
+            prealerta=estacion['prealerta'],
+            alerta=estacion['alerta'],
+        )
+        dato.save()
     return JsonResponse(data, safe=False)
