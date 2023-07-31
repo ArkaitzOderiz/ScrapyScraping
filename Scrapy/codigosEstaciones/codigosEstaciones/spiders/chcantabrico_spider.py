@@ -7,7 +7,7 @@ class ChcantabricoSpider(scrapy.Spider):
     start_urls = ["https://www.chcantabrico.es/nivel-de-los-rios"]
     custom_settings = {
         'FEEDS': {
-            '../../JSONs/Codigos/codigos_chcantabrico.json': {
+            '../../JSONs/RawCode/codigos_chcantabrico.json': {
                 'format': 'json',
                 'encoding': 'utf-8',
                 'overwrite': True,

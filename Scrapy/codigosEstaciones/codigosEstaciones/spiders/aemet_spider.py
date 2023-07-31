@@ -7,7 +7,7 @@ class AemetSpider(scrapy.Spider):
     start_urls = ["https://www.aemet.es/es/eltiempo/observacion/ultimosdatos?k=nav&w=0&datos=det&x=h24&f=temperatura"]
     custom_settings = {
         'FEEDS': {
-            '../../JSONs/Codigos/codigos_aemet.json': {
+            '../../JSONs/RawCode/codigos_aemet.json': {
                 'format': 'json',
                 'encoding': 'utf-8',
                 'overwrite': True,

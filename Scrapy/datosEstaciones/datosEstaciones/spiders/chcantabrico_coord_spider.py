@@ -17,7 +17,7 @@ class ChcantabricoCoordSpider(scrapy.Spider):
     }
 
     def start_requests(self):
-        with open("../../JSONs/Codigos/codigos_chcantabrico.json", encoding="utf-8") as f:
+        with open("../../JSONs/RawCode/codigos_chcantabrico.json", encoding="utf-8") as f:
             data = json.load(f)
             for estacion in data:
                 url = f'https://ceh.cedex.es/anuarioaforos/afo/estaf-datos.asp?indroea={estacion["codigoSecundario"]}'

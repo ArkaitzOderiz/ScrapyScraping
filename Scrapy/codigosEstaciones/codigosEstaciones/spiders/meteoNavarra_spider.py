@@ -7,7 +7,7 @@ class MeteonavarraSpider(scrapy.Spider):
     start_urls = ["http://meteo.navarra.es/estaciones/mapadeestaciones.cfm#"]
     custom_settings = {
         'FEEDS': {
-            '../../JSONs/Codigos/codigos_meteoNavarra.json': {
+            '../../JSONs/RawCode/codigos_meteoNavarra.json': {
                 'format': 'json',
                 'encoding': 'utf-8',
                 'overwrite': True,

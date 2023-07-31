@@ -17,7 +17,7 @@ class MeteonavarraCoordSpider(scrapy.Spider):
     }
 
     def start_requests(self):
-        with open("../../JSONs/Codigos/codigos_meteoNavarra.json", encoding="utf-8") as f:
+        with open("../../JSONs/RawCode/codigos_meteoNavarra.json", encoding="utf-8") as f:
             data = json.load(f)
             for estacion in data:
                 url = f'http://meteo.navarra.es/estaciones/estacion.cfm?IDestacion={estacion["codigo"]}'

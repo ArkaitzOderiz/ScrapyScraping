@@ -19,7 +19,7 @@ class ChcantabricoNivelSpider(scrapy.Spider):
     }
 
     def start_requests(self):
-        with open("../../JSONs/Codigos/codigos_chcantabrico.json", encoding="utf-8") as f:
+        with open("../../JSONs/RawCode/codigos_chcantabrico.json", encoding="utf-8") as f:
             data = json.load(f)
             for estacion in data:
                 params_nivel = {

@@ -26,7 +26,7 @@ class MeteonavarraDataSpider(scrapy.Spider):
         tomorrow_date_format = tomorrow_date.strftime(" %d%%2F %m%%2F%Y").replace(' 0', '')
         yesterday_date_format = yesterday_date.strftime(" %d%%2F %m%%2F%Y").replace(' 0', '')
 
-        with open("../../JSONs/Codigos/codigos_meteoNavarra.json", encoding="utf-8") as f:
+        with open("../../JSONs/RawCode/codigos_meteoNavarra.json", encoding="utf-8") as f:
             data = json.load(f)
             for estacion in data:
                 url = f'http://meteo.navarra.es/estaciones/estacion_datos_m.cfm?IDEstacion={estacion["codigo"]}&p_10' \
