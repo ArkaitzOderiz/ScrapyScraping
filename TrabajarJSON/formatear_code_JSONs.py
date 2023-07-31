@@ -98,7 +98,7 @@ def formatAguaEnNavarra(file):
     for line in file:
         header = {
             'estacion': line['descripcion'],
-            'codigo': line['codigo'],
+            'codigo': line['estacion'],
             'coordenadas': line['coordenadas'],
             'seguimiento': None,
             'prealerta': None,
