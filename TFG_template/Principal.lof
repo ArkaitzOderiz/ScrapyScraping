@@ -8,5 +8,8 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Error al cargar directamente la página de datos numéricos en El Agua en Navarra}}{15}{figure.caption.19}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Apartado selección de datos MeteoNavarra}}{16}{figure.caption.20}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Arquitectura de obtención y tratamiento de datos}}{24}{figure.caption.21}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Idea original de la estructura de datos planteada}}{19}{figure.caption.21}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Estructura de datos usada en el proyecto}}{20}{figure.caption.22}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Estructuración básica de una Spider}}{23}{figure.caption.26}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Arquitectura de obtención y tratamiento de datos}}{26}{figure.caption.23}%
 \addvspace {10\p@ }

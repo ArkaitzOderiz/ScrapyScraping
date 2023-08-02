@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  1 AUG 2023 13:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  2 AUG 2023 12:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -960,7 +960,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 99--106
 
  []
 
-<fig/DjangoMVT.png, id=432, 542.025pt x 239.89626pt>
+<fig/DjangoMVT.png, id=438, 542.025pt x 239.89626pt>
 File: fig/DjangoMVT.png Graphic file (type png)
 <use fig/DjangoMVT.png>
 Package pdftex.def Info: fig/DjangoMVT.png  used on input line 117.
@@ -990,7 +990,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--148
 
  []
 
-<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=456, 853.1875pt
+<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=462, 853.1875pt
  x 302.12875pt>
 File: fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png Graphic file (
 type png)
@@ -1061,7 +1061,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--23
 
  []
 
-<fig/Aemet.png, id=485, 740.0147pt x 657.95813pt>
+<fig/Aemet.png, id=491, 740.0147pt x 657.95813pt>
 File: fig/Aemet.png Graphic file (type png)
 <use fig/Aemet.png>
 Package pdftex.def Info: fig/Aemet.png  used on input line 26.
@@ -1087,7 +1087,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--42
 [13
 
 ]
-<fig/AguaEnNavarra.png, id=492, 588.69937pt x 697.10437pt>
+<fig/AguaEnNavarra.png, id=498, 588.69937pt x 697.10437pt>
 File: fig/AguaEnNavarra.png Graphic file (type png)
 <use fig/AguaEnNavarra.png>
 Package pdftex.def Info: fig/AguaEnNavarra.png  used on input line 45.
@@ -1096,7 +1096,7 @@ Package pdftex.def Info: fig/AguaEnNavarra.png  used on input line 45.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<fig/ErrorAguaEnNavarra.png, id=493, 587.19376pt x 182.93344pt>
+<fig/ErrorAguaEnNavarra.png, id=499, 587.19376pt x 182.93344pt>
 File: fig/ErrorAguaEnNavarra.png Graphic file (type png)
 <use fig/ErrorAguaEnNavarra.png>
 Package pdftex.def Info: fig/ErrorAguaEnNavarra.png  used on input line 52.
@@ -1125,7 +1125,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [14 <./fig/Aemet.png>] [15 <./fig/AguaEnNavarra.png> <./fig/ErrorAguaEnNavarra
 .png>]
-<fig/DatosMeteoNavarra.png, id=506, 583.42969pt x 603.0028pt>
+<fig/DatosMeteoNavarra.png, id=512, 583.42969pt x 603.0028pt>
 File: fig/DatosMeteoNavarra.png Graphic file (type png)
 <use fig/DatosMeteoNavarra.png>
 Package pdftex.def Info: fig/DatosMeteoNavarra.png  used on input line 68.
@@ -1140,80 +1140,131 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
+<fig/estructura_descartada.png, id=526, 302.12875pt x 429.605pt>
+File: fig/estructura_descartada.png Graphic file (type png)
+<use fig/estructura_descartada.png>
+Package pdftex.def Info: fig/estructura_descartada.png  used on input line 8.
+(pdftex.def)             Requested size: 170.71393pt x 242.74039pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 6--12
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 14--15
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--21
-
- []
-
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 22--34
+Underfull \hbox (badness 10000) in paragraph at lines 13--16
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--34
+Underfull \hbox (badness 10000) in paragraph at lines 13--16
+
+ []
+
+[19 <./fig/estructura_descartada.png>]
+<fig/estructura_usada.png, id=532, 472.76625pt x 369.38pt>
+File: fig/estructura_usada.png Graphic file (type png)
+<use fig/estructura_usada.png>
+Package pdftex.def Info: fig/estructura_usada.png  used on input line 19.
+(pdftex.def)             Requested size: 298.75262pt x 233.42642pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--32
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 55--76
+Underfull \hbox (badness 10000) in paragraph at lines 33--45
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 55--76
+Underfull \hbox (badness 10000) in paragraph at lines 33--45
 
  []
 
-[20]
-<fig/arquitectura.png, id=529, 781.92125pt x 1075.01625pt>
+[20 <./fig/estructura_usada.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 47--60
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--60
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--60
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--60
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--69
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--69
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--69
+
+ []
+
+[21]
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+87.
+ (C:\Users\Oderiz\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
+File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+<fig/arquitectura.png, id=544, 781.92125pt x 1075.01625pt>
 File: fig/arquitectura.png Graphic file (type png)
 <use fig/arquitectura.png>
-Package pdftex.def Info: fig/arquitectura.png  used on input line 84.
+Package pdftex.def Info: fig/arquitectura.png  used on input line 96.
 (pdftex.def)             Requested size: 298.75262pt x 410.74129pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 126--130
+[22]
+<fig/estructura_basica_spider.png, id=551, 169.38281pt x 196.48407pt>
+File: fig/estructura_basica_spider.png Graphic file (type png)
+<use fig/estructura_basica_spider.png>
+Package pdftex.def Info: fig/estructura_basica_spider.png  used on input line 1
+14.
+(pdftex.def)             Requested size: 170.71393pt x 198.03659pt.
+
+Underfull \vbox (badness 3058) has occurred while \output is active []
+
+ [23 <./fig/estructura_basica_spider.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 145--149
 
  []
 
-[22]) (chapter5/Chapter5.tex [23] [24 <./fig/arquitectura.png>]
+[24]) (chapter5/Chapter5.tex [25] [26 <./fig/arquitectura.png>]
 Chapter 5.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-) [25
+) [27
 
-] [26
+] [28
 
-] (bibliography/Bibliography.tex (Principal.bbl [27
+] (bibliography/Bibliography.tex (Principal.bbl [29
 
 
-]) [28])
+]) [30])
 (style/index.tex
 runsystem(makeindex Principal.idx)...executed safely (allowed).
 
- (Principal.ind)) (appendix/Appendix.tex [29
+ (Principal.ind)) (appendix/Appendix.tex [31
 
 
 
 
-] [30
+] [32
 
 ]
 (code/Calendario.java
@@ -1222,7 +1273,7 @@ consecutive:
 \tf@loe=\write11
 \openout11 = `Principal.loe'.
 
- [31
+ [33
 
 ] (Principal.aux)
 
@@ -1230,40 +1281,41 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
 Package rerunfilecheck Info: File `Principal.out' has not changed.
-(rerunfilecheck)             Checksum: 5CBF0FA28D99C538D09951AC8C7CA698;6364.
+(rerunfilecheck)             Checksum: 2275D76D02EB82E4D9F06C3D760A3DE9;6488.
  ) 
 Here is how much of TeX's memory you used:
- 16819 strings out of 475385
- 276431 string characters out of 2776436
+ 16865 strings out of 475385
+ 277752 string characters out of 2776436
  808277 words of memory out of 3000000
- 37604 multiletter control sequences out of 15000+600000
- 487597 words of font info for 72 fonts, out of 8000000 for 9000
+ 37637 multiletter control sequences out of 15000+600000
+ 487895 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,13n,77p,817b,2717s stack positions out of 10000i,1000n,20000p,200000b,80000s
- <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ect
-t0900.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
-600\ecrm0900.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen
-/ec/dpi600\ecrm0800.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/j
-knappen/ec/dpi600\ecti1095.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/l
-jfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fon
-ts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Oderiz\AppData\Local\MiK
-TeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk>{C:/Users/Oderiz/AppData/Loc
-al/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <C:\Users\Oderiz\AppData\Local\
-MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\Oderiz\AppData
-\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx1440.pk> <C:\Users\Oderiz\
-AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\
-Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:
-\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.
+ 72i,13n,77p,827b,2717s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tct
+t1095.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
+600\ectt0900.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen
+/ec/dpi600\ecrm0900.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/j
+knappen/ec/dpi600\ecrm0800.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/l
+jfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\Oderiz\AppData\Local\MiK
+TeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Oderiz\AppData\Lo
+cal\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk>{C:/Users/Oderiz/AppD
+ata/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <C:\Users\Oderiz\AppData
+\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\Oderiz\
+AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx1440.pk> <C:\Users\
+Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:
+\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.
 pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ec
-rm1095.pk><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmmi10.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmmi8.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Oderiz/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Oderiz/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on Principal.pdf (47 pages, 1619217 bytes).
+rm1200.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
+i600\ecrm1095.pk><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmmi10.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Oderiz/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Oderiz/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
+Output written on Principal.pdf (49 pages, 1645597 bytes).
 PDF statistics:
- 1236 PDF objects out of 1440 (max. 8388607)
- 177 named destinations out of 1000 (max. 500000)
- 409 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1278 PDF objects out of 1440 (max. 8388607)
+ 183 named destinations out of 1000 (max. 500000)
+ 424 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,18 +1,29 @@
-\chapter[Evaluación]{Evaluación}
+\chapter[Trabajo Realizado]{Trabajo Realizado}
 \label{Chap4}
 
 \section{Estructuras Planteadas}
 
-Scrapy -INSERT-> PostGreSQL <-SELECT- Django -POST-> App\newline
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{fig/estructura_descartada.png}
+	\caption[Idea original de la estructura de datos planteada]{Estructura descartada}
+	\label{fig:ej9}
+\end{figure}
+
 Problema: aunque sea la estructura más simple y fácil de implementar, pues scrapy mismo puede insertar los datos scrapeados de las web de forma directa en PostGreSQL, Djando hace uso de un sistema de gestión de versiones de los cambios realizados en la BBDD con el fin de reducir la carga de peticiones a la BBDD, esto se aplica desde el lado de Django, lo que supondría un problema a la hora de insertar datos directamente de Scrapy a PostGreSQL, pues los nuevos datos podrían no llegar a ser detectados por Django, generando la situación de que una vez se vayan a pedir los nuevos datos Django no devuelva nada pues desde su punto de vista los datos que ya dispongo son la versión mas reciente, luego no es necesario realizar llamada alguna a la BBDD.
 \newline
 \newline
-Scrapy -POST JSON-> Django -INSERT-> PostGreSQL <-SELECT- Django -POST-> App\newline
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/estructura_usada.png}
+	\caption[Estructura de datos usada en el proyecto]{Estructura usada}
+	\label{fig:ej10}
+\end{figure}
+
 Solución: Pasa solventar el problema hemos incluido un paso intermedio en el que inicialmente almacenamos los datos obtenidos de las distintas webs en formato JSON, para posteriormente enviárselos a Django, el cual se encargara de subir los datos a la BBDD, mientras, el resto de la arquitectura seria idéntico a la versión original.
 
-\section{Trabalho 2}
-Flujo de datos:\newline
-
+\section{Flujo de Datos}
 1.- Pedir datos (JSON1)\newline
 2.- Formatear datos en un nuevo JSON (JSON1 -> JSON2)\newline
 3.- Mandar datos a la BBDD (JSON2)\newline
@@ -32,36 +43,36 @@ While(true)\newline
 \newline
 Puesto que los datos obtenidos no son los mismos para cada web, antes de ser enviados a Django deben ser parseados para compartir una estructura heterogénea, una vez obtenido el JSON parseado, en caso de ser la primera iteración se mandaran directamente los datos a la BBDD, de no ser la primera iteración, se tomaran unicamente los nuevos datos obtenidos como datos a enviar, una vez enviados los datos el JSON parseado sera marcado como old (viejo) para ser el punto de comparación respecto a los datos mas recientes que obtendremos de las webs.
 
-\subsection{Trabalho 2.1}
-Datos obtenidos:\newline
+\subsection{Datos obtenidos}
 Aemet:\newline
 temperatura, humedad, precipitación
-\newline
+\newline\newline
 meteoNavarra:\newline
 temperatura, humedad, precipitación, radiación
-\newline
+\newline\newline
 aguaEnNavarra:\newline
 nivel, caudal
-\newline
+\newline\newline
 chcantabrico:\newline
 nivel, precipitación, seguimiento, alerta, pre-alerta
-
+\newline\newline
 En todas las webs se proporciona las coordenadas junto con la fecha y hora en la que se ha hecho la medida
 
-\subsection{Trabalho 2.2}
-No todas las webs presentan sus datos de la misma manera, es por eso que nos encontramos con que los datos que hemos obtenido pueden llegar a estar repartidos en distintas páginas, haciendo necesario el uso de múltiples spiders, resultando en multiples JSON.
-Es por eso que para cada web se ha creado una función para parsear (formatear) los datos obtenidos, de esta manera disponemos de una estructura única para los datos recibidos, haciendo su uso posterior más fácil, ya sea a la hora de tratarlos posteriormente como para almacenarlos en la base de datos
+\subsection{Formato de Datos}
+No todas las webs presentan sus datos de la misma manera, es por eso que nos encontramos con que los datos que hemos obtenido pueden llegar a estar repartidos en distintas páginas, haciendo necesario el uso de múltiples spiders, resultando en multiples JSON.\newline
+Es por eso que para cada web se ha creado una función para parsear (formatear) los datos obtenidos, de esta manera disponemos de una estructura única para los datos recibidos, haciendo su uso posterior más fácil, ya sea a la hora de tratarlos posteriormente como para almacenarlos en la base de datos.
 
 Esquema obtenido:
 \newline
 \newline
 \newline
+\begin{verbatim}
 [
-\{
+{
 	"coordenadas": "X. 598270,3 | Y. 4659333 | Z. 37928",
 	"estacion": "64",
 	"datos": [
-	\{
+	{
 		"fecha y hora": "01/06/2023 11:20:00",
 		"temperatura (ºC)": null,
 		"humedad (\%)": null,
@@ -69,12 +80,13 @@ Esquema obtenido:
 		"nivel (m)": "0,05",
 		"caudal ($m^3/s$)": null,
 		"radiacion ($W/m^2$)": null
-	\}
+	}
 	]
-\}
+}
 ]
+\end{verbatim}
 
-\subsection{Trabalho 2.3}
+\subsection{Filtrado de Datos}
 Una vez formateados los datos con el fin de reducir la carga a la base de datos, estos son filtrados mediante la comparación con los ficheros anteriormente marcados como old, de esta forma nos aseguramos de mandar a la base de datos unicamente las instancias nuevas de los datos recogidos, pues no disponemos de ninguna forma para filtrar los datos a la hora de obtenerlos. Estos datos serán guardados en un tercer JSON.
 
 \section{Arquitectura}
@@ -89,26 +101,33 @@ Para poder realizar el trabajo se ha diseñado la siguiente arquitectura.\ref{fi
 \subsection{Elementos presentes}
 
 \subsubsection{Entornos virtuales}
-Con el fin de que la plataforma sea lo mas fácilmente ampliable se ha decidido que cada Spider disponga de su propio entorno virtual, esto permite añadir dependencias de tal forma que no afecten a el resto de los Scripts presentes, ayudando en la encapsulación de dependencias.
-El mayor inconveniente de una plataforma así es la redundancia de código, al ser múltiples entornos independientes es necesario que mucho código sea repetido en cada uno de ellos, cosa que si fuera un único entorno en el que se ejecutara todo, con una clase sobre la que heredar y o una interfaz, seria mucho el código que nos ahorraríamos.
+Con el fin de que la plataforma sea lo mas fácilmente ampliable se ha decidido que cada Spider disponga de su propio entorno virtual, esto permite añadir dependencias de tal forma que no afecten a el resto de los Scripts presentes, ayudando en la encapsulación de dependencias.\newline
+El mayor inconveniente de una plataforma así es la redundancia de código, al ser múltiples entornos independientes es necesario que mucho código sea repetido en cada uno de ellos, cosa que si fuera un único entorno en el que se ejecutara todo, con una clase sobre la que heredar y o una interfaz, seria mucho el código que nos ahorraríamos.\newline
 Actualmente la plataforma dispone de cuatro entornos virtuales para cada Spider y un entorno virtual sobre el que ejecutar el servidor de Django.
 
 \subsubsection{Spiders}
-Cada Spider representa una web, de tal forma que cada una de ellas obtiene los datos de la web sobre la que se ha diseñado exclusivamente, para poder realizar esta tarea por cada web han sido necesarias varias Spider, aunque de forma simplificada se pueden agrupar por, aquellas que obtienen las estaciones junto con sus códigos y, las de obtención de datos.
+Cada Spider representa una web, de tal forma que cada una de ellas obtiene los datos de la web sobre la que se ha diseñado exclusivamente, para poder realizar esta tarea por cada web han sido necesarias varias Spider, aunque de forma simplificada se pueden agrupar por, aquellas que obtienen las estaciones junto con sus códigos y, las de obtención de datos.\newline
 De esta forma dividimos las tareas dándonos la posibilidad de ejecutar aquella que mejor nos venga en cada momento.
 
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{fig/estructura_basica_spider.png}
+	\caption[Estructuración básica de una Spider]{Estructuración básica de una Spider}
+	\label{fig:ej8}
+\end{figure}
+
 \subsubsection{Runners}
-Runner es la forma en la que han sido nombrados los Scripts cuya función es posibilitar la ejecución en nuestro caso asíncrona de una o múltiples Spiders mediante un único comando.
-Es un Script simple en el que una vez dispones de la estructura básica en caso de necesitar añadir o eliminar una Spider solo tienes que agregar o eliminar la Spider en cuestión y ya estaría listo.
+Runner es la forma en la que han sido nombrados los Scripts cuya función es posibilitar la ejecución en nuestro caso asíncrona de una o múltiples Spiders mediante un único comando.\newline
+Es un Script simple en el que una vez dispones de la estructura básica en caso de necesitar añadir o eliminar una Spider solo tienes que agregar o eliminar la Spider en cuestión y ya estaría listo.\newline
 A su vez, al añadir un intermediario el comando de ejecución pasa de ser, scrapy crawl nombreSpider por cada Spider que se desea ejecutar, a, python nombreRunner.py facilitando la automatización de ejecución de las Spider.
 
 \subsubsection{Executers}
 Aumentado un poco mas la abstracción nos encontramos con los Executers, Scripts en Bash encargados de activar el entorno virtual de la Spider deseada y acto seguido ejecutar su respectivo Runner.
-Estos existen (en mayor medida que los Runners) con el fin de ayudar con el mantenimiento de la arquitectura, creando un nuevo intermediario en la cadena de ejecución.
+Estos existen (en mayor medida que los Runners) con el fin de ayudar con el mantenimiento de la arquitectura, creando un nuevo intermediario en la cadena de ejecución.\newline
 Están diseñados de tal forma que funcionen pasandoles un único argumento representando la web de la que quieres obtener los datos, haciendo que la agregación de nuevas Spiders junto con sus entornos sea tan sencillo como respetar las rutas y nombres predefinidos.
 
 \subsubsection{JSONs}
-Este apartado es un conjunto de directorios en los que se van almacenando los JSON obtenidos tras los distintos procesos a los que son sometidos.
+Este apartado es un conjunto de directorios en los que se van almacenando los JSON obtenidos tras los distintos procesos a los que son sometidos.\newline
 Los directorios en cuestión, siguiendo orden de creación para los JSON de datos son los siguientes:
 \begin{enumerate}
 	\item RawData
@@ -129,8 +148,26 @@ El tercero se obtiene tras eliminar la duplicidad de datos en comparación con l
 Finalmente el cuarto es el subproducto obtenido tras la comparación, tomando el fichero original ya formateado y cambiándole de directorio y el nombre de tal forma que se distinga del resto de ficheros.\newline
 
 \subsubsection{Posts}
-Estos Scripts son los encargado de enviar los datos mediante un Post Request al servidor Django.
+Estos Scripts son los encargado de enviar los datos mediante un Post Request al servidor Django.\newline
+Diseñados bajo el mismo principio de fomentar la ampliabilidad del proyecto que los Executer, reciben el nombre de la web de la cual deseas enviar los datos a la hora de ejecutarlo junto al comando en forma de argumento.
 
+\subsubsection{Cron}
+Cron es un administrador regular de procesos en segundo plano presente en los sistemas basados en Unix. Con el es posible programar la automatización de ejecución de procesos en intervalos de tiempo, pudiendo indicar el minuto, hora, día, mes e incluso día de la semana.
+\newline
+La especificación de los procesos se realiza en el archivo crontab y, su estructuración es la siguiente:
+\begin{verbatim}
+.--------------- minuto (0-59) 
+|  .------------ hora (0-23)
+|  |  .--------- día del mes (1-31)
+|  |  |  .------ mes (1-12) o meses en inglés
+|  |  |  |  .--- día de la semana (0-6) (domingo=0 o 7) o días en inglés 
+|  |  |  |  |
+*  *  *  *  *  comando a ejecutar
+\end{verbatim}
+
+En nuestro caso queremos el equivalente a dos instancias de Cron, una que se encargue de obtener los datos ya sea cada quince minutos, media hora y una hora manteniendo la base de datos actualizada para poder realizar las posteriores predicciones y otra que mensualmente compruebe la existencia de nuevas estaciones o el cese del uso de alguna de las ya disponibles.\newline
+Así pues, Cron es el encargado de ejecutar cada proceso necesario dentro de la plataforma, ya sea, ejecutar las Spiders, los Scripts de formateo como de filtrado y, el envío de los datos a Django para su inserción en PostGreSQL.\newline
+De esta forma dispondríamos de un sistema cerrado automático, el cual nos permitiría trabajar en otros apartados como puede ser la integración de mas webs en la plataforma o la mejora del sistema de predicción.
 
 
 
