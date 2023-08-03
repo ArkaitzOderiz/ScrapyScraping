@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  2 AUG 2023 12:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  3 AUG 2023 12:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1131,9 +1131,19 @@ File: fig/DatosMeteoNavarra.png Graphic file (type png)
 Package pdftex.def Info: fig/DatosMeteoNavarra.png  used on input line 68.
 (pdftex.def)             Requested size: 298.75262pt x 308.7787pt.
 
-[16 <./fig/DatosMeteoNavarra.png>]) (chapter4/Chapter4.tex [17] [18
+[16 <./fig/DatosMeteoNavarra.png>]
+Overfull \hbox (31.53671pt too wide) in paragraph at lines 129--129
+[]\T1/cmtt/m/n/10.95 #Configuramos varios parametros del usuario para una mejor
+ integracion con Django[] 
+ []
 
-]
+
+Overfull \hbox (59.82857pt too wide) in paragraph at lines 129--129
+[]\T1/cmtt/m/n/10.95 postgres=# ALTER ROLE miusuario SET default_transaction_is
+olation TO 'read committed';[] 
+ []
+
+[17]) (chapter4/Chapter4.tex [18]
 Chapter 4.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
@@ -1155,7 +1165,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--16
 
  []
 
-[19 <./fig/estructura_descartada.png>]
+[19
+
+ <./fig/estructura_descartada.png>]
 <fig/estructura_usada.png, id=532, 472.76625pt x 369.38pt>
 File: fig/estructura_usada.png Graphic file (type png)
 <use fig/estructura_usada.png>
@@ -1241,30 +1253,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 145--149
 
  []
 
-[24]) (chapter5/Chapter5.tex [25] [26 <./fig/arquitectura.png>]
+[24]) (chapter5/Chapter5.tex [25] [26] [27 <./fig/arquitectura.png>] [28
+
+]
 Chapter 5.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-) [27
+) [29] [30
 
-] [28
-
-] (bibliography/Bibliography.tex (Principal.bbl [29
+] (bibliography/Bibliography.tex (Principal.bbl [31
 
 
-]) [30])
+]) [32])
 (style/index.tex
 runsystem(makeindex Principal.idx)...executed safely (allowed).
 
- (Principal.ind)) (appendix/Appendix.tex [31
+ (Principal.ind)) (appendix/Appendix.tex [33
 
 
 
 
-] [32
+] [34
 
 ]
 (code/Calendario.java
@@ -1273,7 +1285,7 @@ consecutive:
 \tf@loe=\write11
 \openout11 = `Principal.loe'.
 
- [33
+ [35
 
 ] (Principal.aux)
 
@@ -1281,16 +1293,16 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
 Package rerunfilecheck Info: File `Principal.out' has not changed.
-(rerunfilecheck)             Checksum: 2275D76D02EB82E4D9F06C3D760A3DE9;6488.
+(rerunfilecheck)             Checksum: 5E032BA0CBBC49C0F0981FB70B24BAEF;6488.
  ) 
 Here is how much of TeX's memory you used:
- 16865 strings out of 475385
- 277752 string characters out of 2776436
+ 16869 strings out of 475385
+ 277788 string characters out of 2776436
  808277 words of memory out of 3000000
  37637 multiletter control sequences out of 15000+600000
  487895 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,13n,77p,827b,2717s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 72i,12n,77p,827b,2717s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tct
 t1095.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
 600\ectt0900.pk> <C:\Users\Oderiz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen
@@ -1313,9 +1325,9 @@ lic/amsfonts/cm/cmmi10.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts
 TeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Oderiz/AppData/Local/Pro
 grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Oderiz/AppData/L
 ocal/Programs/MiKTeX/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on Principal.pdf (49 pages, 1645597 bytes).
+Output written on Principal.pdf (51 pages, 1650263 bytes).
 PDF statistics:
- 1278 PDF objects out of 1440 (max. 8388607)
- 183 named destinations out of 1000 (max. 500000)
+ 1295 PDF objects out of 1440 (max. 8388607)
+ 187 named destinations out of 1000 (max. 500000)
  424 words of extra memory for PDF output out of 10000 (max. 10000000)
 

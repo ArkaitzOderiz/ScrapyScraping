@@ -74,31 +74,61 @@ Las estaciones automáticas proporcionan tanto datos en periodos de diez minutos
 El proyecto se dividirá en dos ordenadores (maquinas virtuales). Uno de ellos será el responsable de la base de datos en PostGreSQL, mientras que, el otro, se encargara de la ejecución del código de obtención de datos, tratarlos y enviarlos a la base de datos.
 
 \subsection{Preparación de entorno virtual}
-Partiendo de una instalación limpia de Debian primero instalaremos el entorno virtual sobre el que trabajar, para ello ejecutaremos los siguientes comandos:
+Primero instalaremos las dependencias para crear y activar un entorno virtual sobre el que trabajar, para ello ejecutaremos los siguientes comandos:
 
-Instalamos las depandencias
-sudo apt install python3-venv python3-dev
+\begin{verbatim}
+	#Instalamos las dependencias
+	user@host:~$ sudo apt install python3-venv python3-dev
+	
+	#Creamos un nuevo directorio sobre el que trabajar
+	user@host:~$ mkdir ~/dirdemiproyecto
+	user@host:~$ cd ~/dirdemiproyecto
+	
+	#Creamos el entorno virtual
+	user@host:~/dirdemiproyecto$ python3 -m venv envdemiproyecto
+	
+	#Activamos el entorno virtual
+	user@host:~/dirdemiproyecto$ source envdemiproyecto/bin/activate
+	
+	#Una vez seguidos los pasos nuestra terminal debe mostrarse así
+	(envdemiproyecto) user@host:~/dirdemiproyecto$
+\end{verbatim}
 
-Creamos un nuevo directorio sobre el que trabajar
-mkdir ~/dirdemiproyecto
-cd ~/dirdemiproyecto
-
-Creamos el entorno virtual
-python3 -m venv envdemiproyecto
-
-activamos el entorno virtual
-source envdemiproyecto/bin/activate
-
-una vez seguidos los pasos nuestra terminal debe mostrarse así:
-
-(envdemiproyecto)user@host:~/dirdemiproyecto'\$
+Cada Spider dispondrá de su propio entorno virtual, nombrado tras la pagina web a la que representa, de esta forma, por ejemplo, el entorno virtual para la web de chcantabrico también se llamará chcantabrico.
+Otro entorno virtual sera usado para el servidor Django y los Scripts encargados del envío de datos.
 
 \subsection{Instalacion y configuracion de PostGreSQL}
-Instalamos PostGreSQL
-sudo apt install libpq-dev postgresql postgresql-contrib
+Comenzamos con los comandos necesarios para la instalación inicial de PostGreSQL y con la creación de un usuario y una base de datos.
+\begin{verbatim}
+	#Instalamos PostGreSQL y las dependencias
+	user@host:~$ sudo apt install libpq-dev postgresql postgresql-contrib
+	
+	#Iniciamos sesion usando el role postgres y accedemos a PostGreSQL
+	user@host:~$ sudo -u postgres psql
+	
+	#Si todo esta bien la terminal deberia mostrarse así
+	postgres=# 
+	
+	#Creamos un nuevo usuario
+	postgres=# CREATE USER miusuario WITH PASSWORD 'micontraseña';
+	
+	#Configuramos varios parametros del usuario para una mejor integracion con Django
+	postgres=# ALTER ROLE miusuario SET client_encoding TO 'utf8';
+	postgres=# ALTER ROLE miusuario SET default_transaction_isolation TO 'read committed';
+	postgres=# ALTER ROLE miusuario SET timezone TO 'UTC';
+	
+	#Creamos la Base de Datos
+	postgres=# CREATE DATABASE bbddmiproyecto;
+	
+	#Otorgamos permisos de administrador a nuestro usuario en la base de datos
+	postgres=# GRANT ALL PRIVILEGES ON DATABASE bbddmiproyecto TO miusuario;
+	
+	#Una vez finalizado
+	postqres=# \q
+	
+\end{verbatim}
 
-iniciamos sesion usando el role postgres
-sudo -u postgres
+En este punto ya dispondríamos de una base de datos y de un usuario con el que conectarnos a esta desde Django.
+\newline
+Ahora quedaría configurar el permiso de comunicación entre dispositivos, más concretamente la conexión remota de Django con PostGreSQL.
 
-accedemos a PostGreSQL
-psql

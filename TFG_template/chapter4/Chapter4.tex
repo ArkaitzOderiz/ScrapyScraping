@@ -169,6 +169,13 @@ En nuestro caso queremos el equivalente a dos instancias de Cron, una que se enc
 Así pues, Cron es el encargado de ejecutar cada proceso necesario dentro de la plataforma, ya sea, ejecutar las Spiders, los Scripts de formateo como de filtrado y, el envío de los datos a Django para su inserción en PostGreSQL.\newline
 De esta forma dispondríamos de un sistema cerrado automático, el cual nos permitiría trabajar en otros apartados como puede ser la integración de mas webs en la plataforma o la mejora del sistema de predicción.
 
+\subsubsection{Django}
+La instancia del servidor de Django es la encargada de tanto recibir los datos obtenidos como de enviarlos a la base de datos. Finalmente, una vez se dispusiera de la aplicación de predicción se encargaría de pedir los datos almacenados y de enviarlos mediante POST a la aplicación.
+
+\subsubsection{PostGreSQL}
+La base de datos, ejecutada en una maquina virtual independiente, dispone de las siguientes dos tablas:
+
+
 
 
 
