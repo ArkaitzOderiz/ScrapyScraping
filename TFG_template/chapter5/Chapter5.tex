@@ -64,7 +64,7 @@ Para poder realizar es la extracción de los datos, primero debemos ir a la web 
 	\label{fig:ej13}
 \end{figure}
 
-Una vez encontrada la web deseada, accediendo mediante el F12 a la herramienta de inspección, buscamos el elemento representativo del dato deseado. En nuestro caso queremos obtener tanto el nombre como el código de la estación. Estos se encuentran ambos en el mismo elemento que forma la primera columna de la tabla.\newline
+Una vez encontrada la web deseada, accediendo mediante el F12 a la herramienta de inspección, buscamos el elemento representativo del dato deseado. En nuestro caso queremos obtener tanto el nombre como el código de la estación. Ambos se encuentran en el mismo elemento que forma la primera columna de la tabla.\newline
 
 \begin{figure} [H]
 	\centering
@@ -73,10 +73,90 @@ Una vez encontrada la web deseada, accediendo mediante el F12 a la herramienta d
 	\label{fig:ej14}
 \end{figure}
 
-Por lo que lo primero a lograr es obtener todas las filas de esta. Para ello podemos hacerlo mediante el selector de XPath como el selector de CSS.\newline
+Como en este caso es posible filtrar fácilmente los datos, los obtendremos todos directamente, aunque lo más común sería obtener las filas primero para luego iterar por cada una de ellas. Para obtenerlos podemos hacerlo mediante el selector de XPath como con el de CSS.\newline
 
 \begin{verbatim}
-	rows = response.xpath('//div[@id="contenedor_tabla"]/table/tbody/tr')
+	rows = response.xpath('//div[@id="contenedor_tabla"]/table/tbody/tr/td/a')
+	ó
+	rows = response.css("div#contenedor_tabla tbody tr a")
 \end{verbatim}
 
+Esto nos devuelve una lista de objetos tipo Selector, cosa que nos permite conforme vamos iterando por cada elemento volver a usar un selector para filtrar unicamente los datos deseados. En nuestro caso.
 
+\begin{verbatim}
+	path = rows[i].xpath("@href").get()
+	name = rows[i].xpath("./text()").get()
+	ó
+	path = rows[i].css("*::attr(href)").get()
+	name = rows[i].css("*::text").get()
+\end{verbatim}
+
+De esta forma, mediante el uso de la función get(), pasamos de tener un objeto Selector a un String. El uso de get() sobre una lista devuelve el primer elemento, en caso de querer transformar toda la lista el método a usar es getall().\newline
+\newline
+Finalmente, como de la URL obtenida,
+\begin{verbatim}
+	'/es/eltiempo/observacion/ultimosdatos?k=nav&l=9263X&w=0&datos=det&f=precipitacion'
+\end{verbatim}
+solo nos interesa el código de la estación (parámetro l de la query), lo filtraremos.
+\begin{verbatim}
+	code = path.split('&')[1].split('=')[1]
+\end{verbatim}
+
+\subsection{Guardado de datos}
+Scrapy almacena todos los datos en forma de múltiples diccionarios, tantos como webs usadas. Para acceder a esta información Scrapy nos proporciona dos alternativas, el uso de Items junto a ItemLoaders, siendo clases especificas de Scrapy o, mediante la palabra reservada yield de Python, siendo esta la opción elegida debido a su fácil implementación.
+De esta forma escribiremos.
+\begin{verbatim}
+	yield {
+		'estacion': name,
+		'codigo': path.split('&')[1].split('=')[1],
+	}
+\end{verbatim}
+Actualmente si se ejecuta la Spider nos imprimiría los datos obtenidos por pantalla, aunque pueden ser almacenados en un fichero tanto CSV como JSON, a la hora de ejecutar la Spider añadiendo en el comando "-o nombre.csv ó -o nombre.json".\newline
+Para un uso ligero de forma manual esa alternativa es más que suficiente, pero en nuestro caso, al querer ejecutarlas de forma automática mediante el uso de Runners, debemos implementar una variable llamada custom\_settings para cada una de las Spider. Esta permite, sin la necesidad de modificar el archivo settings.py, añadir configuraciones o dependencias independientes en las Spiders.
+\begin{lstlisting}[language=Python]
+	custom_settings = {
+		'FEEDS': {
+			'JSONs/RawCode/codigos_aemet.json': {
+				'format': 'json',
+				'encoding': 'utf-8',
+				'overwrite': True,
+			}
+		}
+	}
+\end{lstlisting}
+Con esto indicamos que, en la ruta especificada, nos almacene un fichero JSON utf-8 y, que cada vez que se llame a esta Spider sobre-escriba el fichero anterior.
+
+\subsection{Spider básica}
+Una vez obtenemos los datos y los podemos almacenar, ya estaria nuestra Spider básica terminada.
+\begin{lstlisting}
+	import scrapy
+	
+	
+	class AemetCodeSpider(scrapy.Spider):
+		name = "aemet_code"
+		allowed_domains = ["www.aemet.es"]
+		start_urls = ["https://www.aemet.es/es/eltiempo/observacion/"
+		"ultimosdatos?k=nav&w=0&datos=det&x=h24&f=precipitacion"]
+		custom_settings = {
+			'FEEDS': {
+				'JSONs/RawCode/codigos_aemet.json': {
+					'format': 'json',
+					'encoding': 'utf-8',
+					'overwrite': True,
+				}
+			}
+		}
+	
+	def parse(self, response):
+		rows = response.css("div#contenedor_tabla tbody tr a")
+		
+		for row in rows:
+		path = row.xpath("@href").get()
+		name = row.xpath("./text()").get()
+		code = path.split('&')[1].split('=')[1]
+		
+		yield {
+			'estacion': name,
+			'codigo': code,
+		}
+\end{lstlisting}
