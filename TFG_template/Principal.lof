@@ -3,18 +3,18 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Diagrama patrón MVT}}{8}{figure.caption.10}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Web Scraping (Krotov y Tennyson 2018)}}{11}{figure.caption.14}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Página Aemet de la estación en Aranguren (Navarra)}}{14}{figure.caption.17}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Página principal de aforos de El Agua en Navarra}}{15}{figure.caption.18}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Error al cargar directamente la página de datos numéricos en El Agua en Navarra}}{15}{figure.caption.19}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Apartado selección de datos MeteoNavarra}}{16}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Página Aemet de la estación en Aranguren (Navarra)}}{16}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Página principal de aforos de El Agua en Navarra}}{17}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Error al cargar directamente la página de datos numéricos en El Agua en Navarra}}{17}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Apartado selección de datos MeteoNavarra}}{18}{figure.caption.20}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Idea original de la estructura de datos planteada}}{19}{figure.caption.21}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Estructura de datos usada en el proyecto}}{20}{figure.caption.22}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Estructuración básica de una Spider}}{23}{figure.caption.26}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Arquitectura de obtención y tratamiento de datos}}{27}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Idea original de la estructura de datos planteada}}{21}{figure.caption.21}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Estructura de datos usada en el proyecto}}{22}{figure.caption.22}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Estructuración básica de una Spider}}{25}{figure.caption.26}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Arquitectura de obtención y tratamiento de datos}}{29}{figure.caption.23}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Estructura del proyecto recién creado}}{29}{figure.caption.34}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Directorio de almacenamiento de las Spider}}{30}{figure.caption.35}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces URL de inicio para obtener los códigos de las estaciones de Aemet}}{31}{figure.caption.36}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Inspector de webs de Chrome}}{31}{figure.caption.37}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Estructura del proyecto recién creado}}{31}{figure.caption.34}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Directorio de almacenamiento de las Spider}}{32}{figure.caption.35}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces URL de inicio para obtener los códigos de las estaciones de Aemet}}{33}{figure.caption.36}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Inspector de webs de Chrome}}{34}{figure.caption.37}%
 \addvspace {10\p@ }

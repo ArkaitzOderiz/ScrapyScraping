@@ -66,7 +66,7 @@ Esquema obtenido:
 \newline
 \newline
 \newline
-\begin{verbatim}
+\begin{lstlisting}[language=json]
 [
 {
 	"coordenadas": "X. 598270,3 | Y. 4659333 | Z. 37928",
@@ -74,17 +74,17 @@ Esquema obtenido:
 	"datos": [
 	{
 		"fecha y hora": "01/06/2023 11:20:00",
-		"temperatura (ºC)": null,
-		"humedad (\%)": null,
+		"temperatura (C)": null,
+		"humedad (%)": null,
 		"precipitacion (mm)": null,
 		"nivel (m)": "0,05",
-		"caudal ($m^3/s$)": null,
-		"radiacion ($W/m^2$)": null
+		"caudal (m^3/s)": null,
+		"radiacion (W/m^2)": null
 	}
 	]
 }
 ]
-\end{verbatim}
+\end{lstlisting}
 
 \subsection{Filtrado de Datos}
 Una vez formateados los datos con el fin de reducir la carga a la base de datos, estos son filtrados mediante la comparación con los ficheros anteriormente marcados como old, de esta forma nos aseguramos de mandar a la base de datos unicamente las instancias nuevas de los datos recogidos, pues no disponemos de ninguna forma para filtrar los datos a la hora de obtenerlos. Estos datos serán guardados en un tercer JSON.
@@ -142,6 +142,7 @@ Y los de códigos (estación):
 	\item RefinedCode (TODO)
 	\item OldCode (TODO)
 \end{enumerate}
+
 El primer nivel es aquel que se obtiene de la llamada con la Spider a la web, devolviendo todos los datos de esta.\newline
 El segundo, es obtenido tras ejecutar ya sea formatear\_data\_JSONs.py en caso de querer parsear los datos o formatear\_code\_JSONs.py para los códigos.\newline
 El tercero se obtiene tras eliminar la duplicidad de datos en comparación con los ya almacenados en la base de datos mediante la ejecución de filtrar\_data\_JSONs.py.\newline
