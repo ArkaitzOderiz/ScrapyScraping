@@ -56,10 +56,11 @@ nivel, caudal
 chcantabrico:\newline
 nivel, precipitación, seguimiento, alerta, pre-alerta
 \newline\newline
-En todas las webs se proporciona las coordenadas junto con la fecha y hora en la que se ha hecho la medida
+En todas las webs se proporciona las coordenadas junto con la fecha y hora en la que se ha hecho la medida.
 
 \subsection{Formato de Datos}
 No todas las webs presentan sus datos de la misma manera, es por eso que nos encontramos con que los datos que hemos obtenido pueden llegar a estar repartidos en distintas páginas, haciendo necesario el uso de múltiples spiders, resultando en multiples JSON.\newline
+\newline
 Es por eso que para cada web se ha creado una función para parsear (formatear) los datos obtenidos, de esta manera disponemos de una estructura única para los datos recibidos, haciendo su uso posterior más fácil, ya sea a la hora de tratarlos posteriormente como para almacenarlos en la base de datos.
 
 Esquema obtenido:
@@ -102,11 +103,14 @@ Para poder realizar el trabajo se ha diseñado la siguiente arquitectura.\ref{fi
 
 \subsubsection{Entornos virtuales}
 Con el fin de que la plataforma sea lo mas fácilmente ampliable se ha decidido que cada Spider disponga de su propio entorno virtual, esto permite añadir dependencias de tal forma que no afecten a el resto de los Scripts presentes, ayudando en la encapsulación de dependencias.\newline
+\newline
 El mayor inconveniente de una plataforma así es la redundancia de código, al ser múltiples entornos independientes es necesario que mucho código sea repetido en cada uno de ellos, cosa que si fuera un único entorno en el que se ejecutara todo, con una clase sobre la que heredar y o una interfaz, seria mucho el código que nos ahorraríamos.\newline
+\newline
 Actualmente la plataforma dispone de cuatro entornos virtuales para cada Spider y un entorno virtual sobre el que ejecutar el servidor de Django.
 
 \subsubsection{Spiders}
 Cada Spider representa una web, de tal forma que cada una de ellas obtiene los datos de la web sobre la que se ha diseñado exclusivamente, para poder realizar esta tarea por cada web han sido necesarias varias Spider, aunque de forma simplificada se pueden agrupar por, aquellas que obtienen las estaciones junto con sus códigos y, las de obtención de datos.\newline
+\newline
 De esta forma dividimos las tareas dándonos la posibilidad de ejecutar aquella que mejor nos venga en cada momento.
 
 \begin{figure} [H]
@@ -118,17 +122,23 @@ De esta forma dividimos las tareas dándonos la posibilidad de ejecutar aquella 
 
 \subsubsection{Runners}
 Runner es la forma en la que han sido nombrados los Scripts cuya función es posibilitar la ejecución en nuestro caso asíncrona de una o múltiples Spiders mediante un único comando.\newline
+\newline
 Es un Script simple en el que una vez dispones de la estructura básica en caso de necesitar añadir o eliminar una Spider solo tienes que agregar o eliminar la Spider en cuestión y ya estaría listo.\newline
+\newline
 A su vez, al añadir un intermediario el comando de ejecución pasa de ser, scrapy crawl nombreSpider por cada Spider que se desea ejecutar, a, python nombreRunner.py facilitando la automatización de ejecución de las Spider.
 
 \subsubsection{Executers}
-Aumentado un poco mas la abstracción nos encontramos con los Executers, Scripts en Bash encargados de activar el entorno virtual de la Spider deseada y acto seguido ejecutar su respectivo Runner.
+Aumentado un poco mas la abstracción nos encontramos con los Executers, Scripts en Bash encargados de activar el entorno virtual de la Spider deseada y acto seguido ejecutar su respectivo Runner.\newline
+\newline
 Estos existen (en mayor medida que los Runners) con el fin de ayudar con el mantenimiento de la arquitectura, creando un nuevo intermediario en la cadena de ejecución.\newline
+\newline
 Están diseñados de tal forma que funcionen pasandoles un único argumento representando la web de la que quieres obtener los datos, haciendo que la agregación de nuevas Spiders junto con sus entornos sea tan sencillo como respetar las rutas y nombres predefinidos.
 
 \subsubsection{JSONs}
 Este apartado es un conjunto de directorios en los que se van almacenando los JSON obtenidos tras los distintos procesos a los que son sometidos.\newline
+\newline
 Los directorios en cuestión, siguiendo orden de creación para los JSON de datos son los siguientes:
+
 \begin{enumerate}
 	\item RawData
 	\item ParsedData
@@ -144,18 +154,23 @@ Y los de códigos (estación):
 \end{enumerate}
 
 El primer nivel es aquel que se obtiene de la llamada con la Spider a la web, devolviendo todos los datos de esta.\newline
+\newline
 El segundo, es obtenido tras ejecutar ya sea formatear\_data\_JSONs.py en caso de querer parsear los datos o formatear\_code\_JSONs.py para los códigos.\newline
+\newline
 El tercero se obtiene tras eliminar la duplicidad de datos en comparación con los ya almacenados en la base de datos mediante la ejecución de filtrar\_data\_JSONs.py.\newline
-Finalmente el cuarto es el subproducto obtenido tras la comparación, tomando el fichero original ya formateado y cambiándole de directorio y el nombre de tal forma que se distinga del resto de ficheros.\newline
+\newline
+Finalmente el cuarto es el subproducto obtenido tras la comparación, tomando el fichero original ya formateado y cambiándole de directorio y el nombre de tal forma que se distinga del resto de ficheros.
 
 \subsubsection{Posts}
 Estos Scripts son los encargado de enviar los datos mediante un Post Request al servidor Django.\newline
+\newline
 Diseñados bajo el mismo principio de fomentar la ampliabilidad del proyecto que los Executer, reciben el nombre de la web de la cual deseas enviar los datos a la hora de ejecutarlo junto al comando en forma de argumento.
 
 \subsubsection{Cron}
-Cron es un administrador regular de procesos en segundo plano presente en los sistemas basados en Unix. Con el es posible programar la automatización de ejecución de procesos en intervalos de tiempo, pudiendo indicar el minuto, hora, día, mes e incluso día de la semana.
+Cron es un administrador regular de procesos en segundo plano presente en los sistemas basados en Unix. Con el es posible programar la automatización de ejecución de procesos en intervalos de tiempo, pudiendo indicar el minuto, hora, día, mes e incluso día de la semana.\newline
 \newline
 La especificación de los procesos se realiza en el archivo crontab y, su estructuración es la siguiente:
+
 \begin{verbatim}
 .--------------- minuto (0-59) 
 |  .------------ hora (0-23)
@@ -167,7 +182,9 @@ La especificación de los procesos se realiza en el archivo crontab y, su estruc
 \end{verbatim}
 
 En nuestro caso queremos el equivalente a dos instancias de Cron, una que se encargue de obtener los datos ya sea cada quince minutos, media hora y una hora manteniendo la base de datos actualizada para poder realizar las posteriores predicciones y otra que mensualmente compruebe la existencia de nuevas estaciones o el cese del uso de alguna de las ya disponibles.\newline
+\newline
 Así pues, Cron es el encargado de ejecutar cada proceso necesario dentro de la plataforma, ya sea, ejecutar las Spiders, los Scripts de formateo como de filtrado y, el envío de los datos a Django para su inserción en PostGreSQL.\newline
+\newline
 De esta forma dispondríamos de un sistema cerrado automático, el cual nos permitiría trabajar en otros apartados como puede ser la integración de mas webs en la plataforma o la mejora del sistema de predicción.
 
 \subsubsection{Django}
