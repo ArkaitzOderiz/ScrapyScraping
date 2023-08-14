@@ -54,7 +54,7 @@ Como podemos ver Scrapy usa una programación orientada a objetos, siendo cada S
 \newline
 Analizando las variables definidas vemos las siguientes, name, nombre por el que debemos referenciar la Spider a la hora de ejecutarla; allowed\_domains, indica que dominios podemos visitar, negando la entrada a cualquier dominio que no este definido en ella, es importante no especificar protocolo, de esta manera funcionara para cualquier web ya sea HTTP como HTTPS que pertenezca a ese dominio, de lo contrario se limitara al protocolo indicado; start\_urls, URL inicial sobre la que se hará la request de petición de datos.\newline
 \newline
-El método parse es aquel al que se envía la respuesta obtenida de la web, para realizar el filtrado de la información, quedándote unicamente con la deseada. Este método es invocado automáticamente por la Spider, sin necesidad real de hacerlo tu manualmente.
+El método parse es aquel al que se envía la respuesta obtenida de la web, para realizar el filtrado de la información, quedándote unicamente con la deseada. Este método es invocado automáticamente por la Spider, sin necesidad real de hacerlo tu manualmente. Puede ser un método recursivo en caso de así quererlo o incluso se pueden definir nuevas funciones parse (usando un nombre distinto) en caso de necesitarlas.
 
 \subsection{Proceso de obtención de datos}
 Para poder realizar es la extracción de los datos, primero debemos ir a la web deseada e inspeccionar su estructuración. Para ello como ejemplo vamos a usar la web de aemet.\newline
@@ -187,9 +187,9 @@ El código quedaría de la siguiente manera.
 		with open("JSONs/RawCode/codigos_aemet.json", encoding="utf-8") as f:
 			data = json.load(f)
 		for estacion in data:
-			url = f'https://www.aemet.es/es/eltiempo/observacion"
-			"/ultimosdatos?k=nav&l={estacion["codigo"]}&w=0&"
-			"datos=det&x=&f=temperatura'
+			url = f'https://www.aemet.es/es/eltiempo/observacion'
+			'/ultimosdatos?k=nav&l={estacion["codigo"]}&w=0&'
+			'datos=det&x=&f=temperatura'
 			yield scrapy.Request(url, self.parse)
 \end{lstlisting}
 
@@ -264,9 +264,9 @@ Siendo esta la Spider usada como ejemplo no hay mucho más que comentar al respe
 			with open("JSONs/RawCode/codigos_aemet.json", encoding="utf-8") as f:
 				data = json.load(f)
 			for estacion in data:
-				url = f'https://www.aemet.es/es/eltiempo/observacion/"
-				"ultimosdatos?k=nav&l={estacion["codigo"]}&w=0&"
-				"datos=det&x=&f=temperatura'
+				url = f'https://www.aemet.es/es/eltiempo/observacion/'
+				'ultimosdatos?k=nav&l={estacion["codigo"]}&w=0&'
+				'datos=det&x=&f=temperatura'
 				yield scrapy.Request(url, self.parse)
 		
 		def parse(self, response):
@@ -516,8 +516,8 @@ Como últimos pasos, cambiamos los nombres de las cabeceras a aquellos definidos
 		with open("JSONs/RawCode/codigos_chcantabrico.json", encoding="utf-8") as f:
 			data = json.load(f)
 			for estacion in data:
-				url = f'https://ceh.cedex.es/anuarioaforos/afo/estaf-datos.asp?"
-				"indroea={estacion["codigoSecundario"]}'
+				url = f'https://ceh.cedex.es/anuarioaforos/afo/estaf-datos.asp?'
+				'indroea={estacion["codigoSecundario"]}'
 				yield scrapy.Request(url, self.parse)
 		
 		def parse(self, response):
@@ -587,9 +587,11 @@ Siendo Chcantabrico la primera web de la que se obtuvo los datos, sin gran conoc
 
 Todo el apartado de tratamiento de los datos es idéntico al realizado con la Spider, solo que en vez de usar FormRequest, hacemos uso de la librería requests para realizar la llamada get(), tras realizarla, se comprueba que haya sido exitosa (esta comprobación la realiza Scrapy automáticamente) y, en caso de serlo se realiza todo el tratamiento.\newline
 \newline
-Aunque en esta versión se almacenan todos los datos en un mismo JSON, originalmente los datos eran guardados en un CSV por cada estación, de tal manera que el nombre del CSV era el mismo que el de la estación a la que pertenecía. Más adelante al consolidar más la plataforma, sobre todo el uso de Django para la creación de una API, se vio que era más útil guardar los datos no solo en formato JSON si no que disponer de un único fichero por estación, de esta forma solo seria necesario realizar una única llamada por estación a la API para cargar los datos. Llegando a esta versión del script.\newline
+Aunque en esta versión se almacenan todos los datos en un mismo JSON, originalmente los datos eran guardados en un CSV por cada estación, de tal manera que el nombre del CSV era el mismo que el de la estación perteneciente. Más adelante al consolidar más la plataforma, sobre todo el uso de Django para la creación de una API, se vio que era más útil guardar los datos no solo en formato JSON si no que disponer de un único fichero por estación, de esta forma solo seria necesario realizar una única llamada por estación a la API para cargar los datos. Llegando a esta versión del script.\newline
 \newline
-Posteriormente, 
+Posteriormente, llegado el momento de la automatización quedo claro que, aun siendo posible automatizar el proceso con el script anterior, iba a suponer un problema para la modularidad del proyecto. El tener múltiples scripts de diferentes fuentes solo aumentaba la complejidad, necesitando de un script de ejecución por cada web la cual se deseaba trabajar con. Implicando la necesidad de no solo crear el código de extracción y tratamiento de datos, sino el de ejecución también. Esto rompía hasta cierto punto la experiencia deseada, el usuario solo debería preocuparse de los datos y la única interacción que debería realizar con el proceso de ejecución seria el añadir una única linea de comando referencioando el nombre usado para el nuevo modulo.\newline
+\newline
+Es por eso que se investigo la posibilidad de obtener los datos mediante Scrapy, estudiando los diferentes objetos Request proporcionados, hasta llegar a la versión actual con el uso de FormRequest.
 
 \subsection{MeteoNavarra}
 
@@ -654,10 +656,10 @@ Probablemente una de las Spider más simples entre todas las usadas, aunque como
 			with open("JSONs/RawCode/codigos_meteoNavarra.json", encoding="utf-8") as f:
 				data = json.load(f)
 				for estacion in data:
-				url = f'http://meteo.navarra.es/estaciones/estacion_datos_m.cfm?"
-				"IDEstacion={estacion["codigo"]}&p_10' \
-				f'=1&p_10=2&p_10=3&p_10=11&fecha_desde={yesterday_date_format}"
-				"&fecha_hasta={tomorrow_date_format}'
+				url = f'http://meteo.navarra.es/estaciones/estacion_datos_m.cfm?'
+				'IDEstacion={estacion["codigo"]}&p_10' \
+				f'=1&p_10=2&p_10=3&p_10=11&fecha_desde={yesterday_date_format}'
+				'&fecha_hasta={tomorrow_date_format}'
 				yield scrapy.Request(url, self.parse)
 		
 		def parse(self, response):
@@ -724,7 +726,8 @@ Esto es posible gracias a que yield, aunque a groso modo funcione como un return
 			with open("JSONs/RawCode/codigos_meteoNavarra.json", encoding="utf-8") as f:
 				data = json.load(f)
 				for estacion in data:
-				url = f'http://meteo.navarra.es/estaciones/estacion.cfm?IDestacion={estacion["codigo"]}'
+				url = f'http://meteo.navarra.es/estaciones/estacion.cfm?'
+				'IDestacion={estacion["codigo"]}'
 				yield scrapy.Request(url, self.parse)
 		
 		def parse(self, response):
@@ -738,3 +741,176 @@ Esto es posible gracias a que yield, aunque a groso modo funcione como un return
 \end{lstlisting}
 
 Por último, necesitamos de una Spider para la obtención de las coordenadas pues no están disponibles para obtener dentro de las páginas anteriores, pero al igual que la de código no dispone realmente de nada relevante que mencionar.
+
+\subsection{Agua en Navarra}
+Las Spiders de Agua en Navarra son las más complejas entre todas, usando una filosofía ligeramente distinta al resto de Spiders y por el uso de Selemiun para poder interactuar con la web mediante JavaScipt.
+
+\begin{lstlisting}[language=Python, caption={Agua en Navarra Code Spider}]
+	import scrapy
+	
+	
+	class AguaEnNavarraCodeSpider(scrapy.Spider):
+		name = "aguaEnNavarra_code_spider"
+		allowed_domains = ["administracionelectronica.navarra.es"]
+		start_urls = ["https://administracionelectronica.navarra.es/aguaEnNavarra/"
+		"ctaMapa.aspx?IDOrigenDatos=1&IDMapa=1"]
+		custom_settings = {
+			'FEEDS': {
+				'JSONs/RawCode/codigos_aguaEnNavarra.json': {
+					'format': 'json',
+					'encoding': 'utf-8',
+					'overwrite': True,
+				}
+			}
+		}
+		
+		def parse(self, response):
+			for link in response.css('dl#navarramap a::attr(href)'):
+				if link.get() != 'ctaMapa.aspx?IdMapa=1&IDOrigenDatos=1':
+					yield response.follow(link.get(), callback=self.parse_area)
+		
+		def parse_area(self, response):
+			for link in response.css('area[shape="rect"]::attr(href)'):
+				yield response.follow(link.get(), callback=self.parse_data)
+		
+		def parse_estacion(self, response):
+			urls = response.xpath('//span/a/@href').getall()
+			estacion = response.css('div#bloq_iconos span span::text').getall()
+			codigoEstacion = response.css("form#frmDatosEstacion::attr(action)").get()
+			codigos = []
+			for url in urls:
+				codigos.append(url.split('=')[1])
+			
+			yield {
+				'descripcion': estacion[0],
+				'municipio': estacion[1],
+				'rio': estacion[2],
+				'coordenadas': estacion[3],
+				'estacion': codigoEstacion.split('=')[-1],
+				'codigos': codigos,
+			}
+\end{lstlisting}
+
+Como se puede apreciar, esta Spider hace uso de tres funciones parse(), al contrario del resto que solo disponían de una. Esto se debe hasta cierto punto a la estructuración de la página, haciendo más sencillo navegar por ella que crear una Spider por cada página que tenemos que visitar.\newline
+\newline
+Inspeccionando el código veremos que partimos de una start\_urls, llamando con ella a parse(), de esa web nos interesan recorrer todos los link menos aquel en el que ya estamos ('ctaMapa.aspx?IdMapa=1\&IDOrigenDatos=1'), llevándonos a la página de cada area de estaciones. El uso de response.follow() es equivalente a realizar un Request, pero no necesita pararle una URL completa, solo con la ruta es capaz de generar la llamada, en caso de necesitar explicitamente Request esta seria la manera.
+\begin{verbatim}
+	yield Request(url=response.urljoin(link.get()), callback=self.parse_area)
+\end{verbatim}
+Dentro de callback indicamos a que función debe realizar la llamada, pasando de parse() a parse\_area(). En esta realizamos el mismo proceso, obtenemos todos los link a las webs, ya sí, de la estación y llamamos a parse\_estacion().\newline
+\newline
+Una vez en parse\_estacion() como ocurre con Chcantabrico, la estación dispone de múltiples códigos, aquel que referencia la estación, uno para el nivel y aunque no en todas, otro para el caudal del río.
+
+\begin{lstlisting}[language=Python, caption={Agua en Navarra Data Spider}]
+	import scrapy
+	from scrapy_selenium import SeleniumRequest
+	from selenium.webdriver.common.by import By
+	from selenium.webdriver.support import expected_conditions as EC
+	
+	
+	class AguaEnNavarraDataSpider(scrapy.Spider):
+		name = "aguaEnNavarra_data_spider"
+		allowed_domains = ["administracionelectronica.navarra.es"]
+		start_urls = ["https://administracionelectronica.navarra.es/aguaEnNavarra/"
+		"ctaMapa.aspx?IDOrigenDatos=1&IDMapa=1"]
+		custom_settings = {
+			'FEEDS': {
+				'JSONs/RawData/datos_aguaEnNavarra.json': {
+					'format': 'json',
+					'encoding': 'utf-8',
+					'overwrite': True,
+				}
+			}
+		}
+		
+		def parse(self, response):
+			for link in response.css('dl#navarramap a::attr(href)'):
+				if link.get() != 'ctaMapa.aspx?IdMapa=1&IDOrigenDatos=1':
+					yield response.follow(link.get(), callback=self.parse_area)
+			
+		def parse_area(self, response):
+			for link in response.css('area[shape="rect"]::attr(href)'):
+				yield response.follow(link.get(), callback=self.parse_estacion)
+			
+		def parse_estacion(self, response):
+			for link in response.css('div#divResultadosAforo a::attr(href)'):
+				yield SeleniumRequest(
+				url=response.urljoin(link.get()),
+				wait_time=2,
+				wait_until=EC.element_to_be_clickable((By.ID, 'btnDatosNumericos')),
+				callback=self.parse_data,
+				script='document.querySelector("#btnDatosNumericos").click()',
+				)
+			
+		def parse_data(self, response):
+			tipo = response.css('span#lblSenal::text').get()
+			estacion = response.css('li#cabecera_nombreEstacion a::attr(href)').get()
+			fechas = response.css('span.cont_fecha_gra::text').getall()
+			valores = response.css('span.cont_valor_gra::text').getall()
+			
+			datos = []
+			if tipo == "Nivel Rio":
+				for i, fecha in enumerate(fechas):
+					dato = {
+						'fecha y hora': fecha.strip() + ':00',
+						'nivel (m)': valores[i].strip(),
+					}
+					datos.append(dato)
+			else:
+				for i, fecha in enumerate(fechas):
+					dato = {
+						'fecha y hora': fecha.strip() + ':00',
+						'caudal (m^3/s)': valores[i].strip(),
+					}
+					datos.append(dato)
+			
+			yield {
+				'estacion': estacion.split('=')[-1],
+				'datos': datos,
+			}
+\end{lstlisting}
+
+Esta Spider se puede decir que es una amplifican de la anterior, pues parte de la misma URL de inicio y va recorriendo las mismas webs que la anterior, solo que esta recorre una página más. De esta forma a diferencia del resto de Spider destinadas a obtener datos, no necesita de un fichero con los códigos para funcionar.\newline
+\newline
+Lo primero que llama la atención de esta Spider respecto al resto es el uso de SeleniumRequest, este tipo de objeto Request pertenece a la librería scrapy\_selenium, siendo una alternativa sencilla de unificar las funcionalidades de Selenium en Scrapy, de esta forma, podemos lidiar con la falta de integración de interacción con JavaScript en Scrapy.\newline
+\newline
+Tras realizar el mismo proceso que antes, la Spider llega a la función parse\_estacion(), esta vez, en vez de obtener los datos de la estación, accedemos a los links que permiten mostrar los datos mediante el SeleniumRequest. Como el link al que somo dirigidos muestra los datos en forma de diagrama y, para acceder a los datos numéricos es necesario pulsar un botón, SeleniumRequest nos permite, esperar a que este esté correctamente cargado con el argumento wait\_until, indicando que elemento deseas esperar a ser cargado; en caso de que no se cargue, es recomendable usar el argumento wait\_time, que usado junto al anterior, establece el tiempo antes de dar la llamada por errónea; si el botón se carga correctamente, en el argumento script indicamos que se debe pulsar sobre este, llevándonos finalmente a los datos numéricos.\newline
+\newline
+En la funcion parse\_data(), obtenemos los datos por columna en vez de fila, pues la web no hace un correcto uso formateo por tabla, pues no existe esta tabla, insertando los datos sobre un elemento div y formateandolos posteriormente con CSS. Esta forma de obtener los datos fuerza la obtención de las fechas por un lado y los valores por otro, resultando en dos listas que debemos unir. A su vez, ya que hacemos uso de una Spider para obtener todos los datos aunque estén presentes en distintas páginas, hace necesaria la comprobación inicial de que datos estamos recibiendo para poder almacenarlos correctamente.
+
+\subsubsection{Configuración Selenium}
+Para que SeleniumRequest funcione, es necesario incluir las siguientes lineas de código en el archivo settings.py generado por Scrapy.
+
+\begin{lstlisting}[language=Python, caption={Agua en Navarra configuración Selenium}]
+	from shutil import which
+	
+	SELENIUM_DRIVER_NAME = 'chrome'
+	SELENIUM_DRIVER_EXECUTABLE_PATH = which('chromedriver')
+	SELENIUM_DRIVER_ARGUMENTS = ['--headless',
+	'--disable-logging',
+	'--disable-in-process-stack-traces',
+	'--log-level=1',
+	'--disable-extensions'
+	]
+	
+	DOWNLOADER_MIDDLEWARES = {
+		'scrapy_selenium.SeleniumMiddleware': 800
+	}
+\end{lstlisting}
+
+En nuestro caso indicamos que el navegador deseado para realizar el trabajo es Chrome e indicamos mediante el método which la ruta del ejecutable del driver de chrome.\newline
+\newline
+Los argumentos usados indican, --headless significa que las instancias de Chrome creadas sean sin interfaz, de esta forma no tendremos cientos de ventanas de Chrome abriéndose y cerrándose cada vez que se ejecute la Spider; --disable-logging como su nombre indica elimina el Log; --disable-in-process-stack-traces desactiva el stack-trace, esto se realiza unicamente con el fin de intentar mejorar el rendimiento; --log-level indica el tipo de log que desas mostrar, siendo INFO = 0, ALERTA = 1, ERROR = 2 y FATAL = 3, aunque el Log este desactivado esta bien indicar que clase de Log deseas que aparezca en caso de que se vuelva a activar; --disable-extensions desactiva todas las extensiones que podamos tener instaladas, nuevamente con el fin de mejorar el rendimiento.\newline
+\newline
+Una vez incluido el middleware, ya solo quedaria descargar el driver de chrome.\newline
+\newline
+Chromedriver.exe puede ser obtenido en la web \url{https://chromedriver.chromium.org/downloads}, descargando aquel que corresponda a la versión de Chrome instalada. Una vez descomprimido debe ser incluido dentro de la carpeta de proyecto de Scrapy.
+
+\begin{figure} [h!]
+	\centering
+	\includegraphics[width=0.4\textwidth]{fig/chromedriver.png}
+	\caption[Ruta chromedriver.exe]{Ruta chromedriver.exe}
+	\label{fig:ej15}
+\end{figure}
+
+En caso de estar en Windows con esto ya es suficiente, aunque al usar Debian son necesarios unos paso más para configurar chromedriver.
