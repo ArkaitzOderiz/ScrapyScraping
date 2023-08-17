@@ -1,79 +1,19 @@
 \chapter[Introducción]{Introducción}
 \label{Chap1}
 
-\section{Esto es una sección}
-
-Para generar entradas en el índice de palabras\index{parabras}. SATA\index{SATA}.
-
-\subsection{Esto es una subsección}
-%un comentario
-Una lista de parámetros: % con itemize se muestra una lista
-	\begin{itemize}
-		\item uno.
-		\item dos.
-		\item tres.
-	\end{itemize}
-	Una lista enumerada
-	\begin{enumerate}
-		\item  uno.
-		\item  dos.
-	\end{enumerate}
-\begin{table}[H]\caption{Mi tabla de ejemplo}\label{tab:ej}
-\begin{center}
-	\begin{tabular}{c c c}
-		Nombre & Medida & Otra cosa\\
-		\hline
-		10 & 10 & 4\\
-	\end{tabular}
-\end{center}
-\end{table}
-
-
-Código en R del ejemplo \ref{code:ej}:
-\begin{lstlisting}[language=R, caption=pie de código,label=code:ej]
-	# Establecer las credenciales de la API [1]
-	
-	library(rsat)
-	set_credentials("rsat.package", "UpnaSSG.2021")
-	
-	#Definir la region
-	
-	library(raster)
-	dir.create( "./RSATprueba/countries" ,recursive = TRUE)
-	spain<-getData('GADM', country= 'Spain', path= "./RSATprueba/countries", level=2)
-	
-\end{lstlisting}
-
-
-\begin{theorem}[Sum]\label{th:ex1}
-	$1+1=2$
-\end{theorem}
-
-\begin{definition}[Nice numbers]\label{def:ex1}
-	A number is \emph{nice} if it looks beautiful.
-\end{definition}
-
-\begin{theorem}[About $C^{1}(0,1)$]\label{th:ex2}
-	The set $C^{1}(0,1)$ is interesting.
-\end{theorem}
-Teoremaren erreferentzia \ref{th:ex2}
-
-\begin{proof}\label{pf:ex1}
-	To prove it by contradiction try and assume that the statemenet is false,
-	proceed from there and at some point you will arrive to a contradiction.
-\end{proof}
-
-
-
-\begin{lemma}\label{lemma:ex1}
-	To prove it by contradiction try and assume that the statemenet is false,
-	proceed from there and at some point you will arrive to a contradiction.
-\end{lemma}
-
-Lemaren erreferentzia \ref{lemma:ex1}
-
-
-\begin{equation}\label{eq:ex2}
-	1 + e^{i \pi} = 0.
-\end{equation}
-Formularen erreferentzia \ref{eq:ex2}
+Los últimos 15-20 años la Unión Europea ha realizado un gran esfuerzo en promover políticas de datos abiertos en realización a la información generada y monitorizada por los estados miembros. El objetivo de esta política es acercar estos datos a la población para tener un mayor control territorial y medio ambiental. El gobierno de Navarra y de España contribuyen a la oferta de datos abiertos publicando mediante diferentes organismos como el geoportal (\url{https://geoportal.navarra.es/es/idena}) en Navarra o los datos o el sistema automático de información publicada por las diferentes confederaciones hidrográficas en España.\newline
+\newline
+El objetivo de este trabajo es crear una plataforma habilitada en técnicas de scraping, centralizando la información proveniente de diferentes fuentes para una posible futura predicción y aviso de inundaciones mediante los datos pluviométricos obtenidos de los ríos de Navarra.\newline
+\newline
+La plataforma se dividirá en dos apartados, la obtención de los datos y el almacenamiento de estos. Para ello se harán uso de dos máquinas virtuales comunicándose entre si. Aunque hacer uso de una única máquina no solo es viable si no más sencillo, disponer de ellas, no solo aparta la plataforma de un diseño centralizado mas vulnerable, ademas, a nivel de proyecto, proporciona un mayor grado de complejidad, necesitando configurar la comunicación por red de estas.\newline
+\newline
+La primera máquina sera la encargada del almacenamiento de los datos, proporcionando una base de datos en PostGreSQL. Esta recibirá los datos de la segunda máquina, encargada de la obtención de estos.\newline
+\newline
+Como se ha mencionado, la plataforma busca centralizar los datos proporcionados en las distintas webs, tanto fluviales como pluviométricos, creando un punto de acceso global para su posterior uso. Es por eso que la segunda máquina dispone de una plataforma automática de obtención de datos mediante scraping web que, junto a una API en Django posibilita el envío de los datos a la base de datos.\newline
+\newline
+Esta plataforma, realizada usando el Framework de Python Scrapy para el apartado de obtención de datos y, Cron para la automatización, ejecuta los scripts de forma regular en intervalos de tiempo predefinidos para cada web, con el fin de no generar más trafico web del realmente necesario.\newline
+\newline
+En este proyecto se ha pretendido crear una plataforma lo más modular posible, ya sea por el uso de múltiples máquinas virtuales, como por los distintos apartados que la forman e, incluso en la forma de codificarla. Intenta ser lo más intuitiva posible a la hora de poder realizar cambios sobre esta, diferenciando claramente cada elemento.\newline
+\newline
+Centrado en técnicas de scraping web, este proyecto esta limitado por los datos ofrecidos de forma abierta en la web, siendo su punto débil, aquel del cual no disponemos control alguno. A día de hoy, la plataforma dispone de cuatro fuentes distintas de las cuales obtener datos, pero esta comprometida a que se mantengan invariables en el tiempo. Es por esto, que en un proyecto así necesariamente se debe valorar la búsqueda de datos de forma activa. No solo para su mantenimiento a largo plazo sino como forma de extender su alcance.\newline
+\newline

@@ -35,7 +35,7 @@ En esta página encontraremos los datos tanto del nivel de los ríos como de su 
 La sección de aforos en la página \ref{fig:ej4} muestra un mapa de Navarra y esta estructurada en 6 regiones, Norte, Arga, Ega, Ebro alto, Ebro bajo y Aragón, accediendo a cada región nos aparece el mapa de la región dándonos acceso a todas las estaciones en la zona.
 \newline
 \newline
-Una vez dentro de la estación tendremos la posibilidad de observar los datos, primeramente en forma de gráfica y en caso de quererlo en forma numérica, pero no se puede acceder a los datos numéricos sin antes haber visitado la versión gráfica \ref{fig:ej5}.
+Una vez dentro de la estación tendremos la posibilidad de observar los datos, primeramente en forma de gráfica y, en caso de quererlo, en forma numérica, pero no sin antes haber visitado la versión gráfica \ref{fig:ej5}.
 \newline
 \newline
 Debido a este problema, para la obtención de los datos primero cargamos la web gráfica y le pasamos un script JavaScript para pulsar el botón que finalmente nos da acceso a los datos deseados.
@@ -115,7 +115,7 @@ Comenzamos con los comandos necesarios para la instalación inicial de PostGreSQ
 	#Configuramos varios parametros del usuario para una mejor integracion con Django
 	postgres=# ALTER ROLE miusuario SET client_encoding TO 'utf8';
 	postgres=# ALTER ROLE miusuario SET default_transaction_isolation TO 'read committed';
-	postgres=# ALTER ROLE miusuario SET timezone TO 'UTC';
+	postgres=# ALTER ROLE miusuario SET timezone TO 'Europe/Madrid';
 	
 	#Creamos la Base de Datos
 	postgres=# CREATE DATABASE bbddmiproyecto;
@@ -128,7 +128,38 @@ Comenzamos con los comandos necesarios para la instalación inicial de PostGreSQ
 	
 \end{verbatim}
 
-En este punto ya dispondríamos de una base de datos y de un usuario con el que conectarnos a esta desde Django.
+En este punto ya dispondríamos de una base de datos (aun sin tablas en ella) y de un usuario con el que conectarnos a esta desde Django.\newline
 \newline
 Ahora quedaría configurar el permiso de comunicación entre dispositivos, más concretamente la conexión remota de Django con PostGreSQL.
 
+\begin{verbatim}
+	#Abrimos el archivo postgresql.conf con un editor
+	sudo nano /etc/postgresql/11/main/postgresql.conf
+	
+	#Buscamos la linea "#listen_addresses = 'localhost'", borramos la almohadilla y
+	sustituimos localhost por *, permitiendo la escucha de cualquier direccion IP
+	listen_addresses = '*'
+	
+	#Guardamos y cerramos el fichero
+	
+	#Abrimos el archivo pg_hba.conf con un editor
+	sudo nano /etc/postgresql/11/main/pg_hba.conf
+	
+	#Por defecto solo permite conexiones desde localhost
+	# IPv4 local connections: 
+	host    all             all             127.0.0.1/32            md5 
+	
+	#Configuararemos el permiso de conexion remota desde cualquier IP añadiendo
+	la siguiente linea debajo de la anterior
+	host    all             all             0.0.0.0/0            md5 
+	
+	#O podemos configurar el permiso unicamente para la IP de la otra maquina virtual
+	host    all             all             127.18.83.198/19            md5 
+	
+	#Guardamos y cerramos el fichero
+	
+	#Finalmete permitimos el trafico mediante el puerto 5432 (puesto por defecto)
+	sudo ufw allow 5432/tcp
+\end{verbatim}
+
+Una vez realizados los siguientes pasos ya tendríamos nuestra instancia de PostGreSQL configurada.

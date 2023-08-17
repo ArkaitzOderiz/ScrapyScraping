@@ -914,3 +914,16 @@ Chromedriver.exe puede ser obtenido en la web \url{https://chromedriver.chromium
 \end{figure}
 
 En caso de estar en Windows con esto ya es suficiente, aunque al usar Debian son necesarios unos paso más para configurar chromedriver.
+
+\subsubsection{Alternativas probadas}
+Antes de saber que es necesario dirigirse a la pagina donde se muestra la gráfica antes de poder acceder a la página con los datos numéricos, se probo con una Spider que accedía directamente a esta. Visto que el resultado obtenido estaba vacío y, que en apariencia la Spider era correcta, obteniendo teóricamente aquellos datos deseados, se comprobó la web manualmente, resultando en la obtención de un error \ref{fig:ej5}.\newline
+\newline
+Es por eso que, partiendo de un uso de Scrapy sin uso de extensiones de terceros, se probó una solución al problema siguiendo la metodología de recorrer las webs, de esta manera, visitaba inicialmente la web con la gráfica para posteriormente redirigirse a los datos numéricos. Resultando en un nuevo fracaso. Esta vez si que se obtenían datos, aunque no de forma correcta, muchas estaciones aparecían repetidas múltiples veces, de tres a siete veces en el peor de los casos visto. Siendo el resultado esperado la aparición de una misma estación un total de dos veces, una con los datos del caudal y otra por los datos del nivel. Volviendo a la comprobación manual resulto en el mismo comportamiento, por alguna razón, una vez dentro de la web de los datos numéricos, al cambiar el código de la estación y recargar la pagina, lo mismo se actualizaban los datos para mostrar los de la nueva estación como no lo hacían, mostrando los datos de la anterior.\newline
+\newline
+Esto causo la incertidumbre de si era posible obtener datos la web de forma fiable. Finalmente, barajando la posibilidad de pulsar el botón para acceder los datos, se dio con la herramienta usada en la versión final, Selenium y, tiempo después con una alternativa más moderna a esta, Playwright.\newline
+\newline
+Por suerte, Selenium, siendo usado mediante la extensión scrapy\_selenium, resulto funcionar a la primera, aunque a un costo temporal relativamente alto, en comparación con las demás Spider, con una media de dos minutos y medio de ejecución.\newline
+\newline
+Al ser código destinado a ser ejecutado en intervalos de quince minutos, un tiempo de ejecución así no debería acarrear ningún problema, pero aun y todo, se probo una cuarta alternativa mediante Playwright, prometiendo mejoras en los tiempos de ejecución y una mejor optimización.\newline
+\newline
+Antes que nada, cabe mencionar que Playwright no es compatible con Windows y, tampoco lo es con Debian 11 en su versión actual, resultando ser Debian 11 la versión usada para esta proyecto, por lo que no se ha podido llegar a comprobar el funcionamiento del siguiente código, aunque debería ser correcto.
