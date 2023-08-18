@@ -17,4 +17,7 @@
 \contentsline {lstlisting}{\numberline {5.17}{\ignorespaces Agua en Navarra Code Spider}}{56}{lstlisting.5.17}%
 \contentsline {lstlisting}{\numberline {5.18}{\ignorespaces Agua en Navarra Data Spider}}{57}{lstlisting.5.18}%
 \contentsline {lstlisting}{\numberline {5.19}{\ignorespaces Agua en Navarra configuración Selenium}}{60}{lstlisting.5.19}%
-\contentsline {lstlisting}{\numberline {A1}{\ignorespaces Mostrar notas.}}{67}{lstlisting.0.1}%
+\contentsline {lstlisting}{\numberline {5.20}{\ignorespaces Configuración Playwright}}{62}{lstlisting.5.20}%
+\contentsline {lstlisting}{\numberline {5.21}{\ignorespaces Playwright basic Request}}{63}{lstlisting.5.21}%
+\contentsline {lstlisting}{\numberline {5.22}{\ignorespaces Agua en Navarra Playwright Request}}{63}{lstlisting.5.22}%
+\contentsline {lstlisting}{\numberline {A1}{\ignorespaces Mostrar notas.}}{69}{lstlisting.0.1}%

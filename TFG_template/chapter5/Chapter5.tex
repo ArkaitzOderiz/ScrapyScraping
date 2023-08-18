@@ -926,4 +926,61 @@ Por suerte, Selenium, siendo usado mediante la extensión scrapy\_selenium, resu
 \newline
 Al ser código destinado a ser ejecutado en intervalos de quince minutos, un tiempo de ejecución así no debería acarrear ningún problema, pero aun y todo, se probo una cuarta alternativa mediante Playwright, prometiendo mejoras en los tiempos de ejecución y una mejor optimización.\newline
 \newline
-Antes que nada, cabe mencionar que Playwright no es compatible con Windows y, tampoco lo es con Debian 11 en su versión actual, resultando ser Debian 11 la versión usada para esta proyecto, por lo que no se ha podido llegar a comprobar el funcionamiento del siguiente código, aunque debería ser correcto.
+
+\begin{verbatim}
+	#Instalamos scrapy-playwright
+	pip install scrapy-playwright
+	
+	#Instalamos los navegadores compatibles
+	playwright install
+\end{verbatim}
+
+Antes que nada, cabe mencionar que Playwright no es compatible con Windows y, tampoco lo es con Debian 11 en su versión actual, resultando ser Debian 11 la versión usada para este proyecto, por lo que no se ha podido llegar a comprobar el funcionamiento del siguiente código, aunque debería ser correcto.\newline
+\newline
+Para hacer uso de Playwrith con Scrapy, primero que todo tenemos que configurar las dependencias de Playwright, que las implementaremos mediante custom\_settings dentro de una Spider o, si se desea, tambien pueden ser configuradas en settings.py.
+
+\begin{lstlisting}[language=Python, caption={Configuración Playwright}]
+	custom_settings = {
+		"TWISTED_REACTOR": "twisted.internet.asyncioreactor.AsyncioSelectorReactor",
+		"DOWNLOAD_HANDLERS": {
+			"https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+			"http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+		}
+	}
+\end{lstlisting}
+
+Finalmente, para hacer uso de la herramienta, a diferencia de con Selenium, no disponemos de un nuevo objeto Request, si no que hace uso del Request implementado en Scrapy indicandole por argumento que debe usar Playwright.
+
+\begin{lstlisting}[language=Python, caption={Playwright basic Request}]
+	yield Request(
+		url=url,
+		callback=self.parse,
+		meta=dict(
+			playwright=True,
+		),
+	)
+\end{lstlisting}
+
+En nuestro caso, para obtener el comportamiento previsto, la Request configurada es la siguiente.
+
+\begin{lstlisting}[language=Python, caption={Agua en Navarra Playwright Request}]
+	from scrapy_playwright.page import PageMethod
+	
+	
+	yield Request(
+		url=url,
+		callback=self.parse,
+		meta=dict(
+			playwright=True,
+			playwright_page_methods=[
+				PageMethod("wait_for_selector", selector="div.botoneraGrafico", state="visible"),
+				PageMethod("click", selector="input#btnDatosNumericos"),
+				PageMethod("waitForEvent", event="click"),
+			],
+		),
+	)
+\end{lstlisting}
+
+Los PageMethods indican las acciones a realizar una vez se hace la request, siendo la alternativa optada por Playwright al uso de JavaScript. Primero esperamos a que el botón esté cargado dentro de la página, pulsamos sobre el y, esperamos a que la acción de pulsar sea realizada.\newline
+\newline
+Según la documentación y los ejemplos estudiados, esta alternativa debería funcionar, pero puesto que no se ha podido ejecutar no es seguro su funcionamiento.
