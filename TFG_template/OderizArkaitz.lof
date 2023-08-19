@@ -1,12 +1,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Diagrama patrón MVT}}{8}{figure.caption.5}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Web Scraping (Krotov y Tennyson 2018)}}{11}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Página Aemet de la estación en Aranguren (Navarra)}}{4}{figure.caption.3}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Página principal de aforos de El Agua en Navarra}}{5}{figure.caption.4}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Error al cargar directamente la página de datos numéricos en El Agua en Navarra}}{5}{figure.caption.5}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Apartado selección de datos MeteoNavarra}}{6}{figure.caption.6}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Página Aemet de la estación en Aranguren (Navarra)}}{16}{figure.caption.12}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Página principal de aforos de El Agua en Navarra}}{17}{figure.caption.13}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Error al cargar directamente la página de datos numéricos en El Agua en Navarra}}{17}{figure.caption.14}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Apartado selección de datos MeteoNavarra}}{18}{figure.caption.15}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagrama patrón MVT}}{16}{figure.caption.9}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Web Scraping (Krotov y Tennyson 2018)}}{19}{figure.caption.13}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Idea original de la estructura de datos planteada}}{23}{figure.caption.16}%
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Estructura de datos usada en el proyecto}}{24}{figure.caption.17}%
