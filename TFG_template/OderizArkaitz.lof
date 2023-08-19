@@ -1,21 +1,24 @@
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Emisiones globales de CO2}}{2}{figure.caption.3}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Efecto invernadero}}{2}{figure.caption.4}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Media de aumento de temperatura global entre 1901-2000}}{3}{figure.caption.5}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Página Aemet de la estación en Aranguren (Navarra)}}{4}{figure.caption.3}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Página principal de aforos de El Agua en Navarra}}{5}{figure.caption.4}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Error al cargar directamente la página de datos numéricos en El Agua en Navarra}}{5}{figure.caption.5}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Apartado selección de datos MeteoNavarra}}{6}{figure.caption.6}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Página Aemet de la estación en Aranguren (Navarra)}}{8}{figure.caption.6}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Página principal de aforos de El Agua en Navarra}}{9}{figure.caption.7}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Error al cargar directamente la página de datos numéricos en El Agua en Navarra}}{9}{figure.caption.8}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Apartado selección de datos MeteoNavarra}}{10}{figure.caption.9}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagrama patrón MVT}}{16}{figure.caption.9}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Web Scraping (Krotov y Tennyson 2018)}}{19}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagrama patrón MVT}}{20}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Web Scraping (Krotov y Tennyson 2018)}}{23}{figure.caption.16}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Idea original de la estructura de datos planteada}}{23}{figure.caption.16}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Estructura de datos usada en el proyecto}}{24}{figure.caption.17}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Estructuración básica de una Spider}}{28}{figure.caption.21}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Arquitectura de obtención y tratamiento de datos}}{32}{figure.caption.18}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Idea original de la estructura de datos planteada}}{27}{figure.caption.19}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Estructura de datos usada en el proyecto}}{28}{figure.caption.20}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Estructuración básica de una Spider}}{32}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Arquitectura de obtención y tratamiento de datos}}{36}{figure.caption.21}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Estructura del proyecto recién creado}}{33}{figure.caption.29}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Directorio de almacenamiento de las Spider}}{34}{figure.caption.30}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces URL de inicio para obtener los códigos de las estaciones de Aemet}}{35}{figure.caption.31}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Inspector de webs de Chrome}}{36}{figure.caption.32}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Ruta chromedriver.exe}}{61}{figure.caption.35}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Estructura del proyecto recién creado}}{37}{figure.caption.32}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Directorio de almacenamiento de las Spider}}{38}{figure.caption.33}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces URL de inicio para obtener los códigos de las estaciones de Aemet}}{39}{figure.caption.34}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Inspector de webs de Chrome}}{40}{figure.caption.35}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Ruta chromedriver.exe}}{65}{figure.caption.38}%
 \addvspace {10\p@ }

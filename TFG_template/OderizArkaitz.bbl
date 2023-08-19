@@ -1,5 +1,30 @@
 \begin{thebibliography}{10}
 
+\bibitem{UNWeb}
+``{United Nations} what is climate change.''
+  \url{https://www.un.org/es/climatechange/what-is-climate-change}.
+\newblock Accessed: 2023-09-19.
+
+\bibitem{ruddiman2003anthropogenic}
+W.~F. Ruddiman, ``The anthropogenic greenhouse era began thousands of years
+  ago,'' {\em Climatic change}, vol.~61, no.~3, pp.~261--293, 2003.
+
+\bibitem{NCEIWeb}
+``{National Centers for Envioremental Information} annual 2022 global climate
+  report.''
+  \url{https://www.ncei.noaa.gov/access/monitoring/monthly-report/global/202213}.
+\newblock Accessed: 2023-09-19.
+
+\bibitem{arnell2019global}
+N.~W. Arnell, J.~A. Lowe, A.~J. Challinor, and T.~J. Osborn, ``Global and
+  regional impacts of climate change at different levels of global temperature
+  increase,'' {\em Climatic Change}, vol.~155, pp.~377--391, 2019.
+
+\bibitem{new2011four}
+M.~New, D.~Liverman, H.~Schroder, and K.~Anderson, ``Four degrees and beyond:
+  the potential for a global temperature increase of four degrees and its
+  implications,'' 2011.
+
 \bibitem{dierbach2014python}
 C.~Dierbach, ``Python as a first programming language,'' {\em Journal of
   Computing Sciences in Colleges}, vol.~29, no.~3, pp.~73--73, 2014.

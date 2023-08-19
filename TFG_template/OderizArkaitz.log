@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.8.19)  19 AUG 2023 16:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.8.19)  19 AUG 2023 20:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -748,7 +748,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
 (style/titlepage.tex
-<style/fig/ROJO_UPNA_300ppp.png, id=210, 284.5029pt x 151.0443pt>
+<style/fig/ROJO_UPNA_300ppp.png, id=214, 284.5029pt x 151.0443pt>
 File: style/fig/ROJO_UPNA_300ppp.png Graphic file (type png)
 <use style/fig/ROJO_UPNA_300ppp.png>
 Package pdftex.def Info: style/fig/ROJO_UPNA_300ppp.png  used on input line 7.
@@ -787,12 +787,12 @@ LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 4.
 
 (OderizArkaitz.toc
-LaTeX Font Info:    Trying to load font information for U+msa on input line 5.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 5.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -839,87 +839,156 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-LaTeX Font Info:    Trying to load font information for T1+fvm on input line 4.
+LaTeX Font Info:    Font shape `T1/fve/m/it' in size <10.95> not available
+(Font)              Font shape `T1/fve/m/sl' tried instead on input line 4.
+LaTeX Font Info:    Font shape `T1/fve/m/sl' will be
+(Font)              scaled to size 9.85492pt on input line 4.
 
+Underfull \hbox (badness 10000) in paragraph at lines 4--9
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--9
+
+ []
+
+<fig/global-co2-fossil-plus-land-use.png, id=393, 3412.75pt x 2409.0pt>
+File: fig/global-co2-fossil-plus-land-use.png Graphic file (type png)
+<use fig/global-co2-fossil-plus-land-use.png>
+Package pdftex.def Info: fig/global-co2-fossil-plus-land-use.png  used on input
+ line 12.
+(pdftex.def)             Requested size: 298.75262pt x 210.88255pt.
+LaTeX Font Info:    Font shape `T1/fve/m/n' will be
+(Font)              scaled to size 7.19995pt on input line 13.
+LaTeX Font Info:    Font shape `T1/fve/m/n' will be
+(Font)              scaled to size 8.09995pt on input line 16.
+LaTeX Font Info:    Font shape `T1/fve/m/n' will be
+(Font)              scaled to size 5.39996pt on input line 16.
+LaTeX Font Info:    Trying to load font information for T1+fvm on input line 16
+.
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/bera\t1fvm.fd
 File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
 )
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 4.
-)
-(chapter3/Chapter3.tex
-Underfull \hbox (badness 10000) in paragraph at lines 4--1
+(Font)              scaled to size 8.09995pt on input line 16.
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--1
-
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1 \chapter
-            [Datos]{Datos} [1
+l.16 ...https://ourworldindata.org/co2-emissions}}
+                                                   [1
 
 ]
+<fig/climate-change_greenhouse-effect_steps.png, id=402, 762.85pt x 371.3875pt>
+
+File: fig/climate-change_greenhouse-effect_steps.png Graphic file (type png)
+<use fig/climate-change_greenhouse-effect_steps.png>
+Package pdftex.def Info: fig/climate-change_greenhouse-effect_steps.png  used o
+n input line 20.
+(pdftex.def)             Requested size: 298.75262pt x 145.44122pt.
+LaTeX Font Info:    Trying to load font information for TS1+fve on input line 2
+6.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/bera\ts1fve.fd
+File: ts1fve.fd 2004/09/07 scalable font definitions for TS1/fve.
+)
+LaTeX Font Info:    Font shape `TS1/fve/m/n' will be
+(Font)              scaled to size 9.85492pt on input line 26.
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--29
+
+ []
+
+<fig/ClimateDashboard-global-surface-temperature-graph-20230118-1400px.png, id=
+408, 622.325pt x 532.99126pt>
+File: fig/ClimateDashboard-global-surface-temperature-graph-20230118-1400px.png
+ Graphic file (type png)
+<use fig/ClimateDashboard-global-surface-temperature-graph-20230118-1400px.png>
+
+Package pdftex.def Info: fig/ClimateDashboard-global-surface-temperature-graph-
+20230118-1400px.png  used on input line 32.
+(pdftex.def)             Requested size: 298.75262pt x 255.86543pt.
+
+Overfull \hbox (43.77144pt too wide) in paragraph at lines 36--36
+[][][][][]$\T1/fvm/m/n/9 https : / / www . climate . gov / news-[]features / un
+derstanding-[]climate / climate-[]change-[]global-[]temperature$[][]| 
+ []
+
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1 \chapter
-            [Datos]{Datos} [2]
+l.36 ...limate/climate-change-global-temperature}}
+                                                   [2 <./fig/global-co2-fossil-
+plus-land-use.png> <./fig/climate-change_greenhouse-effect_steps.png (PNG copy)
+>]
+LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
+(Font)              scaled to size 9.85492pt on input line 45.
+) (chapter3/Chapter3.tex
+Underfull \hbox (badness 10000) in paragraph at lines 45--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--1
+
+ []
+
+[3 <./fig/ClimateDashboard-global-surface-temperature-graph-20230118-1400px.png
+>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4]
+[5] [6
+
+]
 Chapter 2.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+fve on input line 6
-.
-(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/bera\ts1fve.fd
-File: ts1fve.fd 2004/09/07 scalable font definitions for TS1/fve.
-)
-LaTeX Font Info:    Font shape `TS1/fve/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 6.
 
 Underfull \hbox (badness 10000) in paragraph at lines 16--23
 
@@ -930,10 +999,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--23
 
  []
 
-[3
-
-]
-<fig/Aemet.png, id=396, 740.0147pt x 657.95813pt>
+[7]
+<fig/Aemet.png, id=456, 740.0147pt x 657.95813pt>
 File: fig/Aemet.png Graphic file (type png)
 <use fig/Aemet.png>
 Package pdftex.def Info: fig/Aemet.png  used on input line 26.
@@ -953,13 +1020,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--42
 
  []
 
-[4 <./fig/Aemet.png>]
-<fig/AguaEnNavarra.png, id=404, 588.69937pt x 697.10437pt>
+[8 <./fig/Aemet.png>]
+<fig/AguaEnNavarra.png, id=464, 588.69937pt x 697.10437pt>
 File: fig/AguaEnNavarra.png Graphic file (type png)
 <use fig/AguaEnNavarra.png>
 Package pdftex.def Info: fig/AguaEnNavarra.png  used on input line 45.
 (pdftex.def)             Requested size: 298.75262pt x 353.76343pt.
-<fig/ErrorAguaEnNavarra.png, id=405, 587.19376pt x 182.93344pt>
+<fig/ErrorAguaEnNavarra.png, id=465, 587.19376pt x 182.93344pt>
 File: fig/ErrorAguaEnNavarra.png Graphic file (type png)
 <use fig/ErrorAguaEnNavarra.png>
 Package pdftex.def Info: fig/ErrorAguaEnNavarra.png  used on input line 52.
@@ -980,13 +1047,13 @@ Overfull \hbox (3.90941pt too wide) in paragraph at lines 58--65
 za-dos cada diez min-u-tos tomamos
  []
 
-[5 <./fig/AguaEnNavarra.png> <./fig/ErrorAguaEnNavarra.png>]
-<fig/DatosMeteoNavarra.png, id=413, 583.42969pt x 603.0028pt>
+[9 <./fig/AguaEnNavarra.png> <./fig/ErrorAguaEnNavarra.png>]
+<fig/DatosMeteoNavarra.png, id=472, 583.42969pt x 603.0028pt>
 File: fig/DatosMeteoNavarra.png Graphic file (type png)
 <use fig/DatosMeteoNavarra.png>
 Package pdftex.def Info: fig/DatosMeteoNavarra.png  used on input line 68.
 (pdftex.def)             Requested size: 298.75262pt x 308.7787pt.
- [6 <./fig/DatosMeteoNavarra.png>] [7]
+ [10 <./fig/DatosMeteoNavarra.png>] [11]
 Overfull \hbox (53.75436pt too wide) in paragraph at lines 129--129
 []\T1/fvm/m/n/10.95 #Configuramos varios parametros del usuario para una mejor 
 integracion con Django[] 
@@ -1027,7 +1094,7 @@ Overfull \hbox (30.02371pt too wide) in paragraph at lines 163--163
 quier direccion IP[] 
  []
 
-[8]
+[12]
 Overfull \hbox (18.15839pt too wide) in paragraph at lines 163--163
 []\T1/fvm/m/n/10.95 #Configuararemos el permiso de conexion remota desde cualqu
 ier IP añadiendo[] 
@@ -1045,7 +1112,7 @@ Overfull \hbox (30.02371pt too wide) in paragraph at lines 163--163
 uesto por defecto)[] 
  []
 
-) (chapter2/Chapter2.tex [9] [10
+) (chapter2/Chapter2.tex [13] [14
 
 ]
 Chapter 3.
@@ -1059,7 +1126,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7--11
 
  []
 
-[11]
+[15]
 Underfull \hbox (badness 10000) in paragraph at lines 20--24
 
  []
@@ -1069,7 +1136,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--30
 
  []
 
-[12]
+[16]
 Underfull \hbox (badness 10000) in paragraph at lines 40--47
 
  []
@@ -1104,7 +1171,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--65
 
  []
 
-[13] [14]
+[17] [18]
 Underfull \hbox (badness 10000) in paragraph at lines 71--75
 
  []
@@ -1134,7 +1201,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 83--91
 
  []
 
-[15]
+[19]
 Underfull \hbox (badness 10000) in paragraph at lines 99--106
 
  []
@@ -1144,23 +1211,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 99--106
 
  []
 
-<fig/DjangoMVT.png, id=494, 542.025pt x 239.89626pt>
+<fig/DjangoMVT.png, id=554, 542.025pt x 239.89626pt>
 File: fig/DjangoMVT.png Graphic file (type png)
 <use fig/DjangoMVT.png>
 Package pdftex.def Info: fig/DjangoMVT.png  used on input line 117.
 (pdftex.def)             Requested size: 298.75262pt x 132.22885pt.
-LaTeX Font Info:    Font shape `T1/fve/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 118.
-LaTeX Font Info:    Font shape `T1/fve/m/n' will be
-(Font)              scaled to size 8.09995pt on input line 121.
-LaTeX Font Info:    Font shape `T1/fve/m/n' will be
-(Font)              scaled to size 5.39996pt on input line 121.
 
 Underfull \hbox (badness 10000) in paragraph at lines 110--124
 
  []
 
-[16 <./fig/DjangoMVT.png>]
+[20 <./fig/DjangoMVT.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 128--135
 
  []
@@ -1170,7 +1231,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 128--135
 
  []
 
-[17]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 141--148
 
  []
@@ -1180,7 +1241,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--148
 
  []
 
-<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=516, 853.1875pt
+<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=575, 853.1875pt
  x 302.12875pt>
 File: fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png Graphic file (
 type png)
@@ -1188,8 +1249,6 @@ type png)
 Package pdftex.def Info: fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018
 .png  used on input line 157.
 (pdftex.def)             Requested size: 298.75262pt x 105.79274pt.
-LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 8.09995pt on input line 161.
 
 Overfull \hbox (15.51448pt too wide) in paragraph at lines 161--161
 [][][][][]$\T1/fvm/m/n/9 https : / / www . researchgate . net / figure / Web-[]
@@ -1212,7 +1271,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 164--168
 
 Underfull \vbox (badness 3815) has occurred while \output is active []
 
- [18]
+ [22]
 Underfull \hbox (badness 10000) in paragraph at lines 170--184
 
  []
@@ -1232,8 +1291,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 170--184
 
  []
 
-[19 <./fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png>] [20])
-(chapter4/Chapter4.tex [21] [22
+[23 <./fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png>] [24])
+(chapter4/Chapter4.tex [25] [26
 
 ]
 Chapter 4.
@@ -1242,7 +1301,7 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-<fig/estructura_descartada.png, id=551, 302.12875pt x 429.605pt>
+<fig/estructura_descartada.png, id=611, 302.12875pt x 429.605pt>
 File: fig/estructura_descartada.png Graphic file (type png)
 <use fig/estructura_descartada.png>
 Package pdftex.def Info: fig/estructura_descartada.png  used on input line 8.
@@ -1257,8 +1316,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--16
 
  []
 
-[23 <./fig/estructura_descartada.png>]
-<fig/estructura_usada.png, id=558, 472.76625pt x 369.38pt>
+[27 <./fig/estructura_descartada.png>]
+<fig/estructura_usada.png, id=617, 472.76625pt x 369.38pt>
 File: fig/estructura_usada.png Graphic file (type png)
 <use fig/estructura_usada.png>
 Package pdftex.def Info: fig/estructura_usada.png  used on input line 19.
@@ -1278,7 +1337,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--45
 
  []
 
-[24 <./fig/estructura_usada.png>]
+[28 <./fig/estructura_usada.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 47--60
 
  []
@@ -1303,7 +1362,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 62--65
 
  []
 
-[25]
+[29]
 Underfull \hbox (badness 10000) in paragraph at lines 66--70
 
  []
@@ -1318,7 +1377,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 66--70
 
  []
 
-<fig/arquitectura.png, id=569, 781.92125pt x 1075.01625pt>
+<fig/arquitectura.png, id=629, 781.92125pt x 1075.01625pt>
 File: fig/arquitectura.png Graphic file (type png)
 <use fig/arquitectura.png>
 Package pdftex.def Info: fig/arquitectura.png  used on input line 97.
@@ -1336,12 +1395,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 105--110
 
  []
 
-[26]
+[30]
 Underfull \hbox (badness 10000) in paragraph at lines 112--115
 
  []
 
-<fig/estructura_basica_spider.png, id=592, 169.38281pt x 196.48407pt>
+<fig/estructura_basica_spider.png, id=652, 169.38281pt x 196.48407pt>
 File: fig/estructura_basica_spider.png Graphic file (type png)
 <use fig/estructura_basica_spider.png>
 Package pdftex.def Info: fig/estructura_basica_spider.png  used on input line 1
@@ -1350,7 +1409,7 @@ Package pdftex.def Info: fig/estructura_basica_spider.png  used on input line 1
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [27]
+ [31]
 Underfull \hbox (badness 10000) in paragraph at lines 124--129
 
  []
@@ -1370,7 +1429,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 131--136
 
  []
 
-[28 <./fig/estructura_basica_spider.png>]
+[32 <./fig/estructura_basica_spider.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 138--141
 
  []
@@ -1395,7 +1454,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 165--168
 
  []
 
-[29]
+[33]
 Underfull \hbox (badness 10000) in paragraph at lines 170--173
 
  []
@@ -1422,14 +1481,14 @@ Overfull \hbox (2.69533pt too wide) in paragraph at lines 191--192
 anto recibir los datos obtenidos
  []
 
-[30]) (chapter5/Chapter5.tex [31] [32 <./fig/arquitectura.png>]
+[34]) (chapter5/Chapter5.tex [35] [36 <./fig/arquitectura.png>]
 Chapter 5.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-<fig/estructura_proyecto_scrapy.png, id=637, 134.00063pt x 152.06813pt>
+<fig/estructura_proyecto_scrapy.png, id=697, 134.00063pt x 152.06813pt>
 File: fig/estructura_proyecto_scrapy.png Graphic file (type png)
 <use fig/estructura_proyecto_scrapy.png>
 Package pdftex.def Info: fig/estructura_proyecto_scrapy.png  used on input line
@@ -1440,10 +1499,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--30
 
  []
 
-[33
+[37
 
  <./fig/estructura_proyecto_scrapy.png>]
-<fig/primera_spider.png, id=643, 98.61844pt x 48.18pt>
+<fig/primera_spider.png, id=703, 98.61844pt x 48.18pt>
 File: fig/primera_spider.png Graphic file (type png)
 <use fig/primera_spider.png>
 Package pdftex.def Info: fig/primera_spider.png  used on input line 33.
@@ -1484,8 +1543,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 60--61
 
 Underfull \vbox (badness 3449) has occurred while \output is active []
 
- [34 <./fig/primera_spider.png>]
-<fig/code_aemet.png, id=659, 724.95844pt x 684.30656pt>
+ [38 <./fig/primera_spider.png>]
+<fig/code_aemet.png, id=719, 724.95844pt x 684.30656pt>
 File: fig/code_aemet.png Graphic file (type png)
 <use fig/code_aemet.png>
 Package pdftex.def Info: fig/code_aemet.png  used on input line 64.
@@ -1495,7 +1554,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 69--70
 
  []
 
-<fig/inspector.png, id=660, 735.49782pt x 205.5178pt>
+<fig/inspector.png, id=720, 735.49782pt x 205.5178pt>
 File: fig/inspector.png Graphic file (type png)
 <use fig/inspector.png>
 Package pdftex.def Info: fig/inspector.png  used on input line 73.
@@ -1503,7 +1562,7 @@ Package pdftex.def Info: fig/inspector.png  used on input line 73.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [35 <./fig/code_aemet.png>]
+ [39 <./fig/code_aemet.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 78--81
 
  []
@@ -1530,7 +1589,7 @@ Overfull \hbox (65.61969pt too wide) in paragraph at lines 104--104
 tos=det&f=precipitacion'[] 
  []
 
-[36 <./fig/inspector.png>]
+[40 <./fig/inspector.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 113--116
 
  []
@@ -1540,7 +1599,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 124--127
 
  []
 
-[37]
+[41]
 Underfull \hbox (badness 10000) in paragraph at lines 179--184
 
  []
@@ -1550,54 +1609,54 @@ Underfull \hbox (badness 10000) in paragraph at lines 179--184
 
  []
 
-[38] [39] [40]
+[42] [43] [44]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [41]
+ [45]
 Underfull \hbox (badness 10000) in paragraph at lines 297--302
 
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 297--302
-
- []
-
-[42]
-Underfull \hbox (badness 10000) in paragraph at lines 346--353
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 346--353
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 346--353
-
- []
-
-[43]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [44]
-[45]
-Underfull \hbox (badness 10000) in paragraph at lines 466--473
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 466--473
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 466--473
 
  []
 
 [46]
+Underfull \hbox (badness 10000) in paragraph at lines 346--353
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--353
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--353
+
+ []
+
+[47]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [48]
+[49]
+Underfull \hbox (badness 10000) in paragraph at lines 466--473
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 466--473
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 466--473
+
+ []
+
+[50]
 Underfull \hbox (badness 10000) in paragraph at lines 479--482
 
  []
@@ -1607,10 +1666,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 492--495
 
  []
 
-[47]
+[51]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [48]
+ [52]
 Underfull \hbox (badness 10000) in paragraph at lines 534--537
 
  []
@@ -1627,7 +1686,7 @@ Overfull \hbox (2.38391pt too wide) in paragraph at lines 539--540
 lataforma, el planteamiento
  []
 
-[49]
+[53]
 Overfull \hbox (30.77138pt too wide) in paragraph at lines 564--565
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][] 
@@ -1636,7 +1695,7 @@ Overfull \hbox (30.77138pt too wide) in paragraph at lines 564--565
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [50]
+ [54]
 Underfull \hbox (badness 10000) in paragraph at lines 588--595
 
  []
@@ -1651,10 +1710,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 588--595
 
  []
 
-[51] [52]
+[55] [56]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [53]
+ [57]
 Underfull \hbox (badness 10000) in paragraph at lines 698--705
 
  []
@@ -1669,13 +1728,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 698--705
 
  []
 
-[54]
+[58]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [55]
+ [59]
 Underfull \vbox (badness 2556) has occurred while \output is active []
 
- [56]
+ [60]
 Underfull \hbox (badness 10000) in paragraph at lines 794--797
 
  []
@@ -1691,10 +1750,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 800--803
 
  []
 
-[57]
+[61]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [58]
+ [62]
 Underfull \hbox (badness 10000) in paragraph at lines 873--880
 
  []
@@ -1709,7 +1768,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 873--880
 
  []
 
-[59]
+[63]
 Underfull \hbox (badness 10000) in paragraph at lines 901--908
 
  []
@@ -1724,8 +1783,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 901--908
 
  []
 
-[60]
-<fig/chromedriver.png, id=1378, 166.37157pt x 183.68625pt>
+[64]
+<fig/chromedriver.png, id=1437, 166.37157pt x 183.68625pt>
 File: fig/chromedriver.png Graphic file (type png)
 <use fig/chromedriver.png>
 Package pdftex.def Info: fig/chromedriver.png  used on input line 911.
@@ -1760,60 +1819,68 @@ Underfull \hbox (badness 10000) in paragraph at lines 919--929
 
  []
 
-[61 <./fig/chromedriver.png>]
+[65 <./fig/chromedriver.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 938--941
 
  []
 
-[62] [63]) (chapter6/Chapter6.tex
+[66] [67]) (chapter6/Chapter6.tex
 Underfull \hbox (badness 10000) in paragraph at lines 984--1
 
  []
 
-[64]
+[68]
 Chapter 6.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-) [65
+) [69
 
-] [66
+] [70
 
 ] (bibliography/Bibliography.tex (OderizArkaitz.bbl
-LaTeX Font Info:    Font shape `T1/fve/m/it' in size <10.95> not available
-(Font)              Font shape `T1/fve/m/sl' tried instead on input line 4.
-LaTeX Font Info:    Font shape `T1/fve/m/sl' will be
-(Font)              scaled to size 9.85492pt on input line 4.
+Underfull \hbox (badness 10000) in paragraph at lines 4--7
+[]\T1/fve/m/n/10.95 ``United Na-tions what is cli-mate change.'' [][]$\T1/fvm/m
+/n/10.95 https : / / www . un . org / es /
+ []
 
-Underfull \hbox (badness 1142) in paragraph at lines 26--29
+
+Underfull \hbox (badness 7116) in paragraph at lines 13--17
+\T1/fve/m/n/10.95 re-port.'' [][]$\T1/fvm/m/n/10.95 https : / / www . ncei . no
+aa . gov / access / monitoring / monthly-[]report /
+ []
+
+[71
+
+
+]
+Underfull \hbox (badness 1142) in paragraph at lines 51--54
 []\T1/fve/m/n/10.95 ``Debian Proyect Doc-u-men-ta-tion a brief his-tory of de-b
 ian.'' [][]$\T1/fvm/m/n/10.95 https : / / www .
  []
 
-[67
+[72]) [73]) (style/index.tex [74
 
 
-]) [68]) (style/index.tex
+]
 runsystem(makeindex OderizArkaitz.idx)...executed safely (allowed).
 
  (OderizArkaitz.ind)) (appendix/Appendix.tex
-(code/Calendario.java)) [69
-
-
+(code/Calendario.java)) [75
 
 
 
 ] (OderizArkaitz.aux)
 Package rerunfilecheck Info: File `OderizArkaitz.out' has not changed.
-(rerunfilecheck)             Checksum: 79D78030EB68102601F8BAFA3C14A264;7345.
+(rerunfilecheck)             Checksum: E7667ADABAEB7C1DBE2A58296476DF35;7585.
  ) 
 Here is how much of TeX's memory you used:
- 17428 strings out of 476331
- 289383 string characters out of 5788237
- 1964660 words of memory out of 5000000
- 36532 multiletter control sequences out of 15000+600000
+ 17477 strings out of 476331
+ 290926 string characters out of 5788237
+ 1965660 words of memory out of 5000000
+ 36560 multiletter control sequences out of 15000+600000
  567057 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,13n,77p,1039b,2072s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1825,9 +1892,9 @@ pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fver8a.pfb><C
 :/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmr8a.pfb><C:/User
 s/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvsb8a.pfb><C:/Users/User
 /AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on OderizArkaitz.pdf (77 pages, 1908514 bytes).
+Output written on OderizArkaitz.pdf (83 pages, 2265812 bytes).
 PDF statistics:
- 1698 PDF objects out of 1728 (max. 8388607)
- 886 named destinations out of 1000 (max. 500000)
- 497 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1773 PDF objects out of 2073 (max. 8388607)
+ 904 named destinations out of 1000 (max. 500000)
+ 520 words of extra memory for PDF output out of 10000 (max. 10000000)
 

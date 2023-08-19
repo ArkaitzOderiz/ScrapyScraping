@@ -7,45 +7,45 @@ Reallocating 'name_of_file' (item size: 1) to 26 items.
 Database file #1: bibliography/bibliografia.bib
 Warning--empty journal in ghimire2020comparative
 Warning--empty journal in krotov2018legality
-You've used 23 entries,
+You've used 28 entries,
             1876 wiz_defined-function locations,
-            587 strings with 6371 characters,
-and the built_in function-call counts, 3635 in all, are:
-= -- 369
-> -- 80
+            619 strings with 7368 characters,
+and the built_in function-call counts, 4691 in all, are:
+= -- 478
+> -- 114
 < -- 0
-+ -- 41
-- -- 18
-* -- 164
-:= -- 468
-add.period$ -- 40
-call.type$ -- 23
-change.case$ -- 17
++ -- 55
+- -- 27
+* -- 228
+:= -- 604
+add.period$ -- 47
+call.type$ -- 28
+change.case$ -- 22
 chr.to.int$ -- 0
-cite$ -- 25
-duplicate$ -- 182
-empty$ -- 471
-format.name$ -- 18
-if$ -- 949
+cite$ -- 30
+duplicate$ -- 228
+empty$ -- 585
+format.name$ -- 27
+if$ -- 1217
 int.to.chr$ -- 0
-int.to.str$ -- 23
-missing$ -- 18
-newline$ -- 89
-num.names$ -- 12
-pop$ -- 147
+int.to.str$ -- 28
+missing$ -- 20
+newline$ -- 106
+num.names$ -- 15
+pop$ -- 173
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 90
+skip$ -- 128
 stack$ -- 0
-substring$ -- 104
-swap$ -- 36
+substring$ -- 168
+swap$ -- 54
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 2
-while$ -- 24
-width$ -- 25
-write$ -- 199
+while$ -- 33
+width$ -- 30
+write$ -- 243
 (There were 2 warnings)
