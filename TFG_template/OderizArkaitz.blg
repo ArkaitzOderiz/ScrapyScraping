@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99d
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: Principal.aux
+The top-level auxiliary file: OderizArkaitz.aux
 Reallocating 'name_of_file' (item size: 1) to 7 items.
 The style file: ieeetr.bst
 Reallocating 'name_of_file' (item size: 1) to 26 items.
@@ -9,7 +9,7 @@ Warning--empty journal in ghimire2020comparative
 Warning--empty journal in krotov2018legality
 You've used 23 entries,
             1876 wiz_defined-function locations,
-            587 strings with 6363 characters,
+            587 strings with 6371 characters,
 and the built_in function-call counts, 3635 in all, are:
 = -- 369
 > -- 80
