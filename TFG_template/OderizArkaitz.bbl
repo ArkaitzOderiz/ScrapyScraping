@@ -25,6 +25,17 @@ M.~New, D.~Liverman, H.~Schroder, and K.~Anderson, ``Four degrees and beyond:
   the potential for a global temperature increase of four degrees and its
   implications,'' 2011.
 
+\bibitem{sparks2002observed}
+T.~H. Sparks and A.~Menzel, ``Observed changes in seasons: an overview,'' {\em
+  International Journal of Climatology: A Journal of the Royal Meteorological
+  Society}, vol.~22, no.~14, pp.~1715--1725, 2002.
+
+\bibitem{NCEIWebPreci}
+``{National Centers for Envioremental Information} annual 2022 global climate
+  report precipitation.''
+  \url{https://www.ncei.noaa.gov/access/monitoring/monthly-report/global/202213#precip}.
+\newblock Accessed: 2023-09-19.
+
 \bibitem{dierbach2014python}
 C.~Dierbach, ``Python as a first programming language,'' {\em Journal of
   Computing Sciences in Colleges}, vol.~29, no.~3, pp.~73--73, 2014.

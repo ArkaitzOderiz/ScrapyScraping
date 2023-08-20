@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.8.19)  19 AUG 2023 20:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.8.19)  20 AUG 2023 13:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -853,7 +853,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--9
 
  []
 
-<fig/global-co2-fossil-plus-land-use.png, id=393, 3412.75pt x 2409.0pt>
+<fig/global-co2-fossil-plus-land-use.png, id=395, 3412.75pt x 2409.0pt>
 File: fig/global-co2-fossil-plus-land-use.png Graphic file (type png)
 <use fig/global-co2-fossil-plus-land-use.png>
 Package pdftex.def Info: fig/global-co2-fossil-plus-land-use.png  used on input
@@ -884,7 +884,7 @@ l.16 ...https://ourworldindata.org/co2-emissions}}
                                                    [1
 
 ]
-<fig/climate-change_greenhouse-effect_steps.png, id=402, 762.85pt x 371.3875pt>
+<fig/climate-change_greenhouse-effect_steps.png, id=404, 762.85pt x 371.3875pt>
 
 File: fig/climate-change_greenhouse-effect_steps.png Graphic file (type png)
 <use fig/climate-change_greenhouse-effect_steps.png>
@@ -905,7 +905,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--29
  []
 
 <fig/ClimateDashboard-global-surface-temperature-graph-20230118-1400px.png, id=
-408, 622.325pt x 532.99126pt>
+410, 622.325pt x 532.99126pt>
 File: fig/ClimateDashboard-global-surface-temperature-graph-20230118-1400px.png
  Graphic file (type png)
 <use fig/ClimateDashboard-global-surface-temperature-graph-20230118-1400px.png>
@@ -928,61 +928,99 @@ l.36 ...limate/climate-change-global-temperature}}
                                                    [2 <./fig/global-co2-fossil-
 plus-land-use.png> <./fig/climate-change_greenhouse-effect_steps.png (PNG copy)
 >]
-LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 45.
-) (chapter3/Chapter3.tex
-Underfull \hbox (badness 10000) in paragraph at lines 45--1
+Underfull \hbox (badness 10000) in paragraph at lines 38--45
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 45--1
+Underfull \hbox (badness 10000) in paragraph at lines 38--45
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 45--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 45--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 45--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 45--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 45--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 45--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 45--1
+Underfull \hbox (badness 10000) in paragraph at lines 38--45
 
  []
 
 [3 <./fig/ClimateDashboard-global-surface-temperature-graph-20230118-1400px.png
 >]
+<fig/map-prcp-202201-202212.png, id=435, 993.7125pt x 767.86874pt>
+File: fig/map-prcp-202201-202212.png Graphic file (type png)
+<use fig/map-prcp-202201-202212.png>
+Package pdftex.def Info: fig/map-prcp-202201-202212.png  used on input line 50.
+
+(pdftex.def)             Requested size: 192.05478pt x 148.40395pt.
+LaTeX Font Info:    Font shape `T1/fve/m/n' will be
+(Font)              scaled to size 8.99994pt on input line 51.
+<fig/map-prcp-percent-202201-202212.png, id=436, 993.7125pt x 767.86874pt>
+File: fig/map-prcp-percent-202201-202212.png Graphic file (type png)
+<use fig/map-prcp-percent-202201-202212.png>
+Package pdftex.def Info: fig/map-prcp-percent-202201-202212.png  used on input 
+line 56.
+(pdftex.def)             Requested size: 192.05478pt x 148.40395pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--66
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--66
+
+ []
+
+LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
+(Font)              scaled to size 9.85492pt on input line 71.
+) (chapter3/Chapter3.tex
+Underfull \hbox (badness 10000) in paragraph at lines 71--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--1
+
+ []
+
+[4 <./fig/map-prcp-202201-202212.png> <./fig/map-prcp-percent-202201-202212.png
+>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4]
-[5] [6
-
-]
+ [5]
+[6]
 Chapter 2.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
@@ -999,8 +1037,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--23
 
  []
 
-[7]
-<fig/Aemet.png, id=456, 740.0147pt x 657.95813pt>
+[7
+
+]
+<fig/Aemet.png, id=463, 740.0147pt x 657.95813pt>
 File: fig/Aemet.png Graphic file (type png)
 <use fig/Aemet.png>
 Package pdftex.def Info: fig/Aemet.png  used on input line 26.
@@ -1021,12 +1061,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--42
  []
 
 [8 <./fig/Aemet.png>]
-<fig/AguaEnNavarra.png, id=464, 588.69937pt x 697.10437pt>
+<fig/AguaEnNavarra.png, id=471, 588.69937pt x 697.10437pt>
 File: fig/AguaEnNavarra.png Graphic file (type png)
 <use fig/AguaEnNavarra.png>
 Package pdftex.def Info: fig/AguaEnNavarra.png  used on input line 45.
 (pdftex.def)             Requested size: 298.75262pt x 353.76343pt.
-<fig/ErrorAguaEnNavarra.png, id=465, 587.19376pt x 182.93344pt>
+<fig/ErrorAguaEnNavarra.png, id=472, 587.19376pt x 182.93344pt>
 File: fig/ErrorAguaEnNavarra.png Graphic file (type png)
 <use fig/ErrorAguaEnNavarra.png>
 Package pdftex.def Info: fig/ErrorAguaEnNavarra.png  used on input line 52.
@@ -1048,7 +1088,7 @@ za-dos cada diez min-u-tos tomamos
  []
 
 [9 <./fig/AguaEnNavarra.png> <./fig/ErrorAguaEnNavarra.png>]
-<fig/DatosMeteoNavarra.png, id=472, 583.42969pt x 603.0028pt>
+<fig/DatosMeteoNavarra.png, id=479, 583.42969pt x 603.0028pt>
 File: fig/DatosMeteoNavarra.png Graphic file (type png)
 <use fig/DatosMeteoNavarra.png>
 Package pdftex.def Info: fig/DatosMeteoNavarra.png  used on input line 68.
@@ -1211,7 +1251,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 99--106
 
  []
 
-<fig/DjangoMVT.png, id=554, 542.025pt x 239.89626pt>
+<fig/DjangoMVT.png, id=561, 542.025pt x 239.89626pt>
 File: fig/DjangoMVT.png Graphic file (type png)
 <use fig/DjangoMVT.png>
 Package pdftex.def Info: fig/DjangoMVT.png  used on input line 117.
@@ -1241,7 +1281,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--148
 
  []
 
-<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=575, 853.1875pt
+<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=582, 853.1875pt
  x 302.12875pt>
 File: fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png Graphic file (
 type png)
@@ -1301,7 +1341,7 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-<fig/estructura_descartada.png, id=611, 302.12875pt x 429.605pt>
+<fig/estructura_descartada.png, id=618, 302.12875pt x 429.605pt>
 File: fig/estructura_descartada.png Graphic file (type png)
 <use fig/estructura_descartada.png>
 Package pdftex.def Info: fig/estructura_descartada.png  used on input line 8.
@@ -1317,7 +1357,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--16
  []
 
 [27 <./fig/estructura_descartada.png>]
-<fig/estructura_usada.png, id=617, 472.76625pt x 369.38pt>
+<fig/estructura_usada.png, id=624, 472.76625pt x 369.38pt>
 File: fig/estructura_usada.png Graphic file (type png)
 <use fig/estructura_usada.png>
 Package pdftex.def Info: fig/estructura_usada.png  used on input line 19.
@@ -1377,7 +1417,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 66--70
 
  []
 
-<fig/arquitectura.png, id=629, 781.92125pt x 1075.01625pt>
+<fig/arquitectura.png, id=636, 781.92125pt x 1075.01625pt>
 File: fig/arquitectura.png Graphic file (type png)
 <use fig/arquitectura.png>
 Package pdftex.def Info: fig/arquitectura.png  used on input line 97.
@@ -1400,7 +1440,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 112--115
 
  []
 
-<fig/estructura_basica_spider.png, id=652, 169.38281pt x 196.48407pt>
+<fig/estructura_basica_spider.png, id=659, 169.38281pt x 196.48407pt>
 File: fig/estructura_basica_spider.png Graphic file (type png)
 <use fig/estructura_basica_spider.png>
 Package pdftex.def Info: fig/estructura_basica_spider.png  used on input line 1
@@ -1488,7 +1528,7 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-<fig/estructura_proyecto_scrapy.png, id=697, 134.00063pt x 152.06813pt>
+<fig/estructura_proyecto_scrapy.png, id=704, 134.00063pt x 152.06813pt>
 File: fig/estructura_proyecto_scrapy.png Graphic file (type png)
 <use fig/estructura_proyecto_scrapy.png>
 Package pdftex.def Info: fig/estructura_proyecto_scrapy.png  used on input line
@@ -1502,7 +1542,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--30
 [37
 
  <./fig/estructura_proyecto_scrapy.png>]
-<fig/primera_spider.png, id=703, 98.61844pt x 48.18pt>
+<fig/primera_spider.png, id=710, 98.61844pt x 48.18pt>
 File: fig/primera_spider.png Graphic file (type png)
 <use fig/primera_spider.png>
 Package pdftex.def Info: fig/primera_spider.png  used on input line 33.
@@ -1544,7 +1584,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 60--61
 Underfull \vbox (badness 3449) has occurred while \output is active []
 
  [38 <./fig/primera_spider.png>]
-<fig/code_aemet.png, id=719, 724.95844pt x 684.30656pt>
+<fig/code_aemet.png, id=726, 724.95844pt x 684.30656pt>
 File: fig/code_aemet.png Graphic file (type png)
 <use fig/code_aemet.png>
 Package pdftex.def Info: fig/code_aemet.png  used on input line 64.
@@ -1554,7 +1594,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 69--70
 
  []
 
-<fig/inspector.png, id=720, 735.49782pt x 205.5178pt>
+<fig/inspector.png, id=727, 735.49782pt x 205.5178pt>
 File: fig/inspector.png Graphic file (type png)
 <use fig/inspector.png>
 Package pdftex.def Info: fig/inspector.png  used on input line 73.
@@ -1784,7 +1824,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 901--908
  []
 
 [64]
-<fig/chromedriver.png, id=1437, 166.37157pt x 183.68625pt>
+<fig/chromedriver.png, id=1444, 166.37157pt x 183.68625pt>
 File: fig/chromedriver.png Graphic file (type png)
 <use fig/chromedriver.png>
 Package pdftex.def Info: fig/chromedriver.png  used on input line 911.
@@ -1852,11 +1892,17 @@ Underfull \hbox (badness 7116) in paragraph at lines 13--17
 aa . gov / access / monitoring / monthly-[]report /
  []
 
+
+Underfull \hbox (badness 1502) in paragraph at lines 34--38
+[]\T1/fve/m/n/10.95 ``National Cen-ters for En-v-iore-men-tal In-for-ma-tion an
+-nual 2022 global cli-
+ []
+
 [71
 
 
 ]
-Underfull \hbox (badness 1142) in paragraph at lines 51--54
+Underfull \hbox (badness 1142) in paragraph at lines 62--65
 []\T1/fve/m/n/10.95 ``Debian Proyect Doc-u-men-ta-tion a brief his-tory of de-b
 ian.'' [][]$\T1/fvm/m/n/10.95 https : / / www .
  []
@@ -1874,14 +1920,14 @@ runsystem(makeindex OderizArkaitz.idx)...executed safely (allowed).
 
 ] (OderizArkaitz.aux)
 Package rerunfilecheck Info: File `OderizArkaitz.out' has not changed.
-(rerunfilecheck)             Checksum: E7667ADABAEB7C1DBE2A58296476DF35;7585.
+(rerunfilecheck)             Checksum: 17A82545EC545777C1130CD4B34A4AEE;7585.
  ) 
 Here is how much of TeX's memory you used:
- 17477 strings out of 476331
- 290926 string characters out of 5788237
- 1965660 words of memory out of 5000000
- 36560 multiletter control sequences out of 15000+600000
- 567057 words of font info for 92 fonts, out of 8000000 for 9000
+ 17510 strings out of 476331
+ 291767 string characters out of 5788237
+ 1964660 words of memory out of 5000000
+ 36587 multiletter control sequences out of 15000+600000
+ 570297 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,13n,77p,1039b,2072s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
@@ -1892,9 +1938,9 @@ pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fver8a.pfb><C
 :/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmr8a.pfb><C:/User
 s/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvsb8a.pfb><C:/Users/User
 /AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on OderizArkaitz.pdf (83 pages, 2265812 bytes).
+Output written on OderizArkaitz.pdf (83 pages, 3501873 bytes).
 PDF statistics:
- 1773 PDF objects out of 2073 (max. 8388607)
- 904 named destinations out of 1000 (max. 500000)
- 520 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1783 PDF objects out of 2073 (max. 8388607)
+ 907 named destinations out of 1000 (max. 500000)
+ 530 words of extra memory for PDF output out of 10000 (max. 10000000)
 
