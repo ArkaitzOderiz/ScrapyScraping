@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.8.19)  20 AUG 2023 13:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.8.19)  20 AUG 2023 18:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -958,60 +958,63 @@ File: fig/map-prcp-percent-202201-202212.png Graphic file (type png)
 Package pdftex.def Info: fig/map-prcp-percent-202201-202212.png  used on input 
 line 56.
 (pdftex.def)             Requested size: 192.05478pt x 148.40395pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 64--66
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 64--66
-
- []
-
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 71.
-) (chapter3/Chapter3.tex
-Underfull \hbox (badness 10000) in paragraph at lines 71--1
+(Font)              scaled to size 9.85492pt on input line 70.
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--83
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--1
+Underfull \hbox (badness 10000) in paragraph at lines 64--83
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--1
+Underfull \hbox (badness 10000) in paragraph at lines 64--83
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--1
+Underfull \hbox (badness 10000) in paragraph at lines 64--83
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--1
+Underfull \hbox (badness 10000) in paragraph at lines 64--83
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--1
+Underfull \hbox (badness 10000) in paragraph at lines 64--83
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--1
+Underfull \hbox (badness 10000) in paragraph at lines 64--83
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--1
+Overfull \hbox (0.24367pt too wide) in paragraph at lines 64--83
+\T1/fve/m/n/10.95 Meteo Navarra ([][]$\T1/fvm/m/n/10.95 http : / / meteo . nava
+rra . es/$[][]\T1/fve/m/n/10.95 ), siendo la agen-cia en-car-gada de la mon-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--83
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--1
+Overfull \hbox (13.95999pt too wide) in paragraph at lines 64--83
+\T1/fve/m/n/10.95 El agua en Navarra ([][]$\T1/fvm/m/n/10.95 http : / / www . n
+avarra . es / home _ es / Temas / Medio + Ambiente / Agua/$[][]\T1/fve/m/n/10.9
+5 ),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--83
 
  []
 
@@ -1019,8 +1022,55 @@ Underfull \hbox (badness 10000) in paragraph at lines 71--1
 >]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5]
-[6]
+ [5])
+(chapter3/Chapter3.tex
+Underfull \hbox (badness 10000) in paragraph at lines 86--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--1
+
+ []
+
+[6] [7] [8
+
+]
 Chapter 2.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
@@ -1037,10 +1087,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--23
 
  []
 
-[7
-
-]
-<fig/Aemet.png, id=463, 740.0147pt x 657.95813pt>
+[9]
+<fig/Aemet.png, id=481, 740.0147pt x 657.95813pt>
 File: fig/Aemet.png Graphic file (type png)
 <use fig/Aemet.png>
 Package pdftex.def Info: fig/Aemet.png  used on input line 26.
@@ -1060,13 +1108,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--42
 
  []
 
-[8 <./fig/Aemet.png>]
-<fig/AguaEnNavarra.png, id=471, 588.69937pt x 697.10437pt>
+[10 <./fig/Aemet.png>]
+<fig/AguaEnNavarra.png, id=489, 588.69937pt x 697.10437pt>
 File: fig/AguaEnNavarra.png Graphic file (type png)
 <use fig/AguaEnNavarra.png>
 Package pdftex.def Info: fig/AguaEnNavarra.png  used on input line 45.
 (pdftex.def)             Requested size: 298.75262pt x 353.76343pt.
-<fig/ErrorAguaEnNavarra.png, id=472, 587.19376pt x 182.93344pt>
+<fig/ErrorAguaEnNavarra.png, id=490, 587.19376pt x 182.93344pt>
 File: fig/ErrorAguaEnNavarra.png Graphic file (type png)
 <use fig/ErrorAguaEnNavarra.png>
 Package pdftex.def Info: fig/ErrorAguaEnNavarra.png  used on input line 52.
@@ -1087,13 +1135,13 @@ Overfull \hbox (3.90941pt too wide) in paragraph at lines 58--65
 za-dos cada diez min-u-tos tomamos
  []
 
-[9 <./fig/AguaEnNavarra.png> <./fig/ErrorAguaEnNavarra.png>]
-<fig/DatosMeteoNavarra.png, id=479, 583.42969pt x 603.0028pt>
+[11 <./fig/AguaEnNavarra.png> <./fig/ErrorAguaEnNavarra.png>]
+<fig/DatosMeteoNavarra.png, id=498, 583.42969pt x 603.0028pt>
 File: fig/DatosMeteoNavarra.png Graphic file (type png)
 <use fig/DatosMeteoNavarra.png>
 Package pdftex.def Info: fig/DatosMeteoNavarra.png  used on input line 68.
 (pdftex.def)             Requested size: 298.75262pt x 308.7787pt.
- [10 <./fig/DatosMeteoNavarra.png>] [11]
+ [12 <./fig/DatosMeteoNavarra.png>] [13]
 Overfull \hbox (53.75436pt too wide) in paragraph at lines 129--129
 []\T1/fvm/m/n/10.95 #Configuramos varios parametros del usuario para una mejor 
 integracion con Django[] 
@@ -1134,7 +1182,7 @@ Overfull \hbox (30.02371pt too wide) in paragraph at lines 163--163
 quier direccion IP[] 
  []
 
-[12]
+[14]
 Overfull \hbox (18.15839pt too wide) in paragraph at lines 163--163
 []\T1/fvm/m/n/10.95 #Configuararemos el permiso de conexion remota desde cualqu
 ier IP añadiendo[] 
@@ -1152,7 +1200,7 @@ Overfull \hbox (30.02371pt too wide) in paragraph at lines 163--163
 uesto por defecto)[] 
  []
 
-) (chapter2/Chapter2.tex [13] [14
+) (chapter2/Chapter2.tex [15] [16
 
 ]
 Chapter 3.
@@ -1166,7 +1214,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7--11
 
  []
 
-[15]
+[17]
 Underfull \hbox (badness 10000) in paragraph at lines 20--24
 
  []
@@ -1176,7 +1224,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--30
 
  []
 
-[16]
+[18]
 Underfull \hbox (badness 10000) in paragraph at lines 40--47
 
  []
@@ -1211,7 +1259,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--65
 
  []
 
-[17] [18]
+[19] [20]
 Underfull \hbox (badness 10000) in paragraph at lines 71--75
 
  []
@@ -1241,7 +1289,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 83--91
 
  []
 
-[19]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 99--106
 
  []
@@ -1251,7 +1299,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 99--106
 
  []
 
-<fig/DjangoMVT.png, id=561, 542.025pt x 239.89626pt>
+<fig/DjangoMVT.png, id=579, 542.025pt x 239.89626pt>
 File: fig/DjangoMVT.png Graphic file (type png)
 <use fig/DjangoMVT.png>
 Package pdftex.def Info: fig/DjangoMVT.png  used on input line 117.
@@ -1261,7 +1309,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 110--124
 
  []
 
-[20 <./fig/DjangoMVT.png>]
+[22 <./fig/DjangoMVT.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 128--135
 
  []
@@ -1271,7 +1319,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 128--135
 
  []
 
-[21]
+[23]
 Underfull \hbox (badness 10000) in paragraph at lines 141--148
 
  []
@@ -1281,7 +1329,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--148
 
  []
 
-<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=582, 853.1875pt
+<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=601, 853.1875pt
  x 302.12875pt>
 File: fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png Graphic file (
 type png)
@@ -1311,7 +1359,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 164--168
 
 Underfull \vbox (badness 3815) has occurred while \output is active []
 
- [22]
+ [24]
 Underfull \hbox (badness 10000) in paragraph at lines 170--184
 
  []
@@ -1331,8 +1379,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 170--184
 
  []
 
-[23 <./fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png>] [24])
-(chapter4/Chapter4.tex [25] [26
+[25 <./fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png>] [26])
+(chapter4/Chapter4.tex [27] [28
 
 ]
 Chapter 4.
@@ -1341,7 +1389,7 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-<fig/estructura_descartada.png, id=618, 302.12875pt x 429.605pt>
+<fig/estructura_descartada.png, id=636, 302.12875pt x 429.605pt>
 File: fig/estructura_descartada.png Graphic file (type png)
 <use fig/estructura_descartada.png>
 Package pdftex.def Info: fig/estructura_descartada.png  used on input line 8.
@@ -1356,8 +1404,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--16
 
  []
 
-[27 <./fig/estructura_descartada.png>]
-<fig/estructura_usada.png, id=624, 472.76625pt x 369.38pt>
+[29 <./fig/estructura_descartada.png>]
+<fig/estructura_usada.png, id=643, 472.76625pt x 369.38pt>
 File: fig/estructura_usada.png Graphic file (type png)
 <use fig/estructura_usada.png>
 Package pdftex.def Info: fig/estructura_usada.png  used on input line 19.
@@ -1377,7 +1425,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--45
 
  []
 
-[28 <./fig/estructura_usada.png>]
+[30 <./fig/estructura_usada.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 47--60
 
  []
@@ -1402,7 +1450,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 62--65
 
  []
 
-[29]
+[31]
 Underfull \hbox (badness 10000) in paragraph at lines 66--70
 
  []
@@ -1417,7 +1465,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 66--70
 
  []
 
-<fig/arquitectura.png, id=636, 781.92125pt x 1075.01625pt>
+<fig/arquitectura.png, id=654, 781.92125pt x 1075.01625pt>
 File: fig/arquitectura.png Graphic file (type png)
 <use fig/arquitectura.png>
 Package pdftex.def Info: fig/arquitectura.png  used on input line 97.
@@ -1435,12 +1483,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 105--110
 
  []
 
-[30]
+[32]
 Underfull \hbox (badness 10000) in paragraph at lines 112--115
 
  []
 
-<fig/estructura_basica_spider.png, id=659, 169.38281pt x 196.48407pt>
+<fig/estructura_basica_spider.png, id=677, 169.38281pt x 196.48407pt>
 File: fig/estructura_basica_spider.png Graphic file (type png)
 <use fig/estructura_basica_spider.png>
 Package pdftex.def Info: fig/estructura_basica_spider.png  used on input line 1
@@ -1449,7 +1497,7 @@ Package pdftex.def Info: fig/estructura_basica_spider.png  used on input line 1
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [31]
+ [33]
 Underfull \hbox (badness 10000) in paragraph at lines 124--129
 
  []
@@ -1469,7 +1517,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 131--136
 
  []
 
-[32 <./fig/estructura_basica_spider.png>]
+[34 <./fig/estructura_basica_spider.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 138--141
 
  []
@@ -1494,7 +1542,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 165--168
 
  []
 
-[33]
+[35]
 Underfull \hbox (badness 10000) in paragraph at lines 170--173
 
  []
@@ -1521,14 +1569,14 @@ Overfull \hbox (2.69533pt too wide) in paragraph at lines 191--192
 anto recibir los datos obtenidos
  []
 
-[34]) (chapter5/Chapter5.tex [35] [36 <./fig/arquitectura.png>]
+[36]) (chapter5/Chapter5.tex [37] [38 <./fig/arquitectura.png>]
 Chapter 5.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-<fig/estructura_proyecto_scrapy.png, id=704, 134.00063pt x 152.06813pt>
+<fig/estructura_proyecto_scrapy.png, id=722, 134.00063pt x 152.06813pt>
 File: fig/estructura_proyecto_scrapy.png Graphic file (type png)
 <use fig/estructura_proyecto_scrapy.png>
 Package pdftex.def Info: fig/estructura_proyecto_scrapy.png  used on input line
@@ -1539,10 +1587,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--30
 
  []
 
-[37
+[39
 
  <./fig/estructura_proyecto_scrapy.png>]
-<fig/primera_spider.png, id=710, 98.61844pt x 48.18pt>
+<fig/primera_spider.png, id=728, 98.61844pt x 48.18pt>
 File: fig/primera_spider.png Graphic file (type png)
 <use fig/primera_spider.png>
 Package pdftex.def Info: fig/primera_spider.png  used on input line 33.
@@ -1583,8 +1631,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 60--61
 
 Underfull \vbox (badness 3449) has occurred while \output is active []
 
- [38 <./fig/primera_spider.png>]
-<fig/code_aemet.png, id=726, 724.95844pt x 684.30656pt>
+ [40 <./fig/primera_spider.png>]
+<fig/code_aemet.png, id=744, 724.95844pt x 684.30656pt>
 File: fig/code_aemet.png Graphic file (type png)
 <use fig/code_aemet.png>
 Package pdftex.def Info: fig/code_aemet.png  used on input line 64.
@@ -1594,7 +1642,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 69--70
 
  []
 
-<fig/inspector.png, id=727, 735.49782pt x 205.5178pt>
+<fig/inspector.png, id=745, 735.49782pt x 205.5178pt>
 File: fig/inspector.png Graphic file (type png)
 <use fig/inspector.png>
 Package pdftex.def Info: fig/inspector.png  used on input line 73.
@@ -1602,7 +1650,7 @@ Package pdftex.def Info: fig/inspector.png  used on input line 73.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39 <./fig/code_aemet.png>]
+ [41 <./fig/code_aemet.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 78--81
 
  []
@@ -1629,7 +1677,7 @@ Overfull \hbox (65.61969pt too wide) in paragraph at lines 104--104
 tos=det&f=precipitacion'[] 
  []
 
-[40 <./fig/inspector.png>]
+[42 <./fig/inspector.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 113--116
 
  []
@@ -1639,7 +1687,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 124--127
 
  []
 
-[41]
+[43]
 Underfull \hbox (badness 10000) in paragraph at lines 179--184
 
  []
@@ -1649,10 +1697,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 179--184
 
  []
 
-[42] [43] [44]
+[44] [45] [46]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [45]
+ [47]
 Underfull \hbox (badness 10000) in paragraph at lines 297--302
 
  []
@@ -1662,7 +1710,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 297--302
 
  []
 
-[46]
+[48]
 Underfull \hbox (badness 10000) in paragraph at lines 346--353
 
  []
@@ -1677,11 +1725,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 346--353
 
  []
 
-[47]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [48]
 [49]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [50]
+[51]
 Underfull \hbox (badness 10000) in paragraph at lines 466--473
 
  []
@@ -1696,7 +1744,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 466--473
 
  []
 
-[50]
+[52]
 Underfull \hbox (badness 10000) in paragraph at lines 479--482
 
  []
@@ -1706,10 +1754,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 492--495
 
  []
 
-[51]
+[53]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [52]
+ [54]
 Underfull \hbox (badness 10000) in paragraph at lines 534--537
 
  []
@@ -1726,7 +1774,7 @@ Overfull \hbox (2.38391pt too wide) in paragraph at lines 539--540
 lataforma, el planteamiento
  []
 
-[53]
+[55]
 Overfull \hbox (30.77138pt too wide) in paragraph at lines 564--565
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][] 
@@ -1735,7 +1783,7 @@ Overfull \hbox (30.77138pt too wide) in paragraph at lines 564--565
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [54]
+ [56]
 Underfull \hbox (badness 10000) in paragraph at lines 588--595
 
  []
@@ -1750,31 +1798,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 588--595
 
  []
 
-[55] [56]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [57]
-Underfull \hbox (badness 10000) in paragraph at lines 698--705
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 698--705
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 698--705
-
- []
-
-[58]
+[57] [58]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [59]
+Underfull \hbox (badness 10000) in paragraph at lines 698--705
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 698--705
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 698--705
+
+ []
+
+[60]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [61]
 Underfull \vbox (badness 2556) has occurred while \output is active []
 
- [60]
+ [62]
 Underfull \hbox (badness 10000) in paragraph at lines 794--797
 
  []
@@ -1790,10 +1838,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 800--803
 
  []
 
-[61]
+[63]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [62]
+ [64]
 Underfull \hbox (badness 10000) in paragraph at lines 873--880
 
  []
@@ -1808,7 +1856,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 873--880
 
  []
 
-[63]
+[65]
 Underfull \hbox (badness 10000) in paragraph at lines 901--908
 
  []
@@ -1823,8 +1871,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 901--908
 
  []
 
-[64]
-<fig/chromedriver.png, id=1444, 166.37157pt x 183.68625pt>
+[66]
+<fig/chromedriver.png, id=1463, 166.37157pt x 183.68625pt>
 File: fig/chromedriver.png Graphic file (type png)
 <use fig/chromedriver.png>
 Package pdftex.def Info: fig/chromedriver.png  used on input line 911.
@@ -1859,26 +1907,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 919--929
 
  []
 
-[65 <./fig/chromedriver.png>]
+[67 <./fig/chromedriver.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 938--941
 
  []
 
-[66] [67]) (chapter6/Chapter6.tex
+[68] [69]) (chapter6/Chapter6.tex
 Underfull \hbox (badness 10000) in paragraph at lines 984--1
 
  []
 
-[68]
+[70]
 Chapter 6.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-) [69
+) [71
 
-] [70
+] [72
 
 ] (bibliography/Bibliography.tex (OderizArkaitz.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 4--7
@@ -1898,23 +1946,23 @@ Underfull \hbox (badness 1502) in paragraph at lines 34--38
 -nual 2022 global cli-
  []
 
-[71
+[73
 
 
 ]
-Underfull \hbox (badness 1142) in paragraph at lines 62--65
+Underfull \hbox (badness 1142) in paragraph at lines 74--77
 []\T1/fve/m/n/10.95 ``Debian Proyect Doc-u-men-ta-tion a brief his-tory of de-b
 ian.'' [][]$\T1/fvm/m/n/10.95 https : / / www .
  []
 
-[72]) [73]) (style/index.tex [74
+[74]) [75]) (style/index.tex [76
 
 
 ]
 runsystem(makeindex OderizArkaitz.idx)...executed safely (allowed).
 
  (OderizArkaitz.ind)) (appendix/Appendix.tex
-(code/Calendario.java)) [75
+(code/Calendario.java)) [77
 
 
 
@@ -1923,10 +1971,10 @@ Package rerunfilecheck Info: File `OderizArkaitz.out' has not changed.
 (rerunfilecheck)             Checksum: 17A82545EC545777C1130CD4B34A4AEE;7585.
  ) 
 Here is how much of TeX's memory you used:
- 17510 strings out of 476331
- 291767 string characters out of 5788237
+ 17516 strings out of 476331
+ 291851 string characters out of 5788237
  1964660 words of memory out of 5000000
- 36587 multiletter control sequences out of 15000+600000
+ 36589 multiletter control sequences out of 15000+600000
  570297 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,13n,77p,1039b,2072s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1938,9 +1986,9 @@ pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fver8a.pfb><C
 :/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmr8a.pfb><C:/User
 s/User/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvsb8a.pfb><C:/Users/User
 /AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on OderizArkaitz.pdf (83 pages, 3501873 bytes).
+Output written on OderizArkaitz.pdf (85 pages, 3508564 bytes).
 PDF statistics:
- 1783 PDF objects out of 2073 (max. 8388607)
- 907 named destinations out of 1000 (max. 500000)
+ 1804 PDF objects out of 2073 (max. 8388607)
+ 911 named destinations out of 1000 (max. 500000)
  530 words of extra memory for PDF output out of 10000 (max. 10000000)
 

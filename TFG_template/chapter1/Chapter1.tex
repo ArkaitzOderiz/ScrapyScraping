@@ -41,7 +41,7 @@ Pero el problema no reside únicamente en el aumento de la temperatura, como cla
 \newline
 Sumado a esto, son cada vez mas los efectos visibles causados sobre los fenómenos naturales. Es tal el impacto que, ya son más de veinte las anomalías climáticas de una importancia significante remarcadas por el centro nacional de información ambiental (NCEI) en 2022 \cite{NCEIWeb}. Entre ellas, sequías debido al aumento de las temperaturas, llegando a fomentar la aparición de incendios y, fuertes lluvias, marcadas por el aumento de tormentas, huracanes y tifones durante las estaciones lluviosas, causando múltiples inundaciones.\newline
 \newline
-El cambio climático agrava los efectos de los fenómenos naturales, causando esta meteorología extrema, zonas planetarias enteras se ven azotadas por graves sequías y tormentas, modificando la disponibilidad del agua sobre la superficie terrestre, afectando severamente a la agricultura. La precipitación acumulada se mantiene debajo de la media globalmente, mientras que la frecuencia de aparición de precipitaciones anómalas va en aumento \ref{fig:ej19}, fomentadas por una mayor evaporación de agua a causa del aumento de la temperatura, agravando la frecuencia de tormentas de magnitudes extremas. 
+El cambio climático agrava los efectos de los fenómenos naturales, reduciendo su periodo de retorno (periodo estimado de años para la aparición de un fenómeno climático), causando esta meteorología extrema. Zonas planetarias enteras se ven azotadas por graves sequías y tormentas, modificando la disponibilidad del agua sobre la superficie terrestre, afectando severamente a la agricultura. La precipitación acumulada se mantiene debajo de la media globalmente, mientras que la frecuencia de aparición de precipitaciones anómalas va en aumento \ref{fig:ej19}, fomentadas por una mayor evaporación de agua a causa del aumento de la temperatura, agravando la frecuencia de tormentas de magnitudes extremas. 
 
 \begin{figure} [H]
 	\centering
@@ -63,8 +63,23 @@ El cambio climático agrava los efectos de los fenómenos naturales, causando es
 
 Estos efectos no tienen por que darse independientemente, sin ir más lejos, en 2022, España batió el récord como tercer año más seco registrado, solo superado por los años 2005 y 2017, más tarde, ese mismo año en diciembre, fuertes lluvias causaron múltiples inundaciones provocando daños materiales sobre viviendas y carreteras \cite{NCEIWebPreci}.\newline
 \newline
-
-
+Las inundaciones causadas por lluvias torrenciales son una de las principales causantes de daños materiales a nivel global \cite{wasko2021incorporating}, estimando una perdida anual de 800 millones de euros tan solo en España \cite{Miteco}. Es por eso que, la monitorización y predicción climática son primordiales a la hora de procurar reducir su efecto a nivel económico como humano.\newline
+\newline
+Buscando una solución, este trabajo pretende obtener la mayor cantidad de datos posibles con el fin de predecir dichas inundaciones causadas por riadas, trabajando a nivel de Navarra.\newline
+\newline
+Los últimos 15-20 años la Unión Europea ha realizado un gran esfuerzo en promover políticas de datos abiertos en realización a la información generada y monitorizada por los estados miembros. El objetivo de esta política es acercar estos datos a la población para tener un mayor control territorial y medio ambiental. El gobierno de Navarra y de España contribuyen a la oferta de datos abiertos publicando mediante diferentes organismos como el geoportal (\url{https://geoportal.navarra.es/es/idena}) en Navarra o los datos o el sistema automático de información publicada por las diferentes confederaciones hidrográficas en España.\newline
+\newline
+A fin de obtener datos tanto fluviales como pluviométricos, se ha hecho uso de las siguientes agencias y organismos.\newline
+\newline
+La Confederación Hidrográfica del Cantábrico (\url{https://www.chcantabrico.es/}) es un organismo autónomo adscrito al Ministerio para la Transición Ecológica y el Reto Demográfico. Siendo responsable de la gestión de las cuencas hidrográficas de los ríos que vierten al mar Cantábrico, ejerciendo sobre las comunidades autónomas de: Principado de Asturias, Cantabria, Castilla y León, Galicia, País Vasco y Comunidad Foral de Navarra.\newline
+\newline
+La Agencia Estatal de Meteorología (AEMET) (\url{https://www.aemet.es/es/portada}), también adscrita al Ministerio para la Transición Ecológica y el Reto Demográfico, tiene como objetivo el desarrollo, implantación, y prestación de los servicios meteorológicos del Estado, apoyando al ejercicio de otras políticas públicas y actividades privadas, contribuyendo a la seguridad de personas y bienes, y al bienestar y desarrollo sostenible de la sociedad.\newline
+\newline
+Meteo Navarra (\url{http://meteo.navarra.es/}), siendo la agencia encargada de la  monitorización de la meteorología y climatología de Navarra, trabajando junto al gobierno de Navarra, el Ministerio de Agricultura, Pesca y Alimentación (MAPA), el Instituto Navarro de Tecnologías e Infraestructuras Agroalimentarias (INTIA), la Agencia Estatal de Meteorología (AEMET) y la Universidad Pública de Navarra (UPNA).\newline
+\newline
+El agua en Navarra (\url{http://www.navarra.es/home_es/Temas/Medio+Ambiente/Agua/}), otra página del gobierno de Navarra, esta vez centrada en los recursos hídricos disponibles en Navarra.\newline
+\newline
+Con el fin de posibilitar la creación un modelo de predicción de inundaciones sobre los ríos en Navarra, el objetivo de este trabajo es crear una plataforma habilitada en la obtención y centralizando de la información proveniente de estas diferentes fuentes. Mediante esta plataforma se pretende disponer de un conglomerado de datos sobre los que trabajar con el propósito de prevenir sobre inundaciones a la población navarra por medio de un sistema de notificaciones automáticas.
 
 
 \section{Antigua intro al parecer inutil :v}
