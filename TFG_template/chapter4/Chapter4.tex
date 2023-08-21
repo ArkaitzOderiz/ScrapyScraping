@@ -193,7 +193,99 @@ La instancia del servidor de Django es la encargada de tanto recibir los datos o
 \subsubsection{PostGreSQL}
 La base de datos, ejecutada en una maquina virtual independiente, dispone de las siguientes dos tablas:
 
+\section{Entorno de ejecución}
+El proyecto se dividirá en dos ordenadores (maquinas virtuales). Uno de ellos será el responsable de la base de datos en PostGreSQL, mientras que, el otro, se encargara de la ejecución del código de obtención de datos, tratarlos y enviarlos a la base de datos.
 
+\subsection{Preparación de entorno virtual}
+Primero instalaremos las dependencias para crear y activar un entorno virtual sobre el que trabajar, para ello ejecutaremos los siguientes comandos:
+
+\begin{verbatim}
+	#Instalamos las dependencias
+	user@host:~$ sudo apt install python3-venv python3-dev
+	
+	#Creamos un nuevo directorio sobre el que trabajar
+	user@host:~$ mkdir ~/dirdemiproyecto
+	user@host:~$ cd ~/dirdemiproyecto
+	
+	#Creamos el entorno virtual
+	user@host:~/dirdemiproyecto$ python3 -m venv envdemiproyecto
+	
+	#Activamos el entorno virtual
+	user@host:~/dirdemiproyecto$ source envdemiproyecto/bin/activate
+	
+	#Una vez seguidos los pasos nuestra terminal debe mostrarse así
+	(envdemiproyecto) user@host:~/dirdemiproyecto$
+\end{verbatim}
+
+Cada Spider dispondrá de su propio entorno virtual, nombrado tras la pagina web a la que representa, de esta forma, por ejemplo, el entorno virtual para la web de chcantabrico también se llamará chcantabrico.
+Otro entorno virtual sera usado para el servidor Django y los Scripts encargados del envío de datos.
+
+\subsection{Instalacion y configuracion de PostGreSQL}
+Comenzamos con los comandos necesarios para la instalación inicial de PostGreSQL y con la creación de un usuario y una base de datos.
+\begin{verbatim}
+	#Instalamos PostGreSQL y las dependencias
+	user@host:~$ sudo apt install libpq-dev postgresql postgresql-contrib
+	
+	#Iniciamos sesion usando el role postgres y accedemos a PostGreSQL
+	user@host:~$ sudo -u postgres psql
+	
+	#Si todo esta bien la terminal deberia mostrarse así
+	postgres=# 
+	
+	#Creamos un nuevo usuario
+	postgres=# CREATE USER miusuario WITH PASSWORD 'micontraseña';
+	
+	#Configuramos varios parametros del usuario para una mejor integracion con Django
+	postgres=# ALTER ROLE miusuario SET client_encoding TO 'utf8';
+	postgres=# ALTER ROLE miusuario SET default_transaction_isolation TO 'read committed';
+	postgres=# ALTER ROLE miusuario SET timezone TO 'Europe/Madrid';
+	
+	#Creamos la Base de Datos
+	postgres=# CREATE DATABASE bbddmiproyecto;
+	
+	#Otorgamos permisos de administrador a nuestro usuario en la base de datos
+	postgres=# GRANT ALL PRIVILEGES ON DATABASE bbddmiproyecto TO miusuario;
+	
+	#Una vez finalizado
+	postqres=# \q
+	
+\end{verbatim}
+
+En este punto ya dispondríamos de una base de datos (aun sin tablas en ella) y de un usuario con el que conectarnos a esta desde Django.\newline
+\newline
+Ahora quedaría configurar el permiso de comunicación entre dispositivos, más concretamente la conexión remota de Django con PostGreSQL.
+
+\begin{verbatim}
+	#Abrimos el archivo postgresql.conf con un editor
+	sudo nano /etc/postgresql/11/main/postgresql.conf
+	
+	#Buscamos la linea "#listen_addresses = 'localhost'", borramos la almohadilla y
+	sustituimos localhost por *, permitiendo la escucha de cualquier direccion IP
+	listen_addresses = '*'
+	
+	#Guardamos y cerramos el fichero
+	
+	#Abrimos el archivo pg_hba.conf con un editor
+	sudo nano /etc/postgresql/11/main/pg_hba.conf
+	
+	#Por defecto solo permite conexiones desde localhost
+	# IPv4 local connections: 
+	host    all             all             127.0.0.1/32            md5 
+	
+	#Configuararemos el permiso de conexion remota desde cualquier IP añadiendo
+	la siguiente linea debajo de la anterior
+	host    all             all             0.0.0.0/0            md5 
+	
+	#O podemos configurar el permiso unicamente para la IP de la otra maquina virtual
+	host    all             all             127.18.83.198/19            md5 
+	
+	#Guardamos y cerramos el fichero
+	
+	#Finalmete permitimos el trafico mediante el puerto 5432 (puesto por defecto)
+	sudo ufw allow 5432/tcp
+\end{verbatim}
+
+Una vez realizados los siguientes pasos ya tendríamos nuestra instancia de PostGreSQL configurada.
 
 
 

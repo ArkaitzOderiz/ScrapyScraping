@@ -10,48 +10,112 @@ Para este proyecto disponemos de los siguientes datos obtenidos de distintas pá
 	\item Humedad (\%)
 	\item Radiación ($W/m^2$)
 \end{itemize}
-A su vez, dispondremos de la fecha y hora en la que se hicieron la lectura de los datos, junto con los códigos y coordenadas de las estaciones sobre las cuales obtenemos los datos.
+A su vez, se dispone de la fecha y hora en la que se hicieron la lectura de los datos, junto con los códigos y coordenadas de las estaciones sobre las cuales obtenemos los datos.
 
 \section{Aemet}
-La Agencia Estatal de Meteorología (AEMET) es el Servicio Meteorológico Nacional y Autoridad Meteorológica del Estado, siendo su objetivo es la monitorización y predicción de fenómenos meteorológicos.
-\newline
-\newline
-AEMET dispone de una API de obtención de datos llamada AEMET OpenData la cual no usaremos pues muchos de los datos que se obtienen de esta manera no nos son útiles.
-\newline
-\newline
-Como se ve en la imagen \ref{fig:ej3}, dentro de la web podemos encontrar de forma accesible múltiples datos relacionados con la meteorología tomados cada hora, de los cuales seleccionaremos únicamente temperatura, precipitación y humedad, puesto que los datos relacionados con el viento o la presión atmosférica no son tan relevantes para este proyecto.
+Como se ve en la imagen \ref{fig:ej3}, dentro de la web podemos encontrar de forma accesible múltiples datos relacionados con la meteorología tomados cada hora, de los cuales seleccionaremos únicamente temperatura, precipitación y humedad, puesto que los datos relacionados con el viento no son tan relevantes para este proyecto.
 
-\begin{figure} [h!]
+\begin{figure} [H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{fig/Aemet.png}
-	\caption[Página Aemet de la estación en Aranguren (Navarra)]{Página Aemet}
+	\includegraphics[width=0.7\textwidth]{fig/AemetData.png}
+	\caption[Página Aemet de la estación en Aranguren (Navarra)]{Página Datos Aemet}
 	\label{fig:ej3}
+\end{figure}
+
+Los datos en HTML vienen datos dentro de un elemento tabla \ref{fig:ej20}, lo que facilita su adquisición, tomando todas las filas de esta dentro de elemento tbody. Una vez obtenidas las filas, la forma de lograr los datos deseados seria eligiendo dentro de cada elemento tr los elementos td deseados, puesto que HTML empieza a contar elementos desde el uno (en vez de cero como suele ser común en lenguajes de programación), los td a obtener serian: uno, fecha y hora; dos, temperatura; siete, precipitación; diez, humedad.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/AemetDataHTML.png}
+	\caption[HTML de la tabla de datos de Aemet de la estación en Aranguren (Navarra)]{HTML Tabla Datos Aemet}
+	\label{fig:ej20}
+\end{figure}
+
+Las coordenadas, dentro de un span, están incluidas en elementos abbr con sus respectivas clases "latitude" y "longitude", haciendo posible su obtención fácilmente mediante los elementos abbr.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/AemetCoordHTML.png}
+	\caption[HTML de las coordenadas de Aemet de la estación en Aranguren (Navarra)]{HTML de las coordenadas en Aemet}
+	\label{fig:ej21}
 \end{figure}
 
 \section{El Agua en Navarra}
 En esta página encontraremos los datos tanto del nivel de los ríos como de su caudal en los últimos 15 días en periodos de 10 minutos, siendo una de las fuentes principales de datos.
 \newline
 \newline
-La sección de aforos en la página \ref{fig:ej4} muestra un mapa de Navarra y esta estructurada en 6 regiones, Norte, Arga, Ega, Ebro alto, Ebro bajo y Aragón, accediendo a cada región nos aparece el mapa de la región dándonos acceso a todas las estaciones en la zona.
+La sección de aforos en la página \ref{fig:ej4} muestra el mapa de Navarra junto a varias estaciones. Aunque no todas las disponibles en la web, conformando unicamente el grupo de estaciones principales.\newline
 \newline
-\newline
-Una vez dentro de la estación tendremos la posibilidad de observar los datos, primeramente en forma de gráfica y, en caso de quererlo, en forma numérica, pero no sin antes haber visitado la versión gráfica \ref{fig:ej5}.
-\newline
-\newline
-Debido a este problema, para la obtención de los datos primero cargamos la web gráfica y le pasamos un script JavaScript para pulsar el botón que finalmente nos da acceso a los datos deseados.
+Con el fin de acceder a todas las estaciones disponibles, debemos centrarnos en el mapa de la esquina inferior derecha. Estructurada en 6 regiones, Norte, Arga, Ega, Ebro alto, Ebro bajo y Aragón, por medio de este mapa accedemos a cada región, mostrando el mapa de la región, dando acceso a todas las estaciones en la zona.
 
-\begin{figure} [h!]
+\begin{figure} [H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{fig/AguaEnNavarra.png}
+	\includegraphics[width=0.7\textwidth]{fig/AguaEnNavarraCode.png}
 	\caption[Página principal de aforos de El Agua en Navarra]{Página El Agua en Navarra}
 	\label{fig:ej4}
 \end{figure}
 
-\begin{figure} [h!]
+El HTML del mapa se estructura de la siguiente manera \ref{fig:ej22}, mostrando un par de elementos area por estación, uno con shape "rect", representando las tarjetas que rodean el mapa y otro con shape "circle", siendo los puntos en el mapa. Pulsar sobre cualquiera de ellos es equivalente, aunque posteriormente hagamos uso de los elementos "rect" dentro del código.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/AguaEnNavarraCodeHTML.png}
+	\caption[HTML mapa estaciones de El Agua en Navarra]{HTML mapa estaciones El Agua en Navarra}
+	\label{fig:ej22}
+\end{figure}
+
+Las paginas de cada estación se muestran así \ref{fig:ej23}.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/AguaEnNavarraEstacion.png}
+	\caption[Página estación de El Agua en Navarra]{Página estación El Agua en Navarra}
+	\label{fig:ej23}
+\end{figure}
+
+De ella obtenemos los próximos datos, descripción, municipio, río y coordenadas. Ademas de darnos acceso a los datos de nivel y caudal del río. Mostrados dentro de el div con id "blog\_icons" \ref{fig:ej24}. Una vez dentro del div todos los datos siguen la misma estructuración, //div/span/span, permitiendo la adquisición de todos los elementos a la vez.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/AguaEnNavarraEstacionHTML.png}
+	\caption[HTML estación de El Agua en Navarra]{HTML estación El Agua en Navarra}
+	\label{fig:ej24}
+\end{figure}
+
+Una vez se accede a los datos de la estación, se mostrara la gráfica de estos \ref{fig:ej25}. A su vez, mediante el botón "Datos Numéricos", tendremos la posibilidad de observar los datos en forma numérica. Pero no sin antes haber visitado la versión gráfica. \ref{fig:ej5}.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/AguaEnNavarraGrafica.png}
+	\caption[Gráfica de datos en estación de El Agua en Navarra]{Gráfica datos estación El Agua en Navarra}
+	\label{fig:ej25}
+\end{figure}
+
+\begin{figure} [H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{fig/ErrorAguaEnNavarra.png}
 	\caption[Error al cargar directamente la página de datos numéricos en El Agua en Navarra]{Error datos numéricos en El Agua en Navarra}
 	\label{fig:ej5}
+\end{figure}
+
+Los datos numericos estan presentados en formato tabla cono se aprecia en la imagen \ref{fig:sub3}. Por el contrario, tras observar el HTML, realmente es un elemento div, englobando conjuntos de elementos span que representan las lineas, separados por elementos br \ref{fig:sub4}. Representando una mayor complejidad para trabajar y adquirir los datos. 
+
+\begin{figure} [H]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{fig/AguaEnNavarraData.png}
+		\caption{Formato presentación de los datos}
+		\label{fig:sub3}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{fig/AguaEnNavarraDataHTML.png}
+		\caption{HTML de los datos}
+		\label{fig:sub4}
+	\end{subfigure}
+	\caption{Datos numéricos de estaciones en Agua en Navarra}
+	\label{fig:ej26}
 \end{figure}
 
 \section{MeteoNavarra}
@@ -69,97 +133,3 @@ Las estaciones automáticas proporcionan tanto datos en periodos de diez minutos
 	\caption[Apartado selección de datos MeteoNavarra]{Datos MeteoNavarra}
 	\label{fig:ej6}
 \end{figure}
-
-\section{Entorno de ejecución}
-El proyecto se dividirá en dos ordenadores (maquinas virtuales). Uno de ellos será el responsable de la base de datos en PostGreSQL, mientras que, el otro, se encargara de la ejecución del código de obtención de datos, tratarlos y enviarlos a la base de datos.
-
-\subsection{Preparación de entorno virtual}
-Primero instalaremos las dependencias para crear y activar un entorno virtual sobre el que trabajar, para ello ejecutaremos los siguientes comandos:
-
-\begin{verbatim}
-	#Instalamos las dependencias
-	user@host:~$ sudo apt install python3-venv python3-dev
-	
-	#Creamos un nuevo directorio sobre el que trabajar
-	user@host:~$ mkdir ~/dirdemiproyecto
-	user@host:~$ cd ~/dirdemiproyecto
-	
-	#Creamos el entorno virtual
-	user@host:~/dirdemiproyecto$ python3 -m venv envdemiproyecto
-	
-	#Activamos el entorno virtual
-	user@host:~/dirdemiproyecto$ source envdemiproyecto/bin/activate
-	
-	#Una vez seguidos los pasos nuestra terminal debe mostrarse así
-	(envdemiproyecto) user@host:~/dirdemiproyecto$
-\end{verbatim}
-
-Cada Spider dispondrá de su propio entorno virtual, nombrado tras la pagina web a la que representa, de esta forma, por ejemplo, el entorno virtual para la web de chcantabrico también se llamará chcantabrico.
-Otro entorno virtual sera usado para el servidor Django y los Scripts encargados del envío de datos.
-
-\subsection{Instalacion y configuracion de PostGreSQL}
-Comenzamos con los comandos necesarios para la instalación inicial de PostGreSQL y con la creación de un usuario y una base de datos.
-\begin{verbatim}
-	#Instalamos PostGreSQL y las dependencias
-	user@host:~$ sudo apt install libpq-dev postgresql postgresql-contrib
-	
-	#Iniciamos sesion usando el role postgres y accedemos a PostGreSQL
-	user@host:~$ sudo -u postgres psql
-	
-	#Si todo esta bien la terminal deberia mostrarse así
-	postgres=# 
-	
-	#Creamos un nuevo usuario
-	postgres=# CREATE USER miusuario WITH PASSWORD 'micontraseña';
-	
-	#Configuramos varios parametros del usuario para una mejor integracion con Django
-	postgres=# ALTER ROLE miusuario SET client_encoding TO 'utf8';
-	postgres=# ALTER ROLE miusuario SET default_transaction_isolation TO 'read committed';
-	postgres=# ALTER ROLE miusuario SET timezone TO 'Europe/Madrid';
-	
-	#Creamos la Base de Datos
-	postgres=# CREATE DATABASE bbddmiproyecto;
-	
-	#Otorgamos permisos de administrador a nuestro usuario en la base de datos
-	postgres=# GRANT ALL PRIVILEGES ON DATABASE bbddmiproyecto TO miusuario;
-	
-	#Una vez finalizado
-	postqres=# \q
-	
-\end{verbatim}
-
-En este punto ya dispondríamos de una base de datos (aun sin tablas en ella) y de un usuario con el que conectarnos a esta desde Django.\newline
-\newline
-Ahora quedaría configurar el permiso de comunicación entre dispositivos, más concretamente la conexión remota de Django con PostGreSQL.
-
-\begin{verbatim}
-	#Abrimos el archivo postgresql.conf con un editor
-	sudo nano /etc/postgresql/11/main/postgresql.conf
-	
-	#Buscamos la linea "#listen_addresses = 'localhost'", borramos la almohadilla y
-	sustituimos localhost por *, permitiendo la escucha de cualquier direccion IP
-	listen_addresses = '*'
-	
-	#Guardamos y cerramos el fichero
-	
-	#Abrimos el archivo pg_hba.conf con un editor
-	sudo nano /etc/postgresql/11/main/pg_hba.conf
-	
-	#Por defecto solo permite conexiones desde localhost
-	# IPv4 local connections: 
-	host    all             all             127.0.0.1/32            md5 
-	
-	#Configuararemos el permiso de conexion remota desde cualquier IP añadiendo
-	la siguiente linea debajo de la anterior
-	host    all             all             0.0.0.0/0            md5 
-	
-	#O podemos configurar el permiso unicamente para la IP de la otra maquina virtual
-	host    all             all             127.18.83.198/19            md5 
-	
-	#Guardamos y cerramos el fichero
-	
-	#Finalmete permitimos el trafico mediante el puerto 5432 (puesto por defecto)
-	sudo ufw allow 5432/tcp
-\end{verbatim}
-
-Una vez realizados los siguientes pasos ya tendríamos nuestra instancia de PostGreSQL configurada.
