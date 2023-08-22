@@ -56,17 +56,17 @@
 \contentsline {subsection}{\numberline {5.1.1}Proceso de obtención de datos}{45}{subsection.5.1.1}%
 \contentsline {subsection}{\numberline {5.1.2}Guardado de datos}{47}{subsection.5.1.2}%
 \contentsline {subsection}{\numberline {5.1.3}Spider básica}{48}{subsection.5.1.3}%
-\contentsline {subsection}{\numberline {5.1.4}Método start\_requests()}{48}{subsection.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.4}Método start\_requests()}{49}{subsection.5.1.4}%
 \contentsline {subsection}{\numberline {5.1.5}Eliminar Log}{49}{subsection.5.1.5}%
-\contentsline {section}{\numberline {5.2}Spiders usadas}{49}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Aemet}{49}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Chcantabrico}{52}{subsection.5.2.2}%
-\contentsline {subsubsection}{Código descartado}{59}{section*.48}%
-\contentsline {subsection}{\numberline {5.2.3}MeteoNavarra}{61}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Agua en Navarra}{66}{subsection.5.2.4}%
-\contentsline {subsubsection}{Configuración Selenium}{70}{section*.49}%
-\contentsline {subsubsection}{Alternativas probadas}{71}{section*.51}%
-\contentsline {chapter}{\numberline {6}Conclusiones y Trabajo Futuro}{75}{chapter.6}%
-\contentsline {chapter}{Referencias}{77}{section*.52}%
-\contentsline {chapter}{Glosario}{81}{section*.53}%
-\contentsline {chapter}{Anexos}{81}{section*.53}%
+\contentsline {section}{\numberline {5.2}Spiders usadas}{50}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Aemet}{50}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}CHCantábrico}{51}{subsection.5.2.2}%
+\contentsline {subsubsection}{Código descartado}{55}{section*.48}%
+\contentsline {subsection}{\numberline {5.2.3}MeteoNavarra}{58}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Agua en Navarra}{62}{subsection.5.2.4}%
+\contentsline {subsubsection}{Configuración Selenium}{66}{section*.49}%
+\contentsline {subsubsection}{Alternativas probadas}{67}{section*.51}%
+\contentsline {chapter}{\numberline {6}Conclusiones y Trabajo Futuro}{71}{chapter.6}%
+\contentsline {chapter}{Referencias}{73}{section*.52}%
+\contentsline {chapter}{Glosario}{77}{section*.53}%
+\contentsline {chapter}{Anexos}{77}{section*.53}%
