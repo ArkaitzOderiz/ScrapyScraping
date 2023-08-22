@@ -299,7 +299,7 @@ Chacantabrico muestra datos tanto del nivel del río como de la precipitación, 
 \newline
 Puesto que ambas comparten la misma estructuración de código, solo se explicara una de ellas. La de nivel del río.
 
-\begin{lstlisting}[language=Python, caption={start\_requests() Chcantabrico Nivel Spider}]
+\begin{lstlisting}[language=Python, caption={Función start\_requests() Chcantabrico Nivel Spider}]
 	def start_requests(self):
 		with open("JSONs/RawCode/codigos_chcantabrico.json", encoding="utf-8") as f:
 			data = json.load(f)
@@ -344,7 +344,7 @@ El uso del argumento cb\_kwargs sirve para enviar un mayor numero de argumentos 
 			parsedData = rawData.to_json(orient="records")
 \end{lstlisting}
 
-Devido al argumento cb\_kwargs, la función parse() recibe un tercer argumento estación. En este caso para poder enviar a cada conjunto de datos recibidos el código de la estación a la que pertenecen, pues dentro de la respuesta obtenida solo se proporciona el nombre de esta.\newline
+Debido al argumento cb\_kwargs, la función parse() recibe un tercer argumento, estación. En este caso, para poder enviar a cada conjunto de datos recibidos el código de la estación a la que pertenecen, pues dentro de la respuesta obtenida solo se proporciona el nombre de esta.\newline
 \newline
 Dentro de la función parse() lo primero que se hace es comprobar que realmente se ha recibido una respuesta correcta, pues, aunque todas la estaciones disponen de datos del nivel del río, no todas disponen los de precipitación. El problema viene cuando a estas estaciones se les piden los datos, ya que en vez de enviar un error 404 como seria esperado.
 
@@ -353,7 +353,7 @@ Dentro de la función parse() lo primero que se hace es comprobar que realmente 
 	FECHA;VALOR(mm)
 \end{verbatim}
 
-Una alternativa para deshacerse de esta comprobación sería eliminar aquellas estaciones que no proporcionen datos o filtrandolas para no hacer la llamada directamente, aunque esto no solo nos resultaría más complejo, si no que crearía el problema de que cada cierto tiempo habría que comprobar si alguna estación ha empezado a proporcionar datos para incluirla nuevamente en la lista de estaciones a las cuales hacer llamada.\newline
+Una alternativa para deshacerse de esta comprobación sería eliminar aquellas estaciones que no proporcionen datos o filtrandolas para no hacer la llamada directamente, aunque esto no solo resultaría más complejo, si no que crearía el problema de que cada cierto tiempo habría que comprobar si alguna estación ha empezado a proporcionar datos para incluirla nuevamente en la lista de estaciones a las cuales hacer llamada.\newline
 \newline
 Una vez hecha la comprobación, en caso de que no sea una respuesta vacía, el texto viene proporcionado con el siguiente formato.
 
@@ -370,24 +370,26 @@ Al tener formato CSV se lee mediante la función read\_csv() incluida en la libr
 \newline
 Como últimos pasos, se cambian los nombres de las cabeceras a aquellos definidos de forma global para todas las webs y, se convierte el DataFrame en un JSON con la función to\_json() indicando que el formato sea "records", esto implica que cada linea del DataFrame va a representar un objeto JSON.
 
-\begin{lstlisting}[language=Python, caption={Chcantabrico Nivel Spider}]
+\begin{lstlisting}[language=Python, caption={Guardado de datos de Chcantabrico Nivel Spider}]
 	yield {
 		'estacion': estacion,
 		'datos': json.loads(parsedData)
 	}
 \end{lstlisting}
 
-Con el uso de la función loads() de la librería json nos aseguramos el correcto formato del JSON.
+Con el uso de la función loads() de la librería json nos aseguramos el correcto formato del JSON.\newline
+\newline
+Aunque en la web misma de CHCantárico se proporciona un mapa indicando la localización de cada estación, las coordenadas de esta no están disponibles para adquirir dentro de la web, es por eso que es necesario el uso de la web del centro de estudios hidrológicos para poder obtener las coordenadas.\newline
+\newline
+En esta página se pueden encontrar mediante el "codigoSecundario" anteriormente obtenido, desgraciadamente, no todas las estaciones incluidas en CHCantábrico están listadas en esta página, siendo el mayor inconveniente para el correcto funcionamiento del apartado de predicción.
 
-Aunque en la web misma de CHCantárico se proporciona un mapa indicando la localización de cada estación, las coordenadas de esta no están disponibles para adquirir dentro de la web, es por eso que es necesario el uso de la web del centro de estudios hidrológicos para poder obtener las coordenadas. En esta página se pueden encontrar mediante el "codigoSecundario" anteriormente obtenido, desgraciadamente, no todas las estaciones incluidas en CHCantábrico están listadas en esta página, siendo el mayor inconveniente para el correcto funcionamiento del apartado de predicción.
-
-\begin{lstlisting}[language=Python, caption={Chcantabrico Coordinates Spider}]
+\begin{lstlisting}[language=Python, caption={Selector Chcantabrico Coordinates Spider}]
 	longitud = response.css('p::text')[6].get().strip()
 	latitud = response.css('p::text')[7].get().strip()
 	estacion = response.css('font::text')[14].get().strip()
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption={Chcantabrico Coordinates Spider}]
+\begin{lstlisting}[language=Python, caption={Guardado de datos de Chcantabrico Coordinates Spider}]
 	yield {
 		'coordenadas': f'Lat: {latitud} | Lon: {longitud}',
 		'estacion': estacion,
@@ -397,7 +399,7 @@ Aunque en la web misma de CHCantárico se proporciona un mapa indicando la local
 Exceptuando el uso del "codigoSecundario" para referenciar estaciones, esta es una Spider muy simple la cual no dispone de nada que no haya sido anteriormente explicado.
 
 \subsubsection{Código descartado}
-Siendo Chcantabrico la primera web de la que se obtuvo los datos, sin gran conocimiento de Scrapy y sobre todo, sin saber realmente como sería la plataforma, el planteamiento de la obtención de datos se realizo de forma ajena a las Spider de Scrapy.\newline
+Siendo CHCantábrico la primera web de la que se obtuvo los datos, sin gran conocimiento de Scrapy y sobre todo, sin saber realmente como sería la plataforma, el planteamiento de la obtención de datos se realizo de forma ajena a las Spider de Scrapy.\newline
 \newline
 Viendo que los datos no están presentes en la web y, que Scrapy no dispone de interacción JavaScript por defecto, la única alternativa viable conocida en esos momentos fue probar a realizar una llamada cURL por terminal, al ver que efectivamente mediante cURL era posible obtener los datos deseados, se escribió un script para los datos de nivel y otro para los de precipitación.
 
@@ -409,160 +411,139 @@ Viendo que los datos no están presentes en la web y, que Scrapy no dispone de i
 	
 	with open('codigos_estaciones_chcantabrico.json', 'r', encoding='utf-8') as f:
 		data = json.load(f)
-		datos = []
 		
-		for item in data:
-
-			params_pluvio = {
-				'p_p_id': 'GraficaEstacion_INSTANCE_ND81Xo17PIZ7',
-				'p_p_lifecycle': '2',
-				'p_p_state': 'normal',
-				'p_p_mode': 'view',
-				'p_p_resource_id': 'downloadCsvPluvio',
-				'p_p_cacheability': 'cacheLevelPage',
-				'_GraficaEstacion_INSTANCE_ND81Xo17PIZ7_cod_estacion': f'{item["codigo"]}',
-				'_GraficaEstacion_INSTANCE_ND81Xo17PIZ7_tipodato': 'pluvio',
-			}
-			
-			response_pluvio = requests.get('https://www.chcantabrico.es/precipitacion-acumulada', params=params_pluvio)
-			if response_pluvio.status_code == 200:
-				if not response_pluvio.text.startswith('-'):
-					urlData = response_pluvio.text
-					rawData = pd.read_csv(io.StringIO(urlData), delimiter=';', encoding='utf-8', header=1)
-					rawData.columns = ['fecha y hora', 'precipitacion (mm)']
-					parsedData = rawData.to_json(orient="records")
-					
-					estacion = {
-						'estacion': item["codigo"],
-						'datos': json.loads(parsedData)
-					}
-					datos.append(estacion)
-				else:
-					print(f'{item["estacion"]} Error retrieving data: 404')
-					print("-------------------")
+	datos = []
+	for item in data:
+		params_pluvio = {
+			'p_p_id': 'GraficaEstacion_INSTANCE_ND81Xo17PIZ7',
+			'p_p_lifecycle': '2',
+			'p_p_state': 'normal',
+			'p_p_mode': 'view',
+			'p_p_resource_id': 'downloadCsvPluvio',
+			'p_p_cacheability': 'cacheLevelPage',
+			'_GraficaEstacion_INSTANCE_ND81Xo17PIZ7_cod_estacion': f'{item["codigo"]}',
+			'_GraficaEstacion_INSTANCE_ND81Xo17PIZ7_tipodato': 'pluvio',
+		}
+		
+		response_pluvio = requests.get('https://www.chcantabrico.es/precipitacion-acumulada', params=params_pluvio)
+		if response_pluvio.status_code == 200:
+			if not response_pluvio.text.startswith('-'):
+				urlData = response_pluvio.text
+				rawData = pd.read_csv(io.StringIO(urlData), delimiter=';', encoding='utf-8', header=1)
+				rawData.columns = ['fecha y hora', 'precipitacion (mm)']
+				parsedData = rawData.to_json(orient="records")
+				
+				estacion = {
+					'estacion': item["codigo"],
+					'datos': json.loads(parsedData)
+				}
+				datos.append(estacion)
 			else:
-				print(f'{item["estacion"]} Error retrieving data: {response_pluvio.status_code}')
+				print(f'{item["estacion"]} Error retrieving data: 404')
 				print("-------------------")
-		
-		with open('../../JSONs/RawData/datos_pluvio_chcantabrico.json', 'w', encoding='utf-8') as outfile:
-			json.dump(datos, outfile)
+		else:
+			print(f'{item["estacion"]} Error retrieving data: {response_pluvio.status_code}')
+			print("-------------------")
+	
+	with open('../../JSONs/RawData/datos_pluvio_chcantabrico.json', 'w', encoding='utf-8') as outfile:
+		json.dump(datos, outfile)
 \end{lstlisting}
 
-Todo el apartado de tratamiento de los datos es idéntico al realizado con la Spider, solo que en vez de usar FormRequest, hacemos uso de la librería requests para realizar la llamada get(), tras realizarla, se comprueba que haya sido exitosa (esta comprobación la realiza Scrapy automáticamente) y, en caso de serlo se realiza todo el tratamiento.\newline
+Todo el apartado de tratamiento de los datos es prácticamente idéntico al realizado con la Spider, solo que en vez de usar FormRequest, se hace uso de la librería requests para realizar la llamada get(), tras realizarla, se comprueba que haya sido exitosa (esta comprobación la realiza Scrapy automáticamente) y, en caso de serlo se realiza todo el tratamiento, guardando los datos en la lista datos. Una vez realizadas todas las llamadas, guardamos los datos obtenidos usando la función json.dump().\newline
 \newline
-Aunque en esta versión se almacenan todos los datos en un mismo JSON, originalmente los datos eran guardados en un CSV por cada estación, de tal manera que el nombre del CSV era el mismo que el de la estación perteneciente. Más adelante al consolidar más la plataforma, sobre todo el uso de Django para la creación de una API, se vio que era más útil guardar los datos no solo en formato JSON si no que disponer de un único fichero por estación, de esta forma solo seria necesario realizar una única llamada por estación a la API para cargar los datos. Llegando a esta versión del script.\newline
+Aunque en esta versión se almacenan todos los datos en un mismo JSON, originalmente los datos eran guardados en un CSV por cada estación, de tal manera que el nombre del CSV era el mismo que el de la estación perteneciente. Más adelante al consolidar más la plataforma, sobre todo el uso de Django para la creación de una API, se vio que era más útil guardar los datos no solo en formato JSON si no disponer de un único fichero por estación, de esta forma solo seria necesario realizar una única llamada por estación a la API para cargar los datos. Llegando a esta versión del script.\newline
 \newline
-Posteriormente, llegado el momento de la automatización quedo claro que, aun siendo posible automatizar el proceso con el script anterior, iba a suponer un problema para la modularidad del proyecto. El tener múltiples scripts de diferentes fuentes solo aumentaba la complejidad, necesitando de un script de ejecución por cada web la cual se deseaba trabajar con. Implicando la necesidad de no solo crear el código de extracción y tratamiento de datos, sino el de ejecución también. Esto rompía hasta cierto punto la experiencia deseada, el usuario solo debería preocuparse de los datos y la única interacción que debería realizar con el proceso de ejecución seria el añadir una única linea de comando referencioando el nombre usado para el nuevo modulo.\newline
+Posteriormente, llegado el momento de la automatización quedo claro que, aun siendo posible automatizar el proceso con el script anterior, iba a suponer un problema para la modularidad del proyecto. Pues tener múltiples scripts de diferentes fuentes, solo aumentaba la complejidad a la hora de crear un script ya sea en Python o Bash encargado de ejecutar cada parte individual de cada web. Siendo la alternativa proporcionada por Scrapy de ejecutar múltiples Spider mediante un simple script Python la mejor opción.\newline
 \newline
 Es por eso que se investigo la posibilidad de obtener los datos mediante Scrapy, estudiando los diferentes objetos Request proporcionados, hasta llegar a la versión actual con el uso de FormRequest.
 
 \subsection{MeteoNavarra}
 
-\begin{lstlisting}[language=Python, caption={MeteoNavarra Code Spider}]
-	import scrapy
-	
-	
-	class MeteonavarraCodeSpider(scrapy.Spider):
-		name = "meteoNavarra_code_spider"
-		allowed_domains = ["meteo.navarra.es"]
-		start_urls = ["http://meteo.navarra.es/estaciones/mapadeestaciones.cfm#"]
-		custom_settings = {
-			'FEEDS': {
-				'JSONs/RawCode/codigos_meteoNavarra.json': {
-					'format': 'json',
-					'encoding': 'utf-8',
-					'overwrite': True,
-				}
-			}
-		}
-		
-		def parse(self, response):
-			rows = response.css('div#tabAUTO script::text').getall()
-			
-			for row in rows:
-			yield {
-				'estacion': row.split(',')[3],
-				'codigo': row.split(',')[0].split('(')[1],
-			}
+\begin{lstlisting}[language=Python, caption={Selector MeteoNavarra Code Spider}]
+	rows = response.css('div#tabAUTO script::text').getall()
 \end{lstlisting}
 
-Probablemente una de las Spider más simples entre todas las usadas, aunque como se comenta anteriormente, el mayor desafío fue la estructuración de la web y como obtener los datos de esta.
+La estructuración HTML de la web y la falta de experiencia son el motivo principal asociado a la complejidad de esta Spider, la mayor parte del tiempo a la hora de crearla ha sido invertido explorando el código HTML buscando la forma más optima de lograr los datos necesarios. Son múltiples las iteraciones sufridas hasta llegar a la versión actual.\newline
+\newline
+Del selector se obtiene tanto el nombre como el código de la estación, siendo una lista de listas pues almacena estos datos por cada estación.
 
-\begin{lstlisting}[language=Python, caption={MeteoNavarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={MeteoNavarra Code Spider}]	
+	for row in rows:
+		yield {
+			'estacion': row.split(',')[3],
+			'codigo': row.split(',')[0].split('(')[1],
+		}
+\end{lstlisting}
+
+A la hora de guardar los datos, itera sobre lista y ... TODO
+
+\begin{lstlisting}[language=Python, caption={Uso de fechas en función start\_requests() MeteoNavarra Data Spider}]
 	import datetime
-	import json
-	
-	import scrapy
-	
-	
-	class MeteonavarraDataSpider(scrapy.Spider):
-		name = "meteoNavarra_data_spider"
-		allowed_domains = ["meteo.navarra.es"]
-		custom_settings = {
-			'FEEDS': {
-				'JSONs/RawData/datos_meteoNavarra.json': {
-					'format': 'json',
-					'encoding': 'utf-8',
-					'overwrite': True,
-				}
-			}
-		}
-		
-		def start_requests(self):
-			current_date = datetime.date.today()
-			delta = datetime.timedelta(days=1)
-			tomorrow_date = current_date + delta
-			yesterday_date = current_date - delta
-			tomorrow_date_format = tomorrow_date.strftime(" %d%%2F %m%%2F%Y").replace(' 0', '')
-			yesterday_date_format = yesterday_date.strftime(" %d%%2F %m%%2F%Y").replace(' 0', '')
-			
-			with open("JSONs/RawCode/codigos_meteoNavarra.json", encoding="utf-8") as f:
-				data = json.load(f)
-				for estacion in data:
-				url = f'http://meteo.navarra.es/estaciones/estacion_datos_m.cfm?'
-				'IDEstacion={estacion["codigo"]}&p_10' \
-				f'=1&p_10=2&p_10=3&p_10=11&fecha_desde={yesterday_date_format}'
-				'&fecha_hasta={tomorrow_date_format}'
-				yield scrapy.Request(url, self.parse)
-		
-		def parse(self, response):
-			rows = response.css('table.border tr:not([bgcolor*="#FFFFFF"])')
-			estacion = response.css('table a::attr(href)')[7].get()
-			
-			datos = []
-			for row in rows:
-				dato = {
-					'fecha y hora': row.xpath('./td[1]/text()').get().strip().replace(' ', ' ') + ':00',
-					'temperatura (C)': row.xpath('./td[2]/font/text()').get(),
-					'humedad relativa (%)': row.xpath('./td[3]/font/text()').get(),
-					'radiacion global (W/m^2)': row.xpath('./td[4]/font/text()').get(),
-					'precipitacion (l/mm^2)': row.xpath('./td[5]/font/text()').get(),
-				}
-				
-				if dato['radiacion global (W/m^2)'] == '- -':
-				dato['radiacion global (W/m^2)'] = None
-				
-				if dato['precipitacion (l/mm^2)'] != '- -':
-				datos.append(dato)
-			
-			if datos:
-				yield {
-					'estacion': estacion.split('idestacion=')[1].split('&')[0],
-					'datos': datos,
-				}
-			
-			next_page = response.css("table a::attr(href)").getall()
-			page_number = response.xpath("//b/text()").getall()
-			if not page_number[0] == page_number[1]:
-				next_page = response.urljoin(next_page[7])
-				yield scrapy.Request(next_page, callback=self.parse)
+
+	current_date = datetime.date.today()
+	delta = datetime.timedelta(days=1)
+	tomorrow_date = current_date + delta
+	yesterday_date = current_date - delta
+	tomorrow_date_format = tomorrow_date.strftime(" %d%%2F %m%%2F%Y").replace(' 0', '')
+	yesterday_date_format = yesterday_date.strftime(" %d%%2F %m%%2F%Y").replace(' 0', '')
 \end{lstlisting}
 
-A diferencia del resto de páginas, que te definen automáticamente una franja de fechas a mostrar, meteoNavarra da la posibilidad de que el usuario elija las fechas que desee ver, es por eso que hace uso de datetime, obteniendo el día de ayer y el de mañana (meteoNavara excluye los datos del día indicado), para su correcto funcionamiento, mediante el método strftime, formateamos el datetime para que corresponda con el codificado URL.\newline
+La necesidad de recorrer múltiples estaciones, obliga como en el resto de Spiders de obtención de datos, a sobre escribir la función start\_requests().\newline
 \newline
-Tras obtener los datos lo primero que se realiza es si existe un valor de radiación global, esto se hace debido a que no todas las estaciones proporcionan este datos, posteriormente, puesto que la web muestra todas las franjas horarias dentro del  que se corresponde con el día actual, se eliminan todas esas horas sin datos con la comprobación respecto a la precipitación. A continuación, en caso de que existan datos a guardar se realiza el yield.\newline
+La curiosidad en esta radica en que, a diferencia del resto de páginas, que te definen automáticamente una franja de fechas a mostrar, meteoNavarra fuerza la necesidad de que el usuario elija las fechas que desee ver, es por eso que hace uso de la librería datetime, pues facilita el trabajo con fechas.\newline
 \newline
-Finalmente, como los datos de ciertas estaciones estan repartidos en dos páginas, navegamos a esa segunda página para realizar el mismo proceso descrito anteriormente.\newline
+Con la intención de que funcione proporcionando fechas distintas cada día se realiza el siguiente proceso. Se obtiene la fecha actual con la función today(), con el método timedelta(days=1) se crea un objeto timedelta que representa una duración de un día, gracia a el, se calcula el día de mañana y el de ayer, sumando y restando esa duración al día de hoy. Para terminar, puesto que la fecha debe ir incluida en una URL, mediante el método strftime(), formateamos los datetime calculados para que correspondan con el codificado URL.\newline
+\newline
+
+\begin{lstlisting}[language=Python, caption={Selector MeteoNavarra Data Spider}]
+	rows = response.css('table.border tr:not([bgcolor*="#FFFFFF"])')
+	estacion = response.css('table a::attr(href)')[7].get()
+\end{lstlisting}
+
+De los siguientes selectores cabe mencionar el primero. Aunque en la web se hace uso del elemento HTML table, este no indica que elementos tr pertenecen a la cabecera o al cuerpo de la tabla con el uso de thead y tbody, por el contrario, las filas correspondientes a la cabecera se muestran con el color de fondo representado hexadecimalmente #FFFFFF. Es por eso que se indica explícitamente no obtener esas filas con el uso de tr:not([bgcolor*="#FFFFFF"]).
+
+\begin{lstlisting}[language=Python, caption={Trabajar sobre los datos de MeteoNavarra Data Spider}]
+	datos = []
+	for row in rows:
+		dato = {
+			'fecha y hora': row.xpath('./td[1]/text()').get().strip().replace(' ', ' ') + ':00',
+			'temperatura (C)': row.xpath('./td[2]/font/text()').get(),
+			'humedad relativa (%)': row.xpath('./td[3]/font/text()').get(),
+			'radiacion global (W/m^2)': row.xpath('./td[4]/font/text()').get(),
+			'precipitacion (l/mm^2)': row.xpath('./td[5]/font/text()').get(),
+		}
+		
+		if dato['radiacion global (W/m^2)'] == '- -':
+			dato['radiacion global (W/m^2)'] = None
+		
+		if dato['precipitacion (l/mm^2)'] != '- -':
+			datos.append(dato)
+\end{lstlisting}
+
+En la función parse(), como en otras Spider, se crea una lista datos vacía que es llenada con los objetos JSON obtenidos al recorrer cada fila de las anteriormente obtenidas y, filtrar mediante selectores aquellos datos de utilidad.\newline
+\newline
+Luego, se comprueba la disponibilidad de un valor numérico de radiación global, pues en caso de no existir, la web proporciona '- -'. Posteriormente, puesto que la web muestra todas las franjas horarias dentro del que se corresponde con el día actual, se eliminan todas esas horas sin datos con la comprobación respecto a la precipitación.\newline
+\newline
+
+\begin{lstlisting}[language=Python, caption={Comprobacion exitencia de datos en MeteoNavarra Data Spider}]
+	if datos:
+		yield {
+			'estacion': estacion.split('idestacion=')[1].split('&')[0],
+			'datos': datos,
+		}
+\end{lstlisting}
+
+A continuación, en caso de que existan datos a guardar, pues algunas de las estaciones puedes llegar a no disponer de datos, se realiza el yield.
+
+\begin{lstlisting}[language=Python, caption={Navegacion a segunda página de datos en MeteoNavarra Data Spider}]
+	next_page = response.css("table a::attr(href)").getall()
+	page_number = response.xpath("//b/text()").getall()
+	if not page_number[0] == page_number[1]:
+		next_page = response.urljoin(next_page[7])
+		yield scrapy.Request(next_page, callback=self.parse)
+\end{lstlisting}
+
+Finalmente, aun dentro de parse(), como los datos de ciertas estaciones están repartidos en dos páginas, adquiere la posible URL a la segunda página y, el numero de la página actual y siguiente, en caso de que los números sean distintos, navega a esa segunda página para realizar el mismo proceso descrito anteriormente.\newline
 \newline
 Esto es posible gracias a que yield, aunque a groso modo funcione como un return, no fuerza el final de la ejecución, por lo que todo código por debajo de este sera ejecutado, llegando a haber múltiples yields en una misma función.
 
