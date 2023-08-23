@@ -63,10 +63,16 @@
 \contentsline {subsection}{\numberline {5.2.2}CHCantábrico}{51}{subsection.5.2.2}%
 \contentsline {subsubsection}{Código descartado}{56}{section*.48}%
 \contentsline {subsection}{\numberline {5.2.3}MeteoNavarra}{58}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Agua en Navarra}{62}{subsection.5.2.4}%
-\contentsline {subsubsection}{Configuración Selenium}{66}{section*.49}%
+\contentsline {subsection}{\numberline {5.2.4}Agua en Navarra}{61}{subsection.5.2.4}%
+\contentsline {subsubsection}{Configuración Selenium}{65}{section*.49}%
 \contentsline {subsubsection}{Alternativas probadas}{67}{section*.51}%
-\contentsline {chapter}{\numberline {6}Conclusiones y Trabajo Futuro}{71}{chapter.6}%
-\contentsline {chapter}{Referencias}{73}{section*.52}%
-\contentsline {chapter}{Glosario}{77}{section*.53}%
-\contentsline {chapter}{Anexos}{77}{section*.53}%
+\contentsline {section}{\numberline {5.3}Formateo de datos}{69}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Aemet}{69}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}CHCantábrico}{69}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}MateoNavarra}{69}{subsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.3.4}Agua en Navarra}{69}{subsection.5.3.4}%
+\contentsline {section}{\numberline {5.4}Filtrado de datos}{69}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Conclusiones y Trabajo Futuro}{73}{chapter.6}%
+\contentsline {chapter}{Referencias}{75}{section*.52}%
+\contentsline {chapter}{Glosario}{79}{section*.53}%
+\contentsline {chapter}{Anexos}{79}{section*.53}%

@@ -142,7 +142,7 @@ Con esto indicamos que, en la ruta especificada, nos almacene un fichero JSON ut
 \subsection{Spider básica}
 Una vez obtenemos los datos y los podemos almacenar, ya estaría nuestra Spider básica terminada.
 
-\begin{lstlisting}[language=Python, caption={Spider de ejemplo}]
+\begin{lstlisting}[language=Python, caption={Spider de ejemplo (Aemet Code Spider)}]
 	import scrapy
 	
 	
@@ -216,7 +216,7 @@ La Spider de obtención de datos es un poco más compleja, necesitando sobre-esc
 
 Dentro de la función parse():
 
-\begin{lstlisting}[language=Python, caption={Selector Aemet Data Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en parse() de Aemet Data Spider}]
 	latitud = response.css('abbr.latitude::text').get()
 	longitud = response.css('abbr.longitude::text').get()
 	estacion = response.css("a.separador_pestanhas").get()
@@ -256,7 +256,7 @@ Finalmente se almacenan las coordenadas con un formato global para todas las pla
 \subsection{CHCantábrico}
 La Spider para la adquisición de códigos de CHCantábrico no necesita de sobre-escritura del método start\_requests(), por lo que el código a analizar sera el presente en la función parse().
 
-\begin{lstlisting}[language=Python, caption={Selector Chcantabrico Code Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en parse() de Chcantabrico Code Spider}]
 	rows = response.xpath('//table[@class="tablefixedheader niveles"]/tbody/tr')
 \end{lstlisting}
 
@@ -383,7 +383,7 @@ Aunque en la web misma de CHCantárico se proporciona un mapa indicando la local
 \newline
 En esta página se pueden encontrar mediante el "codigoSecundario" anteriormente obtenido, desgraciadamente, no todas las estaciones incluidas en CHCantábrico están listadas en esta página, siendo el mayor inconveniente para el correcto funcionamiento del apartado de predicción.
 
-\begin{lstlisting}[language=Python, caption={Selector Chcantabrico Coordinates Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en parse() de Chcantabrico Coordinates Spider}]
 	longitud = response.css('p::text')[6].get().strip()
 	latitud = response.css('p::text')[7].get().strip()
 	estacion = response.css('font::text')[14].get().strip()
@@ -459,15 +459,15 @@ Es por eso que se investigo la posibilidad de obtener los datos mediante Scrapy,
 
 \subsection{MeteoNavarra}
 
-\begin{lstlisting}[language=Python, caption={Selector MeteoNavarra Code Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en parse() de MeteoNavarra Code Spider}]
 	rows = response.css('div#tabAUTO script::text').getall()
 \end{lstlisting}
 
 La estructuración HTML de la web y la falta de experiencia son el motivo principal asociado a la complejidad de esta Spider, la mayor parte del tiempo a la hora de crearla ha sido invertido explorando el código HTML buscando la forma más optima de lograr los datos necesarios. Son múltiples las iteraciones sufridas hasta llegar a la versión actual.\newline
 \newline
-Del selector se obtiene tanto el nombre como el código de la estación, siendo una lista de listas pues almacena estos datos por cada estación.
+Del selector se obtiene el codigo JavaScript perteneciente a cada fila de la tabla, siendo la forma mas sencilla de lograr tanto el nombre como el código de la estación.
 
-\begin{lstlisting}[language=Python, caption={MeteoNavarra Code Spider}]	
+\begin{lstlisting}[language=Python, caption={Guardado de datos de MeteoNavarra Code Spider}]	
 	for row in rows:
 		yield {
 			'estacion': row.split(',')[3],
@@ -475,7 +475,7 @@ Del selector se obtiene tanto el nombre como el código de la estación, siendo 
 		}
 \end{lstlisting}
 
-A la hora de guardar los datos, itera sobre lista y ... TODO
+A la hora de guardar los datos, se itera por filas y se filtra del código aquellos deseados.
 
 \begin{lstlisting}[language=Python, caption={Uso de fechas en función start\_requests() MeteoNavarra Data Spider}]
 	import datetime
@@ -495,12 +495,12 @@ La curiosidad en esta radica en que, a diferencia del resto de páginas, que te 
 Con la intención de que funcione proporcionando fechas distintas cada día se realiza el siguiente proceso. Se obtiene la fecha actual con la función today(), con el método timedelta(days=1) se crea un objeto timedelta que representa una duración de un día, gracia a el, se calcula el día de mañana y el de ayer, sumando y restando esa duración al día de hoy. Para terminar, puesto que la fecha debe ir incluida en una URL, mediante el método strftime(), formateamos los datetime calculados para que correspondan con el codificado URL.\newline
 \newline
 
-\begin{lstlisting}[language=Python, caption={Selector MeteoNavarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en parse() de MeteoNavarra Data Spider}]
 	rows = response.css('table.border tr:not([bgcolor*="#FFFFFF"])')
 	estacion = response.css('table a::attr(href)')[7].get()
 \end{lstlisting}
 
-De los siguientes selectores cabe mencionar el primero. Aunque en la web se hace uso del elemento HTML table, este no indica que elementos tr pertenecen a la cabecera o al cuerpo de la tabla con el uso de thead y tbody, por el contrario, las filas correspondientes a la cabecera se muestran con el color de fondo representado hexadecimalmente #FFFFFF. Es por eso que se indica explícitamente no obtener esas filas con el uso de tr:not([bgcolor*="#FFFFFF"]).
+De los siguientes selectores cabe mencionar el primero. Aunque en la web se hace uso del elemento HTML table, este no indica que elementos tr pertenecen a la cabecera o al cuerpo de la tabla con el uso de thead y tbody, por el contrario, las filas correspondientes a la cabecera se muestran con el color de fondo representado hexadecimalmente \#FFFFFF. Es por eso que se indica explícitamente no obtener esas filas con el uso de tr:not([bgcolor*="\#FFFFFF"]).
 
 \begin{lstlisting}[language=Python, caption={Trabajar sobre los datos de MeteoNavarra Data Spider}]
 	datos = []
@@ -525,7 +525,7 @@ En la función parse(), como en otras Spider, se crea una lista datos vacía que
 Luego, se comprueba la disponibilidad de un valor numérico de radiación global, pues en caso de no existir, la web proporciona '- -'. Posteriormente, puesto que la web muestra todas las franjas horarias dentro del que se corresponde con el día actual, se eliminan todas esas horas sin datos con la comprobación respecto a la precipitación.\newline
 \newline
 
-\begin{lstlisting}[language=Python, caption={Comprobacion exitencia de datos en MeteoNavarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Comprobacion exitencia de datos y guardado de MeteoNavarra Data Spider}]
 	if datos:
 		yield {
 			'estacion': estacion.split('idestacion=')[1].split('&')[0],
@@ -547,180 +547,147 @@ Finalmente, aun dentro de parse(), como los datos de ciertas estaciones están r
 \newline
 Esto es posible gracias a que yield, aunque a groso modo funcione como un return, no fuerza el final de la ejecución, por lo que todo código por debajo de este sera ejecutado, llegando a haber múltiples yields en una misma función.
 
-\begin{lstlisting}[language=Python, caption={MeteoNavarra Coordenates Spider}]
-	import json
-	
-	import scrapy
-	
-	
-	class MeteonavarraCoordSpider(scrapy.Spider):
-		name = "meteoNavarra_coord_spider"
-		allowed_domains = ["meteo.navarra.es"]
-		custom_settings = {
-			'FEEDS': {
-				'JSONs/RawData/coordenadas_meteoNavarra.json': {
-					'format': 'json',
-					'encoding': 'utf-8',
-					'overwrite': True,
-				}
-			}
-		}
-		
-		def start_requests(self):
-			with open("JSONs/RawCode/codigos_meteoNavarra.json", encoding="utf-8") as f:
-				data = json.load(f)
-				for estacion in data:
-				url = f'http://meteo.navarra.es/estaciones/estacion.cfm?'
-				'IDestacion={estacion["codigo"]}'
-				yield scrapy.Request(url, self.parse)
-		
-		def parse(self, response):
-			coordenadas = response.css('td::text')[19].get()
-			estacion = response.css('input::attr(value)').get()
-			
-			yield {
-				'coordenadas': coordenadas.strip().replace('\r\n\t\t', ' ').replace(' (*)', ''),
-				'estacion': estacion,
-			}
+Por último, necesitamos de una Spider para la obtención de las coordenadas pues no están disponibles para obtener dentro de las páginas anteriores, aunque sí dentro del mismo dominio.\newline
+\newline
+Mediante start\_requests(), realiza tantas llamadas como estaciones.
+
+\begin{lstlisting}[language=Python, caption={Selector en parse() de MeteoNavarra Coordenates Spider}]
+	coordenadas = response.css('td::text')[19].get()
+	estacion = response.css('input::attr(value)').get()
 \end{lstlisting}
 
-Por último, necesitamos de una Spider para la obtención de las coordenadas pues no están disponibles para obtener dentro de las páginas anteriores, pero al igual que la de código no dispone realmente de nada relevante que mencionar.
+Una vez en la funcion parse(), toma las coordenadas mostradas en una tabla y, obtiene el codigo de la estacion del atributo value de un input.
+
+\begin{lstlisting}[language=Python, caption={Guardado de datos de MeteoNavarra Coordenates Spider}]
+	yield {
+		'coordenadas': coordenadas.strip().replace('\r\n\t\t', ' ').replace(' (*)', ''),
+		'estacion': estacion,
+	}
+\end{lstlisting}
+
+Finalmente, las coordenadas, con el fin de verse bien en la web, en vez de estilizarlas con CSS, vienen estilizadas con elementos textuales, los cuales son eliminados.
 
 \subsection{Agua en Navarra}
-Las Spiders de Agua en Navarra son las más complejas entre todas, usando una filosofía ligeramente distinta al resto de Spiders y por el uso de Selemiun para poder interactuar con la web mediante JavaScipt.
+Las Spiders de Agua en Navarra son las más complejas entre todas, usando una filosofía ligeramente distinta al resto de Spiders y, por el uso de Selemiun para poder interactuar con la web mediante JavaScipt.\newline
+\newline
+Ambas Spider, Code y Data, parten de las misma start\_urls y van recorriendo las páginas presentes hasta llegar a aquella que muestre los datos deseados. Esto se debe hasta cierto punto a la estructuración de la página, haciendo más sencillo navegar por ella que crear una Spider por cada página que tenemos que visitar.\newline
+\newline
+Para Data Spider esto implica no necesitar de un fichero JSON del cual leer los códigos de las estaciones.\newline
+\newline
+La navegación por la web se realiza usando múltiples funciones de la misma naturaleza que parse().\newline
+\newline
 
-\begin{lstlisting}[language=Python, caption={Agua en Navarra Code Spider}]
-	import scrapy
-	
-	
-	class AguaEnNavarraCodeSpider(scrapy.Spider):
-		name = "aguaEnNavarra_code_spider"
-		allowed_domains = ["administracionelectronica.navarra.es"]
-		start_urls = ["https://administracionelectronica.navarra.es/aguaEnNavarra/"
-		"ctaMapa.aspx?IDOrigenDatos=1&IDMapa=1"]
-		custom_settings = {
-			'FEEDS': {
-				'JSONs/RawCode/codigos_aguaEnNavarra.json': {
-					'format': 'json',
-					'encoding': 'utf-8',
-					'overwrite': True,
-				}
-			}
-		}
-		
-		def parse(self, response):
-			for link in response.css('dl#navarramap a::attr(href)'):
-				if link.get() != 'ctaMapa.aspx?IdMapa=1&IDOrigenDatos=1':
-					yield response.follow(link.get(), callback=self.parse_area)
-		
-		def parse_area(self, response):
-			for link in response.css('area[shape="rect"]::attr(href)'):
-				yield response.follow(link.get(), callback=self.parse_data)
-		
-		def parse_estacion(self, response):
-			urls = response.xpath('//span/a/@href').getall()
-			estacion = response.css('div#bloq_iconos span span::text').getall()
-			codigoEstacion = response.css("form#frmDatosEstacion::attr(action)").get()
-			codigos = []
-			for url in urls:
-				codigos.append(url.split('=')[1])
-			
-			yield {
-				'descripcion': estacion[0],
-				'municipio': estacion[1],
-				'rio': estacion[2],
-				'coordenadas': estacion[3],
-				'estacion': codigoEstacion.split('=')[-1],
-				'codigos': codigos,
-			}
+\begin{lstlisting}[language=Python, caption={Función parse() Agua en Navarra Spiders}]
+	def parse(self, response):
+		for link in response.css('dl#navarramap a::attr(href)'):
+			if link.get() != 'ctaMapa.aspx?IdMapa=1&IDOrigenDatos=1':
+				yield response.follow(link.get(), callback=self.parse_area)
 \end{lstlisting}
 
-Como se puede apreciar, esta Spider hace uso de tres funciones parse(), al contrario del resto que solo disponían de una. Esto se debe hasta cierto punto a la estructuración de la página, haciendo más sencillo navegar por ella que crear una Spider por cada página que tenemos que visitar.\newline
+La función parse() es compartida por ambas Spider. Extrae los link representantes de cada área definida sobre el mapa y, navega por todos ellos a excepción del link de origen, aquel en el que se encuentra.\newline
 \newline
-Inspeccionando el código veremos que partimos de una start\_urls, llamando con ella a parse(), de esa web nos interesan recorrer todos los link menos aquel en el que ya estamos ('ctaMapa.aspx?IdMapa=1\&IDOrigenDatos=1'), llevándonos a la página de cada area de estaciones. El uso de response.follow() es equivalente a realizar un Request, pero no necesita pararle una URL completa, solo con la ruta es capaz de generar la llamada, en caso de necesitar explicitamente Request esta seria la manera.
+El uso de response.follow() es equivalente a realizar un Request, pero no necesita pararle una URL completa, solo con la ruta es capaz de generar la llamada, en caso de necesitar explícitamente el uso de Request esta seria la manera.
+
 \begin{verbatim}
 	yield Request(url=response.urljoin(link.get()), callback=self.parse_area)
 \end{verbatim}
-Dentro de callback indicamos a que función debe realizar la llamada, pasando de parse() a parse\_area(). En esta realizamos el mismo proceso, obtenemos todos los link a las webs, ya sí, de la estación y llamamos a parse\_estacion().\newline
-\newline
-Una vez en parse\_estacion() como ocurre con Chcantabrico, la estación dispone de múltiples códigos, aquel que referencia la estación, uno para el nivel y aunque no en todas, otro para el caudal del río.
 
-\begin{lstlisting}[language=Python, caption={Agua en Navarra Data Spider}]
-	import scrapy
+De ambas formas, en el argumento callback se indica a que función debe realizar la llamada, pasando de parse() a parse\_area().
+
+\begin{lstlisting}[language=Python, caption={Función parse\_area() Agua en Navarra Spiders}]
+	def parse_area(self, response):
+		for link in response.css('area[shape="rect"]::attr(href)'):
+			yield response.follow(link.get(), callback=self.parse_estacion)
+\end{lstlisting}
+
+Siendo la última función implementada de la misma manera en las Spider. Se realiza el mismo proceso, obtiene todos los link a las webs, ya sí, de la estación y, llama a parse\_estacion().
+
+\begin{lstlisting}[language=Python, caption={Función parse\_estacion() Agua en Navarra Code Spider}]
+	def parse_estacion(self, response):
+		urls = response.xpath('//span/a/@href').getall()
+		estacion = response.css('div#bloq_iconos span span::text').getall()
+		codigoEstacion = response.css("form#frmDatosEstacion::attr(action)").get()
+		
+		codigos = []
+		for url in urls:
+			codigos.append(url.split('=')[1])
+\end{lstlisting}
+
+Una vez en la función parse\_estacion() de Code Spider, como ocurre con Chcantabrico, la estación dispone de múltiples códigos, aquel que referencia la estación, uno para el nivel y aunque no en todas, otro para el caudal del río.\newline
+\newline
+Tanto el código de nivel y caudal del río originalmente se almacenan en la variable urls, almacenando las direcciones en las cuales están presentes. Posteriormente, se toma de la URL y se guardan en la lista codigos.\newline
+\newline
+La variable estación es una lista que almacena, la descripción de la estación, el municipio al que pertenece, el río y, las coordenadas.
+
+\begin{lstlisting}[language=Python, caption={Guardado de datos de Agua en Navarra Code Spider}]
+	yield {
+		'descripcion': estacion[0],
+		'municipio': estacion[1],
+		'rio': estacion[2],
+		'coordenadas': estacion[3],
+		'estacion': codigoEstacion.split('=')[-1],
+		'codigos': codigos,
+	}
+\end{lstlisting}
+
+Al final estos datos son almacenados.
+
+\begin{lstlisting}[language=Python, caption={Función parse\_estacion() Agua en Navarra Data Spider}]
 	from scrapy_selenium import SeleniumRequest
 	from selenium.webdriver.common.by import By
 	from selenium.webdriver.support import expected_conditions as EC
 	
-	
-	class AguaEnNavarraDataSpider(scrapy.Spider):
-		name = "aguaEnNavarra_data_spider"
-		allowed_domains = ["administracionelectronica.navarra.es"]
-		start_urls = ["https://administracionelectronica.navarra.es/aguaEnNavarra/"
-		"ctaMapa.aspx?IDOrigenDatos=1&IDMapa=1"]
-		custom_settings = {
-			'FEEDS': {
-				'JSONs/RawData/datos_aguaEnNavarra.json': {
-					'format': 'json',
-					'encoding': 'utf-8',
-					'overwrite': True,
-				}
-			}
-		}
-		
-		def parse(self, response):
-			for link in response.css('dl#navarramap a::attr(href)'):
-				if link.get() != 'ctaMapa.aspx?IdMapa=1&IDOrigenDatos=1':
-					yield response.follow(link.get(), callback=self.parse_area)
-			
-		def parse_area(self, response):
-			for link in response.css('area[shape="rect"]::attr(href)'):
-				yield response.follow(link.get(), callback=self.parse_estacion)
-			
-		def parse_estacion(self, response):
-			for link in response.css('div#divResultadosAforo a::attr(href)'):
-				yield SeleniumRequest(
+	def parse_estacion(self, response):
+		for link in response.css('div#divResultadosAforo a::attr(href)'):
+			yield SeleniumRequest(
 				url=response.urljoin(link.get()),
 				wait_time=2,
 				wait_until=EC.element_to_be_clickable((By.ID, 'btnDatosNumericos')),
 				callback=self.parse_data,
 				script='document.querySelector("#btnDatosNumericos").click()',
-				)
-			
-		def parse_data(self, response):
-			tipo = response.css('span#lblSenal::text').get()
-			estacion = response.css('li#cabecera_nombreEstacion a::attr(href)').get()
-			fechas = response.css('span.cont_fecha_gra::text').getall()
-			valores = response.css('span.cont_valor_gra::text').getall()
-			
-			datos = []
-			if tipo == "Nivel Rio":
-				for i, fecha in enumerate(fechas):
-					dato = {
-						'fecha y hora': fecha.strip() + ':00',
-						'nivel (m)': valores[i].strip(),
-					}
-					datos.append(dato)
-			else:
-				for i, fecha in enumerate(fechas):
-					dato = {
-						'fecha y hora': fecha.strip() + ':00',
-						'caudal (m^3/s)': valores[i].strip(),
-					}
-					datos.append(dato)
-			
-			yield {
-				'estacion': estacion.split('=')[-1],
-				'datos': datos,
-			}
+			)
 \end{lstlisting}
 
-Esta Spider se puede decir que es una amplifican de la anterior, pues parte de la misma URL de inicio y va recorriendo las mismas webs que la anterior, solo que esta recorre una página más. De esta forma a diferencia del resto de Spider destinadas a obtener datos, no necesita de un fichero con los códigos para funcionar.\newline
+Lo primero que llama la atención de esta Spider respecto al resto es el uso de SeleniumRequest, este tipo de objeto Request pertenece a la librería scrapy\_selenium, siendo una alternativa sencilla de unificar las funcionalidades de Selenium en Scrapy, de esta forma, se lidia con la falta de integración de interacción con JavaScript en Scrapy.\newline
 \newline
-Lo primero que llama la atención de esta Spider respecto al resto es el uso de SeleniumRequest, este tipo de objeto Request pertenece a la librería scrapy\_selenium, siendo una alternativa sencilla de unificar las funcionalidades de Selenium en Scrapy, de esta forma, podemos lidiar con la falta de integración de interacción con JavaScript en Scrapy.\newline
+Tras realizar el mismo proceso que antes, la Spider llega a la función parse\_estacion(), esta vez, en vez de obtener los datos de la estación, accedemos a los links que permiten mostrar los datos mediante SeleniumRequest y llama a la función parse\_data().\newline
 \newline
-Tras realizar el mismo proceso que antes, la Spider llega a la función parse\_estacion(), esta vez, en vez de obtener los datos de la estación, accedemos a los links que permiten mostrar los datos mediante el SeleniumRequest. Como el link al que somo dirigidos muestra los datos en forma de diagrama y, para acceder a los datos numéricos es necesario pulsar un botón, SeleniumRequest nos permite, esperar a que este esté correctamente cargado con el argumento wait\_until, indicando que elemento deseas esperar a ser cargado; en caso de que no se cargue, es recomendable usar el argumento wait\_time, que usado junto al anterior, establece el tiempo antes de dar la llamada por errónea; si el botón se carga correctamente, en el argumento script indicamos que se debe pulsar sobre este, llevándonos finalmente a los datos numéricos.\newline
+Como el link proporcionado dirige a una página que muestra los datos en forma de gráfica y, para acceder a los datos numéricos es necesario pulsar un botón, SeleniumRequest se configura de tal forma que, espera a que este esté correctamente cargado con el argumento wait\_until, indicando que elemento deseas esperar a ser cargado; en caso de que no se cargue, es recomendable usar el argumento wait\_time, que usado junto al anterior, establece el tiempo antes de dar la llamada por errónea; si el botón se carga correctamente, en el argumento script indicamos que se debe pulsar sobre este, llevándonos finalmente a los datos numéricos.\newline
 \newline
-En la funcion parse\_data(), obtenemos los datos por columna en vez de fila, pues la web no hace un correcto uso formateo por tabla, pues no existe esta tabla, insertando los datos sobre un elemento div y formateandolos posteriormente con CSS. Esta forma de obtener los datos fuerza la obtención de las fechas por un lado y los valores por otro, resultando en dos listas que debemos unir. A su vez, ya que hacemos uso de una Spider para obtener todos los datos aunque estén presentes en distintas páginas, hace necesaria la comprobación inicial de que datos estamos recibiendo para poder almacenarlos correctamente.
+
+\begin{lstlisting}[language=Python, caption={Selector en parse\_data() de Agua en Navarra Data Spider}]
+	tipo = response.css('span#lblSenal::text').get()
+	estacion = response.css('li#cabecera_nombreEstacion a::attr(href)').get()
+	fechas = response.css('span.cont_fecha_gra::text').getall()
+	valores = response.css('span.cont_valor_gra::text').getall()
+\end{lstlisting}
+
+En la funcion parse\_data(), se obtienen los datos por columna en vez de fila, pues la web no hace un correcto uso formateo por tabla, pues no existe esta tabla, insertando los datos sobre un elemento div y formateandolos posteriormente con CSS. Esta forma de mostrar los datos fuerza tener que obtener las fechas por un lado y los valores por otro, resultando en dos listas que debemos unir. La variable tipo (Nivel o caudal) es necesaria para posteriormente guardar los datos de forma correcta.
+
+\begin{lstlisting}[language=Python, caption={Selector en parse\_data() de Agua en Navarra Data Spider}]
+	datos = []
+	if tipo == "Nivel Rio":
+		for i, fecha in enumerate(fechas):
+			dato = {
+				'fecha y hora': fecha.strip() + ':00',
+				'nivel (m)': valores[i].strip(),
+			}
+			datos.append(dato)
+	else:
+		for i, fecha in enumerate(fechas):
+			dato = {
+				'fecha y hora': fecha.strip() + ':00',
+				'caudal (m^3/s)': valores[i].strip(),
+			}
+			datos.append(dato)
+	
+	yield {
+		'estacion': estacion.split('=')[-1],
+		'datos': datos,
+	}
+\end{lstlisting}
+
+Al hacer uso de una Spider para obtener todos los datos, estando presentes en distintas páginas, hace necesaria la comprobación inicial con la variable tipo de que datos estamos recibiendo, para poder almacenarlos correctamente. Una vez realizada, se itera la lista de fechas y se unen con su respectivo valor (el orden de los valores corresponde con el de las fechas) y se insertan el la lista datos. Finalmente son guardados.
 
 \subsubsection{Configuración Selenium}
 Para que SeleniumRequest funcione, es necesario incluir las siguientes lineas de código en el archivo settings.py generado por Scrapy.
@@ -742,7 +709,7 @@ Para que SeleniumRequest funcione, es necesario incluir las siguientes lineas de
 	}
 \end{lstlisting}
 
-En nuestro caso indicamos que el navegador deseado para realizar el trabajo es Chrome e indicamos mediante el método which la ruta del ejecutable del driver de chrome.\newline
+En este caso se indica que el navegador deseado para realizar el trabajo es Chrome y mediante el método which selecciona la ruta del ejecutable del driver de chrome.\newline
 \newline
 Los argumentos usados indican, --headless significa que las instancias de Chrome creadas sean sin interfaz, de esta forma no tendremos cientos de ventanas de Chrome abriéndose y cerrándose cada vez que se ejecute la Spider; --disable-logging como su nombre indica elimina el Log; --disable-in-process-stack-traces desactiva el stack-trace, esto se realiza unicamente con el fin de intentar mejorar el rendimiento; --log-level indica el tipo de log que desas mostrar, siendo INFO = 0, ALERTA = 1, ERROR = 2 y FATAL = 3, aunque el Log este desactivado esta bien indicar que clase de Log deseas que aparezca en caso de que se vuelva a activar; --disable-extensions desactiva todas las extensiones que podamos tener instaladas, nuevamente con el fin de mejorar el rendimiento.\newline
 \newline
@@ -793,38 +760,129 @@ Para hacer uso de Playwrith con Scrapy, primero que todo tenemos que configurar 
 	}
 \end{lstlisting}
 
-Finalmente, para hacer uso de la herramienta, a diferencia de con Selenium, no disponemos de un nuevo objeto Request, si no que hace uso del Request implementado en Scrapy indicandole por argumento que debe usar Playwright.
+Finalmente, para hacer uso de la herramienta, a diferencia de con Selenium, no dispone de un nuevo objeto Request, si no que hace uso del Request implementado en Scrapy indicandole por argumento que debe usar Playwright.
 
 \begin{lstlisting}[language=Python, caption={Playwright basic Request}]
 	yield Request(
-	url=url,
-	callback=self.parse,
-	meta=dict(
-	playwright=True,
-	),
+		url=url,
+		callback=self.parse,
+		meta=dict(
+		playwright=True,
+		),
 	)
 \end{lstlisting}
 
-En nuestro caso, para obtener el comportamiento previsto, la Request configurada es la siguiente.
+Para obtener el comportamiento previsto, la Request configurada es la siguiente.
 
 \begin{lstlisting}[language=Python, caption={Agua en Navarra Playwright Request}]
 	from scrapy_playwright.page import PageMethod
 	
 	
 	yield Request(
-	url=url,
-	callback=self.parse,
-	meta=dict(
-	playwright=True,
-	playwright_page_methods=[
-	PageMethod("wait_for_selector", selector="div.botoneraGrafico", state="visible"),
-	PageMethod("click", selector="input#btnDatosNumericos"),
-	PageMethod("waitForEvent", event="click"),
-	],
-	),
+		url=url,
+		callback=self.parse,
+		meta=dict(
+		playwright=True,
+		playwright_page_methods=[
+			PageMethod("wait_for_selector", selector="div.botoneraGrafico", state="visible"),
+			PageMethod("click", selector="input#btnDatosNumericos"),
+			PageMethod("waitForEvent", event="click"),
+		],
+		),
 	)
 \end{lstlisting}
 
-Los PageMethods indican las acciones a realizar una vez se hace la request, siendo la alternativa optada por Playwright al uso de JavaScript. Primero esperamos a que el botón esté cargado dentro de la página, pulsamos sobre el y, esperamos a que la acción de pulsar sea realizada.\newline
+Los PageMethods indican las acciones a realizar una vez se hace la request, siendo la alternativa optada por Playwright al uso de JavaScript. Primero, espera a que el botón esté cargado dentro de la página, pulsa sobre el y, espera a que la acción de pulsar sea realizada.\newline
 \newline
 Según la documentación y los ejemplos estudiados, esta alternativa debería funcionar, pero puesto que no se ha podido ejecutar no es seguro su funcionamiento.
+
+\section{Formateo de datos}
+Para formatear los datos de forma global, cada proyecto individual dispone de dos scripts encargados de hacerlo, uno para los códigos y otro para los datos per se.\newline
+\newline
+\subsection{Aemet}
+
+\subsection{CHCantábrico}
+
+\subsection{MateoNavarra}
+
+\subsection{Agua en Navarra}
+
+\section{Filtrado de datos}
+Tras formatear los ficheros JSON, estos se pasan por el script filtras\_datos\_JSONs.py. En el se realiza lo siguiente.
+
+\begin{lstlisting}[language=Python, caption={Import necesarios}]
+	import json
+	from datetime import date, datetime
+	from pathlib import Path
+\end{lstlisting}
+
+Se importan las dependencias.
+
+\begin{lstlisting}[language=Python, caption={Declaración rutas JSONs y nombre de fichero}]
+	OldDir = "JSONs/OldData/"
+	ParsedDir = "JSONs/ParsedData/"
+	RefinedDir = "JSONs/RefinedData/"
+	DataJSON = "datos_aemet.json"
+\end{lstlisting}
+
+Se declaran las variables representativas de las rutas y el nombre del fichero JSON deseado.
+
+\begin{lstlisting}[language=Python, caption={Declaración función openFile()}]
+	def openFile(fileDir):
+		try:
+			with open(fileDir + DataJSON, "r", encoding="utf-8") as f:
+				file = json.loads(f.read())
+		except FileNotFoundError:
+			file = None
+		return file
+\end{lstlisting}
+
+La función prueba a abrir el fichero anteriormente declarado (datos\_aemet.json) sobre la ruta indicada (fileDir), en caso de no existir, se marca el fichero como None, finalmente devuelve el fichero.
+
+\begin{lstlisting}[language=Python, caption={Declaración función saveFile()}]
+	def saveData(jsonDir, DataFile):
+		Path(jsonDir).mkdir(parents=True, exist_ok=True)
+		with open(jsonDir + DataJSON, 'w', encoding='utf-8') as outfile:
+			json.dump(DataFile, outfile)
+\end{lstlisting}
+
+Recibiendo como argumento el directorio sobre el que se desea guardar el fichero (jsonDir) y un diccionario JSON con los datos a guardar (DataFile), esta función, comprueba la existencia del directorio y en caso de no hacerlo lo crea. Tras ello, guarda los datos en el directorio con el uso de json.dump().
+
+\begin{lstlisting}[language=Python, caption={Declaración rutas JSONs}]
+	def refineData(newFile, oldFile):
+	refinedFile = []
+	fechaActual = date.today().strftime("%d/%m/%Y")
+	
+	for i, item in enumerate(newFile):
+	newData = []
+	for data in item["datos"]:
+	if data["fecha y hora"] not in [x["fecha y hora"] for x in oldFile[i]["datos"]]:
+	print(f"Found difference: {data}")
+	fechaDato = datetime.strptime(data["fecha y hora"], "%d/%m/%Y %H:%M:%S").date().strftime("%d/%m/%Y")
+	if fechaActual == fechaDato:
+	newData.append(data)
+	if newData:
+	refinedFile.append(
+	{
+		"coordenadas": item["coordenadas"],
+		"estacion": item["estacion"],
+		"dato": newData
+	}
+	)
+	
+	saveData(RefinedDir, refinedFile)
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python, caption={Declaración rutas JSONs}]
+	def main():
+		newFile = openFile(ParsedDir)
+		oldFile = openFile(OldDir)
+		
+		if oldFile is None:
+			saveData(RefinedDir, newFile)
+			return
+		
+		refineData(newFile, oldFile)
+\end{lstlisting}
+
+La función main(), abre los ficheros indicados en las rutas ParsedDir y OldDir, en caso de que oldFile sea None, guarda los nuevos datos directamente en el directorio refinedDir y fuerda el fin del programa.

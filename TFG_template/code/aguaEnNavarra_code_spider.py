@@ -22,7 +22,7 @@ class AguaEnNavarraCodeSpider(scrapy.Spider):
 
     def parse_area(self, response):
         for link in response.css('area[shape="rect"]::attr(href)'):
-            yield response.follow(link.get(), callback=self.parse_data)
+            yield response.follow(link.get(), callback=self.parse_estacion)
 
     def parse_estacion(self, response):
         urls = response.xpath('//span/a/@href').getall()
