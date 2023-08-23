@@ -1,8 +1,27 @@
 \chapter[Datos]{Datos}
 \label{Chap2}
 
+Navarra dispone de dos confederaciones hidrográficas, la del cantábrico y la del ebro.\newline
+\newline
+Estas son organismos encargados de la gestión de cuencas hidrográficas que discurren por múltiples comunidades autónomas. Tomando como cuenca hidrográfica a la superficie por la cual fluye un conjunto de agua, como ríos, arroyos y lagos hasta su desembocadura en el mar.\newline
+\newline
+La del cantábrico ejerce sobre aquellos ríos cuya desembocadura va a parar al cantábrico, mientras, la del ebro trabaja sobre las zonal limitadas al cauce del ebro.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/ConfederacionesHidrográficas.jpg}
+	\caption[Confederaciones hidrográficas en España]{Confederaciones hidrográficas en España}
+	\label{fig:ej32}
+\end{figure}
+
+Creadas en 1926, las confederaciones son organismos autónomos, con plena autonomía funcional, adscritas al Ministerio para la Transición Ecológica y el Reto Demográfico. El papel desempeñado por estas recae entre otras cosas en, la planificación hidrológica, gestión de recursos y aprovechamientos, protección del dominio público hidráulico, control de calidad del agua y los bancos de datos.\newline
+\newline
+Es por eso que, es de gran importancia para este proyecto la adquisición de datos relacionados a estas entidades que ejercen en Navarra.\newline
+\newline
 Para este proyecto se dispone de los siguientes datos:
+
 \begin{itemize}
+	\setlength\itemsep{0.5em}
 	\item Nivel (m)
 	\item Caudal ($m^3/s$)
 	\item Precipitación (mm)
@@ -10,7 +29,8 @@ Para este proyecto se dispone de los siguientes datos:
 	\item Humedad (\%)
 	\item Radiación ($W/m^2$)
 \end{itemize}
-A su vez, se dispone de la fecha y hora en la que se hicieron la lectura de los datos, junto con los códigos y coordenadas de las estaciones sobre las cuales se obtienen los datos.
+
+A su vez, se dispone de la fecha y hora en la que se hizo la lectura de los datos, junto con los códigos y coordenadas de las estaciones sobre las cuales se obtienen los datos.
 
 \section{Aemet}
 Como se ve en la imagen \ref{fig:ej3}, dentro de la web podemos encontrar de forma accesible múltiples datos relacionados con la meteorología tomados cada hora, de los cuales seleccionaremos únicamente temperatura, precipitación y humedad, puesto que los datos relacionados con el viento no son tan relevantes para este proyecto. A su vez, no todas las estaciones muestran estos datos, ocurriendo lo mismo con los de presión atmosférica.
@@ -77,7 +97,7 @@ De ella obtenemos los próximos datos, descripción, municipio, río y coordenad
 
 \begin{figure} [H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{fig/AguaEnNavarraEstacionHTML.png}
+	\includegraphics[width=0.5\textwidth]{fig/AguaEnNavarraEstacionHTML.png}
 	\caption[HTML estación de El Agua en Navarra]{HTML estación El Agua en Navarra}
 	\label{fig:ej24}
 \end{figure}
@@ -137,13 +157,13 @@ Debido a la estructuración HTML usada para mostrar las estaciones, imagen \ref{
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.7\linewidth]{fig/MeteoNavarraCodeHTMLTable.png}
+		\includegraphics[width=.8\linewidth]{fig/MeteoNavarraCodeHTMLTable.png}
 		\caption{Tabla}
 		\label{fig:sub5}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.7\linewidth]{fig/MeteoNavarraCodeHTML.png}
+		\includegraphics[width=.9\linewidth]{fig/MeteoNavarraCodeHTML.png}
 		\caption{Filas}
 		\label{fig:sub6}
 	\end{subfigure}
@@ -155,7 +175,7 @@ Las estaciones automáticas proporcionan tanto datos en periodos de diez minutos
 
 \begin{figure} [H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{fig/DatosMeteoNavarra.png}
+	\includegraphics[width=0.6\textwidth]{fig/DatosMeteoNavarra.png}
 	\caption[Apartado selección de datos MeteoNavarra]{Datos MeteoNavarra}
 	\label{fig:ej6}
 \end{figure}

@@ -1,7 +1,7 @@
 \chapter[Tecnologías]{Tecnologías}
 \label{Chap3}
 
-Para este proyecto es necesario el uso de dos servidores, un servidor de base de datos y otro para el despliegue de una API y la obtencion de datos.\newline
+Para este proyecto, es necesario el uso de dos servidores, un servidor de base de datos y otro para el despliegue de una API y la obtencion de datos.\newline
 \newline
 Primero que todo es necesario un sistema operativo capaz de servir este propósito.
 
@@ -29,7 +29,7 @@ Definido por estas licencias, el software libre debe cumplir al menos las que es
 El mercado está repleto de distintas posibles alternativas a Debian, ya sean de pago, Windows Server OS o Red Hat Enterprise Linux (RHEL), gratuitos, Ubuntu Server y Fedora Server, o incluso en la nube, Amazon Web Services (AWS), Google’s Cloud Platform.
 \newline
 \newline
-Descartando todo sistema de pago, aunque las posibilidades se reducen aun hay múltiples opciones sobre las que elegir, pero son pocas las que ofrecen la misma usabilidad que Debian con sus más de 59000 paquetes en su versión estable o incluso puedes usar las versiones «en pruebas» o «inestable» en caso de querer probar las nuevas funciones antes de su lanzamiento oficial. \cite{DebWhy}
+Descartando todo sistema de pago, aunque las posibilidades se reducen, aun hay múltiples opciones sobre las que elegir, pero son pocas las que ofrecen la misma usabilidad que Debian con sus más de 59000 paquetes en su versión estable. \cite{DebWhy}
 \newline
 \newline
 Aunque todos los sistemas basados en Linux disponen de las mismas características, siendo software libre y gratuito con soporte multi-usuario, multi-proceso y uso en tiempo real, Debian siendo uno de los sistemas más longevos del mercado a tomado fama entre la competencia por su seguridad y estabilidad. Siendo la base para muchas de las distribuciones más populares contra las que compite, como Ubuntu, Knoppix, PureOS o Tails.
@@ -41,14 +41,14 @@ Cabe mencionar, que parte de esta seguridad y estabilidad puede llegar a ser un 
 Finalmente, una característica distintiva de Debian frente a la competencia gratuita es su compatibilidad con un uso 24/7, pues otras alternativas gratuitas o no dan soporte a esta característica, Fedora Server o, necesitas disponer de una licencia de pago como es el caso de Ubuntu Server mediante Ubuntu Pro.
 \newline
 \newline
-Puesto que no afecta negativamente el no disponer de las versiones más recientes de software y debido a la necesidad de un sistema 24/7 gratuito, parece lógica la elección de Debian como sistema operativo para usar en el servidor.\newline
+Puesto que no afecta negativamente al proyecto no disponer de las versiones más recientes de software y debido a la necesidad de un sistema 24/7 gratuito, parece lógica la elección de Debian como sistema operativo para usar en el servidor.\newline
 \newline
-La creación de la API requiere de un Famework con el que trabajar.
+Una vez seleccionado sistema operativo, hace falta selecionar un Framework para crear y trabajar con una API.
 
 \section{Framework}
 
 \subsection{Qué es un framework?}
-Un framework es software que provee una infraestructura básica sobre la que desarrollar tus proyectos, aportando las funcionalidades y estructuras básicas necesarias para este sin la necesidad de programar todo desde cero, ahorrando tiempo de desarrollo y aportando robustez al proyecto. \cite{ghimire2020comparative}
+Un framework es software que provee una infraestructura básica sobre la que desarrollar tus proyectos. Aportan las funcionalidades y estructuras básicas necesarias para este sin la necesidad de programar todo desde cero, ahorrando tiempo de desarrollo y aportando robustez al proyecto. \cite{ghimire2020comparative}
 \newline
 \newline
 Cada framework aportará su propia colección de módulos y paquetes específicos para ayudar en el desarrollo, es por esto que generalmente se clasifican en tres clases distintas según funcionalidades. \cite{WebFra}
@@ -80,40 +80,40 @@ Aunque ambas ofrecen funcionalidades operacionales, su mayor diferencia radica e
 Las librerías están compuestas por múltiples métodos para un uso especifico sin aportar mucha complejidad, realizando una tarea por función.
 \newline
 \newline
-Por el contrario, como los framework tienen en cuenta las posibles necesidades de tu proyecto, pudiéndose permitir ser aún más específicos, ofreciendo la arquitectura y comportamiento básico de la aplicación, dejando la flexibilidad de desarrollar las funcionalidades necesarias para su funcionamiento, aportando herramientas sobre las que trabajar. \cite{glez2014web}
+Por el contrario, los framework tienen en cuenta las posibles necesidades de tu proyecto, pudiéndose permitir ser aún más específicos, ofreciendo la arquitectura y comportamiento básico de la aplicación, sin comprometer la flexibilidad de desarrollar las funcionalidades necesarias para su funcionamiento, aportando herramientas sobre las que trabajar. \cite{glez2014web}
 
 \subsection{Django}
 
 \subsubsection{Qué es Django?}
-Djanfo es un framework web de tipo full-stack gratuito y de código abierto para Python. Sigue el principio DRY "Don’t Repeat Yourself" por lo que se enfoca en el menor uso de codigo, el desarrollo rápido y la reutilización de componentes. \cite{DjDF} \cite{alchin2013pro}
+Djanfo es un framework web de tipo full-stack gratuito y de código abierto para Python. Sigue el principio DRY "Don’t Repeat Yourself" por lo que se enfoca en el menor uso de código, el desarrollo rápido y la reutilización de componentes. \cite{DjDF} \cite{alchin2013pro}
 \newline
 \newline
 Hace uso de su auto denominado patrón Modelo-Vista-Template (MVT) \ref{fig:ej1} una variante del conocido Modelo-Vista-Controlador (MVC). \cite{ravindran2015django}
-\newline
-\begin{figure} [h!]
+
+\begin{figure} [H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{fig/DjangoMVT.png}
 	\caption[Diagrama patrón MVT]{Diagrama patrón MVT \footnotemark}
 	\label{fig:ej1}
 \end{figure}
 \footnotetext{https://docs.hektorprofe.net/django/web-personal/patron-mvt-modelo-vista-template/}
-\newline
-Para poder trabajar con bases de datos relacionales tales como, Oracle, MySQL y PostgreSQL, Django usa un Mapeador Relacional de Objetos (ORM) permitiendo interactuar con ellas mediante SQL.
+
+Para poder trabajar con bases de datos relacionales tales como, Oracle, MySQL y PostgreSQL, Django usa un Mapeador Relacional de Objetos (ORM) que permite interactuar con ellas mediante SQL.
 
 \subsubsection{Por qué Django?}
-Partiendo de que el lenguaje de programación a usar es Python, Django es uno de los frameworks más reputados dirigidos a este lenguaje, teniendo en cuanta su naturaleza gratuita y de código abierto. Siendo usado tanto por la comunidad como por empresas tales como Instagram, Mozilla y Facebook. Aunque no por ello significa que no disponga de poca competencia, siendo TurboGears, web2py, Bottle y Flask de las más notables.
+Django es uno de los frameworks más reputados en Python, teniendo en cuanta su naturaleza gratuita y de código abierto. Siendo usado tanto por la comunidad como por empresas tales como Instagram, Mozilla y Facebook. Aunque no por ello significa que no disponga de poca competencia, siendo TurboGears, web2py, Bottle y Flask de las más notables.
 \newline
 \newline
 El que sea un framework full-stack no va a aportar la flexibilidad, libertad y ligereza que da el uso de un microframework, sobre todo a la hora de agregar únicamente aquellas herramientas que considere necesarias, pero si que atenuará la carga de trabajo que puede suponer un microframework si no se dispone de la experiencia necesaria para usarlo.
 \newline
 \newline
-Otra característica por la que me he decantado por Django, aunque no sea única de él, es su compatibilidad con bases de datos relacionales de forma nativa, cosa que facilitara el uso de estas en el proyecto.\newline
+Otra característica por la que decantarse por Django, aunque no sea única de él, es su compatibilidad con bases de datos relacionales de forma nativa, cosa que facilitará el uso de estas en el proyecto.\newline
 \newline
-A su vez, con el fin de obtener los datos se hace uso de un segundo Framework centrado en el scrapeo de datos.
+A su vez, con el fin de obtener los datos, se necesita de una herramienta centrada en el scrapeo de datos.
 
-\subsection{Scrapy}
+\section{Herramienta para Web Scraping}
 
-\subsubsection{Qué es el Web Scraping?}
+\subsection{Qué es el Web Scraping?}
 Web scraping, también conocido como web extraction o web harvesting, es una técnica de extracción de datos desestructurados de la World Wide web (WWW) y guardarlos de forma estructurada en una base de datos o en un sistema de ficheros en formato XML, JSON o CSV para su posterior recuperación o análisis. Generalmente, los datos web son adquiridos mediante el uso de Hyper-text Transfer Protocol (HTTP) o a través de un navegador web, ya sea de forma manual o automática mediante web crawlers, herramientas diseñadas con este propósito, siendo capaces de convertir páginas web enteras en información bien estructurada. \cite{zhao2017web} \cite{krotov2018legality}
 \newline
 \newline
@@ -122,7 +122,7 @@ Debido a la gran cantidad de datos que son generados constantemente en la WWW, w
 \newline
 Web scraping puede ser usado en una gran variedad de entornos, como la recolección de comentarios en redes sociales, listado de la propiedad inmobiliaria o en este caso el monitoreo y comparación de los niveles de los ríos y datos pluviométricos.
 
-\subsubsection{Procedimiento básico en Web Scraping}
+\subsection{Procedimiento básico en Web Scraping}
 El proceso de recolección de datos de Internet se puede dividir en tres procesos secuenciales, el estudio de la pagina sobre la que trabajar, adquirir los recursos web y, luego, organizar la información deseada. \ref{fig:ej2}
 \newline
 \newline
@@ -136,29 +136,30 @@ El primer paso consiste en mirar la estructuración de la web para seleccionar a
 \end{figure}
 \footnotetext{\url{https://www.researchgate.net/figure/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018_fig1_324907302}}
 
+\subsection{Scrapy}
+
 \subsubsection{Qué es Scrapy?}
 Scrapy es un framework asíncrono para web crawling y web scraping gratuito y de código abierto. Por defecto proporciona todas las herramientas necesarias para realizar la tarea de extracción, procesado y estructurado de los datos adquiridos, ademas de dar la opción de extender funcionalidades en caso necesario, haciéndolo extremadamente versátil. \cite{yang2019design}
 \newline
 \newline
-Pensado para navegar entre webs y extraer información de forma estructurada de ellas, Scrapy es usado para múltiples propósitos, por ejemplo, el minado de datos o la monitorización y análisis de datos.
+Pensado para navegar entre webs y extraer información de forma estructurada de ellas, Scrapy se usa para múltiples ámbitos, por ejemplo, el minado de datos o la monitorización y análisis de datos.
 
 \subsubsection{Por qué Scrapy?}
-A la hora de buscar herramientas para web scraping en Python obtuve tres alternativas principales, BeautifulSoup, Selenium y Scrapy.
+A la hora de buscar herramientas para web scraping en Python, fueron tres la alternativas principales encontradas, BeautifulSoup, Selenium y Scrapy.
 \newline
 \newline
-La primera es una librería de parseo de HTML y XML, que, aunque podría haberme servido para mi propósito inicialmente, a la larga su sencillez hubiera sido más un problema que una ayuda.
+La primera es una librería de parseo de HTML y XML, que, aunque podría haber servido para cumplir el propósito del proyecto inicialmente, a la larga su sencillez hubiera sido más un problema que una ayuda.
 \newline
 \newline
-La segunda por el contrario, no es una herramienta para hacer web scraping como tal y se centra en la automatización de la navegación web como entorno de pruebas. Debido a esto, no es una herramienta que haya usado para el web scraping, pero si que ha sido usada junto con Scrapy para navegar entre webs 
-y sacar los datos de estas.
+La segunda por el contrario, no es una herramienta de web scraping como tal y, se centra en la automatización de la navegación web como entorno de pruebas. Debido a esto, no es una herramienta que haya usado para el web scraping, pero si que ha sido usada junto con Scrapy para navegar entre webs y sacar los datos de estas. Proporcionando la posibilidad de hacer uso de JavaScript sobre las páginas, pues Scrapy no dispone de renderizado JavaScript de forma nativa.
 \newline
 \newline
-Scrapy fue elegida gracias a la flexibilidad y versatilidad que proporciona a la hora de trabajar, pudiendo crear proyectos sencillos en cuestión de minutos con las herramientas base proporcionadas o investigar como trabajar con estas herramientas y crear proyectos complejos que satisfagan tus necesidades de la manera que desees. Esto implica que la curva de aprendizaje de Scrapy sea mayor que la que puede tener BeautifulSoup sobre todo al inicio, llegando a parecer abrumador. A su vez, Scrapy tiene el mejor rendimiento entre las tres. \cite{glez2014web}
+Scrapy fue elegida gracias a la flexibilidad y versatilidad que proporciona a la hora de trabajar, pudiendo crear proyectos sencillos en cuestión de minutos con las herramientas base proporcionadas o investigar como trabajar con estas herramientas y crear proyectos complejos que satisfagan tus necesidades de la manera que desees. Esto implica que la curva de aprendizaje de Scrapy sea mayor que la que puede tener BeautifulSoup, sobre todo al inicio, llegando a parecer abrumador. A su vez, la naturaleza de Scrapy le hace tener el mejor rendimiento de entre las tres. \cite{glez2014web}
 \newline
 \newline
-Finalmente, cabe mencionar que Scrapy no dispone de rotación de IP, renderizado JavaScript, ni geolocalización como pueden tener las alternativas de pago, cosa que no es un impedimento para llevar a cabo el proyecto. 
+Finalmente, cabe mencionar que Scrapy no dispone de rotación de IP, ni geolocalización como pueden tener las alternativas de pago, cosa que no es un impedimento para llevar a cabo el proyecto. 
 
-El hecho de seleccionas estos Framework, imponen la necesidad de usar como lenguaje de programación Python.
+El hecho de seleccionar estos Framework, impone la necesidad de usar como lenguaje de programación Python.
 
 \section{Lenguaje de Programación Python}
 
@@ -169,7 +170,7 @@ Siendo su primera aparición en el año 1991 por manos de Guido van Rossum, Pyth
 Python a su vez es un lenguaje multiplataforma, fuertemente tipado, dinámico y multiparadigma, pues soporta programación orientada a objetos, imperativa y funcional. \cite{PyDoc} \cite{borges2014python}
 
 \subsection{Por qué Python?}
-La elección de Python sobre otros lenguajes se basa en su sintaxis sencilla y clara que facilita la programación, junto a la gran cantidad de librerías y frameworks potentes de los que dispone para satisfacer las necesidades que presenta este proyecto, como pueden ser la extracción de datos meteorológicos mediante web scraping y la creación de una API.\newline
+La elección de Python sobre otros lenguajes se basa en su sintaxis sencilla y clara que facilita la programación, junto a la gran cantidad de librerías y frameworks potentes de los que dispone para satisfacer las necesidades que presenta este proyecto, como pueden ser la extracción de datos meteorológicos mediante web scraping haciendo uso de Scrapy y la creación de una API con Django.\newline
 \newline
 Para satisfacer el segundo servicio necesario se requerirá de una base de datos.
 
