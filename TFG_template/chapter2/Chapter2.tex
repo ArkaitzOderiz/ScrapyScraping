@@ -1,18 +1,9 @@
 \chapter[Tecnologías]{Tecnologías}
 \label{Chap3}
 
-\section{Lenguaje de Programación Python}
-
-\subsection{Qué es Python?}
-Siendo su primera aparición en el año 1991 por manos de Guido van Rossum, Python es un lenguaje de programación de alto nivel interpretado que prima la legibilidad del código, siendo este a veces nominado como "seudocódigo ejecutable". \cite{dierbach2014python}
+Para este proyecto es necesario el uso de dos servidores, un servidor de base de datos y otro para el despliegue de una API y la obtencion de datos.\newline
 \newline
-\newline
-Python a su vez es un lenguaje multiplataforma, fuertemente tipado, dinámico y multiparadigma, pues soporta programación orientada a objetos, imperativa y funcional. \cite{PyDoc} \cite{borges2014python}
-
-\subsection{Por qué Python?}
-La elección de Python sobre otros lenguajes se basa en su sintaxis sencilla y clara que facilita la programación, junto a la gran cantidad de librerías y frameworks potentes de los que dispone para satisfacer las necesidades que presenta este proyecto, como pueden ser la extracción de datos meteorológicos mediante web scraping y la creación de una API.
-
-\newpage
+Primero que todo es necesario un sistema operativo capaz de servir este propósito.
 
 \section{Sistema Operativo Debian}
 
@@ -23,9 +14,10 @@ En 1993, tras varios intento fallidos por distintas empresas de solucionar el pr
 Debian no intenta seguir ni competir con los lideres del sector, por el contrario, desde sus inicios el proyecto se ha basado en una filosofía centrada en la robustez y estabilidad del sistema guiada por unos estrictos estándares de calidad, actualizándose conforme las necesidades de sus usuarios a la vez que promueve el software gratuito, lo que le ha ayudado a obtener fama entre los usuarios. \cite{DebFil} \cite{pollei2013debian}
 \newline
 \newline
-A su vez, debido al apoyo del software libre, hace uso de múltiples licencias de software como la Licencia Pública General GNU (GPL), licencias artísticas o del tipo BSD, lo cual ha llevado al desarrollo de las Directrices de Software Libre de Debian (DFSG) con el fin de definir la construcción del software libre. \cite{DebFree}
-\newpage
+A su vez, debido al apoyo del software libre, hace uso de múltiples licencias de software como la Licencia Pública General GNU (GPL), licencias artísticas o del tipo BSD, lo cual ha llevado al desarrollo de las Directrices de Software Libre de Debian (DFSG) con el fin de definir la construcción del software libre. \cite{DebFree}\newline
+\newline
 Definido por estas licencias, el software libre debe cumplir al menos las que están consideradas la cuatro libertades esenciales: \cite{GnuFS}
+
 \begin{itemize}
 	\item Ejecutar el programa como se desee, con cualquier propósito.
 	\item Estudiar cómo funciona el programa, y cambiarlo para que haga lo que se desee.
@@ -49,9 +41,9 @@ Cabe mencionar, que parte de esta seguridad y estabilidad puede llegar a ser un 
 Finalmente, una característica distintiva de Debian frente a la competencia gratuita es su compatibilidad con un uso 24/7, pues otras alternativas gratuitas o no dan soporte a esta característica, Fedora Server o, necesitas disponer de una licencia de pago como es el caso de Ubuntu Server mediante Ubuntu Pro.
 \newline
 \newline
-Una vez contado todo esto, puesto que no me afecta negativamente el no disponer de las versiones más recientes de software y necesito de un sistema 24/7 gratuito, parece lógica la elección de Debian como sistema operativo para usar en el servidor.
-
-\newpage
+Puesto que no afecta negativamente el no disponer de las versiones más recientes de software y debido a la necesidad de un sistema 24/7 gratuito, parece lógica la elección de Debian como sistema operativo para usar en el servidor.\newline
+\newline
+La creación de la API requiere de un Famework con el que trabajar.
 
 \section{Framework}
 
@@ -81,8 +73,6 @@ Como se explica en la documentación de Flask, uno de los framework tipo micro m
 \newline
 Estos framework están dirigidos por eventos. en vez de hacer un manejo operacional linea a linea de las funciones en la que se van ejecutando una detrás de otra, el código asíncrono no es bloqueante por lo que no se espera que un evento termine para ejecutar el siguiente, ejecutándolo de forma simultanea. Debido a esto un framework asíncrono puede llegar a conseguir un gran rendimiento si se usa en un servidor que lo permita.
 
-\newpage
-
 \subsection{Librería vs Framework}
 Aunque ambas ofrecen funcionalidades operacionales, su mayor diferencia radica en la especificidad y complejidad de estas.
 \newline
@@ -110,8 +100,6 @@ Hace uso de su auto denominado patrón Modelo-Vista-Template (MVT) \ref{fig:ej1}
 \newline
 Para poder trabajar con bases de datos relacionales tales como, Oracle, MySQL y PostgreSQL, Django usa un Mapeador Relacional de Objetos (ORM) permitiendo interactuar con ellas mediante SQL.
 
-\newpage
-
 \subsubsection{Por qué Django?}
 Partiendo de que el lenguaje de programación a usar es Python, Django es uno de los frameworks más reputados dirigidos a este lenguaje, teniendo en cuanta su naturaleza gratuita y de código abierto. Siendo usado tanto por la comunidad como por empresas tales como Instagram, Mozilla y Facebook. Aunque no por ello significa que no disponga de poca competencia, siendo TurboGears, web2py, Bottle y Flask de las más notables.
 \newline
@@ -119,9 +107,9 @@ Partiendo de que el lenguaje de programación a usar es Python, Django es uno de
 El que sea un framework full-stack no va a aportar la flexibilidad, libertad y ligereza que da el uso de un microframework, sobre todo a la hora de agregar únicamente aquellas herramientas que considere necesarias, pero si que atenuará la carga de trabajo que puede suponer un microframework si no se dispone de la experiencia necesaria para usarlo.
 \newline
 \newline
-Otra característica por la que me he decantado por Django, aunque no sea única de él, es su compatibilidad con bases de datos relacionales de forma nativa, cosa que facilitara el uso de estas en el proyecto.
-
-\newpage
+Otra característica por la que me he decantado por Django, aunque no sea única de él, es su compatibilidad con bases de datos relacionales de forma nativa, cosa que facilitara el uso de estas en el proyecto.\newline
+\newline
+A su vez, con el fin de obtener los datos se hace uso de un segundo Framework centrado en el scrapeo de datos.
 
 \subsection{Scrapy}
 
@@ -170,11 +158,22 @@ Scrapy fue elegida gracias a la flexibilidad y versatilidad que proporciona a la
 \newline
 Finalmente, cabe mencionar que Scrapy no dispone de rotación de IP, renderizado JavaScript, ni geolocalización como pueden tener las alternativas de pago, cosa que no es un impedimento para llevar a cabo el proyecto. 
 
-\newpage
+El hecho de seleccionas estos Framework, imponen la necesidad de usar como lenguaje de programación Python.
+
+\section{Lenguaje de Programación Python}
+
+\subsection{Qué es Python?}
+Siendo su primera aparición en el año 1991 por manos de Guido van Rossum, Python es un lenguaje de programación de alto nivel interpretado que prima la legibilidad del código, siendo este a veces nominado como "seudocódigo ejecutable". \cite{dierbach2014python}
+\newline
+\newline
+Python a su vez es un lenguaje multiplataforma, fuertemente tipado, dinámico y multiparadigma, pues soporta programación orientada a objetos, imperativa y funcional. \cite{PyDoc} \cite{borges2014python}
+
+\subsection{Por qué Python?}
+La elección de Python sobre otros lenguajes se basa en su sintaxis sencilla y clara que facilita la programación, junto a la gran cantidad de librerías y frameworks potentes de los que dispone para satisfacer las necesidades que presenta este proyecto, como pueden ser la extracción de datos meteorológicos mediante web scraping y la creación de una API.\newline
+\newline
+Para satisfacer el segundo servicio necesario se requerirá de una base de datos.
 
 \section{Base de Datos}
-
-\subsection{Relacional vs No Relacional}
 
 \subsection{PostGreSQL}
 
