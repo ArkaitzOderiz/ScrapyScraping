@@ -60,6 +60,95 @@ Las coordenadas, dentro de un span, imagen \ref{fig:ej21}, están incluidas en e
 	\label{fig:ej21}
 \end{figure}
 
+\section{CHCantábrico}
+En la sección de nivel del río de la pagina de CHCantábrico, se encuentra la tabla con las estaciones, imagen \ref{fig:sub9}. Una peculiaridad de esta, es que aun seguir una estructuración típica de tabla mediante el uso de table, dispone de una tabla adicional en cada una de las filas. Imagen \ref{fig:sub10}.
+
+\begin{figure} [H]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{fig/CHCantabricoCode.png}
+		\caption{Tabla estaciones}
+		\label{fig:sub9}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{fig/CHCantabricoCodeHTML.png}
+		\caption{HTML de la tabla de estaciones}
+		\label{fig:sub10}
+	\end{subfigure}
+	\caption{Página Nivel de los ríos CHCantábrico}
+	\label{fig:ej30}
+\end{figure}
+
+A diferencia del resto de las páginas visitadas, CHCantábrico no muestra los datos sobre la web, por el contrario, implementa un botón con el que descargarlos directamente en formato CSV. Más adelante en el documento se discutirá la repercusión de ello.\newline
+\newline
+Los datos que si se pueden obtener, son aquellos presentes en la tabla secundaria de las fila, los datos de pre-alerta, alerta y seguimiento para cada una de las estaciones, siendo datos valiosos a la hora de intentar anticipar inundaciones.\newline
+\newline
+Las coordenadas a su vez, tampoco vienen dados sobre la web, por lo que hace falta visitar la web del Centro de Estudios Hidrológicos (\url{https://ceh.cedex.es/}) para obtenerlas.
+
+\section{MeteoNavarra}
+En la página de meteorología y climatología de Navarra encontramos una gran sección de estaciones de las cuales poder obtener datos. Imagen \ref{fig:ej27}.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/MeteoNavarraCode.png}
+	\caption[Página estaciones MeteoNavarra]{Página estaciones MeteoNavarra}
+	\label{fig:ej27}
+\end{figure}
+
+De entre los dos tipos e estaciones disponibles, automática y manual, únicamente se va a trabajar con los datos de las estaciones automáticas. El motivo de esto es que las manuales solo proveen datos diarios de, la temperatura máxima, mínima y de la precipitación acumulada. Esto hace que no se disponga de ningún dato hasta que finalice el día, cosa que no es viable si lo que se propone es predecir cambios radicales en un periodo de tiempo reducido.
+\newline
+\newline
+Debido a la estructuración HTML usada para mostrar las estaciones, imagen \ref{fig:sub5}, se puede ver que aun usar el elemento table, este solo dispone de una única fila y columna, haciendo de la columna un elemento div sobre el que insertar los datos, imagen \ref{fig:sub6}. Como es el caso de la web de Agua en Navarra.
+
+\begin{figure} [H]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{fig/MeteoNavarraCodeHTMLTable.png}
+		\caption{Tabla}
+		\label{fig:sub5}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{fig/MeteoNavarraCodeHTML.png}
+		\caption{Filas}
+		\label{fig:sub6}
+	\end{subfigure}
+	\caption{HTML tabla estaciones MeteoNavarra}
+	\label{fig:ej28}
+\end{figure}
+
+Las estaciones automáticas proporcionan tanto datos en periodos de diez minutos como datos diarios. Tras usar el mismo razonamiento que con las estaciones manuales, no tomamos los datos diarios y, entre los actualizados cada diez minutos, se toman la temperatura, humedad relativa, radiación global y precipitación. El resto se omitirán. Imagen \ref{fig:ej6}.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{fig/DatosMeteoNavarra.png}
+	\caption[Apartado selección de datos MeteoNavarra]{Datos MeteoNavarra}
+	\label{fig:ej6}
+\end{figure}
+
+Los datos se muestran en formato tabla, tanto visualmente, en la imagen \ref{fig:sub7} como a nivel de HTML, imagen \ref{fig:sub8}, cosa que facilita su obtención.
+
+\begin{figure} [H]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{fig/MeteoNavarraData.png}
+		\caption{Tabla datos}
+		\label{fig:sub7}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{fig/MeteoNavarraCodeHTML.png}
+		\caption{HTML de la tabla de datos}
+		\label{fig:sub8}
+	\end{subfigure}
+	\caption{Página de datos de MeteoNavarra}
+	\label{fig:ej29}
+\end{figure}
+
 \section{El Agua en Navarra}
 En esta página encontraremos los datos tanto del nivel de los ríos como de su caudal en los últimos 15 días en periodos de 10 minutos, siendo una de las fuentes principales de datos.
 \newline
@@ -137,92 +226,3 @@ Los datos numéricos están presentados en formato tabla como se aprecia en la i
 	\caption{Datos numéricos de estaciones en Agua en Navarra}
 	\label{fig:ej26}
 \end{figure}
-
-\section{MeteoNavarra}
-En la página de meteorología y climatología de Navarra encontramos una gran sección de estaciones de las cuales poder obtener datos. Imagen \ref{fig:ej27}.
-
-\begin{figure} [H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{fig/MeteoNavarraCode.png}
-	\caption[Página estaciones MeteoNavarra]{Página estaciones MeteoNavarra}
-	\label{fig:ej27}
-\end{figure}
-
-De entre los dos tipos e estaciones disponibles, automática y manual, únicamente se va a trabajar con los datos de las estaciones automáticas. El motivo de esto es que las manuales solo proveen datos diarios de, la temperatura máxima, mínima y de la precipitación acumulada. Esto hace que no se disponga de ningún dato hasta que finalice el día, cosa que no es viable si lo que se propone es predecir cambios radicales en un periodo de tiempo reducido.
-\newline
-\newline
-Debido a la estructuración HTML usada para mostrar las estaciones, imagen \ref{fig:sub5}, se puede ver que aun usar el elemento table, este solo dispone de una única fila y columna, haciendo de la columna un elemento div sobre el que insertar los datos, imagen \ref{fig:sub6}. Como es el caso de la web de Agua en Navarra.
-
-\begin{figure} [H]
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.8\linewidth]{fig/MeteoNavarraCodeHTMLTable.png}
-		\caption{Tabla}
-		\label{fig:sub5}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.9\linewidth]{fig/MeteoNavarraCodeHTML.png}
-		\caption{Filas}
-		\label{fig:sub6}
-	\end{subfigure}
-	\caption{HTML tabla estaciones MeteoNavarra}
-	\label{fig:ej28}
-\end{figure}
-
-Las estaciones automáticas proporcionan tanto datos en periodos de diez minutos como datos diarios. Tras usar el mismo razonamiento que con las estaciones manuales, no tomamos los datos diarios y, entre los actualizados cada diez minutos, se toman la temperatura, humedad relativa, radiación global y precipitación. El resto se omitirán. Imagen \ref{fig:ej6}.
-
-\begin{figure} [H]
-	\centering
-	\includegraphics[width=0.6\textwidth]{fig/DatosMeteoNavarra.png}
-	\caption[Apartado selección de datos MeteoNavarra]{Datos MeteoNavarra}
-	\label{fig:ej6}
-\end{figure}
-
-Los datos se muestran en formato tabla, tanto visualmente, en la imagen \ref{fig:sub7} como a nivel de HTML, imagen \ref{fig:sub8}, cosa que facilita su obtención.
-
-\begin{figure} [H]
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.7\linewidth]{fig/MeteoNavarraData.png}
-		\caption{Tabla datos}
-		\label{fig:sub7}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.7\linewidth]{fig/MeteoNavarraCodeHTML.png}
-		\caption{HTML de la tabla de datos}
-		\label{fig:sub8}
-	\end{subfigure}
-	\caption{Página de datos de MeteoNavarra}
-	\label{fig:ej29}
-\end{figure}
-
-\section{CHCantábrico}
-En la sección de nivel del río de la pagina de CHCantábrico, se encuentra la tabla con las estaciones, imagen \ref{fig:sub9}. Una peculiaridad de esta, es que aun seguir una estructuración típica de tabla mediante el uso de table, dispone de una tabla adicional en cada una de las filas. Imagen \ref{fig:sub10}.
-
-\begin{figure} [H]
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.7\linewidth]{fig/CHCantabricoCode.png}
-		\caption{Tabla estaciones}
-		\label{fig:sub9}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.7\linewidth]{fig/CHCantabricoCodeHTML.png}
-		\caption{HTML de la tabla de estaciones}
-		\label{fig:sub10}
-	\end{subfigure}
-	\caption{Página Nivel de los ríos CHCantábrico}
-	\label{fig:ej30}
-\end{figure}
-
-A diferencia del resto de las páginas visitadas, CHCantábrico no muestra los datos sobre la web, por el contrario, implementa un botón con el que descargarlos directamente en formato CSV. Más adelante en el documento se discutirá la repercusión de ello.\newline
-\newline
-Los datos que si se pueden obtener, son aquellos presentes en la tabla secundaria de las fila, los datos de pre-alerta, alerta y seguimiento para cada una de las estaciones, siendo datos valiosos a la hora de intentar anticipar inundaciones.\newline
-\newline
-Las coordenadas a su vez, tampoco vienen dados sobre la web, por lo que hace falta visitar la web del Centro de Estudios Hidrológicos (\url{https://ceh.cedex.es/}) para obtenerlas.

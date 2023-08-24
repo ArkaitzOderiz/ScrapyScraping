@@ -190,10 +190,23 @@ Así pues, Cron es el encargado de ejecutar cada proceso necesario dentro de la 
 De esta forma dispondríamos de un sistema cerrado automático, el cual nos permitiría trabajar en otros apartados como puede ser la integración de mas webs en la plataforma o la mejora del sistema de predicción.
 
 \subsubsection{Django}
-La instancia del servidor de Django es la encargada de tanto recibir los datos obtenidos como de enviarlos a la base de datos. Finalmente, una vez se dispusiera de la aplicación de predicción se encargaría de pedir los datos almacenados y de enviarlos mediante POST a la aplicación.
+La instancia del servidor de Django es la encargada de tanto recibir los datos obtenidos como de enviarlos a la base de datos. Finalmente, una vez se dispusiera de una aplicación de predicción, se encargaría de pedir los datos almacenados y enviarlos mediante POST a la aplicación.
 
 \subsubsection{PostGreSQL}
-La base de datos, ejecutada en una maquina virtual independiente, dispone de las siguientes dos tablas:
+La base de datos, dispone de las siguientes dos tablas de la imagen \ref{fig:ej33}.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/TablasBBDD.png}
+	\caption[Tablas de la base de datos]{Tablas de la base de datos}
+	\label{fig:ej33}
+\end{figure}
+
+Tienen una relación uno a muchos, siendo el campo estacion de la tabla Data la ForeingKey usada.\newline
+\newline
+Para la tabla Data, al almacenar miles de datos, se ha optado por usar una PrimaryKey auto incremental. A su vez, a excepcion del campo fecha, cualquiera de los campos pueden ser nulos, pues cada web proporciona unicamente un conjunto de los datos.\newline
+\newline
+En la tabla Code, exceptuando la clave primaria y el nombre de la estación, el resto de campos tienen la posibilidad de ser nulos.
 
 \section{Entorno de ejecución}
 El proyecto se dividirá en dos ordenadores (maquinas virtuales). Uno de ellos será el responsable de la base de datos en PostGreSQL, mientras que, el otro, se encargara de la ejecución del código de obtención de datos, tratarlos y enviarlos a la base de datos.
@@ -222,7 +235,7 @@ Primero instalaremos las dependencias para crear y activar un entorno virtual so
 Cada Spider dispondrá de su propio entorno virtual, nombrado tras la pagina web a la que representa, de esta forma, por ejemplo, el entorno virtual para la web de chcantabrico también se llamará chcantabrico.
 Otro entorno virtual sera usado para el servidor Django y los Scripts encargados del envío de datos.
 
-\subsection{Instalacion y configuracion de PostGreSQL}
+\subsection{Instalación y configuración de PostGreSQL}
 Comenzamos con los comandos necesarios para la instalación inicial de PostGreSQL y con la creación de un usuario y una base de datos.
 
 \begin{verbatim}
@@ -254,7 +267,7 @@ Comenzamos con los comandos necesarios para la instalación inicial de PostGreSQ
 	
 \end{verbatim}
 
-En este punto ya dispondríamos de una base de datos (aun sin tablas en ella) y de un usuario con el que conectarnos a esta desde Django.\newline
+En este punto ya se dispondría de una base de datos (aun sin tablas en ella) y de un usuario con el que conectarse a esta desde Django.\newline
 \newline
 Ahora quedaría configurar el permiso de comunicación entre dispositivos, más concretamente la conexión remota de Django con PostGreSQL.
 
@@ -311,7 +324,7 @@ Una vez realizado lo siguiente, quedaría configurar la API.
 	#Abrimos el archivo settings.py con un editor
 	(envdemiproyecto) user@host:~/dirdemiproyecto$ nano djangoAPI/settings.py
 	
-	#Añadimos nuestra app
+	#Añadimos nuestra app en la lista de INSTALLED_APPS
 	INSTALLED_APPS = [
 		'django.contrib.admin',
 		'django.contrib.auth',
@@ -375,10 +388,10 @@ Dentro definimos los modelos Data y Code.
 		caudal = models.FloatField(null=True)
 		radiacion = models.FloatField(null=True)
 		fecha = models.DateTimeField()
-		estacion = models.ForeignKey(Code, on_delete=models.CASCADE)
+		estacion = models.ForeignKey("Code", on_delete=models.CASCADE)
 	
 	class Code(models.Model):
-		estacion = models.PrimaryKey(max_length=50)
+		estacion = models.CharField(max_length=50)
 		codigo = models.CharField(max_length=20, primary_key=True)
 		coodenadas = models.CharField(max_length=50)
 		seguimiento = models.FloatField(null=True)
@@ -386,7 +399,7 @@ Dentro definimos los modelos Data y Code.
 		alerta = models.FloatField(null=True)
 \end{lstlisting}
 
-Para importar los modelos a la base de datos.
+Para importar los modelos a la base de datos, con el fin de crear las respectivas tablas.
 
 \begin{verbatim}
 	#Actualizamos los datos realizados en models.py
@@ -395,4 +408,5 @@ Para importar los modelos a la base de datos.
 	#Migramos los datos
 	envdemiproyecto) user@host:~/dirdemiproyecto$ python3 manage.py migrate
 \end{verbatim}
+
 
