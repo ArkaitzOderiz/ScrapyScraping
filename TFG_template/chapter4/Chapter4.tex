@@ -24,7 +24,9 @@ Aunque sea la estructura más simple y fácil de implementar, pues scrapy mismo 
 
 Pasa solventar el problema se ha incluido un paso intermedio en el que inicialmente almacena los datos obtenidos de las distintas webs en formato JSON, para posteriormente enviárselos a Django, el cual se encargara de subir los datos a la BBDD, mientras, el resto de la arquitectura seria idéntico a la versión original.
 
-\section{Flujo de Datos}
+\section{Trabajar con los Datos}
+
+\subsection{Flujo de Datos}
 1.- Pedir datos (JSON1)\newline
 2.- Formatear datos en un nuevo JSON (JSON1 -> JSON2)\newline
 3.- Mandar datos a la BBDD (JSON2)\newline
@@ -44,7 +46,7 @@ While(true)\newline
 \newline
 Puesto que los datos obtenidos no son los mismos para cada web, antes de ser enviados a Django deben ser parseados para compartir una estructura heterogénea, una vez obtenido el JSON parseado, en caso de ser la primera iteración se mandaran directamente los datos a la BBDD, de no ser la primera iteración, se tomaran unicamente los nuevos datos obtenidos como datos a enviar, una vez enviados los datos el JSON parseado sera marcado como old (viejo) para ser el punto de comparación respecto a los datos mas recientes que obtendremos de las webs.
 
-\subsection{Datos obtenidos}
+\subsection{Datos obtenidos por página}
 Aemet:\newline
 temperatura, humedad, precipitación
 \newline\newline
@@ -62,12 +64,10 @@ En todas las webs se proporciona las coordenadas junto con la fecha y hora en la
 \subsection{Formato de Datos}
 No todas las webs presentan sus datos de la misma manera, es por eso que nos encontramos con que los datos que hemos obtenido pueden llegar a estar repartidos en distintas páginas, haciendo necesario el uso de múltiples Spiders, resultando en multiples JSON.\newline
 \newline
-Es por eso que para cada web se ha creado una función para parsear (formatear) los datos obtenidos, de esta manera se dispone de una estructura única para los datos recibidos, haciendo su uso posterior más fácil, ya sea a la hora de tratarlos como para almacenarlos en la base de datos.
-
+Debido a ello, para cada web se ha creado una función para parsear (formatear) los datos obtenidos, de esta manera se dispone de una estructura única para los datos recibidos, haciendo su uso posterior más fácil, ya sea a la hora de tratarlos como para almacenarlos en la base de datos.\newline
+\newline
 Esquema obtenido:
-\newline
-\newline
-\newline
+
 \begin{lstlisting}[language=json]
 [
 {
@@ -89,10 +89,11 @@ Esquema obtenido:
 \end{lstlisting}
 
 \subsection{Filtrado de Datos}
-Una vez formateados los datos con el fin de reducir la carga a la base de datos, estos son filtrados mediante la comparación con los ficheros anteriormente marcados como old, de esta forma nos aseguramos de mandar a la base de datos unicamente las instancias nuevas de los datos recogidos, pues no disponemos de ninguna forma para filtrar los datos a la hora de obtenerlos. Estos datos serán guardados en un tercer JSON.
+Una vez formateados los datos, con el fin de reducir la carga a la base de datos, estos son filtrados mediante la comparación con los ficheros anteriormente marcados como old, de esta forma, nos aseguramos de mandar a la base de datos unicamente las instancias nuevas de los datos recogidos, pues no disponemos de ninguna manera de filtrar los datos a la hora de obtenerlos. Estos datos serán guardados en un tercer JSON.
 
 \section{Arquitectura}
 Para poder realizar el trabajo se ha diseñado la siguiente arquitectura.\ref{fig:ej7}
+
 \begin{figure} [h]
 	\centering
 	\includegraphics[width=0.7\textwidth]{fig/arquitectura.png}
@@ -223,6 +224,7 @@ Otro entorno virtual sera usado para el servidor Django y los Scripts encargados
 
 \subsection{Instalacion y configuracion de PostGreSQL}
 Comenzamos con los comandos necesarios para la instalación inicial de PostGreSQL y con la creación de un usuario y una base de datos.
+
 \begin{verbatim}
 	#Instalamos PostGreSQL y las dependencias
 	user@host:~$ sudo apt install libpq-dev postgresql postgresql-contrib
@@ -258,7 +260,7 @@ Ahora quedaría configurar el permiso de comunicación entre dispositivos, más 
 
 \begin{verbatim}
 	#Abrimos el archivo postgresql.conf con un editor
-	sudo nano /etc/postgresql/11/main/postgresql.conf
+	user@host:~$ sudo nano /etc/postgresql/11/main/postgresql.conf
 	
 	#Buscamos la linea "#listen_addresses = 'localhost'", borramos la almohadilla y
 	sustituimos localhost por *, permitiendo la escucha de cualquier direccion IP
@@ -267,7 +269,7 @@ Ahora quedaría configurar el permiso de comunicación entre dispositivos, más 
 	#Guardamos y cerramos el fichero
 	
 	#Abrimos el archivo pg_hba.conf con un editor
-	sudo nano /etc/postgresql/11/main/pg_hba.conf
+	user@host:~$ sudo nano /etc/postgresql/11/main/pg_hba.conf
 	
 	#Por defecto solo permite conexiones desde localhost
 	# IPv4 local connections: 
@@ -283,10 +285,114 @@ Ahora quedaría configurar el permiso de comunicación entre dispositivos, más 
 	#Guardamos y cerramos el fichero
 	
 	#Finalmete permitimos el trafico mediante el puerto 5432 (puesto por defecto)
-	sudo ufw allow 5432/tcp
+	user@host:~$ sudo ufw allow 5432/tcp
 \end{verbatim}
 
 Una vez realizados los siguientes pasos ya está la instancia de PostGreSQL configurada.
 
+\subsection{Instalación y configuración de Django}
+Antes de instalar Django, es necesario generar un entorno virtual sobre el que trabajar.
 
+\begin{verbatim}
+	#Instalamos Django y las dependencias
+	(envdemiproyecto) user@host:~/dirdemiproyecto$ pip install django psycopg2
+	
+	#Creamos un nuevo proyecto de Django
+	(envdemiproyecto) user@host:~/dirdemiproyecto$ django-admin startproject djangoAPI
+	(envdemiproyecto) user@host:~/dirdemiproyecto$ cd djangoAPI
+	
+	#Creamos una nueva app Django
+	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ python manage.py startapp appAPI
+\end{verbatim}
+
+Una vez realizado lo siguiente, quedaría configurar la API.
+
+\begin{verbatim}
+	#Abrimos el archivo settings.py con un editor
+	(envdemiproyecto) user@host:~/dirdemiproyecto$ nano djangoAPI/settings.py
+	
+	#Añadimos nuestra app
+	INSTALLED_APPS = [
+		'django.contrib.admin',
+		'django.contrib.auth',
+		'django.contrib.contenttypes',
+		'django.contrib.sessions',
+		'django.contrib.messages',
+		'django.contrib.staticfiles',
+		'appAPI.apps.AppapiConfig',
+	]
+	
+	#Configuramos la base de datos sutituyendo
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.sqlite3',
+			'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+		}
+	}
+
+	por
+
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.postgresql_psycopg2',
+			'NAME': 'bbddmiproyecto',
+			'USER': 'miusuario',
+			'PASSWORD': 'micontraseña',
+			'HOST': '172.18.83.197',
+			'PORT': '5432',
+		}
+	}
+
+	#Configuramos las IP admitidas
+	ALLOWED_HOSTS = ['172.18.83.197', 'localhost']
+	
+	#configuramos la zona horaria
+	TIME_ZONE = 'Europe/Madrid'
+	
+	#Guardamos y cerramos el fichero
+	
+	#Finalmete permitimos el trafico mediante el puerto 8000 (puesto por defecto)
+	user@host:~$ sudo ufw allow 8000
+\end{verbatim}
+
+Tras configurar la API, toca crear los modelos de la base de datos.
+
+\begin{verbatim}
+	#Abrimos el archivo models.py con un editor
+	(envdemiproyecto) user@host:~/dirdemiproyecto$ nano djangoAPI/settings.py
+\end{verbatim}
+
+Dentro definimos los modelos Data y Code.
+
+\begin{lstlisting}[language=Python, caption={Modelos Django}]
+	from django.db import models
+	
+	class Data(models.Model):
+		temperatura = models.FloatField(null=True)
+		humedad = models.FloatField(null=True)
+		precipitacion = models.FloatField(null=True)
+		nivel = models.FloatField(null=True)
+		caudal = models.FloatField(null=True)
+		radiacion = models.FloatField(null=True)
+		fecha = models.DateTimeField()
+		estacion = models.ForeignKey(Code, on_delete=models.CASCADE)
+	
+	class Code(models.Model):
+		estacion = models.PrimaryKey(max_length=50)
+		codigo = models.CharField(max_length=20, primary_key=True)
+		coodenadas = models.CharField(max_length=50)
+		seguimiento = models.FloatField(null=True)
+		prealerta = models.FloatField(null=True)
+		alerta = models.FloatField(null=True)
+\end{lstlisting}
+
+Para importar los modelos a la base de datos.
+
+\begin{verbatim}
+	#Actualizamos los datos realizados en models.py
+	(envdemiproyecto) user@host:~/dirdemiproyecto$ python3 manage.py makemigrations
+	
+	#Migramos los datos
+	envdemiproyecto) user@host:~/dirdemiproyecto$ python3 manage.py migrate
+\end{verbatim}
 
