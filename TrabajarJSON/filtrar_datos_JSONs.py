@@ -1,5 +1,4 @@
 import json
-from datetime import date, datetime
 
 OldData = [
     "../JSONs/OldData/old_datos_aemet.json",
@@ -30,16 +29,13 @@ def saveRefinedData(i, refinedFile):
 
 def refineData(index, newFile, oldFile):
     refinedFile = []
-    fechaActual = date.today().strftime("%d/%m/%Y")
 
     for i, item in enumerate(newFile):
         newData = []
         for data in item["datos"]:
             if data["fecha y hora"] not in [x["fecha y hora"] for x in oldFile[i]["datos"]]:
                 print(f"Found difference: {data}")
-                fechaDato = datetime.strptime(data["fecha y hora"], "%d/%m/%Y %H:%M:%S").date().strftime("%d/%m/%Y")
-                if fechaActual == fechaDato:
-                    newData.append(data)
+                newData.append(data)
         if newData:
             refinedFile.append(
                 {
