@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  25 AUG 2023 11:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  25 AUG 2023 14:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1094,12 +1094,7 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4--9
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--9
+Underfull \hbox (badness 10000) in paragraph at lines 4--7
 
  []
 
@@ -1107,15 +1102,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--9
 File: fig/ConfederacionesHidrogrÃ¡ficas.jpg Graphic file (type jpg)
 <use fig/ConfederacionesHidrogrÃ¡ficas.jpg>
 Package pdftex.def Info: fig/ConfederacionesHidrogrÃ¡ficas.jpg  used on input l
-ine 12.
+ine 10.
 (pdftex.def)             Requested size: 298.75262pt x 168.02602pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--22
+Underfull \hbox (badness 10000) in paragraph at lines 15--20
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--22
+Underfull \hbox (badness 10000) in paragraph at lines 15--20
 
  []
 
@@ -1123,52 +1118,47 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--22
 <fig/AemetData.png, id=656, 590.95781pt x 316.93407pt>
 File: fig/AemetData.png Graphic file (type png)
 <use fig/AemetData.png>
-Package pdftex.def Info: fig/AemetData.png  used on input line 40.
+Package pdftex.def Info: fig/AemetData.png  used on input line 38.
 (pdftex.def)             Requested size: 298.75262pt x 160.22694pt.
  [10 <./fig/AemetData.png>]
 <fig/AemetDataHTML.png, id=665, 646.66594pt x 203.25937pt>
 File: fig/AemetDataHTML.png Graphic file (type png)
 <use fig/AemetDataHTML.png>
-Package pdftex.def Info: fig/AemetDataHTML.png  used on input line 49.
+Package pdftex.def Info: fig/AemetDataHTML.png  used on input line 47.
 (pdftex.def)             Requested size: 298.75262pt x 93.90363pt.
 <fig/AemetCoordHTML.png, id=667, 330.48468pt x 124.96687pt>
 File: fig/AemetCoordHTML.png Graphic file (type png)
 <use fig/AemetCoordHTML.png>
-Package pdftex.def Info: fig/AemetCoordHTML.png  used on input line 58.
+Package pdftex.def Info: fig/AemetCoordHTML.png  used on input line 56.
 (pdftex.def)             Requested size: 298.75262pt x 112.97255pt.
 <fig/CHCantabricoCode.png, id=670, 842.54774pt x 390.86024pt>
 File: fig/CHCantabricoCode.png Graphic file (type png)
 <use fig/CHCantabricoCode.png>
-Package pdftex.def Info: fig/CHCantabricoCode.png  used on input line 70.
+Package pdftex.def Info: fig/CHCantabricoCode.png  used on input line 68.
 (pdftex.def)             Requested size: 149.3763pt x 69.29617pt.
 <fig/CHCantabricoCodeHTML.png, id=671, 240.29774pt x 221.02576pt>
 File: fig/CHCantabricoCodeHTML.png Graphic file (type png)
 <use fig/CHCantabricoCodeHTML.png>
-Package pdftex.def Info: fig/CHCantabricoCodeHTML.png  used on input line 76.
+Package pdftex.def Info: fig/CHCantabricoCodeHTML.png  used on input line 74.
 (pdftex.def)             Requested size: 149.3763pt x 137.3954pt.
 
 Underfull \vbox (badness 3758) has occurred while \output is active []
 
  [11 <./fig/AemetDataHTML.png> <./fig/AemetCoordHTML.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 84--89
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 84--89
-
+Overfull \hbox (12.15996pt too wide) in paragraph at lines 84--84
+[]\T1/fve/b/n/14.4 Meteorología y cli-ma-tología de Navarra (Me-teoN-avarra) 
  []
 
 <fig/MeteoNavarraCode.png, id=680, 450.483pt x 432.4155pt>
 File: fig/MeteoNavarraCode.png Graphic file (type png)
 <use fig/MeteoNavarraCode.png>
-Package pdftex.def Info: fig/MeteoNavarraCode.png  used on input line 95.
+Package pdftex.def Info: fig/MeteoNavarraCode.png  used on input line 89.
 (pdftex.def)             Requested size: 298.75262pt x 286.77411pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12 <./fig/CHCantabricoCode.png> <./fig/CHCantabricoCodeHTML.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 100--104
+Underfull \hbox (badness 10000) in paragraph at lines 94--98
 
  []
 
@@ -1176,36 +1166,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 100--104
 File: fig/MeteoNavarraCodeHTMLTable.png Graphic file (type png)
 <use fig/MeteoNavarraCodeHTMLTable.png>
 Package pdftex.def Info: fig/MeteoNavarraCodeHTMLTable.png  used on input line 
-109.
+103.
 (pdftex.def)             Requested size: 170.71718pt x 43.67142pt.
 <fig/MeteoNavarraCodeHTML.png, id=690, 841.34325pt x 207.174pt>
 File: fig/MeteoNavarraCodeHTML.png Graphic file (type png)
 <use fig/MeteoNavarraCodeHTML.png>
-Package pdftex.def Info: fig/MeteoNavarraCodeHTML.png  used on input line 115.
+Package pdftex.def Info: fig/MeteoNavarraCodeHTML.png  used on input line 109.
 (pdftex.def)             Requested size: 192.05478pt x 47.2918pt.
 [13 <./fig/MeteoNavarraCode.png> <./fig/MeteoNavarraCodeHTMLTable.png> <./fig/M
 eteoNavarraCodeHTML.png>]
 <fig/DatosMeteoNavarra.png, id=699, 583.42969pt x 603.0028pt>
 File: fig/DatosMeteoNavarra.png Graphic file (type png)
 <use fig/DatosMeteoNavarra.png>
-Package pdftex.def Info: fig/DatosMeteoNavarra.png  used on input line 127.
+Package pdftex.def Info: fig/DatosMeteoNavarra.png  used on input line 121.
 (pdftex.def)             Requested size: 256.0774pt x 264.67798pt.
 <fig/MeteoNavarraData.png, id=702, 478.78876pt x 239.09325pt>
 File: fig/MeteoNavarraData.png Graphic file (type png)
 <use fig/MeteoNavarraData.png>
-Package pdftex.def Info: fig/MeteoNavarraData.png  used on input line 138.
+Package pdftex.def Info: fig/MeteoNavarraData.png  used on input line 132.
 (pdftex.def)             Requested size: 149.3763pt x 74.5924pt.
 File: fig/MeteoNavarraCodeHTML.png Graphic file (type png)
 <use fig/MeteoNavarraCodeHTML.png>
-Package pdftex.def Info: fig/MeteoNavarraCodeHTML.png  used on input line 144.
+Package pdftex.def Info: fig/MeteoNavarraCodeHTML.png  used on input line 138.
 (pdftex.def)             Requested size: 149.3763pt x 36.78075pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--159
+Underfull \hbox (badness 10000) in paragraph at lines 147--153
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--159
+Underfull \hbox (badness 10000) in paragraph at lines 147--153
 
  []
 
@@ -1216,26 +1206,26 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <fig/AguaEnNavarraCode.png, id=710, 584.1825pt x 556.32843pt>
 File: fig/AguaEnNavarraCode.png Graphic file (type png)
 <use fig/AguaEnNavarraCode.png>
-Package pdftex.def Info: fig/AguaEnNavarraCode.png  used on input line 162.
+Package pdftex.def Info: fig/AguaEnNavarraCode.png  used on input line 156.
 (pdftex.def)             Requested size: 298.75262pt x 284.51321pt.
 <fig/AguaEnNavarraCodeHTML.png, id=712, 673.76718pt x 100.12407pt>
 File: fig/AguaEnNavarraCodeHTML.png Graphic file (type png)
 <use fig/AguaEnNavarraCodeHTML.png>
-Package pdftex.def Info: fig/AguaEnNavarraCodeHTML.png  used on input line 171.
+Package pdftex.def Info: fig/AguaEnNavarraCodeHTML.png  used on input line 165.
 
 (pdftex.def)             Requested size: 298.75262pt x 44.3954pt.
  [15 <./fig/AguaEnNavarraCode.png>]
 <fig/AguaEnNavarraEstacion.png, id=720, 557.83406pt x 193.47281pt>
 File: fig/AguaEnNavarraEstacion.png Graphic file (type png)
 <use fig/AguaEnNavarraEstacion.png>
-Package pdftex.def Info: fig/AguaEnNavarraEstacion.png  used on input line 180.
+Package pdftex.def Info: fig/AguaEnNavarraEstacion.png  used on input line 174.
 
 (pdftex.def)             Requested size: 298.75262pt x 103.61763pt.
 <fig/AguaEnNavarraEstacionHTML.png, id=722, 306.39468pt x 364.36125pt>
 File: fig/AguaEnNavarraEstacionHTML.png Graphic file (type png)
 <use fig/AguaEnNavarraEstacionHTML.png>
 Package pdftex.def Info: fig/AguaEnNavarraEstacionHTML.png  used on input line 
-189.
+183.
 (pdftex.def)             Requested size: 213.39566pt x 253.76683pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1244,7 +1234,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <fig/AguaEnNavarraGrafica.png, id=731, 579.66562pt x 532.23843pt>
 File: fig/AguaEnNavarraGrafica.png Graphic file (type png)
 <use fig/AguaEnNavarraGrafica.png>
-Package pdftex.def Info: fig/AguaEnNavarraGrafica.png  used on input line 198.
+Package pdftex.def Info: fig/AguaEnNavarraGrafica.png  used on input line 192.
 (pdftex.def)             Requested size: 298.75262pt x 274.31294pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1253,17 +1243,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <fig/ErrorAguaEnNavarra.png, id=737, 587.19376pt x 182.93344pt>
 File: fig/ErrorAguaEnNavarra.png Graphic file (type png)
 <use fig/ErrorAguaEnNavarra.png>
-Package pdftex.def Info: fig/ErrorAguaEnNavarra.png  used on input line 205.
+Package pdftex.def Info: fig/ErrorAguaEnNavarra.png  used on input line 199.
 (pdftex.def)             Requested size: 298.75262pt x 93.0715pt.
 <fig/AguaEnNavarraData.png, id=740, 575.90157pt x 159.59625pt>
 File: fig/AguaEnNavarraData.png Graphic file (type png)
 <use fig/AguaEnNavarraData.png>
-Package pdftex.def Info: fig/AguaEnNavarraData.png  used on input line 216.
+Package pdftex.def Info: fig/AguaEnNavarraData.png  used on input line 210.
 (pdftex.def)             Requested size: 192.05478pt x 53.22215pt.
 <fig/AguaEnNavarraDataHTML.png, id=741, 204.765pt x 97.86563pt>
 File: fig/AguaEnNavarraDataHTML.png Graphic file (type png)
 <use fig/AguaEnNavarraDataHTML.png>
-Package pdftex.def Info: fig/AguaEnNavarraDataHTML.png  used on input line 222.
+Package pdftex.def Info: fig/AguaEnNavarraDataHTML.png  used on input line 216.
 
 (pdftex.def)             Requested size: 149.3763pt x 71.398pt.
 ) (chapter2/Chapter2.tex
@@ -1285,215 +1275,209 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--7
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14--20
+Underfull \hbox (badness 10000) in paragraph at lines 9--16
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14--20
+Underfull \hbox (badness 10000) in paragraph at lines 9--16
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--16
 
  []
 
 [21]
-Underfull \hbox (badness 10000) in paragraph at lines 29--47
+Underfull \hbox (badness 10000) in paragraph at lines 24--42
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--47
+Underfull \hbox (badness 10000) in paragraph at lines 24--42
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--47
+Underfull \hbox (badness 10000) in paragraph at lines 24--42
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--47
+Underfull \hbox (badness 10000) in paragraph at lines 24--42
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--47
+Underfull \hbox (badness 10000) in paragraph at lines 24--42
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--47
+Underfull \hbox (badness 10000) in paragraph at lines 24--42
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--56
 
  []
 
 [22]
-Underfull \hbox (badness 10000) in paragraph at lines 51--55
+Underfull \hbox (badness 10000) in paragraph at lines 58--62
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--62
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 57--62
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 63--71
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 63--71
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 63--71
-
- []
-
-[23]
-Underfull \hbox (badness 10000) in paragraph at lines 77--84
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 77--84
-
- []
-
-
-Overfull \hbox (10.98528pt too wide) in paragraph at lines 77--84
+Overfull \hbox (10.98528pt too wide) in paragraph at lines 58--62
 \T1/fve/m/n/10.95 Por el con-trario, los frame-work tienen en cuenta las posi-b
 les necesi-dades de tu proyecto,
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 88--92
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 64--68
 
  []
 
-<fig/DjangoMVT.png, id=795, 542.025pt x 239.89626pt>
+<fig/DjangoMVT.png, id=794, 542.025pt x 239.89626pt>
 File: fig/DjangoMVT.png Graphic file (type png)
 <use fig/DjangoMVT.png>
-Package pdftex.def Info: fig/DjangoMVT.png  used on input line 95.
+Package pdftex.def Info: fig/DjangoMVT.png  used on input line 71.
 (pdftex.def)             Requested size: 298.75262pt x 132.22885pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--88
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--88
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--88
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--88
+
+ []
+
 [24 <./fig/DjangoMVT.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 104--113
+Underfull \hbox (badness 10000) in paragraph at lines 90--97
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 104--113
+Underfull \hbox (badness 10000) in paragraph at lines 90--97
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 104--113
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--124
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--124
-
- []
-
-[25]
-<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=818, 853.1875pt
+<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=810, 853.1875pt
  x 302.12875pt>
 File: fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png Graphic file (
 type png)
 <use fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png>
 Package pdftex.def Info: fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018
-.png  used on input line 133.
+.png  used on input line 106.
 (pdftex.def)             Requested size: 298.75262pt x 105.79274pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--138
+Underfull \hbox (badness 10000) in paragraph at lines 99--111
+
+ []
+
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 115--119
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--146
+Underfull \hbox (badness 10000) in paragraph at lines 121--134
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--134
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--134
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--134
 
  []
 
 [26 <./fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 148--161
+Underfull \hbox (badness 10000) in paragraph at lines 140--144
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 148--161
+Underfull \hbox (badness 10000) in paragraph at lines 146--149
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 148--161
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 148--161
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 167--171
-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4913) has occurred while \output is active []
 
  [27]
-Underfull \hbox (badness 10000) in paragraph at lines 173--176
+Underfull \hbox (badness 10000) in paragraph at lines 154--159
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--186
-
- []
-
-
-Overfull \hbox (2.48244pt too wide) in paragraph at lines 181--186
+Overfull \hbox (2.48244pt too wide) in paragraph at lines 154--159
 \T1/fve/m/n/10.95 Además, ofrece una am-plia gama de tipos de datos, in-cluyend
 o geoes-pa-ciales y JSONB,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--186
+Underfull \hbox (badness 10000) in paragraph at lines 154--159
 
  []
 
 ) (chapter4/Chapter4.tex
-Underfull \hbox (badness 10000) in paragraph at lines 188--1
+Underfull \hbox (badness 10000) in paragraph at lines 161--1
 
  []
 
-[28] [29] [30
-
-]
+[28]
 Chapter 4.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-<fig/estructura_descartada.png, id=855, 302.12875pt x 429.605pt>
+<fig/estructura_descartada.png, id=846, 302.12875pt x 429.605pt>
 File: fig/estructura_descartada.png Graphic file (type png)
 <use fig/estructura_descartada.png>
 Package pdftex.def Info: fig/estructura_descartada.png  used on input line 8.
 (pdftex.def)             Requested size: 170.71393pt x 242.74039pt.
-[31 <./fig/estructura_descartada.png>]
-<fig/estructura_usada.png, id=861, 472.76625pt x 369.38pt>
+[29
+
+ <./fig/estructura_descartada.png>]
+<fig/estructura_usada.png, id=852, 472.76625pt x 369.38pt>
 File: fig/estructura_usada.png Graphic file (type png)
 <use fig/estructura_usada.png>
 Package pdftex.def Info: fig/estructura_usada.png  used on input line 20.
@@ -1503,7 +1487,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--35
 
  []
 
-[32 <./fig/estructura_usada.png>]
+[30 <./fig/estructura_usada.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 36--48
 
  []
@@ -1543,8 +1527,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 65--70
 
  []
 
-[33]
-<fig/arquitectura.png, id=873, 781.92125pt x 1075.01625pt>
+[31]
+<fig/arquitectura.png, id=864, 781.92125pt x 1075.01625pt>
 File: fig/arquitectura.png Graphic file (type png)
 <use fig/arquitectura.png>
 Package pdftex.def Info: fig/arquitectura.png  used on input line 99.
@@ -1563,12 +1547,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 107--112
 
  []
 
-[34]
+[32]
 Underfull \hbox (badness 10000) in paragraph at lines 114--117
 
  []
 
-<fig/estructura_basica_spider.png, id=896, 169.38281pt x 196.48407pt>
+<fig/estructura_basica_spider.png, id=887, 169.38281pt x 196.48407pt>
 File: fig/estructura_basica_spider.png Graphic file (type png)
 <use fig/estructura_basica_spider.png>
 Package pdftex.def Info: fig/estructura_basica_spider.png  used on input line 1
@@ -1577,7 +1561,7 @@ Package pdftex.def Info: fig/estructura_basica_spider.png  used on input line 1
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [35]
+ [33]
 Underfull \hbox (badness 10000) in paragraph at lines 126--131
 
  []
@@ -1597,7 +1581,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 133--138
 
  []
 
-[36 <./fig/estructura_basica_spider.png>]
+[34 <./fig/estructura_basica_spider.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 140--143
 
  []
@@ -1622,7 +1606,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 167--170
 
  []
 
-[37]
+[35]
 Underfull \hbox (badness 10000) in paragraph at lines 172--175
 
  []
@@ -1649,8 +1633,8 @@ Overfull \hbox (2.69533pt too wide) in paragraph at lines 193--194
 anto recibir los datos obtenidos
  []
 
-[38]
-<fig/TablasBBDD.png, id=930, 251.7405pt x 145.7445pt>
+[36]
+<fig/TablasBBDD.png, id=922, 251.7405pt x 145.7445pt>
 File: fig/TablasBBDD.png Graphic file (type png)
 <use fig/TablasBBDD.png>
 Package pdftex.def Info: fig/TablasBBDD.png  used on input line 200.
@@ -1665,7 +1649,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 205--210
 
  []
 
-[39 <./fig/TablasBBDD.png>] [40]
+[37 <./fig/TablasBBDD.png>] [38]
 Overfull \hbox (53.75436pt too wide) in paragraph at lines 268--268
 []\T1/fvm/m/n/10.95 #Configuramos varios parametros del usuario para una mejor 
 integracion con Django[] 
@@ -1712,7 +1696,7 @@ Overfull \hbox (18.15839pt too wide) in paragraph at lines 302--302
 ier IP añadiendo[] 
  []
 
-[41]
+[39]
 Overfull \hbox (53.75436pt too wide) in paragraph at lines 302--302
 []\T1/fvm/m/n/10.95 #O podemos configurar el permiso unicamente para la IP de l
 a otra maquina virtual[] 
@@ -1748,7 +1732,7 @@ Overfull \hbox (65.61969pt too wide) in paragraph at lines 373--373
 no djangoAPI/settings.py[] 
  []
 
-[42]
+[40]
 Overfull \hbox (30.02371pt too wide) in paragraph at lines 373--373
 []\T1/fvm/m/n/10.95 #Finalmete permitimos el trafico mediante el puerto 8000 (p
 uesto por defecto)[] 
@@ -1765,19 +1749,19 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 384.
-[43]
+[41]
 Overfull \hbox (41.88904pt too wide) in paragraph at lines 414--414
 []\T1/fvm/m/n/10.95 (envdemiproyecto) user@host:~/dirdemiproyecto$ python3 mana
 ge.py makemigrations[] 
  []
 
-<fig/comprobacionTablasBBDD.png, id=956, 496.85625pt x 100.12407pt>
+<fig/comprobacionTablasBBDD.png, id=949, 496.85625pt x 100.12407pt>
 File: fig/comprobacionTablasBBDD.png Graphic file (type png)
 <use fig/comprobacionTablasBBDD.png>
 Package pdftex.def Info: fig/comprobacionTablasBBDD.png  used on input line 430
 .
 (pdftex.def)             Requested size: 170.71393pt x 34.40074pt.
-[44 <./fig/comprobacionTablasBBDD.png>]
+[42 <./fig/comprobacionTablasBBDD.png>]
 Overfull \hbox (24.09105pt too wide) in paragraph at lines 440--440
 []\T1/fvm/m/n/10.95 (envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ na
 no appAPI/urls.py[] 
@@ -1806,7 +1790,7 @@ Overfull \hbox (30.02371pt too wide) in paragraph at lines 482--482
 no appAPI/views.py[] 
  []
 
-[45]
+[43]
 
 ! LaTeX Error: Invalid UTF-8 byte sequence (Â\lst@FillFixed@).
 
@@ -1842,14 +1826,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 525--1
 
  []
 
-[46] [47] [48 <./fig/arquitectura.png>]
+[44] [45] [46 <./fig/arquitectura.png>]
 Chapter 5.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-<fig/estructura_proyecto_scrapy.png, id=1051, 134.00063pt x 152.06813pt>
+<fig/estructura_proyecto_scrapy.png, id=1046, 134.00063pt x 152.06813pt>
 File: fig/estructura_proyecto_scrapy.png Graphic file (type png)
 <use fig/estructura_proyecto_scrapy.png>
 Package pdftex.def Info: fig/estructura_proyecto_scrapy.png  used on input line
@@ -1860,10 +1844,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--30
 
  []
 
-[49
+[47
 
  <./fig/estructura_proyecto_scrapy.png>]
-<fig/primera_spider.png, id=1057, 98.61844pt x 48.18pt>
+<fig/primera_spider.png, id=1053, 98.61844pt x 48.18pt>
 File: fig/primera_spider.png Graphic file (type png)
 <use fig/primera_spider.png>
 Package pdftex.def Info: fig/primera_spider.png  used on input line 33.
@@ -1898,8 +1882,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 60--61
 
 Underfull \vbox (badness 3449) has occurred while \output is active []
 
- [50 <./fig/primera_spider.png>]
-<fig/code_aemet.png, id=1073, 724.95844pt x 684.30656pt>
+ [48 <./fig/primera_spider.png>]
+<fig/code_aemet.png, id=1069, 724.95844pt x 684.30656pt>
 File: fig/code_aemet.png Graphic file (type png)
 <use fig/code_aemet.png>
 Package pdftex.def Info: fig/code_aemet.png  used on input line 64.
@@ -1909,7 +1893,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 69--70
 
  []
 
-<fig/inspector.png, id=1074, 735.49782pt x 205.5178pt>
+<fig/inspector.png, id=1070, 735.49782pt x 205.5178pt>
 File: fig/inspector.png Graphic file (type png)
 <use fig/inspector.png>
 Package pdftex.def Info: fig/inspector.png  used on input line 73.
@@ -1917,7 +1901,7 @@ Package pdftex.def Info: fig/inspector.png  used on input line 73.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [51 <./fig/code_aemet.png>]
+ [49 <./fig/code_aemet.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 78--81
 
  []
@@ -1944,7 +1928,7 @@ Overfull \hbox (65.61969pt too wide) in paragraph at lines 104--104
 tos=det&f=precipitacion'[] 
  []
 
-[52 <./fig/inspector.png>]
+[50 <./fig/inspector.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 113--116
 
  []
@@ -1954,7 +1938,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 124--127
 
  []
 
-[53]
+[51]
 Underfull \hbox (badness 10000) in paragraph at lines 179--184
 
  []
@@ -1964,12 +1948,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 179--184
 
  []
 
-[54] [55]
+[52] [53]
 Underfull \hbox (badness 10000) in paragraph at lines 243--246
 
  []
 
-[56]
+[54]
 Overfull \hbox (8.72652pt too wide) in paragraph at lines 255--256
 []\T1/fve/m/n/10.95 Finalmente se al-ma-ce-nan las co-or-de-nadas con un for-ma
 to global para to-das las platafor-
@@ -1980,12 +1964,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 276--279
 
  []
 
-[57]
+[55]
 Underfull \hbox (badness 10000) in paragraph at lines 302--305
 
  []
 
-[58]
+[56]
 Overfull \hbox (36.73607pt too wide) in paragraph at lines 332--341
 []\T1/fve/m/n/10.95 Como se nece-si-tan los datos de to-das las esta-ciones, se
  ree-scribirá la fun-ción start_requests(). 
@@ -2011,7 +1995,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 332--341
 
  []
 
-[59]
+[57]
 Overfull \hbox (14.11128pt too wide) in paragraph at lines 351--354
 []\T1/fve/m/n/10.95 Debido al ar-gu-mento cb_kwargs, la fun-ción parse() recibe
  un ter-cer ar-gu-mento, estación.
@@ -2032,12 +2016,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 373--376
 
  []
 
-[60]
+[58]
 Underfull \hbox (badness 10000) in paragraph at lines 387--390
 
  []
 
-[61]
+[59]
 Overfull \hbox (15.72554pt too wide) in paragraph at lines 407--410
 \T1/fve/m/n/10.95 Siendo CHCan-tábrico la primera web de la que se ob-tuvo los 
 datos, sin gran conocimiento
@@ -2060,7 +2044,7 @@ Overfull \hbox (18.94536pt too wide) in paragraph at lines 433--434
 ][][][][][][][][][][][][] 
  []
 
-[62]
+[60]
 Underfull \hbox (badness 10000) in paragraph at lines 457--464
 
  []
@@ -2075,7 +2059,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 457--464
 
  []
 
-[63] [64]
+[61] [62]
 Underfull \hbox (badness 10000) in paragraph at lines 500--504
 
  []
@@ -2090,7 +2074,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 500--504
 
  []
 
-[65]
+[63]
 Underfull \hbox (badness 10000) in paragraph at lines 530--534
 
  []
@@ -2105,7 +2089,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 530--534
 
  []
 
-[66]
+[64]
 Underfull \hbox (badness 10000) in paragraph at lines 553--556
 
  []
@@ -2135,7 +2119,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 579--585
 
  []
 
-[67]
+[65]
 Underfull \hbox (badness 10000) in paragraph at lines 593--596
 
  []
@@ -2146,7 +2130,7 @@ Overfull \hbox (6.29306pt too wide) in paragraph at lines 599--599
 lf.parse_area)[] 
  []
 
-[68]
+[66]
 Underfull \hbox (badness 10000) in paragraph at lines 624--629
 
  []
@@ -2156,7 +2140,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 624--629
 
  []
 
-[69]
+[67]
 Underfull \hbox (badness 10000) in paragraph at lines 661--667
 
  []
@@ -2176,7 +2160,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 661--667
 
  []
 
-[70] [71]
+[68] [69]
 Underfull \hbox (badness 10000) in paragraph at lines 722--729
 
  []
@@ -2191,7 +2175,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 722--729
 
  []
 
-<fig/chromedriver.png, id=1462, 166.37157pt x 183.68625pt>
+<fig/chromedriver.png, id=1458, 166.37157pt x 183.68625pt>
 File: fig/chromedriver.png Graphic file (type png)
 <use fig/chromedriver.png>
 Package pdftex.def Info: fig/chromedriver.png  used on input line 732.
@@ -2199,7 +2183,7 @@ Package pdftex.def Info: fig/chromedriver.png  used on input line 732.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[72]
+[70]
 Overfull \hbox (12.22572pt too wide) in paragraph at lines 756--756
 []\T1/fvm/m/n/10.95 (5e87dfef0c85687ea835e444d33466745cc0725f-refs/branch-heads
 /5790_90@{#20})[] 
@@ -2240,12 +2224,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 760--772
 
  []
 
-[73 <./fig/chromedriver.png>]
+[71 <./fig/chromedriver.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 773--776
 
  []
 
-[74] [75]
+[72] [73]
 Underfull \hbox (badness 10000) in paragraph at lines 829--832
 
  []
@@ -2265,21 +2249,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 845--848
 
  []
 
-[76] [77]
+[74] [75]
 Underfull \hbox (badness 10000) in paragraph at lines 908--911
 
  []
 
-) (chapter6/Chapter6.tex [78]
+) (chapter6/Chapter6.tex [76]
 Chapter 6.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-) [79
+) [77
 
-] [80
+] [78
 
 ] (bibliography/Bibliography.tex (OderizArkaitz.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 4--7
@@ -2299,7 +2283,7 @@ Underfull \hbox (badness 1502) in paragraph at lines 34--38
 -nual 2022 global cli-
  []
 
-[81
+[79
 
 
 ]
@@ -2308,7 +2292,7 @@ Underfull \hbox (badness 1142) in paragraph at lines 74--77
 ian.'' [][]$\T1/fvm/m/n/10.95 https : / / www .
  []
 
-[82]) [83]) (style/index.tex [84
+[80]) [81]) (style/index.tex [82
 
 
 ]
@@ -2325,7 +2309,7 @@ Overfull \hbox (214.07468pt too wide) in paragraph at lines 7--8
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [85
+ [83
 
 
 
@@ -2338,7 +2322,7 @@ Overfull \hbox (373.72594pt too wide) in paragraph at lines 23--24
 ][][][][][][][][][][][][][][][]  
  []
 
-[86]
+[84]
 
 ! LaTeX Error: Invalid UTF-8 byte sequence (Â\lst@FillFixed@).
 
@@ -2399,14 +2383,14 @@ or specify an encoding such as \usepackage [latin1]{inputenc}
 in the document preamble.
 Alternatively, save the file in UTF-8 using your editor or another tool
 
-) (code/chcantabrico_code_spider.py [87]) (code/chcantabrico_nivel_spider.py
-[88]
+) (code/chcantabrico_code_spider.py [85]) (code/chcantabrico_nivel_spider.py
+[86]
 Overfull \hbox (16.68439pt too wide) in paragraph at lines 32--33
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][] 
  []
 
-) (code/chcantabrico_pluvio_spider.py [89]
+) (code/chcantabrico_pluvio_spider.py [87]
 Overfull \hbox (16.68439pt too wide) in paragraph at lines 32--33
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][] 
@@ -2421,7 +2405,7 @@ Overfull \hbox (1.20633pt too wide) in paragraph at lines 35--36
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [90])
+ [88])
 (code/chcantabrico_coord_spider.py
 Overfull \hbox (255.46574pt too wide) in paragraph at lines 23--24
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -2429,8 +2413,8 @@ Overfull \hbox (255.46574pt too wide) in paragraph at lines 23--24
 [][][][][][][]  
  []
 
-[91]) (code/meteoNavarra_code_spider.py) (code/meteoNavarra_data_spider.py
-[92]
+[89]) (code/meteoNavarra_code_spider.py) (code/meteoNavarra_data_spider.py
+[90]
 Overfull \hbox (255.46574pt too wide) in paragraph at lines 32--33
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
@@ -2447,7 +2431,7 @@ Overfull \hbox (282.76982pt too wide) in paragraph at lines 33--34
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [93]
+ [91]
 
 ! LaTeX Error: Invalid UTF-8 byte sequence (Â\lst@FillFixed@).
 
@@ -2516,7 +2500,7 @@ or specify an encoding such as \usepackage [latin1]{inputenc}
 in the document preamble.
 Alternatively, save the file in UTF-8 using your editor or another tool
 
-) (code/meteoNavarra_coord_spider.py [94]
+) (code/meteoNavarra_coord_spider.py [92]
 Overfull \hbox (172.68361pt too wide) in paragraph at lines 23--24
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
@@ -2552,7 +2536,7 @@ or specify an encoding such as \usepackage [latin1]{inputenc}
 in the document preamble.
 Alternatively, save the file in UTF-8 using your editor or another tool
 
-) (code/aguaEnNavarra_code_spider.py [95]
+) (code/aguaEnNavarra_code_spider.py [93]
 Overfull \hbox (208.16167pt too wide) in paragraph at lines 7--8
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
@@ -2561,14 +2545,14 @@ Overfull \hbox (208.16167pt too wide) in paragraph at lines 7--8
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [96])
+ [94])
 (code/aguaEnNavarra_data_spider.py
 Overfull \hbox (208.16167pt too wide) in paragraph at lines 10--11
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
  []
 
-[97]
+[95]
 Overfull \hbox (34.42342pt too wide) in paragraph at lines 37--38
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][]  
@@ -2604,31 +2588,99 @@ or specify an encoding such as \usepackage [latin1]{inputenc}
 in the document preamble.
 Alternatively, save the file in UTF-8 using your editor or another tool
 
-)) [98] (OderizArkaitz.aux)
-Package rerunfilecheck Info: File `OderizArkaitz.out' has not changed.
-(rerunfilecheck)             Checksum: 90B4ECFDB3A0036E1AF0F2C2055993E8;9497.
+)) [96] (OderizArkaitz.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `OderizArkaitz.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `OderizArkaitz.out':
+(rerunfilecheck)             Before: 00B04FC3D41F2911601088726B734D2D;9729
+(rerunfilecheck)             After:  FB8E3280C6476A8BC4D95DEA81D43CE9;9063.
  ) 
 Here is how much of TeX's memory you used:
- 18090 strings out of 475385
- 304424 string characters out of 2776436
+ 18095 strings out of 475385
+ 304535 string characters out of 2776436
  881292 words of memory out of 3000000
  37682 multiletter control sequences out of 15000+600000
  525724 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,13n,77p,845b,2173s stack positions out of 10000i,1000n,20000p,200000b,80000s
-{C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C
-:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmm
-i10.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmr8.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera
-/fveb8a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fve
-r8a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fver8a.
-pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmr8a.pfb>
-<C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvsb8a.pfb><C:/
-Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfchan/uzcmi8a.pfb
->
-Output written on OderizArkaitz.pdf (108 pages, 5873376 bytes).
+
+pdfTeX warning (dest): name{figure.caption.61} has been referenced but does not
+ exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.49} has been referenced but does not
+ exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.48} has been referenced but does not
+ exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.47} has been referenced but does not
+ exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.36} has been referenced but does not
+ exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.32} has been referenced but does not
+ exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.31} has been referenced but does not
+ exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.26} has been referenced but does not
+ exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section*.64} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section*.63} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.3.3.3} has been referenced but does not 
+exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.3.2.3} has been referenced but does not 
+exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.3.1.3} has been referenced but does not 
+exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.3.1.2} has been referenced but does not 
+exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.3.1.1} has been referenced but does not 
+exist, replaced by a fixed one
+
+{C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/
+Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi1
+0.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmr8.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/f
+veb8a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fver8
+a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fver8a.pf
+b><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmr8a.pfb><C
+:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvsb8a.pfb><C:/Us
+ers/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
+Output written on OderizArkaitz.pdf (106 pages, 5872573 bytes).
 PDF statistics:
  2479 PDF objects out of 2487 (max. 8388607)
- 1290 named destinations out of 1440 (max. 500000)
+ 1295 named destinations out of 1440 (max. 500000)
  716 words of extra memory for PDF output out of 10000 (max. 10000000)
 
