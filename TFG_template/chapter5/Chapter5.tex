@@ -721,9 +721,9 @@ Para que Selenium funcione, es necesario incluir las siguientes lineas de códig
 
 En este caso se indica que el navegador deseado para realizar el trabajo es Chrome y mediante el método which selecciona la ruta del ejecutable del driver de chrome.\newline
 \newline
-Los argumentos usados indican, --headless significa que las instancias de Chrome creadas sean sin interfaz, de esta forma no tendremos cientos de ventanas de Chrome abriéndose y cerrándose cada vez que se ejecute la Spider; --disable-logging como su nombre indica elimina el Log; --disable-in-process-stack-traces desactiva el stack-trace, esto se realiza unicamente con el fin de intentar mejorar el rendimiento; --log-level indica el tipo de log que desas mostrar, siendo INFO = 0, ALERTA = 1, ERROR = 2 y FATAL = 3, aunque el Log este desactivado esta bien indicar que clase de Log deseas que aparezca en caso de que se vuelva a activar; --disable-extensions desactiva todas las extensiones que podamos tener instaladas, nuevamente con el fin de mejorar el rendimiento.\newline
+Los argumentos usados indican, --headless significa que las instancias de Chrome creadas sean sin interfaz, de esta forma no tendremos cientos de ventanas de Chrome abriéndose y cerrándose cada vez que se ejecute la Spider; --disable-logging como su nombre indica elimina el Log; --disable-in-process-stack-traces desactiva el stack-trace, esto se realiza unicamente con el fin de intentar mejorar el rendimiento; --log-level indica el tipo de log que se desea mostrar, siendo INFO = 0, ALERTA = 1, ERROR = 2 y FATAL = 3, aunque el Log este desactivado esta bien indicar que clase de Log deseas que aparezca en caso de que se vuelva a activar; --disable-extensions desactiva todas las extensiones que podamos tener instaladas, nuevamente con el fin de mejorar el rendimiento.\newline
 \newline
-Una vez incluido el middleware, ya solo quedaria descargar el driver de chrome.\newline
+Una vez incluido el middleware, ya solo quedaría descargar el driver de chrome.\newline
 \newline
 Chromedriver.exe puede ser obtenido en la web \url{https://chromedriver.chromium.org/downloads}, descargando aquel que corresponda a la versión de Chrome instalada. Una vez descomprimido debe ser incluido dentro de la carpeta de proyecto de Scrapy.
 
@@ -736,7 +736,25 @@ Chromedriver.exe puede ser obtenido en la web \url{https://chromedriver.chromium
 
 En caso de estar en Windows con esto ya es suficiente, aunque al usar Debian son necesarios unos paso más para configurar chromedriver.
 
-
+\begin{verbatim}
+	#Otorgamos permiso de ejecucion a chromedriver
+	sudo chmod +x chromedriver
+	
+	#Movemos el .exe a directorio /usr/local/share/
+	sudo mv chromedriver /usr/local/share/chromedriver
+	
+	#Creamos la relacion entre el .exe y el directorio
+	sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
+	
+	#Ejecutamos
+	chromedriver --version
+	
+	#En caso de haber realizado correctamente el proceso deberia aparecer
+	una linea parecida a esta
+	ChromeDriver 115.0.5790.110
+	(5e87dfef0c85687ea835e444d33466745cc0725f-refs/branch-heads/5790_90@{#20})
+\end{verbatim}
+Hecho esto ya estaría configurado chromedriver.
 
 \subsubsection{Alternativas probadas}
 Antes de saber que es necesario dirigirse a la pagina donde se muestra la gráfica para poder acceder a la página con los datos numéricos, se probo con una Spider que accedía directamente a esta. Visto que el resultado obtenido estaba vacío y, que en apariencia la Spider era correcta, obteniendo teóricamente aquellos datos deseados, se comprobó la web manualmente, resultando en la obtención del error mostrado en la imagen \ref{fig:ej5}.\newline

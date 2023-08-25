@@ -29,11 +29,12 @@
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Estructura de datos usada en el proyecto}}{32}{figure.caption.32}%
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Estructuración básica de una Spider}}{36}{figure.caption.36}%
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Tablas de la base de datos}}{39}{figure.caption.44}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Arquitectura de obtención y tratamiento de datos}}{45}{figure.caption.33}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Lista de tablas en PostGreSQL}}{44}{figure.caption.45}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Arquitectura de obtención y tratamiento de datos}}{48}{figure.caption.33}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Estructura del proyecto recién creado}}{47}{figure.caption.45}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Directorio de almacenamiento de las Spider}}{48}{figure.caption.46}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces URL de inicio para obtener los códigos de las estaciones de Aemet}}{49}{figure.caption.47}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Inspector de webs de Chrome}}{50}{figure.caption.48}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Ruta chromedriver.exe}}{71}{figure.caption.60}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Estructura del proyecto recién creado}}{49}{figure.caption.46}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Directorio de almacenamiento de las Spider}}{50}{figure.caption.47}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces URL de inicio para obtener los códigos de las estaciones de Aemet}}{51}{figure.caption.48}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Inspector de webs de Chrome}}{52}{figure.caption.49}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Ruta chromedriver.exe}}{73}{figure.caption.61}%
 \addvspace {10\p@ }

@@ -322,7 +322,7 @@ Una vez realizado lo siguiente, quedaría configurar la API.
 
 \begin{verbatim}
 	#Abrimos el archivo settings.py con un editor
-	(envdemiproyecto) user@host:~/dirdemiproyecto$ nano djangoAPI/settings.py
+	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano djangoAPI/settings.py
 	
 	#Añadimos nuestra app en la lista de INSTALLED_APPS
 	INSTALLED_APPS = [
@@ -359,8 +359,12 @@ Una vez realizado lo siguiente, quedaría configurar la API.
 	#Configuramos las IP admitidas
 	ALLOWED_HOSTS = ['172.18.83.197', 'localhost']
 	
-	#configuramos la zona horaria
+	#Configuramos la zona horaria
 	TIME_ZONE = 'Europe/Madrid'
+	
+	#Configuramos el tamaño maximo de datos a None, con el fin de poder
+	enviar cualquier cantidad de datos
+	DATA_UPLOAD_MAX_MEMORY_SIZE = None
 	
 	#Guardamos y cerramos el fichero
 	
@@ -371,8 +375,8 @@ Una vez realizado lo siguiente, quedaría configurar la API.
 Tras configurar la API, toca crear los modelos de la base de datos.
 
 \begin{verbatim}
-	#Abrimos el archivo models.py con un editor
-	(envdemiproyecto) user@host:~/dirdemiproyecto$ nano djangoAPI/settings.py
+	#Abrimos el archivo models.py dentro de la carpeta appAPI con un editor
+	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano appAPI/models.py
 \end{verbatim}
 
 Dentro definimos los modelos Data y Code.
@@ -409,4 +413,115 @@ Para importar los modelos a la base de datos, con el fin de crear las respectiva
 	envdemiproyecto) user@host:~/dirdemiproyecto$ python3 manage.py migrate
 \end{verbatim}
 
+Si se quiere confirmar la correcta creación de las tablas, desde la terminal de PostGre.
 
+\begin{verbatim}
+	#Nos conectamos a la base de datos
+	postgres=# \c bbddmiproyecto
+	
+	#Mostramos las tablas
+	postgres=# \d
+\end{verbatim}
+
+Si todo a ido bien, se deberían mostrar como en la imagen \ref{fig:ej34}.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{fig/comprobacionTablasBBDD.png}
+	\caption[Lista de tablas en PostGreSQL]{Lista de tablas en PostGreSQL}
+	\label{fig:ej34}
+\end{figure}
+
+Tras configurar la API y crear las tablas de la base de datos, se creará la API como tal.
+
+\begin{verbatim}
+	#Creamos el archivo urls.py con un editor dentro de la carpeta appAPI
+	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano appAPI/urls.py
+\end{verbatim}
+
+Dentro se incluye el siguiente código.
+
+\begin{lstlisting}[language=Python, caption={Modelos Django}]
+	from django.urls import path
+	from django.views.decorators.csrf import csrf_exempt
+	
+	from . import views
+
+	urlpatterns = [
+		path("storeData", csrf_exempt(views.storeData), name="storeData"),
+		path("storeCode", csrf_exempt(views.storeCode), name="storeCode"),
+	]
+\end{lstlisting}
+
+Aquí se definen las rutas para realizar una llamada a la API, en este caso storeData y storeCode.\newline
+\newline
+Si se quiere que el proyecto tenga constancia de ellas.
+
+\begin{verbatim}
+	#Abrimos el archivo urls.py dentro de la carpeta djangoAPI con un editor
+	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano djangoAPI/urls.py
+\end{verbatim}
+
+Dentro se incluye el siguiente código.
+
+\begin{lstlisting}[language=Python, caption={Modelos Django}]
+	from django.contrib import admin
+	from django.urls import path, include
+	
+	urlpatterns = [
+		path('admin/', admin.site.urls),
+		path('appapi/', include('appapi.urls'))
+	]
+\end{lstlisting}
+
+Para finalizar, se crean las vistas a las que dirigen las rutas.
+
+\begin{verbatim}
+	#Abrimos el archivo views.py dentro de la carpeta appAPI con un editor
+	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano appAPI/views.py
+\end{verbatim}
+
+Dentro se incluye el siguiente código.
+
+\begin{lstlisting}[language=Python, caption={Modelos Django}]
+	import json
+	
+	from django.http import JsonResponse
+	from .models import Data, Code
+	
+	# Create your views here.
+	def storeData(request):
+		data = json.loads(request.body.decode("utf-8"))
+		for estacion in data:
+			for datos in estacion['datos']:
+				dato = Data(
+					temperatura=datos['temperatura (ºC)'],
+					humedad=datos['humedad (%)'],
+					precipitacion=datos['precipitacion (mm)'],
+					nivel=datos['nivel (m)'],
+					caudal=datos['caudal (m^3/s)'],
+					radiacion=datos['radiacion (W/m^2)'],
+					fecha=datos['fecha y hora'],
+					estacion=estacion['estacion']
+				)
+			dato.save()
+		return JsonResponse(data, safe=False)
+	
+	def storeCode(request):
+		data = json.loads(request.body.decode("utf-8"))
+		for estacion in data:
+			dato = Code(
+				estacion=estacion['estacion'],
+				codigo=estacion['codigo'],
+				coodenadas=estacion['coodenadas'],
+				seguimiento=estacion['seguimiento'],
+				prealerta=estacion['prealerta'],
+				alerta=estacion['alerta'],
+			)
+		dato.save()
+	return JsonResponse(data, safe=False)
+\end{lstlisting}
+
+Estas funciones se encargan de recibir los datos enviados, iterar por ellos y subirlos a la base de datos con el método save().\newline
+\newline
+Con esto concluiría la creación y configuración de la API.
