@@ -1,7 +1,7 @@
 \chapter[Tecnologías]{Tecnologías}
 \label{Chap3}
 
-Para este proyecto, es necesario el uso de dos servidores, un servidor de base de datos y otro para el despliegue de una API y la obtencion de datos.\newline
+Para este proyecto, es necesario el uso de dos maquinas virtuales para crear los servidores necesarios, un servidor de base de datos y otro para el despliegue de una API y la obtencion de datos. Aunque hacer uso de una única máquina no solo es viable, si no más sencillo, disponer de ellas, no solo aparta la plataforma de un diseño centralizado más vulnerable, ademas, a nivel de proyecto, proporciona un mayor grado de complejidad, necesitando configurar la comunicación por red de estas.\newline
 \newline
 Primero que todo es necesario un sistema operativo capaz de servir este propósito.
 
@@ -60,7 +60,7 @@ Aunque ambas ofrecen funcionalidades operacionales, su mayor diferencia radica e
 \newline
 Por el contrario, los framework tienen en cuenta las posibles necesidades de tu proyecto, pudiéndose permitir ser aún más específicos, ofreciendo la arquitectura y comportamiento básico de la aplicación, sin comprometer la flexibilidad de desarrollar las funcionalidades necesarias para su funcionamiento, aportando herramientas sobre las que trabajar. \cite{glez2014web}
 
-\subsection{Django}
+\subsection{Django Framework}
 Djanfo es un framework web de tipo full-stack gratuito y de código abierto para Python. Sigue el principio DRY "Don’t Repeat Yourself" por lo que se enfoca en el menor uso de código, el desarrollo rápido y la reutilización de componentes. \cite{DjDF} \cite{alchin2013pro}
 \newline
 \newline
@@ -109,15 +109,12 @@ El primer paso consiste en mirar la estructuración de la web para seleccionar a
 \end{figure}
 \footnotetext{\url{https://www.researchgate.net/figure/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018_fig1_324907302}}
 
-\subsection{Scrapy}
-
-\subsubsection{Qué es Scrapy?}
+\subsection{Scrapy Framework}
 Scrapy es un framework asíncrono para web crawling y web scraping gratuito y de código abierto. Por defecto proporciona todas las herramientas necesarias para realizar la tarea de extracción, procesado y estructurado de los datos adquiridos, ademas de dar la opción de extender funcionalidades en caso necesario, haciéndolo extremadamente versátil. \cite{yang2019design}
 \newline
 \newline
-Pensado para navegar entre webs y extraer información de forma estructurada de ellas, Scrapy se usa para múltiples ámbitos, por ejemplo, el minado de datos o la monitorización y análisis de datos.
-
-\subsubsection{Por qué Scrapy?}
+Pensado para navegar entre webs y extraer información de forma estructurada de ellas, Scrapy se usa para múltiples ámbitos, por ejemplo, el minado de datos o la monitorización y análisis de datos.\newline
+\newline
 A la hora de buscar herramientas para web scraping en Python, fueron tres la alternativas principales encontradas, BeautifulSoup, Selenium y Scrapy.
 \newline
 \newline
@@ -130,20 +127,7 @@ La segunda por el contrario, no es una herramienta de web scraping como tal y, s
 Scrapy fue elegida gracias a la flexibilidad y versatilidad que proporciona a la hora de trabajar, pudiendo crear proyectos sencillos en cuestión de minutos con las herramientas base proporcionadas o investigar como trabajar con estas herramientas y crear proyectos complejos que satisfagan tus necesidades de la manera que desees. Esto implica que la curva de aprendizaje de Scrapy sea mayor que la que puede tener BeautifulSoup, sobre todo al inicio, llegando a parecer abrumador. A su vez, la naturaleza de Scrapy le hace tener el mejor rendimiento de entre las tres. \cite{glez2014web}
 \newline
 \newline
-Finalmente, cabe mencionar que Scrapy no dispone de rotación de IP, ni geolocalización como pueden tener las alternativas de pago, cosa que no es un impedimento para llevar a cabo el proyecto. 
-
-El hecho de seleccionar estos Framework, impone la necesidad de usar como lenguaje de programación Python.
-
-\section{Lenguaje de Programación Python}
-
-\subsection{Qué es Python?}
-Siendo su primera aparición en el año 1991 por manos de Guido van Rossum, Python es un lenguaje de programación de alto nivel interpretado que prima la legibilidad del código, siendo este a veces nominado como "seudocódigo ejecutable". \cite{dierbach2014python}
-\newline
-\newline
-Python a su vez es un lenguaje multiplataforma, fuertemente tipado, dinámico y multiparadigma, pues soporta programación orientada a objetos, imperativa y funcional. \cite{PyDoc} \cite{borges2014python}
-
-\subsection{Por qué Python?}
-La elección de Python sobre otros lenguajes se basa en su sintaxis sencilla y clara que facilita la programación, junto a la gran cantidad de librerías y frameworks potentes de los que dispone para satisfacer las necesidades que presenta este proyecto, como pueden ser la extracción de datos meteorológicos mediante web scraping haciendo uso de Scrapy y la creación de una API con Django.\newline
+Finalmente, cabe mencionar que Scrapy no dispone de rotación de IP, ni geolocalización como pueden tener las alternativas de pago, cosa que no es un impedimento para llevar a cabo el proyecto.\newline
 \newline
 Para satisfacer el segundo servicio necesario se requerirá de una base de datos.
 
@@ -155,9 +139,23 @@ PostGreSQL, es un sistema de gestión de bases de datos relacional de código ab
 \newline
 Además, ofrece una amplia gama de tipos de datos, incluyendo geoespaciales y JSONB, almacenando JSONs de forma binaria (de ahí la B) para su fácil acceso.\newline
 \newline
-La comunidad activa detrás de PostgreSQL contribuye continuamente con mejoras y extensiones, lo que lo convierte en una solución versátil y confiable. Lo que la hace popular tanto para aplicaciones empresariales como para proyectos web.
-
-\subsection{Por qué PostGreSQL?}
+La comunidad activa detrás de PostgreSQL contribuye continuamente con mejoras y extensiones, lo que lo convierte en una solución versátil y confiable. Lo que la hace popular tanto para aplicaciones empresariales como para proyectos web.\newline
+\newline
 Entre las bases de datos con soporte oficial en Django se encuentran, PostgreSQL, MariaDB, MySQL, Oracle y SQLite. A excepción de Oracle, la única base de datos comercial, el resto son de código abierto, aunque puedan disponer de versiones de pago.\newline
 \newline
 A nivel de funcionalidades, todas ofrecen implementadas de una forma u otra una misma gama de estas. Es por eso que, la elección se hizo en base a la flexibilidad y robustez de estas. Lo que hace a PostGreSQL una opción interesante en proyectos que lleguen a requerir de datos geoespaciales y JSON.
+
+\subsection{Arquitectura Preliminar}
+Tras la selección de las herramientas a usar, la arquitectura queda de las manera mostrada en la figura \ref{fig:ej9}. Como herramienta de scraping, el framework Scrapy; como base de datos PostGreSQL y, como servicio API el framework Django.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{fig/estructura_descartada.png}
+	\caption[Idea original de la estructura de datos planteada]{Estructura descartada}
+	\label{fig:ej9}
+\end{figure}
+
+El hecho de seleccionar estos Framework, impone la necesidad de usar como lenguaje de programación Python.\newline
+\newline
+Siendo su primera aparición en el año 1991 por manos de Guido van Rossum, Python es un lenguaje de programación de alto nivel interpretado que prima la legibilidad del código, siendo este a veces nominado como "seudocódigo ejecutable" \cite{dierbach2014python}. Python a su vez es un lenguaje multiplataforma, fuertemente tipado, dinámico y multiparadigma, pues soporta programación orientada a objetos, imperativa y funcional \cite{PyDoc} \cite{borges2014python}.\newline
+\newline

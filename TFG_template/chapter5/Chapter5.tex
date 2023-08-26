@@ -2,13 +2,13 @@
 \label{Chap5}
 
 \section{Creación de Spiders}
-Una vez instalado Scrapy, en el directorio escogido escribimos el siguiente comando para generar un nuevo proyecto de Scrapy.
+Una vez instalado Scrapy, en el directorio escogido se usa el siguiente comando para generar un nuevo proyecto de Scrapy.
 
-\begin{verbatim}
+\begin{lstlisting}
 	scrapy startproject miproyecto
-\end{verbatim}
+\end{lstlisting}
 
-Nos creara un nuevo directorio con el siguiente contenido.
+El cual crea un nuevo directorio con el siguiente contenido.
 
 \begin{figure} [h!]
 	\centering
@@ -17,25 +17,25 @@ Nos creara un nuevo directorio con el siguiente contenido.
 	\label{fig:ej11}
 \end{figure}
 
-Primero entraremos en el directorio recientemente creado y luego ejecutaremos el comando encargado de crear la Spider.
+En el directorio recientemente creado, se ejecuta el comando encargado de crear la Spider.
 
-\begin{verbatim}
+\begin{lstlisting}
 	cd miproyecto
 	scrapy genspider mispider webausar.com
-\end{verbatim}
+\end{lstlisting}
 
-En caso de no especificar el protocolo usado por la web Scrapy asumirá que usa HTTPS.\newline
+En caso de no especificar el protocolo usado por la web, Scrapy asumirá que usa HTTPS.\newline
 \newline
 Tras ejecutar el comando la Spider habrá sido generada dentro de la carpeta spiders.
 
 \begin{figure} [h!]
 	\centering
-	\includegraphics[width=0.3\textwidth]{fig/primera_spider.png}
+	\includegraphics[width=0.2\textwidth]{fig/primera_spider.png}
 	\caption[Directorio de almacenamiento de las Spider]{Directorio de almacenamiento de las Spider}
 	\label{fig:ej12}
 \end{figure}
 
-Una vez abierto el archivo vemos que dispone del siguiente código.
+Una vez abierto el archivo dispone del siguiente código.
 
 \begin{lstlisting}[language=Python, caption={Spider recién generada}]
 	import scrapy
@@ -52,67 +52,73 @@ Una vez abierto el archivo vemos que dispone del siguiente código.
 
 Scrapy usa una programación orientada a objetos, siendo cada Spider una clase representada dentro del proyecto.\newline
 \newline
-Analizando las variables definidas vemos las siguientes, name, nombre por el que debemos referenciar la Spider a la hora de ejecutarla; allowed\_domains, indica que dominios podemos visitar, negando la entrada a cualquier dominio que no este definido en ella, es importante no especificar protocolo, de esta manera funcionara para cualquier web ya sea HTTP como HTTPS que pertenezca a ese dominio, de lo contrario se limitara al protocolo indicado; start\_urls, URL inicial sobre la que se hará la request de petición de datos.\newline
+Analizando las variables definidas vemos las siguientes, \textit{name}, nombre por el que referenciar la Spider a la hora de ejecutarla; \textit{allowed\_domains}, indica que dominios está permitido visitar, es importante no especificar protocolo, de esta manera funcionara para cualquier web ya sea HTTP como HTTPS que pertenezca a ese dominio, de lo contrario se limitara al protocolo indicado; \textit{start\_urls}, URL inicial sobre la que se hará la request de petición de datos.\newline
 \newline
-El método parse es aquel al que se envía la respuesta obtenida de la web, para realizar el filtrado de la información, quedándote unicamente con la deseada. Este método es invocado automáticamente por la Spider, sin necesidad real de hacerlo tu manualmente. Puede ser un método recursivo en caso de así quererlo o incluso se pueden definir nuevas funciones parse (usando un nombre distinto) en caso de necesitarlas.
+El método \textit{parse()} es aquel al que se envía la respuesta obtenida de la web, para realizar el filtrado de la información deseada. Este método es invocado automáticamente por la Spider, sin necesidad real de hacerlo manualmente. Puede ser un método recursivo en caso de así quererlo o incluso se pueden definir nuevas funciones \textit{parse()} (usando un nombre distinto) en caso de necesitarlas.
 
 \subsection{Proceso de obtención de datos}
-Para poder realizar es la extracción de los datos, primero debemos ir a la web deseada e inspeccionar su estructuración. Para ello como ejemplo vamos a usar la web de aemet.\newline
+Para poder realizar es la extracción de los datos, primero se debe ir a la web deseada e inspeccionar su estructuración HTML. Para ello, como ejemplo, se va a usar la web de Aemet.\newline
 
 \begin{figure} [H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{fig/code_aemet.png}
+	\includegraphics[width=0.8\textwidth]{fig/AemetCode.png}
 	\caption[URL de inicio para obtener los códigos de las estaciones de Aemet]{Web de Aemet para obtención de datos}
 	\label{fig:ej13}
 \end{figure}
 
-Una vez encontrada la web deseada, accediendo mediante el F12 a la herramienta de inspección, buscamos el elemento representativo del dato deseado. En nuestro caso queremos obtener tanto el nombre como el código de la estación. Ambos se encuentran en el mismo elemento que forma la primera columna de la tabla.\newline
+Accediendo mediante el F12 a la herramienta de inspección, se busca el elemento representativo de los datos deseados. En este caso, el nombre y código de la estación. Ambos se encuentran en el mismo elemento que forma la primera columna de la tabla.\newline
 
-\begin{figure} [H]
-	\centering
-	\includegraphics[width=0.9\textwidth]{fig/inspector.png}
-	\caption[Inspector de webs de Chrome]{Inspector de webs}
-	\label{fig:ej14}
-\end{figure}
+\begin{lstlisting}[caption={Estructura HTML de los datos deseados Aemet}]
+	<table id="table">
+		<thead></thead>
+		<tbody>
+			<tr class="fila_par">
+				<td>
+					<a href="/es/eltiempo/observacion/ultimosdatos?k=nav&"
+					"amp;l=9263X&amp;w=0&amp;datos=det&"
+					"amp;f=precipitacion">Aranguren, Ilundain</a>
+				</td>
+				...
+			</tr>
+			...
+		</tbody>
+	</table>
+\end{lstlisting}
 
-Como en este caso es posible filtrar fácilmente los datos, los obtendremos todos directamente, aunque lo más común sería obtener las filas primero para luego iterar por cada una de ellas. Para obtenerlos podemos hacerlo mediante el selector de XPath como con el de CSS.\newline
+En este caso es posible filtrar fácilmente los datos, obteniendo todos directamente, aunque lo más común sería obtener las filas primero para luego iterar por cada una de ellas. Para obtenerlos se puede hacer mediante el selector de XPath como con el de CSS.\newline
 \newline
-Ambos se pueden obtener fácilmente en la herramienta de inspección, una vez seleccionado el elemento deseado, hacemos click derecho sobre el, vamos al apartado copiar y en el nos mostrara la posibilidad de copiar ambos selectores. Es probable que el selector proporcionado no sea del todo lo que busquemos o se pueda simplificar, por lo que es recomendable comprobarlo manualmente.\newline
+Ambos se pueden obtener fácilmente en la herramienta de inspección, una vez seleccionado el elemento deseado, click derecho sobre el y, en el apartado copiar se mostrará la posibilidad de copiar ambos selectores. Es probable que el selector proporcionado no sea del todo lo que se busque o se pueda simplificar, por lo que es recomendable comprobarlo manualmente.\newline
 
-\begin{verbatim}
+\begin{lstlisting}
 	rows = response.xpath('//div[@id="contenedor_tabla"]/table/tbody/tr/td/a')
-	ó
+	
 	rows = response.css("div#contenedor_tabla tbody tr a")
-\end{verbatim}
+\end{lstlisting}
 
-Esto devuelve una lista de objetos tipo Selector, cosa que permite conforme se itera por cada elemento volver a usar un selector para filtrar unicamente los datos deseados. En este caso.
+Esto devuelve una lista de objetos tipo Selector, cosa que permite conforme se itera por cada elemento, volver a usar un selector para filtrar unicamente los datos deseados. En este caso.
 
-\begin{verbatim}
+\begin{lstlisting}
 	path = rows[i].xpath("@href").get()
 	name = rows[i].xpath("./text()").get()
-	ó
+	
 	path = rows[i].css("*::attr(href)").get()
 	name = rows[i].css("*::text").get()
-\end{verbatim}
+\end{lstlisting}
 
-De esta forma, mediante el uso de la función get(), pasamos de tener un objeto Selector a un String. El uso de get() sobre una lista devuelve el primer elemento, en caso de querer transformar toda la lista el método a usar es getall().\newline
+De esta forma, mediante el uso de la función \textit{get()}, se pasa de tener un objeto Selector a un String. El uso de \textit{get()} sobre una lista devuelve el primer elemento, en caso de querer transformar toda la lista el método a usar es \textit{getall()}.\newline
 \newline
 Finalmente, como de la URL obtenida,
-
 \begin{verbatim}
-	'/es/eltiempo/observacion/ultimosdatos?k=nav&l=9263X&w=0&datos=det&f=precipitacion'
+	('/es/eltiempo/observacion/ultimosdatos?k=nav&l=9263X&w=0&datos=det&f=precipitacion')
 \end{verbatim}
+solo es de interés el código de la estación (parámetro l de la query empezando por 0), se filtra mediante \textit{split()}.
 
-solo es de interés el código de la estación (parámetro l de la query), se filtra mediante splits.
-
-\begin{verbatim}
+\begin{lstlisting}
 	code = path.split('&')[1].split('=')[1]
-\end{verbatim}
+\end{lstlisting}
 
 \subsection{Guardado de datos}
-Scrapy almacena todos los datos en forma de múltiples diccionarios, tantos como webs usadas. Para acceder a esta información Scrapy nos proporciona dos alternativas, el uso de Items junto a ItemLoaders, siendo clases especificas de Scrapy o, mediante la palabra reservada yield de Python, que tiene una funcionalidad parecida a return, siendo esta la opción elegida debido a su fácil implementación.\newline
-\newline
-De esta forma escribiremos.
+Scrapy almacena los datos en forma de múltiples diccionarios, tantos como webs usadas. Para acceder a esta información Scrapy proporciona dos alternativas, el uso de Items junto a ItemLoaders, siendo clases especificas de Scrapy o, mediante la palabra reservada \textit{yield} de Python, que tiene una funcionalidad parecida a \textit{return}, siendo esta la opción elegida debido a su fácil implementación.
 
 \begin{lstlisting}[language=Python, caption={Guardar datos}]
 	yield {
@@ -121,9 +127,9 @@ De esta forma escribiremos.
 	}
 \end{lstlisting}
 
-Actualmente si se ejecuta la Spider nos imprimiría los datos obtenidos por pantalla, aunque pueden ser almacenados en un fichero tanto CSV como JSON, a la hora de ejecutar la Spider añadiendo en el comando "-o nombre.csv ó -o nombre.json".\newline
+Actualmente, si se ejecuta la Spider imprimirá los datos obtenidos por pantalla, aunque pueden ser almacenados en un fichero tanto CSV como JSON, a la hora de ejecutar la Spider añadiendo en el comando \textit{-o nombre.csv} ó \textit{-o nombre.json}.\newline
 \newline
-Para un uso ligero de forma manual esa alternativa es más que suficiente, pero en nuestro caso, al querer ejecutarlas de forma automática mediante el uso de Runners, debemos implementar una variable llamada custom\_settings para cada una de las Spider. Esta permite, sin la necesidad de modificar el archivo settings.py, añadir configuraciones o dependencias independientes en las Spiders.
+Para un uso ligero de forma manual, esa alternativa es más que suficiente, pero en este proyecto, al querer ejecutarlas de forma automática mediante el uso de Runners, se debe se implementar una variable llamada \textit{custom\_settings} para cada una de las Spider. Esta permite, sin la necesidad de modificar el archivo settings.py, añadir configuraciones o dependencias independientes en las Spiders.
 
 \begin{lstlisting}[language=Python, caption={Confugurar guardado en JSON}]
 	custom_settings = {
@@ -137,10 +143,10 @@ Para un uso ligero de forma manual esa alternativa es más que suficiente, pero 
 	}
 \end{lstlisting}
 
-Con esto indicamos que, en la ruta especificada, nos almacene un fichero JSON utf-8 y, que cada vez que se llame a esta Spider sobre-escriba el fichero anterior.
+Indicando que, en la ruta que se especifica, almacene un fichero JSON utf-8 y, que cada vez que se llame a esta Spider sobre-escriba el fichero anterior.
 
 \subsection{Spider básica}
-Una vez obtenemos los datos y los podemos almacenar, ya estaría nuestra Spider básica terminada.
+Tras realizar los pasos, esta es la Spider básica terminada.
 
 \begin{lstlisting}[language=Python, caption={Spider de ejemplo (Aemet Code Spider)}]
 	import scrapy
@@ -165,9 +171,9 @@ Una vez obtenemos los datos y los podemos almacenar, ya estaría nuestra Spider 
 			rows = response.css("div#contenedor_tabla tbody tr a")
 			
 			for row in rows:
-			path = row.xpath("@href").get()
-			name = row.xpath("./text()").get()
-			code = path.split('&')[1].split('=')[1]
+				path = row.xpath("@href").get()
+				name = row.xpath("./text()").get()
+				code = path.split('&')[1].split('=')[1]
 			
 			yield {
 				'estacion': name,
@@ -175,14 +181,14 @@ Una vez obtenemos los datos y los podemos almacenar, ya estaría nuestra Spider 
 			}
 \end{lstlisting}
 
-\subsection{Método start\_requests()}
-El método start\_requests() es llamado de forma automática al iniciar la Spider, siendo el encargado de hacer la llamada a la web indicada en start\_urls y, una vez obtenidos los datos llamar a la función parse, todo mediante un objeto Request de Scrapy, el cual devolverá un objeto tipo HTMLResponse. En caso de querer alterar el funcionamiento de la Spider este es el método a sobre-escribir.\newline
+\subsection{Método \textit{start\_requests()}}
+El método \textit{start\_requests()} es llamado de forma automática al iniciar la Spider, siendo el encargado de hacer la llamada a la web indicada en \textit{start\_urls} y, una vez obtenidos los datos llamar a la función \textit{parse()}. Todo mediante un objeto Request de Scrapy, el cual devolverá un objeto tipo HTMLResponse. En caso de querer alterar el funcionamiento de la Spider este es el método a sobre-escribir.\newline
 \newline
-Como en nuestro caso queremos obtener los datos de todas las estaciones dentro de un mismo dominio, reescribiremos la función para que recorra el JSON con los códigos de estas y, hacer una llamada por estación con Request.\newline
+Como se quiere obtener los datos de todas las estaciones dentro de un mismo dominio, se sobre-escribe la función para recorrer el JSON con los códigos de estas y, hacer una llamada por estación con Request.\newline
 \newline
 El código quedaría de la siguiente manera.
 
-\begin{lstlisting}[language=Python, caption={Sobre-escritura de start\_request()}]
+\begin{lstlisting}[language=Python, caption={Sobre-escritura de \textit{start\_requests()}}]
 	import json
 	
 	
@@ -196,10 +202,10 @@ El código quedaría de la siguiente manera.
 			yield scrapy.Request(url, self.parse)
 \end{lstlisting}
 
-Al definir la función de esta manera no es necesario declarar la variable start\_urls, por lo que siempre que necesitemos sobre-escribir la función, no usaremos la variable.
+Al definir la función de esta manera, no es necesario declarar la variable \textit{start\_urls}, por lo que siempre que se necesite sobre-escribir la función, no se usará la variable.
 
 \subsection{Eliminar Log}
-Cuando se verifique el correcto funcionamiento de la Spider es recomendable quitar el maximo numero de Log por pantalla posible, es por eso que, en el fichero settings.py escribiremos las siguientes lineas.
+Cuando se verifique el correcto funcionamiento de la Spider, es recomendable quitar el máximo numero de Log por pantalla posible, es por eso que, en el fichero settings.py se escribirán las siguientes lineas.
 
 \begin{lstlisting}[language=Python, caption={Configurar LOG}]
 	LOG_LEVEL = 'WARNING'
@@ -213,11 +219,11 @@ Para este proyecto se han creado cuatro proyectos de Scrapy, uno por cada web.
 Siendo la Spider de obtención de códigos la usada como ejemplo, no hay mucho más que comentar al respecto de ella, obtiene los nombres y códigos de cada estación.
 
 \subsubsection{Data Spider}
-La Spider de obtención de datos es un poco más compleja, necesitando sobre-escribir la función de start\_request() como se muestra en el ejemplo del apartado anterior. Primero lee el fichero JSON con los códigos de las estaciones, itera por ellos y, crea una llamada Request por cada estación.
+La Spider de obtención de datos es un poco más compleja, necesitando sobre-escribir la función de \textit{start\_requests()} como se muestra en el ejemplo del apartado anterior. Primero lee el fichero JSON con los códigos de las estaciones, itera por ellos y, crea una llamada Request por cada estación.
 
-Dentro de la función parse():
+Dentro de la función \textit{parse()}:
 
-\begin{lstlisting}[language=Python, caption={Selector en parse() de Aemet Data Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de Aemet Data Spider}]
 	latitud = response.css('abbr.latitude::text').get()
 	longitud = response.css('abbr.longitude::text').get()
 	estacion = response.css("a.separador_pestanhas").get()
@@ -257,9 +263,9 @@ Finalmente se almacenan las coordenadas con un formato global para todas las pla
 \subsection{CHCantábrico}
 
 \subsubsection{Code Spider}
-La Spider para la adquisición de códigos de CHCantábrico no necesita de sobre-escritura del método start\_requests(), por lo que el código a analizar sera el presente en la función parse().
+La Spider para la adquisición de códigos de CHCantábrico no necesita de sobre-escritura del método \textit{start\_requests()}, por lo que el código a analizar sera el presente en la función \textit{parse()}.
 
-\begin{lstlisting}[language=Python, caption={Selector en parse() de CHCantábrico Code Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de CHCantábrico Code Spider}]
 	rows = response.xpath('//table[@class="tablefixedheader niveles"]/tbody/tr')
 \end{lstlisting}
 
@@ -303,7 +309,7 @@ CHCantábrico muestra datos tanto del nivel del río como de la precipitación, 
 \newline
 Puesto que ambas comparten la misma estructuración de código, solo se explicara una de ellas. La de nivel del río.
 
-\begin{lstlisting}[language=Python, caption={Función start\_requests() CHCantábrico Nivel Spider}]
+\begin{lstlisting}[language=Python, caption={Función \textit{start\_requests()} CHCantábrico Nivel Spider}]
 	def start_requests(self):
 		with open("JSONs/RawCode/codigos_chcantabrico.json", encoding="utf-8") as f:
 			data = json.load(f)
@@ -329,7 +335,7 @@ Puesto que ambas comparten la misma estructuración de código, solo se explicar
 			)
 \end{lstlisting}
 
-Como se necesitan los datos de todas las estaciones, se reescribirá la función start\_requests().\newline
+Como se necesitan los datos de todas las estaciones, se reescribirá la función \textit{start\_requests()}.\newline
 \newline
 A su vez, como CHCantábrico no muestra los datos por pantalla, incluyendo un botón sobre el que pulsar para obtenerlos descargando un fichero CSV, en vez de hacer una request básica mediante la clase Request, se hace uso uso de FormRequest para hacer una llamada GET, que simular la llamada a un formulario y obtiene los datos que este devuelve.\newline
 \newline
@@ -337,9 +343,9 @@ De esta forma, pasandole los parámetros necesarios en el argumento formdata a l
 \newline
 Cabe mencionar que, Request devuelve un HTMLResponse y que, la respuesta de estas llamadas no es código HTML, por lo que, aun en caso de que llegue a ser posible usar Request, es más correcto el uso de FormRequest devolviendo un FormResponse para este tipo de casos.\newline
 \newline
-El uso del argumento cb\_kwargs sirve para enviar un mayor numero de argumentos a la función parse() de los que normalmente recibe.
+El uso del argumento cb\_kwargs sirve para enviar un mayor numero de argumentos a la función \textit{parse()} de los que normalmente recibe.
 
-\begin{lstlisting}[language=Python, caption={Función parse() CHCantábrico Nivel Spider}]
+\begin{lstlisting}[language=Python, caption={Función \textit{parse()} CHCantábrico Nivel Spider}]
 	def parse(self, response, estacion):
 		if not response.text.startswith('-'):
 			urlData = response.text
@@ -348,9 +354,9 @@ El uso del argumento cb\_kwargs sirve para enviar un mayor numero de argumentos 
 			parsedData = rawData.to_json(orient="records")
 \end{lstlisting}
 
-Debido al argumento cb\_kwargs, la función parse() recibe un tercer argumento, estación. En este caso, para poder enviar a cada conjunto de datos recibidos el código de la estación a la que pertenecen, pues dentro de la respuesta obtenida solo se proporciona el nombre de esta.\newline
+Debido al argumento cb\_kwargs, la función \textit{parse()} recibe un tercer argumento, estación. En este caso, para poder enviar a cada conjunto de datos recibidos el código de la estación a la que pertenecen, pues dentro de la respuesta obtenida solo se proporciona el nombre de esta.\newline
 \newline
-Dentro de la función parse() lo primero que se hace es comprobar que realmente se ha recibido una respuesta correcta, pues, aunque todas la estaciones disponen de datos del nivel del río, no todas disponen los de precipitación. El problema viene cuando a estas estaciones se les piden los datos, ya que en vez de enviar un error 404 como seria esperado.
+Dentro de la función \textit{parse()} lo primero que se hace es comprobar que realmente se ha recibido una respuesta correcta, pues, aunque todas la estaciones disponen de datos del nivel del río, no todas disponen los de precipitación. El problema viene cuando a estas estaciones se les piden los datos, ya que en vez de enviar un error 404 como seria esperado.
 
 \begin{verbatim}
 	-
@@ -388,7 +394,7 @@ Aunque en la web misma de CHCantárico se proporciona un mapa indicando la local
 \newline
 En esta página se pueden encontrar mediante el "codigoSecundario" anteriormente obtenido, desgraciadamente, no todas las estaciones incluidas en CHCantábrico están listadas en esta página, siendo el mayor inconveniente para el correcto funcionamiento del apartado de predicción.
 
-\begin{lstlisting}[language=Python, caption={Selector en parse() de CHCantábrico Coordinates Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de CHCantábrico Coordinates Spider}]
 	longitud = response.css('p::text')[6].get().strip()
 	latitud = response.css('p::text')[7].get().strip()
 	estacion = response.css('font::text')[14].get().strip()
@@ -454,7 +460,7 @@ Viendo que los datos no están presentes en la web y, que Scrapy no dispone de i
 		json.dump(datos, outfile)
 \end{lstlisting}
 
-Todo el apartado de tratamiento de los datos es prácticamente idéntico al realizado con la Spider, solo que en vez de usar FormRequest, se hace uso de la librería requests para realizar la llamada get(), tras realizarla, se comprueba que haya sido exitosa (esta comprobación la realiza Scrapy automáticamente) y, en caso de serlo se realiza todo el tratamiento, guardando los datos en la lista datos. Una vez realizadas todas las llamadas, guardamos los datos obtenidos usando la función json.dump().\newline
+Todo el apartado de tratamiento de los datos es prácticamente idéntico al realizado con la Spider, solo que en vez de usar FormRequest, se hace uso de la librería requests para realizar la llamada \textit{get()}, tras realizarla, se comprueba que haya sido exitosa (esta comprobación la realiza Scrapy automáticamente) y, en caso de serlo se realiza todo el tratamiento, guardando los datos en la lista datos. Una vez realizadas todas las llamadas, guardamos los datos obtenidos usando la función json.dump().\newline
 \newline
 Aunque en esta versión se almacenan todos los datos en un mismo JSON, originalmente los datos eran guardados en un CSV por cada estación, de tal manera que el nombre del CSV era el mismo que el de la estación perteneciente. Más adelante al consolidar más la plataforma, sobre todo el uso de Django para la creación de una API, se vio que era más útil guardar los datos no solo en formato JSON si no disponer de un único fichero por estación, de esta forma solo seria necesario realizar una única llamada por estación a la API para cargar los datos. Llegando a esta versión del script.\newline
 \newline
@@ -467,7 +473,7 @@ Es por eso que se investigo la posibilidad de obtener los datos mediante Scrapy,
 \subsubsection{Code Spider}
 La estructuración HTML de la web y la falta de experiencia son el motivo principal asociado a la complejidad de esta Spider, la mayor parte del tiempo a la hora de crearla ha sido invertido explorando el código HTML buscando la forma más optima de lograr los datos necesarios. Son múltiples las iteraciones sufridas hasta llegar a la versión actual.
 
-\begin{lstlisting}[language=Python, caption={Selector en parse() de MeteoNavarra Code Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de MeteoNavarra Code Spider}]
 	rows = response.css('div#tabAUTO script::text').getall()
 \end{lstlisting}
 
@@ -484,9 +490,9 @@ Del selector se obtiene el código JavaScript perteneciente a cada fila de la ta
 A la hora de guardar los datos, se itera por filas y se filtra del código aquellos deseados.
 
 \subsubsection{Data Spider}
-La necesidad de recorrer múltiples estaciones, obliga como en el resto de Spiders de obtención de datos, a sobre escribir la función start\_requests().
+La necesidad de recorrer múltiples estaciones, obliga como en el resto de Spiders de obtención de datos, a sobre escribir la función \textit{start\_requests()}.
 
-\begin{lstlisting}[language=Python, caption={Uso de fechas en función start\_requests() MeteoNavarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Uso de fechas en función \textit{start\_requests()} MeteoNavarra Data Spider}]
 	import datetime
 
 	current_date = datetime.date.today()
@@ -502,7 +508,7 @@ La curiosidad en esta radica en que, a diferencia del resto de páginas, que def
 Con la intención de que funcione proporcionando fechas distintas cada día se realiza el siguiente proceso. Se obtiene la fecha actual con la función today(), con el método timedelta(days=1) se crea un objeto timedelta que representa una duración de un día, gracia a el, se calcula el día de mañana y el de ayer, sumando y restando esa duración al día de hoy. Para terminar, puesto que la fecha debe ir incluida en una URL, mediante el método strftime(), formateamos los datetime calculados para que correspondan con el codificado URL.\newline
 \newline
 
-\begin{lstlisting}[language=Python, caption={Selector en parse() de MeteoNavarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de MeteoNavarra Data Spider}]
 	rows = response.css('table.border tr:not([bgcolor*="#FFFFFF"])')
 	estacion = response.css('table a::attr(href)')[7].get()
 \end{lstlisting}
@@ -527,7 +533,7 @@ De los siguientes selectores cabe mencionar el primero. Aunque en la web se hace
 			datos.append(dato)
 \end{lstlisting}
 
-En la función parse(), como en otras Spider, se crea una lista datos vacía que es llenada con los objetos JSON obtenidos al recorrer cada fila de las anteriormente obtenidas y, filtrar mediante selectores aquellos datos de utilidad.\newline
+En la función \textit{parse()}, como en otras Spider, se crea una lista datos vacía que es llenada con los objetos JSON obtenidos al recorrer cada fila de las anteriormente obtenidas y, filtrar mediante selectores aquellos datos de utilidad.\newline
 \newline
 Luego, se comprueba la disponibilidad de un valor numérico de radiación global, pues en caso de no existir, la web proporciona '- -'. Posteriormente, puesto que la web muestra todas las franjas horarias dentro del que se corresponde con el día actual, se eliminan todas esas horas sin datos con la comprobación respecto a la precipitación.\newline
 \newline
@@ -540,7 +546,7 @@ Luego, se comprueba la disponibilidad de un valor numérico de radiación global
 		}
 \end{lstlisting}
 
-A continuación, en caso de que existan datos a guardar, pues algunas de las estaciones puedes llegar a no disponer de datos, se realiza el yield.
+A continuación, en caso de que existan datos a guardar, pues algunas de las estaciones puedes llegar a no disponer de datos, se realiza el \textit{yield}.
 
 \begin{lstlisting}[language=Python, caption={Navegacion a segunda página de datos en MeteoNavarra Data Spider}]
 	next_page = response.css("table a::attr(href)").getall()
@@ -550,21 +556,21 @@ A continuación, en caso de que existan datos a guardar, pues algunas de las est
 		yield scrapy.Request(next_page, callback=self.parse)
 \end{lstlisting}
 
-Finalmente, aun dentro de parse(), como los datos de ciertas estaciones están repartidos en dos páginas, adquiere la posible URL a la segunda página y, el numero de la página actual y siguiente, en caso de que los números sean distintos, navega a esa segunda página para realizar el mismo proceso descrito anteriormente.\newline
+Finalmente, aun dentro de \textit{parse()}, como los datos de ciertas estaciones están repartidos en dos páginas, adquiere la posible URL a la segunda página y, el numero de la página actual y siguiente, en caso de que los números sean distintos, navega a esa segunda página para realizar el mismo proceso descrito anteriormente.\newline
 \newline
-Esto es posible gracias a que yield, aunque a groso modo funcione como un return, no fuerza el final de la ejecución, por lo que todo código por debajo de este sera ejecutado, llegando a haber múltiples yields en una misma función.
+Esto es posible gracias a que \textit{yield}, aunque a groso modo funcione como un return, no fuerza el final de la ejecución, por lo que todo código por debajo de este sera ejecutado, llegando a haber múltiples \textit{yield} en una misma función.
 
 \subsubsection{Coordenates Spider}
 Por último, necesitamos de una Spider para la obtención de las coordenadas pues no están disponibles para obtener dentro de las páginas anteriores, aunque sí dentro del mismo dominio.\newline
 \newline
-Mediante start\_requests(), realiza tantas llamadas como estaciones.
+Mediante \textit{start\_requests()}, realiza tantas llamadas como estaciones.
 
-\begin{lstlisting}[language=Python, caption={Selector en parse() de MeteoNavarra Coordenates Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de MeteoNavarra Coordenates Spider}]
 	coordenadas = response.css('td::text')[19].get()
 	estacion = response.css('input::attr(value)').get()
 \end{lstlisting}
 
-Una vez en la función parse(), toma las coordenadas mostradas en una tabla y, obtiene el código de la estación del atributo value de un input.
+Una vez en la función \textit{parse()}, toma las coordenadas mostradas en una tabla y, obtiene el código de la estación del atributo value de un input.
 
 \begin{lstlisting}[language=Python, caption={Guardado de datos de MeteoNavarra Coordenates Spider}]
 	yield {
@@ -578,39 +584,39 @@ Finalmente, las coordenadas, con el fin de verse bien en la web, en vez de estar
 \subsection{Agua en Navarra}
 Las Spiders de Agua en Navarra son las más complejas entre todas, usando una filosofía ligeramente distinta al resto de Spiders y, por el uso de Selemiun para poder interactuar con la web mediante JavaScipt.\newline
 \newline
-Ambas Spider, Code y Data, parten de las misma start\_urls y van recorriendo las páginas presentes hasta llegar a aquella que muestre los datos deseados. Esto se debe hasta cierto punto a la estructuración de la página, haciendo más sencillo navegar por ella que crear una Spider por cada página a visitar. La navegación por la web se realiza usando múltiples funciones de la misma naturaleza que parse().\newline
+Ambas Spider, Code y Data, parten de las misma \textit{start\_urls} y van recorriendo las páginas presentes hasta llegar a aquella que muestre los datos deseados. Esto se debe hasta cierto punto a la estructuración de la página, haciendo más sencillo navegar por ella que crear una Spider por cada página a visitar. La navegación por la web se realiza usando múltiples funciones de la misma naturaleza que \textit{parse()}.\newline
 \newline
 Para Data Spider esto implica no necesitar de un fichero JSON del cual leer los códigos de las estaciones.\newline
 \newline
 
-\begin{lstlisting}[language=Python, caption={Función parse() Agua en Navarra Spiders}]
+\begin{lstlisting}[language=Python, caption={Función \textit{parse()} Agua en Navarra Spiders}]
 	def parse(self, response):
 		for link in response.css('dl#navarramap a::attr(href)'):
 			if link.get() != 'ctaMapa.aspx?IdMapa=1&IDOrigenDatos=1':
 				yield response.follow(link.get(), callback=self.parse_area)
 \end{lstlisting}
 
-La función parse() es compartida por ambas Spider. Extrae los link representantes de cada área definida sobre el mapa y, navega por todos ellos a excepción del link de origen, aquel en el que se encuentra.\newline
+La función \textit{parse()} es compartida por ambas Spider. Extrae los link representantes de cada área definida sobre el mapa y, navega por todos ellos a excepción del link de origen, aquel en el que se encuentra.\newline
 \newline
-El uso de response.follow() es equivalente a realizar un Request, pero no necesita pararle una URL completa, solo con la ruta es capaz de generar la llamada, en caso de necesitar explícitamente el uso de Request esta seria la manera.
+El uso de \textit{response.follow()} es equivalente a realizar un Request, pero no necesita pararle una URL completa, solo con la ruta es capaz de generar la llamada, en caso de necesitar explícitamente el uso de Request esta seria la manera.
 
 \begin{verbatim}
 	yield Request(url=response.urljoin(link.get()), callback=self.parse_area)
 \end{verbatim}
 
-De ambas formas, en el argumento callback se indica a que función debe realizar la llamada, pasando de parse() a parse\_area().
+De ambas formas, en el argumento callback se indica a que función debe realizar la llamada, pasando de \textit{parse()} a \textit{parse\_area()}.
 
-\begin{lstlisting}[language=Python, caption={Función parse\_area() Agua en Navarra Spiders}]
+\begin{lstlisting}[language=Python, caption={Función \textit{parse\_area()} Agua en Navarra Spiders}]
 	def parse_area(self, response):
 		for link in response.css('area[shape="rect"]::attr(href)'):
 			yield response.follow(link.get(), callback=self.parse_estacion)
 \end{lstlisting}
 
-Siendo la última función implementada de la misma manera en las Spider. Se realiza el mismo proceso, obtiene todos los link a las webs, ya sí, de la estación y, llama a parse\_estacion().
+Siendo la última función implementada de la misma manera en las Spider. Se realiza el mismo proceso, obtiene todos los link a las webs, ya sí, de la estación y, llama a \textit{parse\_estacion()}.
 
 \subsubsection{Code Spider}
 
-\begin{lstlisting}[language=Python, caption={Función parse\_estacion() Agua en Navarra Code Spider}]
+\begin{lstlisting}[language=Python, caption={Función \textit{parse\_estacion()} Agua en Navarra Code Spider}]
 	def parse_estacion(self, response):
 		urls = response.xpath('//span/a/@href').getall()
 		estacion = response.css('div#bloq_iconos span span::text').getall()
@@ -621,7 +627,7 @@ Siendo la última función implementada de la misma manera en las Spider. Se rea
 			codigos.append(url.split('=')[1])
 \end{lstlisting}
 
-Una vez en la función parse\_estacion() de Code Spider, como ocurre con CHCantábrico, la estación dispone de múltiples códigos, aquel que referencia la estación, uno para el nivel y aunque no en todas, otro para el caudal del río.\newline
+Una vez en la función \textit{parse\_estacion()} de Code Spider, como ocurre con CHCantábrico, la estación dispone de múltiples códigos, aquel que referencia la estación, uno para el nivel y aunque no en todas, otro para el caudal del río.\newline
 \newline
 Tanto el código de nivel y caudal del río originalmente se almacenan en la variable urls, almacenando las direcciones en las cuales están presentes. Posteriormente, se toma de la URL y se guardan en la lista codigos.\newline
 \newline
@@ -642,7 +648,7 @@ Al final estos datos son almacenados.
 
 \subsubsection{Data Spider}
 
-\begin{lstlisting}[language=Python, caption={Función parse\_estacion() Agua en Navarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Función \textit{parse\_estacion()} Agua en Navarra Data Spider}]
 	from scrapy_selenium import SeleniumRequest
 	from selenium.webdriver.common.by import By
 	from selenium.webdriver.support import expected_conditions as EC
@@ -660,21 +666,21 @@ Al final estos datos son almacenados.
 
 Lo primero que llama la atención de esta Spider respecto al resto, es el uso de SeleniumRequest, este tipo de objeto Request pertenece a la librería scrapy\_selenium, siendo una alternativa sencilla de unificar las funcionalidades de Selenium en Scrapy, de esta forma, se lidia con la falta de integración de interacción con JavaScript en Scrapy.\newline
 \newline
-Tras realizar el mismo proceso que antes, la Spider llega a la función parse\_estacion(), esta vez, en vez de obtener los datos de la estación, accedemos a los links que permiten mostrar los datos mediante SeleniumRequest y llama a la función parse\_data().\newline
+Tras realizar el mismo proceso que antes, la Spider llega a la función \textit{parse\_estacion()}, esta vez, en vez de obtener los datos de la estación, accedemos a los links que permiten mostrar los datos mediante SeleniumRequest y llama a la función \textit{parse\_data()}.\newline
 \newline
 Como el link proporcionado dirige a una página que muestra los datos en forma de gráfica y, para acceder a los datos numéricos es necesario pulsar un botón, SeleniumRequest se configura de tal forma que, espera a que este esté correctamente cargado con el argumento wait\_until, indicando que elemento deseas esperar a ser cargado; en caso de que no se cargue, es recomendable usar el argumento wait\_time, que usado junto al anterior, establece el tiempo antes de dar la llamada por errónea; si el botón se carga correctamente, en el argumento script indicamos que se debe pulsar sobre este, llevándonos finalmente a los datos numéricos.\newline
 \newline
 
-\begin{lstlisting}[language=Python, caption={Selector en parse\_data() de Agua en Navarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse\_data()} de Agua en Navarra Data Spider}]
 	tipo = response.css('span#lblSenal::text').get()
 	estacion = response.css('li#cabecera_nombreEstacion a::attr(href)').get()
 	fechas = response.css('span.cont_fecha_gra::text').getall()
 	valores = response.css('span.cont_valor_gra::text').getall()
 \end{lstlisting}
 
-En la funcion parse\_data(), se obtienen los datos por columna en vez de fila, pues la web no hace un correcto uso formateo por tabla, pues no existe esta tabla, insertando los datos sobre un elemento div y formateandolos posteriormente con CSS. Esta forma de mostrar los datos fuerza tener que obtener las fechas por un lado y los valores por otro, resultando en dos listas que debemos unir. La variable tipo (Nivel o caudal) es necesaria para posteriormente guardar los datos de forma correcta.
+En la función \textit{parse\_data()}, se obtienen los datos por columna en vez de fila, pues la web no hace un correcto uso formateo por tabla, pues no existe esta tabla, insertando los datos sobre un elemento div y formateandolos posteriormente con CSS. Esta forma de mostrar los datos fuerza tener que obtener las fechas por un lado y los valores por otro, resultando en dos listas que debemos unir. La variable tipo (Nivel o caudal) es necesaria para posteriormente guardar los datos de forma correcta.
 
-\begin{lstlisting}[language=Python, caption={Selector en parse\_data() de Agua en Navarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse\_data()} de Agua en Navarra Data Spider}]
 	datos = []
 	if tipo == "Nivel Rio":
 		for i, fecha in enumerate(fechas):
@@ -736,7 +742,7 @@ Chromedriver.exe puede ser obtenido en la web \url{https://chromedriver.chromium
 
 En caso de estar en Windows con esto ya es suficiente, aunque al usar Debian son necesarios unos paso más para configurar chromedriver.
 
-\begin{verbatim}
+\begin{lstlisting}[caption={Configuración chromedriver Debian}]
 	#Otorgamos permiso de ejecucion a chromedriver
 	sudo chmod +x chromedriver
 	
@@ -753,11 +759,12 @@ En caso de estar en Windows con esto ya es suficiente, aunque al usar Debian son
 	una linea parecida a esta
 	ChromeDriver 115.0.5790.110
 	(5e87dfef0c85687ea835e444d33466745cc0725f-refs/branch-heads/5790_90@{#20})
-\end{verbatim}
+\end{lstlisting}
+
 Hecho esto ya estaría configurado chromedriver.
 
 \subsubsection{Alternativas probadas}
-Antes de saber que es necesario dirigirse a la pagina donde se muestra la gráfica para poder acceder a la página con los datos numéricos, se probo con una Spider que accedía directamente a esta. Visto que el resultado obtenido estaba vacío y, que en apariencia la Spider era correcta, obteniendo teóricamente aquellos datos deseados, se comprobó la web manualmente, resultando en la obtención del error mostrado en la imagen \ref{fig:ej5}.\newline
+Antes de saber que es necesario dirigirse a la pagina donde se muestra la gráfica para poder acceder a la página con los datos numéricos, se probo con una Spider que accedía directamente a esta. Visto que el resultado obtenido estaba vacío y, que en apariencia la Spider era correcta, obteniendo teóricamente aquellos datos deseados, se comprobó la web manualmente, resultando en la obtención del error mostrado en la figura \ref{fig:ej5}.\newline
 \newline
 Es por eso que, partiendo de un uso de Scrapy sin uso de extensiones de terceros, se probó una solución al problema que seguía la metodología de recorrer las webs, de esta manera, se visita inicialmente la web con la gráfica para posteriormente redirigirse a los datos numéricos. Resultando en un nuevo fracaso.\newline
 \newline
@@ -774,15 +781,15 @@ Al ser código destinado a ejecutarse en intervalos de quince minutos, un tiempo
 \newline
 Antes que nada, cabe mencionar que Playwright no es compatible con Windows y, tampoco lo es con Debian 11 en su versión actual, resultando ser Debian 11 la versión usada para este proyecto, por lo que no se ha podido llegar a comprobar el funcionamiento del siguiente código, aunque debería ser correcto.
 
-\begin{verbatim}
+\begin{lstlisting}[caption={Instalación Playwright}]
 	#Instalamos scrapy-playwright
 	pip install scrapy-playwright
 	
 	#Instalamos los navegadores compatibles
 	playwright install
-\end{verbatim}
+\end{lstlisting}
 
-Para hacer uso de Playwrith con Scrapy, primero que todo es configurar las dependencias de Playwright, implementandolas mediante custom\_settings en una Spider o, si se desea, también pueden ser configuradas en settings.py.
+Para hacer uso de Playwrith con Scrapy, primero que todo es configurar las dependencias de Playwright, implementadas mediante custom\_settings en una Spider o, si se desea, en settings.py.
 
 \begin{lstlisting}[language=Python, caption={Configuración Playwright}]
 	custom_settings = {
@@ -794,7 +801,7 @@ Para hacer uso de Playwrith con Scrapy, primero que todo es configurar las depen
 	}
 \end{lstlisting}
 
-Finalmente, para hacer uso de la herramienta, a diferencia de con Selenium, no dispone de un nuevo objeto Request, si no que hace uso del Request implementado en Scrapy indicándole por argumento que debe usar Playwright.
+Finalmente, para hacer uso de la herramienta, a diferencia de con Selenium, esta no dispone de un nuevo objeto Request, si no que hace uso del Request implementado en Scrapy indicándole por argumento que debe usar Playwright.
 
 \begin{lstlisting}[language=Python, caption={Playwright basic Request}]
 	yield Request(
@@ -842,9 +849,7 @@ Para formatear los datos de forma global, cada proyecto individual dispone de do
 \subsection{Agua en Navarra}
 
 \section{Filtrado de datos}
-Tras formatear los ficheros JSON, estos se pasan por el script filtras\_datos\_JSONs.py.\newline
-\newline
-En el se realiza lo siguiente.
+El siguienta paso a realizar, es el paso de los JSON por el script filtras\_datos\_JSONs.py. En el se realiza lo siguiente.
 
 \begin{lstlisting}[language=Python, caption={Import necesarios}]
 	import json
@@ -861,7 +866,7 @@ Se importan las dependencias.
 	DataJSON = "datos_aemet.json"
 \end{lstlisting}
 
-Se declaran las variables representativas de las rutas y el nombre del fichero JSON deseado.
+Se declaran las variables representativas de las rutas y el nombre del fichero JSON.
 
 \begin{lstlisting}[language=Python, caption={Declaración función openFile()}]
 	def openFile(fileDir):
@@ -882,7 +887,7 @@ La función prueba a abrir el fichero anteriormente declarado (datos\_aemet.json
 			json.dump(DataFile, outfile)
 \end{lstlisting}
 
-Recibiendo como argumento el directorio sobre el que se desea guardar el fichero (jsonDir) y un diccionario JSON con los datos a guardar (DataFile), esta función, comprueba la existencia del directorio y en caso de no hacerlo lo crea. Tras ello, guarda los datos en el directorio con el uso de json.dump().
+Recibiendo como argumento el directorio sobre el que se desea guardar el fichero (jsonDir) y un diccionario JSON con los datos a guardar (DataFile), esta función, comprueba la existencia del directorio y en caso de no hacerlo lo crea. Tras ello, guarda los datos en el directorio con el uso de \textit{json.dump()}.
 
 \begin{lstlisting}[language=Python, caption={Declaración función refinedData()}]
 	def refineData(newFile, oldFile):
@@ -905,9 +910,9 @@ Recibiendo como argumento el directorio sobre el que se desea guardar el fichero
 		saveData(RefinedDir, refinedFile)
 \end{lstlisting}
 
-Esta es la encargada de la comparación de los ficheros, recibidos en los argumentos newFile y oldFile.\newline
+Esta se encarga de la comparación de los ficheros, recibidos en los argumentos newFile y oldFile.\newline
 \newline
-Empezando con la explicación de arriba a abajo, se define la lista vacía refinedFile, encargada de almacenar los datos nuevos de todas las estaciones; se itera por cada estación almacenada en newFile; se define una segunda lista newData encargada de almacenar los nuevos datos por estación; se itera por todos los datos de los presentes en la estación; se comprueba que no exista previamente en los datos de esa misma estación en oldFile; en caso de que el dato no este presente, se almacena en newData; en caso de que exista algún dato nuevo (newData no esta vacía), se crea un objeto JSON siguiendo la estructuración definida para los ficheros de datos y, se almacena en refinedData; finalmente los datos son guardados como fichero en la ruta especificada RefinedDir.
+Empezando con la explicación, se define la lista vacía refinedFile, encargada de almacenar los datos nuevos de todas las estaciones; se itera por cada estación en newFile; se define una segunda lista newData para almacenar los nuevos datos por estación; se itera por todos los datos de los presentes en la estación; se comprueba que no exista previamente en los datos de esa misma estación en oldFile; en caso de que el dato no este presente, se almacena en newData; en caso de que exista algún dato nuevo (newData no esta vacía), se crea un objeto JSON que sigue la estructuración definida para los ficheros de datos y, se almacena en refinedData; finalmente los datos se guardan en un fichero en la ruta especificada RefinedDir.
 
 \begin{lstlisting}[language=Python, caption={Declaración rutas JSONs}]
 	def main():
@@ -921,4 +926,4 @@ Empezando con la explicación de arriba a abajo, se define la lista vacía refin
 		refineData(newFile, oldFile)
 \end{lstlisting}
 
-La función main(), abre los ficheros indicados en las rutas ParsedDir y OldDir, en caso de que oldFile sea None, guarda los nuevos datos directamente en el directorio refinedDir y fuerda el fin del programa.
+La función \textit{main()}, abre los ficheros indicados en las rutas ParsedDir y OldDir, en caso de que oldFile sea None, guarda los nuevos datos directamente en el directorio refinedDir y el programa finaliza. Si se dispone de datos en oldFile, llama a \textit{refineData()}.

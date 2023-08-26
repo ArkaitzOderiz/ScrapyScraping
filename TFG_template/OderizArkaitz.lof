@@ -5,36 +5,35 @@
 \contentsline {figure}{\numberline {1.4}{\ignorespaces Precipitaciones 2022\relax }}{4}{figure.caption.6}%
 \contentsline {figure}{\numberline {1.5}{\ignorespaces Estructura de datos planteada}}{6}{figure.caption.7}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Confederaciones hidrográficas en España}}{9}{figure.caption.8}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Página Aemet de la estación en Aranguren (Navarra)}}{10}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces HTML de la tabla de datos de Aemet de la estación en Aranguren (Navarra)}}{11}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces HTML de las coordenadas de Aemet de la estación en Aranguren (Navarra)}}{11}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Página Nivel de los ríos CHCantábrico\relax }}{12}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Página estaciones MeteoNavarra}}{13}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces HTML tabla estaciones MeteoNavarra\relax }}{13}{figure.caption.14}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Apartado selección de datos MeteoNavarra}}{14}{figure.caption.15}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Página de datos de MeteoNavarra\relax }}{14}{figure.caption.16}%
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Página principal de aforos de El Agua en Navarra}}{15}{figure.caption.17}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces HTML mapa estaciones de El Agua en Navarra}}{16}{figure.caption.18}%
-\contentsline {figure}{\numberline {2.12}{\ignorespaces Página estación de El Agua en Navarra}}{16}{figure.caption.19}%
-\contentsline {figure}{\numberline {2.13}{\ignorespaces HTML estación de El Agua en Navarra}}{17}{figure.caption.20}%
-\contentsline {figure}{\numberline {2.14}{\ignorespaces Gráfica de datos en estación de El Agua en Navarra}}{18}{figure.caption.21}%
-\contentsline {figure}{\numberline {2.15}{\ignorespaces Error al cargar directamente la página de datos numéricos en El Agua en Navarra}}{18}{figure.caption.22}%
-\contentsline {figure}{\numberline {2.16}{\ignorespaces Datos numéricos de estaciones en Agua en Navarra\relax }}{19}{figure.caption.23}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Confederaciones hidrográficas en España}}{7}{figure.caption.8}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Página Nivel de los ríos CHCantábrico\relax }}{8}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Página Aemet de la estación en Aranguren (Navarra)}}{9}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces HTML de la tabla de datos de Aemet de la estación en Aranguren (Navarra)}}{9}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces HTML de las coordenadas de Aemet de la estación en Aranguren (Navarra)}}{10}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Página estaciones MeteoNavarra}}{10}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces HTML tabla estaciones MeteoNavarra\relax }}{11}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Apartado selección de datos MeteoNavarra}}{12}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Página de datos de MeteoNavarra\relax }}{12}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Página principal de aforos de El Agua en Navarra}}{13}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces HTML mapa estaciones de El Agua en Navarra}}{13}{figure.caption.18}%
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Página estación de El Agua en Navarra}}{14}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.13}{\ignorespaces HTML estación de El Agua en Navarra}}{14}{figure.caption.20}%
+\contentsline {figure}{\numberline {2.14}{\ignorespaces Gráfica de datos en estación de El Agua en Navarra}}{15}{figure.caption.21}%
+\contentsline {figure}{\numberline {2.15}{\ignorespaces Error al cargar directamente la página de datos numéricos en El Agua en Navarra}}{15}{figure.caption.22}%
+\contentsline {figure}{\numberline {2.16}{\ignorespaces Datos numéricos de estaciones en Agua en Navarra\relax }}{15}{figure.caption.23}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagrama patrón MVT}}{24}{figure.caption.24}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Web Scraping (Krotov y Tennyson 2018)}}{26}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagrama patrón MVT}}{20}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Web Scraping (Krotov y Tennyson 2018)}}{22}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Idea original de la estructura de datos planteada}}{24}{figure.caption.26}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Idea original de la estructura de datos planteada}}{29}{figure.caption.28}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Estructura de datos usada en el proyecto}}{30}{figure.caption.29}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Estructuración básica de una Spider}}{34}{figure.caption.33}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Tablas de la base de datos}}{37}{figure.caption.41}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Lista de tablas en PostGreSQL}}{42}{figure.caption.42}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Arquitectura de obtención y tratamiento de datos}}{46}{figure.caption.30}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Estructura de datos usada en el proyecto}}{25}{figure.caption.27}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Arquitectura de obtención y tratamiento de datos}}{28}{figure.caption.28}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Estructuración básica de una Spider}}{29}{figure.caption.29}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Tablas de la base de datos}}{32}{figure.caption.30}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Lista de tablas en PostGreSQL}}{37}{figure.caption.31}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Estructura del proyecto recién creado}}{47}{figure.caption.43}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Directorio de almacenamiento de las Spider}}{48}{figure.caption.44}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces URL de inicio para obtener los códigos de las estaciones de Aemet}}{49}{figure.caption.45}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Inspector de webs de Chrome}}{50}{figure.caption.46}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Ruta chromedriver.exe}}{71}{figure.caption.58}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Estructura del proyecto recién creado}}{41}{figure.caption.32}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Directorio de almacenamiento de las Spider}}{42}{figure.caption.33}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces URL de inicio para obtener los códigos de las estaciones de Aemet}}{43}{figure.caption.34}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Ruta chromedriver.exe}}{63}{figure.caption.46}%
 \addvspace {10\p@ }

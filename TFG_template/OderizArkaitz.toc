@@ -1,83 +1,72 @@
-\contentsline {chapter}{Lista de Figuras}{v}{section*.1}%
-\contentsline {chapter}{Lista de Códigos}{vii}{section*.2}%
+\contentsline {chapter}{Lista de Figuras}{iii}{section*.1}%
+\contentsline {chapter}{Lista de Códigos}{v}{section*.2}%
 \contentsline {chapter}{\numberline {1}Introducción}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Antigua intro al parecer inutil :v}{6}{section.1.1}%
-\contentsline {chapter}{\numberline {2}Datos}{9}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Aemet}{10}{section.2.1}%
-\contentsline {section}{\numberline {2.2}CHCantábrico}{11}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Meteorología y climatología de Navarra (MeteoNavarra)}{12}{section.2.3}%
-\contentsline {section}{\numberline {2.4}El Agua en Navarra}{15}{section.2.4}%
-\contentsline {chapter}{\numberline {3}Tecnologías}{21}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Sistema Operativo Debian}{21}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Framework necesarios}{23}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Librería vs Framework}{23}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Django}{24}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Herramienta para Web Scraping}{25}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Procedimiento básico en Web Scraping}{25}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Scrapy}{26}{subsection.3.3.2}%
-\contentsline {subsubsection}{Qué es Scrapy?}{26}{section*.26}%
-\contentsline {subsubsection}{Por qué Scrapy?}{26}{section*.27}%
-\contentsline {section}{\numberline {3.4}Lenguaje de Programación Python}{27}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Qué es Python?}{27}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Por qué Python?}{27}{subsection.3.4.2}%
-\contentsline {section}{\numberline {3.5}Base de Datos}{28}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}PostGreSQL}{28}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Por qué PostGreSQL?}{28}{subsection.3.5.2}%
-\contentsline {chapter}{\numberline {4}Diseño de la Plataforma}{29}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Estructuras Planteadas}{29}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Problema}{29}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Solución}{30}{subsection.4.1.2}%
-\contentsline {section}{\numberline {4.2}Trabajar con los Datos}{30}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Flujo de Datos}{30}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Datos obtenidos por página}{31}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Formato de Datos}{31}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Filtrado de Datos}{32}{subsection.4.2.4}%
-\contentsline {section}{\numberline {4.3}Arquitectura}{32}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Elementos presentes}{33}{subsection.4.3.1}%
-\contentsline {subsubsection}{Entornos virtuales}{33}{section*.31}%
-\contentsline {subsubsection}{Spiders}{33}{section*.32}%
-\contentsline {subsubsection}{Runners}{34}{section*.34}%
-\contentsline {subsubsection}{Executers}{34}{section*.35}%
-\contentsline {subsubsection}{JSONs}{35}{section*.36}%
-\contentsline {subsubsection}{Posts}{36}{section*.37}%
-\contentsline {subsubsection}{Cron}{36}{section*.38}%
-\contentsline {subsubsection}{Django}{37}{section*.39}%
-\contentsline {subsubsection}{PostGreSQL}{37}{section*.40}%
-\contentsline {section}{\numberline {4.4}Entorno de ejecución}{37}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Preparación de entorno virtual}{38}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Instalación y configuración de PostGreSQL}{38}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Instalación y configuración de Django}{40}{subsection.4.4.3}%
-\contentsline {chapter}{\numberline {5}Implementación}{47}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Creación de Spiders}{47}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Proceso de obtención de datos}{49}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Guardado de datos}{51}{subsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.1.3}Spider básica}{52}{subsection.5.1.3}%
-\contentsline {subsection}{\numberline {5.1.4}Método start\_requests()}{53}{subsection.5.1.4}%
-\contentsline {subsection}{\numberline {5.1.5}Eliminar Log}{53}{subsection.5.1.5}%
-\contentsline {section}{\numberline {5.2}Spiders usadas}{54}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Aemet}{54}{subsection.5.2.1}%
-\contentsline {subsubsection}{Data Spider}{54}{section*.47}%
-\contentsline {subsection}{\numberline {5.2.2}CHCantábrico}{55}{subsection.5.2.2}%
-\contentsline {subsubsection}{Code Spider}{55}{section*.48}%
-\contentsline {subsubsection}{Data Spiders}{56}{section*.49}%
-\contentsline {subsubsection}{Coordenates Spider}{59}{section*.50}%
-\contentsline {subsubsection}{Código descartado}{60}{section*.51}%
-\contentsline {subsection}{\numberline {5.2.3}MeteoNavarra}{62}{subsection.5.2.3}%
-\contentsline {subsubsection}{Code Spider}{62}{section*.52}%
-\contentsline {subsubsection}{Data Spider}{63}{section*.53}%
-\contentsline {subsubsection}{Coordenates Spider}{65}{section*.54}%
-\contentsline {subsection}{\numberline {5.2.4}Agua en Navarra}{66}{subsection.5.2.4}%
-\contentsline {subsubsection}{Code Spider}{67}{section*.55}%
-\contentsline {subsubsection}{Data Spider}{67}{section*.56}%
-\contentsline {subsubsection}{Configuración Selenium}{69}{section*.57}%
-\contentsline {subsubsection}{Alternativas probadas}{71}{section*.59}%
-\contentsline {section}{\numberline {5.3}Formateo de datos}{74}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Aemet}{74}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}CHCantábrico}{74}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}MateoNavarra}{74}{subsection.5.3.3}%
-\contentsline {subsection}{\numberline {5.3.4}Agua en Navarra}{74}{subsection.5.3.4}%
-\contentsline {section}{\numberline {5.4}Filtrado de datos}{74}{section.5.4}%
-\contentsline {chapter}{\numberline {6}Conclusiones y Trabajo Futuro}{77}{chapter.6}%
-\contentsline {chapter}{Referencias}{79}{section*.60}%
-\contentsline {chapter}{Glosario}{83}{section*.61}%
-\contentsline {chapter}{Anexos}{83}{section*.61}%
+\contentsline {chapter}{\numberline {2}Datos}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}CHCantábrico}{8}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Agencia estatal de Meteorología (Aemet)}{8}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Meteorología y climatología de Navarra (MeteoNavarra)}{10}{section.2.3}%
+\contentsline {section}{\numberline {2.4}El Agua en Navarra}{12}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Tecnologías}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Sistema Operativo Debian}{17}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Framework necesarios}{19}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Librería vs Framework}{19}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Django Framework}{20}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Herramienta para Web Scraping}{21}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Procedimiento básico en Web Scraping}{21}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Scrapy Framework}{22}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Base de Datos}{23}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}PostGreSQL}{23}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Arquitectura Preliminar}{24}{subsection.3.4.2}%
+\contentsline {chapter}{\numberline {4}Diseño de la Plataforma}{25}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Trabajar con los Datos}{26}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Datos obtenidos por página}{26}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Formato de Datos}{27}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Filtrado de Datos}{27}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}Arquitectura}{28}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Entornos virtuales}{28}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Spiders}{29}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Runners}{29}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Executers}{30}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.5}Directorios de los JSONs de datos}{30}{subsection.4.2.5}%
+\contentsline {subsection}{\numberline {4.2.6}Posts}{30}{subsection.4.2.6}%
+\contentsline {subsection}{\numberline {4.2.7}Cron}{31}{subsection.4.2.7}%
+\contentsline {subsection}{\numberline {4.2.8}API Django}{31}{subsection.4.2.8}%
+\contentsline {subsection}{\numberline {4.2.9}Base de datos PostGreSQL}{32}{subsection.4.2.9}%
+\contentsline {section}{\numberline {4.3}Entorno de ejecución}{32}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Preparación de entorno virtual}{32}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Instalación y configuración de PostGreSQL}{33}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Instalación y configuración de Django}{35}{subsection.4.3.3}%
+\contentsline {chapter}{\numberline {5}Implementación}{41}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Creación de Spiders}{41}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Proceso de obtención de datos}{43}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Guardado de datos}{45}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Spider básica}{45}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.4}Método \textit {start\_requests()}}{46}{subsection.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.5}Eliminar Log}{47}{subsection.5.1.5}%
+\contentsline {section}{\numberline {5.2}Spiders usadas}{47}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Aemet}{47}{subsection.5.2.1}%
+\contentsline {subsubsection}{Data Spider}{47}{section*.35}%
+\contentsline {subsection}{\numberline {5.2.2}CHCantábrico}{49}{subsection.5.2.2}%
+\contentsline {subsubsection}{Code Spider}{49}{section*.36}%
+\contentsline {subsubsection}{Data Spiders}{50}{section*.37}%
+\contentsline {subsubsection}{Coordenates Spider}{52}{section*.38}%
+\contentsline {subsubsection}{Código descartado}{53}{section*.39}%
+\contentsline {subsection}{\numberline {5.2.3}MeteoNavarra}{55}{subsection.5.2.3}%
+\contentsline {subsubsection}{Code Spider}{55}{section*.40}%
+\contentsline {subsubsection}{Data Spider}{56}{section*.41}%
+\contentsline {subsubsection}{Coordenates Spider}{58}{section*.42}%
+\contentsline {subsection}{\numberline {5.2.4}Agua en Navarra}{59}{subsection.5.2.4}%
+\contentsline {subsubsection}{Code Spider}{60}{section*.43}%
+\contentsline {subsubsection}{Data Spider}{60}{section*.44}%
+\contentsline {subsubsection}{Configuración Selenium}{62}{section*.45}%
+\contentsline {subsubsection}{Alternativas probadas}{64}{section*.47}%
+\contentsline {section}{\numberline {5.3}Formateo de datos}{67}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Aemet}{67}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}CHCantábrico}{67}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}MateoNavarra}{67}{subsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.3.4}Agua en Navarra}{67}{subsection.5.3.4}%
+\contentsline {section}{\numberline {5.4}Filtrado de datos}{67}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Conclusiones y Trabajo Futuro}{71}{chapter.6}%
+\contentsline {chapter}{Referencias}{73}{section*.48}%
+\contentsline {chapter}{Glosario}{77}{section*.49}%
+\contentsline {chapter}{Anexos}{77}{section*.49}%

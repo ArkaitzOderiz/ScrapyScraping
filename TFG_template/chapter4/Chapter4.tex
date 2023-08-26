@@ -1,50 +1,34 @@
 \chapter[Diseño de la Plataforma]{Diseño de la Plataforma}
 \label{Chap4}
 
-\section{Estructuras Planteadas}
+La arquitectura planteada en la figura \ref{fig:ej9} es simple y fácil de implementar, pues scrapy mismo puede insertar los datos scrapeados de las web de forma directa en PostGreSQL, aunque presenta un problema. Djando hace uso de un sistema de gestión de versiones de los cambios realizados en la BBDD con el fin de reducir la carga de peticiones a la BBDD, esto se aplica desde el lado de Django, lo que supondría un problema a la hora de insertar datos directamente de Scrapy a PostGreSQL, pues los nuevos datos no serán detectados por Django, generando la situación de que una vez se vayan a pedir los nuevos datos, Django no devuelva nada, pues desde su punto de vista los datos anteriormente pedidos son la versión mas reciente, luego no es necesario realizar llamada alguna a la BBDD.
 
 \begin{figure} [H]
 	\centering
-	\includegraphics[width=0.4\textwidth]{fig/estructura_descartada.png}
-	\caption[Idea original de la estructura de datos planteada]{Estructura descartada}
-	\label{fig:ej9}
-\end{figure}
-
-\subsection{Problema}
-Aunque sea la estructura más simple y fácil de implementar, pues scrapy mismo puede insertar los datos scrapeados de las web de forma directa en PostGreSQL, Djando hace uso de un sistema de gestión de versiones de los cambios realizados en la BBDD con el fin de reducir la carga de peticiones a la BBDD, esto se aplica desde el lado de Django, lo que supondría un problema a la hora de insertar datos directamente de Scrapy a PostGreSQL, pues los nuevos datos podrían no llegar a ser detectados por Django, generando la situación de que una vez se vayan a pedir los nuevos datos Django no devuelva nada pues desde su punto de vista los datos que ya dispongo son la versión mas reciente, luego no es necesario realizar llamada alguna a la BBDD.
-
-\subsection{Solución}
-
-\begin{figure} [H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{fig/estructura_usada.png}
+	\includegraphics[width=0.4\textwidth]{fig/estructura_usada.png}
 	\caption[Estructura de datos usada en el proyecto]{Estructura usada}
 	\label{fig:ej10}
 \end{figure}
 
-Pasa solventar el problema se ha incluido un paso intermedio en el que inicialmente almacena los datos obtenidos de las distintas webs en formato JSON, para posteriormente enviárselos a Django, el cual se encargara de subir los datos a la BBDD, mientras, el resto de la arquitectura seria idéntico a la versión original.
+Pasa solventar el problema, inicialmente se encontró el pluggin scrapy\_djangoitem, promete la comunicación entre scrapy y Django, pero se decidió no usarlo al llevar siete años sin revisiones. Como alternativa, se ha optado por la arquitectura de la figura \ref{fig:ej10}, que incluye un paso intermedio al almacenar los datos obtenidos de las distintas webs en formato JSON, para posteriormente enviárselos a Django, el cual se encargara de subir los datos a la BBDD.
 
 \section{Trabajar con los Datos}
 
-\subsection{Flujo de Datos}
-1.- Pedir datos (JSON1)\newline
-2.- Formatear datos en un nuevo JSON (JSON1 -> JSON2)\newline
-3.- Mandar datos a la BBDD (JSON2)\newline
-4.- Marcar JSON como old (JSON2 -> JSON3)\newline
-5.- Borrar JSON original (JSON1)\newline
+\begin{lstlisting}[caption={Flujo de datos}]
+	Pedir datos
+	Formatear datos
+	Mandar datos a la BBDD
+	Marcar datos como old
+	
+	While(true)
+		Pedir datos
+		Formatear datos
+		Filtrar datos
+		Mandar datos a la BBDD
+		Marcar datos como old
+\end{lstlisting}
 
-While(true)\newline
-	1.- Pedir datos (JSON1)\newline
-	2.- Formatear datos en un nuevo JSON (JSON1 -> JSON2)\newline
-	6.- Crear JSON con las nuevas fechas (JSON2 != JSON3 y fecha de hoy -> JSON4)\newline
-	7.- Mandar datos a la BBDD (JSON4)\newline
-	4.- Marcar JSON como old (JSON2 -> JSON3)\newline
-	5.- Borrar JSON original (JSON1)\newline
-	8.- Borrar JSON viejo (JSON3)\newline
-	9.- Borrar JSON diferencias (JSON4)\newline
-\newline
-\newline
-Puesto que los datos obtenidos no son los mismos para cada web, antes de ser enviados a Django deben ser parseados para compartir una estructura heterogénea, una vez obtenido el JSON parseado, en caso de ser la primera iteración se mandaran directamente los datos a la BBDD, de no ser la primera iteración, se tomaran unicamente los nuevos datos obtenidos como datos a enviar, una vez enviados los datos el JSON parseado sera marcado como old (viejo) para ser el punto de comparación respecto a los datos mas recientes que obtendremos de las webs.
+El flujo que realizan los datos es el siguiente, inicialmente se pedirán los datos, como los datos obtenidos no son los mismos para cada web, se formatean para compartir una estructura heterogénea, en caso de ser la primera iteración, se mandan directamente los datos a la BBDD, de no ser la primera iteración, se filtran los nuevos datos de aquellos mascados como old (viejo), se envían los datos a la base de datos y, una vez enviados son marcados como old para ser el punto de comparación respecto a los datos que se obtendrán en la próxima iteración.
 
 \subsection{Datos obtenidos por página}
 Aemet:\newline
@@ -68,7 +52,7 @@ Debido a ello, para cada web se ha creado una función para parsear (formatear) 
 \newline
 Esquema obtenido:
 
-\begin{lstlisting}[language=json]
+\begin{lstlisting}[language=json, basicstyle=\small]
 [
 {
 	"coordenadas": "X. 598270,3 | Y. 4659333 | Z. 37928",
@@ -101,74 +85,70 @@ Para poder realizar el trabajo se ha diseñado la siguiente arquitectura.\ref{fi
 	\label{fig:ej7}
 \end{figure}
 
-\subsection{Elementos presentes}
-
-\subsubsection{Entornos virtuales}
-Con el fin de que la plataforma sea lo mas fácilmente ampliable se ha decidido que cada Spider disponga de su propio entorno virtual, esto permite añadir dependencias de tal forma que no afecten a el resto de los Scripts presentes, ayudando en la encapsulación de dependencias.\newline
-\newline
-El mayor inconveniente de una plataforma así es la redundancia de código, al ser múltiples entornos independientes es necesario que mucho código sea repetido en cada uno de ellos, cosa que si fuera un único entorno en el que se ejecutara todo, con una clase sobre la que heredar y o una interfaz, seria mucho el código que nos ahorraríamos.\newline
+\subsection{Entornos virtuales}
+Con el fin de que la plataforma sea lo mas fácilmente ampliable, se ha decidido que cada Spider disponga de su propio entorno virtual, esto permite añadir dependencias de tal forma que no afecten a el resto de los scripts presentes, ayudando en la encapsulación de dependencias.\newline
 \newline
 Actualmente la plataforma dispone de cuatro entornos virtuales para cada Spider y un entorno virtual sobre el que ejecutar el servidor de Django.
 
-\subsubsection{Spiders}
+\subsection{Spiders}
 Cada Spider representa una web, de tal forma que cada una de ellas obtiene los datos de la web sobre la que se ha diseñado exclusivamente, para poder realizar esta tarea por cada web han sido necesarias varias Spider, aunque de forma simplificada se pueden agrupar por, aquellas que obtienen las estaciones junto con sus códigos y, las de obtención de datos.\newline
 \newline
-De esta forma se dividen las tareas dándo la posibilidad de ejecutar aquella que mejor venga en cada momento.
+De esta forma, se dividen las tareas con la posibilidad de ejecutar aquella que mejor venga en cada momento.
 
 \begin{figure} [H]
 	\centering
-	\includegraphics[width=0.4\textwidth]{fig/estructura_basica_spider.png}
+	\includegraphics[width=0.3\textwidth]{fig/estructura_basica_spider.png}
 	\caption[Estructuración básica de una Spider]{Estructuración básica de una Spider}
 	\label{fig:ej8}
 \end{figure}
 
-\subsubsection{Runners}
+\subsection{Runners}
 Runner es la forma en la que han sido nombrados los Scripts cuya función es posibilitar la ejecución en nuestro caso asíncrona de una o múltiples Spiders mediante un único comando.\newline
 \newline
 Es un Script simple en el que una vez dispones de la estructura básica en caso de necesitar añadir o eliminar una Spider solo tienes que agregar o eliminar la Spider en cuestión y ya estaría listo.\newline
 \newline
 A su vez, al añadir un intermediario el comando de ejecución pasa de ser, scrapy crawl nombreSpider por cada Spider que se desea ejecutar, a, python nombreRunner.py facilitando la automatización de ejecución de las Spider.
 
-\subsubsection{Executers}
+\subsection{Executers}
 Aumentado un poco mas la abstracción nos encontramos con los Executers, Scripts en Bash encargados de activar el entorno virtual de la Spider deseada y acto seguido ejecutar su respectivo Runner.\newline
 \newline
 Estos existen (en mayor medida que los Runners) con el fin de ayudar con el mantenimiento de la arquitectura, creando un nuevo intermediario en la cadena de ejecución.\newline
 \newline
 Están diseñados de tal forma que funcionen pasandoles un único argumento representando la web de la que quieres obtener los datos, haciendo que la agregación de nuevas Spiders junto con sus entornos sea tan sencillo como respetar las rutas y nombres predefinidos.
 
-\subsubsection{JSONs}
+\subsection{Directorios de los JSONs de datos}
 Este apartado es un conjunto de directorios en los que se van almacenando los JSON obtenidos tras los distintos procesos a los que son sometidos.\newline
 \newline
 Los directorios en cuestión, siguiendo orden de creación para los JSON de datos son los siguientes:
 
+\begin{multicols}{2}
+Directorios de los datos de estación:
 \begin{enumerate}
 	\item RawData
 	\item ParsedData
 	\item RefinedData
 	\item OldData
 \end{enumerate}
-Y los de códigos (estación):
+
+\columnbreak
+
+Directorios de los códigos de estación:
 \begin{enumerate}
 	\item RawCode
 	\item ParsedCode
-	\item RefinedCode (TODO)
-	\item OldCode (TODO)
+	\item RefinedCode
+	\item OldCode
 \end{enumerate}
+\end{multicols}
 
-El primer nivel es aquel que se obtiene de la llamada con la Spider a la web, devolviendo todos los datos de esta.\newline
-\newline
-El segundo, es obtenido tras ejecutar ya sea formatear\_data\_JSONs.py en caso de querer parsear los datos o formatear\_code\_JSONs.py para los códigos.\newline
-\newline
-El tercero se obtiene tras eliminar la duplicidad de datos en comparación con los ya almacenados en la base de datos mediante la ejecución de filtrar\_data\_JSONs.py.\newline
-\newline
-Finalmente el cuarto es el subproducto obtenido tras la comparación, tomando el fichero original ya formateado y cambiándole de directorio y el nombre de tal forma que se distinga del resto de ficheros.
+El primer nivel es aquel que almacena los JSON que genera la llamada con la Spider a la web. El segundo, los resultantes tras ejecutar ya sea formatear\_data\_JSONs.py en caso de querer parsear los datos o formatear\_code\_JSONs.py para los códigos. El tercero almacena los ficheros generados tras eliminar la duplicidad de datos en comparación con los ya almacenados en la base de datos, mediante la ejecución de filtrar\_data\_JSONs.py. Finalmente el cuarto guarda el fichero original ya formateado tras la comparación.
 
-\subsubsection{Posts}
+\subsection{Posts}
 Estos Scripts son los encargado de enviar los datos mediante un Post Request al servidor Django.\newline
 \newline
 Diseñados bajo el mismo principio de fomentar la ampliabilidad del proyecto que los Executer, reciben el nombre de la web de la cual deseas enviar los datos a la hora de ejecutarlo junto al comando en forma de argumento.
 
-\subsubsection{Cron}
+\subsection{Cron}
 Cron es un administrador regular de procesos en segundo plano presente en los sistemas basados en Unix. Con el es posible programar la automatización de ejecución de procesos en intervalos de tiempo, pudiendo indicar el minuto, hora, día, mes e incluso día de la semana.\newline
 \newline
 La especificación de los procesos se realiza en el archivo crontab y, su estructuración es la siguiente:
@@ -189,11 +169,11 @@ Así pues, Cron es el encargado de ejecutar cada proceso necesario dentro de la 
 \newline
 De esta forma dispondríamos de un sistema cerrado automático, el cual nos permitiría trabajar en otros apartados como puede ser la integración de mas webs en la plataforma o la mejora del sistema de predicción.
 
-\subsubsection{Django}
+\subsection{API Django}
 La instancia del servidor de Django es la encargada de tanto recibir los datos obtenidos como de enviarlos a la base de datos. Finalmente, una vez se dispusiera de una aplicación de predicción, se encargaría de pedir los datos almacenados y enviarlos mediante POST a la aplicación.
 
-\subsubsection{PostGreSQL}
-La base de datos, dispone de las siguientes dos tablas de la imagen \ref{fig:ej33}.
+\subsection{Base de datos PostGreSQL}
+La base de datos, dispone de las siguientes dos tablas de la figura \ref{fig:ej33}.
 
 \begin{figure} [H]
 	\centering
@@ -204,7 +184,7 @@ La base de datos, dispone de las siguientes dos tablas de la imagen \ref{fig:ej3
 
 Tienen una relación uno a muchos, siendo el campo estacion de la tabla Data la ForeingKey usada.\newline
 \newline
-Para la tabla Data, al almacenar miles de datos, se ha optado por usar una PrimaryKey auto incremental. A su vez, a excepcion del campo fecha, cualquiera de los campos pueden ser nulos, pues cada web proporciona unicamente un conjunto de los datos.\newline
+Para la tabla Data, al almacenar miles de datos, se ha optado por usar una PrimaryKey auto incremental. A su vez, a excepción del campo fecha, cualquiera de los campos pueden ser nulos, pues cada web proporciona unicamente un conjunto de los datos.\newline
 \newline
 En la tabla Code, exceptuando la clave primaria y el nombre de la estación, el resto de campos tienen la posibilidad de ser nulos.
 
@@ -214,7 +194,7 @@ El proyecto se dividirá en dos ordenadores (maquinas virtuales). Uno de ellos s
 \subsection{Preparación de entorno virtual}
 Primero instalaremos las dependencias para crear y activar un entorno virtual sobre el que trabajar, para ello ejecutaremos los siguientes comandos:
 
-\begin{verbatim}
+\begin{lstlisting}
 	#Instalamos las dependencias
 	user@host:~$ sudo apt install python3-venv python3-dev
 	
@@ -228,17 +208,16 @@ Primero instalaremos las dependencias para crear y activar un entorno virtual so
 	#Activamos el entorno virtual
 	user@host:~/dirdemiproyecto$ source envdemiproyecto/bin/activate
 	
-	#Una vez seguidos los pasos nuestra terminal debe mostrarse así
+	#Una vez seguidos los pasos nuestra terminal debe mostrarse asi
 	(envdemiproyecto) user@host:~/dirdemiproyecto$
-\end{verbatim}
+\end{lstlisting}
 
-Cada Spider dispondrá de su propio entorno virtual, nombrado tras la pagina web a la que representa, de esta forma, por ejemplo, el entorno virtual para la web de chcantabrico también se llamará chcantabrico.
-Otro entorno virtual sera usado para el servidor Django y los Scripts encargados del envío de datos.
+Cada Spider dispondrá de su propio entorno virtual, nombrado tras la pagina web a la que representa, de esta forma, por ejemplo, el entorno virtual para la web de CHcantábrico se llamará chcantabrico. Otro entorno virtual es usado para el servidor Django y los scripts encargados del envío de datos.
 
 \subsection{Instalación y configuración de PostGreSQL}
-Comenzamos con los comandos necesarios para la instalación inicial de PostGreSQL y con la creación de un usuario y una base de datos.
+Los comandos necesarios para la instalación inicial de PostGreSQL, la creación de un usuario y una base de datos son.
 
-\begin{verbatim}
+\begin{lstlisting}
 	#Instalamos PostGreSQL y las dependencias
 	user@host:~$ sudo apt install libpq-dev postgresql postgresql-contrib
 	
@@ -264,14 +243,13 @@ Comenzamos con los comandos necesarios para la instalación inicial de PostGreSQ
 	
 	#Una vez finalizado
 	postqres=# \q
-	
-\end{verbatim}
+\end{lstlisting}
 
 En este punto ya se dispondría de una base de datos (aun sin tablas en ella) y de un usuario con el que conectarse a esta desde Django.\newline
 \newline
 Ahora quedaría configurar el permiso de comunicación entre dispositivos, más concretamente la conexión remota de Django con PostGreSQL.
 
-\begin{verbatim}
+\begin{lstlisting}
 	#Abrimos el archivo postgresql.conf con un editor
 	user@host:~$ sudo nano /etc/postgresql/11/main/postgresql.conf
 	
@@ -299,14 +277,14 @@ Ahora quedaría configurar el permiso de comunicación entre dispositivos, más 
 	
 	#Finalmete permitimos el trafico mediante el puerto 5432 (puesto por defecto)
 	user@host:~$ sudo ufw allow 5432/tcp
-\end{verbatim}
+\end{lstlisting}
 
 Una vez realizados los siguientes pasos ya está la instancia de PostGreSQL configurada.
 
 \subsection{Instalación y configuración de Django}
 Antes de instalar Django, es necesario generar un entorno virtual sobre el que trabajar.
 
-\begin{verbatim}
+\begin{lstlisting}
 	#Instalamos Django y las dependencias
 	(envdemiproyecto) user@host:~/dirdemiproyecto$ pip install django psycopg2
 	
@@ -316,11 +294,11 @@ Antes de instalar Django, es necesario generar un entorno virtual sobre el que t
 	
 	#Creamos una nueva app Django
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ python manage.py startapp appAPI
-\end{verbatim}
+\end{lstlisting}
 
 Una vez realizado lo siguiente, quedaría configurar la API.
 
-\begin{verbatim}
+\begin{lstlisting}
 	#Abrimos el archivo settings.py con un editor
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano djangoAPI/settings.py
 	
@@ -370,18 +348,18 @@ Una vez realizado lo siguiente, quedaría configurar la API.
 	
 	#Finalmete permitimos el trafico mediante el puerto 8000 (puesto por defecto)
 	user@host:~$ sudo ufw allow 8000
-\end{verbatim}
+\end{lstlisting}
 
 Tras configurar la API, toca crear los modelos de la base de datos.
 
-\begin{verbatim}
+\begin{lstlisting}
 	#Abrimos el archivo models.py dentro de la carpeta appAPI con un editor
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano appAPI/models.py
-\end{verbatim}
+\end{lstlisting}
 
 Dentro definimos los modelos Data y Code.
 
-\begin{lstlisting}[language=Python, caption={Modelos Django}]
+\begin{lstlisting}[language=Python, caption={Modelos API Django}]
 	from django.db import models
 	
 	class Data(models.Model):
@@ -405,25 +383,25 @@ Dentro definimos los modelos Data y Code.
 
 Para importar los modelos a la base de datos, con el fin de crear las respectivas tablas.
 
-\begin{verbatim}
+\begin{lstlisting}
 	#Actualizamos los datos realizados en models.py
 	(envdemiproyecto) user@host:~/dirdemiproyecto$ python3 manage.py makemigrations
 	
 	#Migramos los datos
 	envdemiproyecto) user@host:~/dirdemiproyecto$ python3 manage.py migrate
-\end{verbatim}
+\end{lstlisting}
 
 Si se quiere confirmar la correcta creación de las tablas, desde la terminal de PostGre.
 
-\begin{verbatim}
+\begin{lstlisting}
 	#Nos conectamos a la base de datos
 	postgres=# \c bbddmiproyecto
 	
 	#Mostramos las tablas
 	postgres=# \d
-\end{verbatim}
+\end{lstlisting}
 
-Si todo a ido bien, se deberían mostrar como en la imagen \ref{fig:ej34}.
+Si todo a ido bien, se deberían mostrar como en la figura \ref{fig:ej34}.
 
 \begin{figure} [H]
 	\centering
@@ -434,14 +412,14 @@ Si todo a ido bien, se deberían mostrar como en la imagen \ref{fig:ej34}.
 
 Tras configurar la API y crear las tablas de la base de datos, se creará la API como tal.
 
-\begin{verbatim}
+\begin{lstlisting}
 	#Creamos el archivo urls.py con un editor dentro de la carpeta appAPI
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano appAPI/urls.py
-\end{verbatim}
+\end{lstlisting}
 
 Dentro se incluye el siguiente código.
 
-\begin{lstlisting}[language=Python, caption={Modelos Django}]
+\begin{lstlisting}[language=Python, caption={Definición URLs API}]
 	from django.urls import path
 	from django.views.decorators.csrf import csrf_exempt
 	
@@ -457,14 +435,14 @@ Aquí se definen las rutas para realizar una llamada a la API, en este caso stor
 \newline
 Si se quiere que el proyecto tenga constancia de ellas.
 
-\begin{verbatim}
+\begin{lstlisting}
 	#Abrimos el archivo urls.py dentro de la carpeta djangoAPI con un editor
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano djangoAPI/urls.py
-\end{verbatim}
+\end{lstlisting}
 
 Dentro se incluye el siguiente código.
 
-\begin{lstlisting}[language=Python, caption={Modelos Django}]
+\begin{lstlisting}[language=Python, caption={Configuración URLs API}]
 	from django.contrib import admin
 	from django.urls import path, include
 	
@@ -476,14 +454,14 @@ Dentro se incluye el siguiente código.
 
 Para finalizar, se crean las vistas a las que dirigen las rutas.
 
-\begin{verbatim}
+\begin{lstlisting}
 	#Abrimos el archivo views.py dentro de la carpeta appAPI con un editor
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano appAPI/views.py
-\end{verbatim}
+\end{lstlisting}
 
 Dentro se incluye el siguiente código.
 
-\begin{lstlisting}[language=Python, caption={Modelos Django}]
+\begin{lstlisting}[language=Python, caption={Definición funciones de recepción y almacenamiento de datos API}]
 	import json
 	
 	from django.http import JsonResponse
@@ -522,6 +500,6 @@ Dentro se incluye el siguiente código.
 	return JsonResponse(data, safe=False)
 \end{lstlisting}
 
-Estas funciones se encargan de recibir los datos enviados, iterar por ellos y subirlos a la base de datos con el método save().\newline
+Estas funciones se encargan de recibir los datos enviados, iterar por ellos y subirlos a la base de datos con el método \textit{save()}.\newline
 \newline
 Con esto concluiría la creación y configuración de la API.
