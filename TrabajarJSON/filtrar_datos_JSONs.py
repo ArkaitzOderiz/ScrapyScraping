@@ -27,13 +27,19 @@ def saveRefinedData(i, refinedFile):
         json.dump(refinedFile, outfile)
 
 
+def searchEstacionData(code, dataFile):
+    for data in dataFile:
+        if data['estacion'] == code:
+            return data["datos"]
+
 def refineData(index, newFile, oldFile):
     refinedFile = []
 
     for i, item in enumerate(newFile):
         newData = []
         for data in item["datos"]:
-            if data["fecha y hora"] not in [x["fecha y hora"] for x in oldFile[i]["datos"]]:
+            oldData = searchEstacionData(item['estacion'], oldFile)
+            if data["fecha y hora"] not in [x["fecha y hora"] for x in oldData]:
                 print(f"Found difference: {data}")
                 newData.append(data)
         if newData:

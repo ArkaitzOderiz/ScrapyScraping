@@ -19,25 +19,37 @@ Creadas en 1926, las confederaciones son organismos autónomos, con plena autono
 Por todo esto, es de gran importancia para este proyecto la adquisición de datos relacionados a estas entidades que ejercen en Navarra.
 
 \section{CHCantábrico}
-En la sección de nivel del río de la pagina de CHCantábrico, se encuentra la tabla con las estaciones, figura \ref{fig:sub9}. Una peculiaridad de esta, es que aun seguir una estructuración típica de tabla mediante el uso de \textit{table}, dispone de una tabla adicional en cada una de las filas. Figura \ref{fig:sub10}.
+En la sección de nivel del río de la pagina de CHCantábrico, se encuentra la tabla con las estaciones, figura \ref{fig:ej30}. Una peculiaridad de esta, es que aun seguir una estructuración típica de tabla mediante el uso de \textit{table}, dispone de una tabla adicional en cada una de las filas.
 
 \begin{figure} [H]
 	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.7\linewidth]{fig/CHCantabricoCode.png}
-		\caption{Tabla estaciones}
-		\label{fig:sub9}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.7\linewidth]{fig/CHCantabricoCodeHTML.png}
-		\caption{HTML de la tabla de estaciones}
-		\label{fig:sub10}
-	\end{subfigure}
+	\includegraphics[width=.7\linewidth]{fig/CHCantabricoCode.png}
 	\caption{Página Nivel de los ríos CHCantábrico}
 	\label{fig:ej30}
 \end{figure}
+
+\begin{lstlisting}[basicstyle=\footnotesize, caption={HTML tabla estaciones en CHCantábrico}]
+	<table class="tablefixedheader niveles">
+		<thead></thead>
+		<tbody>
+			<tr class="centrado">
+				<td class="codigo">1207</td>
+				<td class="verde">...</td>
+				<td class="verde">...</td>
+				<td class="valor">...</td>
+				<td class="tendencia">...</td>
+				<td class="actualizacion">...</td>
+				<td>
+					<table class="umbrales_gr">											
+						<tbody></tbody>
+					</table>
+				</td>
+				<td>...</td>	
+			</tr>
+			...
+		</tbody>
+	</table>
+\end{lstlisting}
 
 A diferencia del resto de las páginas visitadas, CHCantábrico no muestra los datos sobre la web, por el contrario, implementa un botón con el que descargarlos directamente en formato CSV. Los datos que se pueden obtener, son aquellos presentes en la tabla secundaria de las fila, los datos de pre-alerta, alerta y seguimiento para cada una de las estaciones, siendo datos valiosos a la hora de intentar anticipar inundaciones. Las coordenadas a su vez, tampoco vienen dados sobre la web, por lo que hace falta visitar la web del Centro de Estudios Hidrológicos (\url{https://ceh.cedex.es/}) para obtenerlas.
 
@@ -51,23 +63,43 @@ La figura \ref{fig:ej3} muestra la página web de Aemet, dentro podemos encontra
 	\label{fig:ej3}
 \end{figure}
 
-Los datos en HTML vienen datos dentro de un elemento tabla, figura \ref{fig:ej20}, lo que facilita su adquisición, pues permite tomar todas las filas (elementos \textit{tr}) pertenecientes al elemento \textit{tbody} de esta. Una vez obtenidas las filas, la forma de lograr los datos deseados seria eligir dentro de cada elemento \textit{tr} los elementos \textit{td} deseados, puesto que HTML empieza a contar elementos desde el uno (en vez de cero como suele ser común en lenguajes de programación), los \textit{td} a obtener serian: uno, fecha y hora; dos, temperatura; siete, precipitación; diez, humedad.
+\begin{lstlisting}[basicstyle=\footnotesize, caption={HTML tabla datos en Aemet}]
+	<table id="table">
+		<thead></thead>
+		<tbody>
+			<tr class="fila_par">
+				<td class="evenselected">27/08/2023 12:00</td>
+				<td class="">16.6</td>
+				<td class="">16</td>
+				<td class="">...</td>
+				<td class="">36</td>
+				<td class="">...</td>
+				<td class="">0.0</td>
+				<td class=""> </td>
+				<td class=""> </td>
+				<td class="">67.0</td>
+			</tr>
+			...
+		</tbody>
+	</table>
+\end{lstlisting}
 
-\begin{figure} [H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{fig/AemetDataHTML.png}
-	\caption[HTML de la tabla de datos de Aemet de la estación en Aranguren (Navarra)]{HTML Tabla Datos Aemet}
-	\label{fig:ej20}
-\end{figure}
+Los datos en HTML vienen datos dentro de un elemento \textit{table}, lo que facilita su adquisición, pues permite tomar todas las filas (elementos \textit{tr}) pertenecientes al elemento \textit{tbody} de esta. Una vez obtenidas las filas, la forma de lograr los datos deseados seria eligir dentro de cada elemento \textit{tr} los elementos \textit{td} deseados, puesto que HTML empieza a contar elementos desde el uno (en vez de cero como suele ser común en lenguajes de programación), los \textit{td} a obtener serian: uno, fecha y hora; dos, temperatura; siete, precipitación; diez, humedad.
 
-Las coordenadas, dentro de un \textit{span}, figura \ref{fig:ej21}, están incluidas en elementos \textit{abbr} con sus respectivas clases \textit{''latitude``} y \textit{''longitude``}, haciendo posible su obtención fácilmente mediante los elementos \textit{abbr}.
+\begin{lstlisting}[basicstyle=\footnotesize, caption={HTML coordenadas en Aemet}]
+	<span class="geo">
+		<span class="font_bold">Latitud</span>
+		:
+		<abbr class="latitude" title="42.7761111111">42° 46' 34'' N</abbr>
+		-
+		<span class="font_bold">Longitud</span>
+		:
+		<abbr class="longitude" title="-1.5325000000">1° 31' 57'' O</abbr>
+		-
+	</span>
+\end{lstlisting}
 
-\begin{figure} [H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{fig/AemetCoordHTML.png}
-	\caption[HTML de las coordenadas de Aemet de la estación en Aranguren (Navarra)]{HTML de las coordenadas en Aemet}
-	\label{fig:ej21}
-\end{figure}
+Las coordenadas, dentro de un \textit{span}, están incluidas en elementos \textit{abbr} con sus respectivas clases \textit{''latitude``} y \textit{''longitude``}, haciendo posible su obtención fácilmente mediante los elementos \textit{abbr}.
 
 \section{Meteorología y climatología de Navarra (MeteoNavarra)}
 En la página de meteorología y climatología de Navarra encontramos una gran sección de estaciones de las cuales poder obtener datos. Figura \ref{fig:ej27}.
@@ -80,28 +112,35 @@ En la página de meteorología y climatología de Navarra encontramos una gran s
 \end{figure}
 
 De entre los dos tipos e estaciones disponibles, automática y manual, únicamente se va a trabajar con los datos de las estaciones automáticas. El motivo de esto es que las manuales solo proveen datos diarios de, la temperatura máxima, mínima y de la precipitación acumulada. Esto hace que no se disponga de ningún dato hasta que finalice el día, cosa que no es viable si lo que se propone es predecir cambios radicales en un periodo de tiempo reducido.
-\newline
-\newline
-Debido a la estructuración HTML usada para mostrar las estaciones, figura \ref{fig:sub5}, se puede ver que aun usar el elemento \textit{table}, este solo dispone de una única fila y columna, haciendo de la columna un elemento \textit{div} sobre el que insertar los datos, figura \ref{fig:sub6}. Como es el caso de la web de Agua en Navarra.
 
-\begin{figure} [H]
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.8\linewidth]{fig/MeteoNavarraCodeHTMLTable.png}
-		\caption{Tabla}
-		\label{fig:sub5}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.9\linewidth]{fig/MeteoNavarraCodeHTML.png}
-		\caption{Filas}
-		\label{fig:sub6}
-	\end{subfigure}
-	\caption{HTML tabla estaciones MeteoNavarra}
-	\label{fig:ej28}
-\end{figure}
+\begin{lstlisting}[basicstyle=\footnotesize, caption={HTML tabla estaciones en MeteoNavarra}]
+	<table width="260" border="0" cellspacing="0">
+		<tbody>
+			<tr>
+				<td colspan="2" height="470" valign="top">
+					<div style="margin-left:5px; margin-right:5px;z-index:200">
+						<div onclick="javascript:menu_openclose('AUTO_A');" style="width:100px;"></div>
+						<div id="AUTO_A" style="margin-left:5px;display:none;">
+							<script>
+								doImage(274,6,'/img/2/estacionautomatica.gif','Ablitas MAPA','AUTO');
+							</script>
+							<img src="/img/spacer.gif" alt="" width="8" height="1" border="0">
+							<img src="/img/2/estacionautomatica.gif" alt="Ablitas MAPA" width="6" height="6" border="0">
+							<a href="estacion.cfm?IDestacion=274" onmouseover="showEstacion('274_info','6','AUTO')" onmouseout="hideEstacion('274_info','AUTO')"> Ablitas MAPA</a>
+							<br>
+							...
+						</div>
+						...
+					</div>
+					<br><br>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+\end{lstlisting}
 
+Debido a la estructuración HTML usada para mostrar las estaciones, se puede ver que, aun usar el elemento \textit{table}, este solo dispone de una única fila y columna, haciendo de la columna un elemento \textit{div} sobre el que se insertan los datos.\newline
+\newline
 Las estaciones automáticas proporcionan tanto datos en periodos de diez minutos como datos diarios. Tras usar el mismo razonamiento que con las estaciones manuales, no tomamos los datos diarios y, entre los actualizados cada diez minutos, se toman la temperatura, humedad relativa, radiación global y precipitación. El resto se omitirán. Figura \ref{fig:ej6}.
 
 \begin{figure} [H]
@@ -111,25 +150,39 @@ Las estaciones automáticas proporcionan tanto datos en periodos de diez minutos
 	\label{fig:ej6}
 \end{figure}
 
-Los datos se muestran en formato tabla, tanto visualmente, en la figura \ref{fig:sub7} como a nivel de HTML, figura \ref{fig:sub8}, cosa que facilita su obtención.
+Los datos se muestran en formato tabla, tanto visualmente, en la figura \ref{fig:ej29} como a nivel de HTML, cosa que facilita su obtención.
 
 \begin{figure} [H]
 	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.7\linewidth]{fig/MeteoNavarraData.png}
-		\caption{Tabla datos}
-		\label{fig:sub7}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.7\linewidth]{fig/MeteoNavarraCodeHTML.png}
-		\caption{HTML de la tabla de datos}
-		\label{fig:sub8}
-	\end{subfigure}
+	\includegraphics[width=.6\linewidth]{fig/MeteoNavarraData.png}
 	\caption{Página de datos de MeteoNavarra}
 	\label{fig:ej29}
 \end{figure}
+
+\begin{lstlisting}[basicstyle=\footnotesize, caption={HTML tabla datos en MeteoNavarra}]
+	<table class="border" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
+		<tbody>
+			<tr bgcolor="#FFFFFF"></tr>
+			<tr bgcolor="#FFFFFF"></tr>
+			<tr bgcolor="E8F2FF">
+				<td>26/08/2023 0:00</td>
+				<td align="center">
+					<font color="0">17.6</font>
+				</td>
+				<td align="center">
+					<font color="0">82</font>
+				</td>
+				<td align="center">
+					<font color="0">0.0</font>
+				</td>
+				<td align="center">
+					<font color="0">0.0</font>
+				</td>
+			</tr>
+			...
+		</tbody>
+	</table>
+\end{lstlisting}
 
 \section{El Agua en Navarra}
 En esta página encontraremos los datos tanto del nivel de los ríos como de su caudal en los últimos 15 días en periodos de 10 minutos, siendo una de las fuentes principales de datos.
@@ -146,15 +199,20 @@ Con el fin de acceder a todas las estaciones disponibles, debemos centrarnos en 
 	\label{fig:ej4}
 \end{figure}
 
-El HTML del mapa se estructura de la siguiente manera, figura \ref{fig:ej22}, mostrando un par de elementos \textit{area} por estación, uno con \textit{shape=''rect``}, representando las tarjetas que rodean el mapa y otro con \textit{shape=''circle``}, siendo los puntos en el mapa. Pulsar sobre cualquiera de ellos es equivalente, aunque posteriormente hagamos uso de los elementos con \textit{shape=''rect``} dentro del código.
+\begin{lstlisting}[basicstyle=\footnotesize, caption={HTML mapa estaciones en El Agua en Navarra}]
+	<map id="mapCajetines_mapa" name="mapCajetines">
+		<area shape="rect" coords="5,5,180,59" alt="Arakil - Etxarren" href="https://administracionelectronica.navarra.es/aguaEnNavarra/ctaDatosEstacion.aspx?IdEstacion=50" onmouseover="javascript:document.getElementById('imgMapa').src='mostrarimagen.aspx?idMapa=1&"
+		"amp;IdCajetin=62&amp;Vista=internet&amp;IdOrigenDatos=1'" target="_self" onmouseout="javascript:document.getElementById('imgMapa').src='mostrarimagen.aspx?idMapa=1&"
+		"amp;Vista=internet&amp;IdOrigenDatos=1'">
+		<area shape="circle" coords="317,243,11" alt="Arakil - Etxarren" href="https://administracionelectronica.navarra.es/aguaEnNavarra/ctaDatosEstacion.aspx?IdEstacion=50" onmouseover="javascript:document.getElementById('imgMapa').src='mostrarimagen.aspx?idMapa=1&"
+		"amp;IdCajetin=62&amp;Vista=internet&amp;IdOrigenDatos=1'" target="_blank" onmouseout="javascript:document.getElementById('imgMapa').src='mostrarimagen.aspx?idMapa=1&"
+		"amp;Vista=internet&amp;IdOrigenDatos=1'">
+		...
+	</map>
+\end{lstlisting}
 
-\begin{figure} [H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{fig/AguaEnNavarraCodeHTML.png}
-	\caption[HTML mapa estaciones de El Agua en Navarra]{HTML mapa estaciones El Agua en Navarra}
-	\label{fig:ej22}
-\end{figure}
-
+El HTML del mapa se estructura de la siguiente manera, mostrando un par de elementos \textit{area} por estación, uno con \textit{shape=''rect``}, representando las tarjetas que rodean el mapa y otro con \textit{shape=''circle``}, siendo los puntos en el mapa. Pulsar sobre cualquiera de ellos es equivalente, aunque posteriormente hagamos uso de los elementos con \textit{shape=''rect``} dentro del código.\newline
+\newline
 Las paginas de cada estación se muestran como en la figura \ref{fig:ej23}.
 
 \begin{figure} [H]
@@ -164,15 +222,41 @@ Las paginas de cada estación se muestran como en la figura \ref{fig:ej23}.
 	\label{fig:ej23}
 \end{figure}
 
-De ella obtenemos los próximos datos, descripción, municipio, río y coordenadas. Ademas de darnos acceso a los datos de nivel y caudal del río. Mostrados dentro de el \textit{div} con \textit{id=''blog\_icons``}, figura \ref{fig:ej24}. Una vez dentro del \textit{div} todos los datos siguen la misma estructuración, \textit{''//div/span/span``}, permitiendo la adquisición de todos los elementos a la vez.
+\begin{lstlisting}[basicstyle=\footnotesize, caption={HTML estaciones en El Agua en Navarra}]
+	<div id="bloq_iconos">
+		<div id="descripcion">
+			Descripción
+			<br>
+			<span class="tit_icon">
+				<span id="lblDescripcion">Urederra en Baríndano</span>
+			</span>
+		</div>
+		<div id="municipio">
+			Municipio
+			<br>
+			<span class="tit_icon">
+				<span id="lblMunicipio">Amescoa Baja</span>
+			</span>
+		</div>
+		<div id="rio">
+			Río
+			<br>
+			<span class="tit_icon">
+				<span id="lblRio">Urederra</span>
+			</span>
+		</div>
+		<div id="coordenadas_UTM">
+			Coordenadas UTM (EPSG:25830)
+			<br>
+			<span class="tit_icon">
+				<span id="lblUTM">X. 571569,5 | Y. 4735145 | Z. 500</span>
+			</span>
+		</div>
+	</div>
+\end{lstlisting}
 
-\begin{figure} [H]
-	\centering
-	\includegraphics[width=0.5\textwidth]{fig/AguaEnNavarraEstacionHTML.png}
-	\caption[HTML estación de El Agua en Navarra]{HTML estación El Agua en Navarra}
-	\label{fig:ej24}
-\end{figure}
-
+De ella se obtienen los próximos datos, descripción, municipio, río y coordenadas. Ademas de dar acceso a los datos de nivel y caudal del río. Mostrados dentro de el \textit{div} con \textit{id=''blog\_icons``}. Una vez dentro del \textit{div} todos los datos siguen la misma estructuración, \textit{''//div/span/span``}, permitiendo la adquisición de todos los elementos a la vez.\newline
+\newline
 Una vez se accede a los datos de la estación, se mostrara una gráfica como la de la figura \ref{fig:ej25}. A su vez, mediante el botón \textit{''Datos Numéricos``}, tendremos la posibilidad de observar los datos en forma numérica. Pero no sin antes haber visitado la versión gráfica. Pues da el error de la figura \ref{fig:ej5}.
 
 \begin{figure} [H]
@@ -189,25 +273,27 @@ Una vez se accede a los datos de la estación, se mostrara una gráfica como la 
 	\label{fig:ej5}
 \end{figure}
 
-Los datos numéricos están presentados en formato tabla como se aprecia en la figura \ref{fig:sub3}. Por el contrario, tras observar el HTML, realmente es un elemento \textit{div}, que engloba los conjuntos de elementos \textit{span} que representan las lineas, separados por elementos br, figura \ref{fig:sub4}. El formato en el que se presentan los datos, no hace más que representar una mayor complejidad para, posteriormente, trabajar y adquirir los datos. 
+Los datos numéricos están presentados en formato tabla como se aprecia en la figura \ref{fig:ej26}. Por el contrario, tras observar el HTML, realmente es un elemento \textit{div}, que engloba los conjuntos de elementos \textit{span} que representan las lineas, separados por elementos \textit{br}. El formato en el que se presentan los datos, no hace más que representar una mayor complejidad para, posteriormente, trabajar y adquirir los datos. 
 
 \begin{figure} [H]
 	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.9\linewidth]{fig/AguaEnNavarraData.png}
-		\caption{Formato presentación de los datos}
-		\label{fig:sub3}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.7\linewidth]{fig/AguaEnNavarraDataHTML.png}
-		\caption{HTML de los datos}
-		\label{fig:sub4}
-	\end{subfigure}
+	\includegraphics[width=.8\linewidth]{fig/AguaEnNavarraData.png}
 	\caption{Datos numéricos de estaciones en Agua en Navarra}
 	\label{fig:ej26}
 \end{figure}
+
+\begin{lstlisting}[basicstyle=\footnotesize, caption={HTML datos en El Agua en Navarra}]
+	<div id="lista">	                
+		<span class="cont_fecha_gra">
+			14/08/2023 16:10
+		</span>
+		<span class="cont_valor_gra">0,36</span>
+		<span class="cont_unidad_gra">m</span>
+		<span class="cont_vacio_gra"></span>
+		<br>
+		...
+	</div>
+\end{lstlisting}
 
 De las webs mencionadas se dispone de los siguientes datos para este proyecto:
 

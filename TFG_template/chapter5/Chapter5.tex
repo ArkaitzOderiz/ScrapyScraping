@@ -837,6 +837,77 @@ Los PageMethods indican las acciones a realizar una vez se hace la request, la a
 \newline
 Según la documentación y los ejemplos estudiados, esta alternativa debería funcionar, pero puesto que no se ha podido ejecutar no es seguro su funcionamiento.
 
+\section{Runners}
+Todos los Runners comparten la misma estructura que se explica. Posteriormente, se indicará el código de los Runners usados.
+
+\begin{lstlisting}
+	from pagina.spiders.pagina_spider import PaginaSpider
+	from scrapy.crawler import CrawlerProcess
+	from scrapy.utils.project import get_project_settings
+	
+	
+	def main():
+		settings = get_project_settings()
+		process = CrawlerProcess(settings)
+		process.crawl(PaginaSpider)
+		process.start()
+\end{lstlisting}
+
+Primero se incluyen las dependencias, entre ellas la Spider a usar, en caso de querer ejecutar múltiples Spider se deberán importar todas ellas y se ejecutaran en paralelo. En la función \textit{main()}, se toma la configuración del fichero settings.py y en caso de existir de la variable custom\_settings, CrawlerProcess prepara el proceso requerido para ejecutar las Spider, se indica con el método \textit{crawl()} la Spider a usar y, se da comienzo al proceso con \textit{start()}.
+
+\begin{lstlisting}[language=Python, caption={CHCantábrico Data Runner}]
+	from datosEstaciones.spiders.chcantabrico_pluvio_spider import ChcantabricoPluvioSpider
+	from datosEstaciones.spiders.chcantabrico_nivel_spider import ChcantabricoNivelSpider
+	from datosEstaciones.spiders.chcantabrico_coord_spider import ChcantabricoCoordSpider
+
+	process.crawl(ChcantabricoPluvioSpider)
+	process.crawl(ChcantabricoNivelSpider)
+	process.crawl(ChcantabricoCoordSpider)
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python, caption={Aemet Data Runner}]
+	from datosEstaciones.spiders.aemet_spider import AemetDataSpider
+
+	process.crawl(AemetDataSpider)
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python, caption={MeteoNavarra Data Runner}]
+	from datosEstaciones.spiders.meteoNavarra_coord_spider import MeteonavarraCoordSpider
+	from datosEstaciones.spiders.meteoNavarra_spider import MeteonavarraDataSpider
+
+	process.crawl(MeteonavarraDataSpider)
+	process.crawl(MeteonavarraCoordSpider)	
+\end{lstlisting}
+
+\section{Executers}
+Ficheros data\_spider\_executer.sh y code\_spider\_executer.sh
+
+\begin{lstlisting}[caption={Ejecucion de entorno virtual y selección de proyecto Scrapy}]
+	#!/bin/bash
+	
+	# Activate the virtual environment
+	source Scrapy/$1/bin/activate
+	
+	# Change to the directory containing the Python script
+	cd Scrapy/$1Spider
+\end{lstlisting}
+
+Primero ejecutan el comando para activar el entorno virtual indicada por argumento y se desplazan al directorio del proyecto Scrapy requerido.
+
+\begin{lstlisting}[caption={Ejecución de data\_spider\_runner.py}]
+	# Run the Python script
+	python3 data_spider_runner.py
+\end{lstlisting}
+
+En caso de data\_spider\_executer.sh, ejecuta el Runner encargado de obtener los datos.
+
+\begin{lstlisting}[caption={Ejecución de code\_spider\_runner.py}]
+	# Run the Python script
+	python3 code_spider_runner.py
+\end{lstlisting}
+
+Y en caso de code\_spider\_executer.sh, ejecuta el Runner encargado de obtener los códigos.
+
 \section{Formateo de datos}
 Para formatear los datos de forma global, cada proyecto individual dispone de dos scripts encargados de hacerlo, uno para los códigos y otro para los datos per se.\newline
 \newline
@@ -851,7 +922,7 @@ Para formatear los datos de forma global, cada proyecto individual dispone de do
 \section{Filtrado de datos}
 El siguienta paso a realizar, es el paso de los JSON por el script filtras\_datos\_JSONs.py. En el se realiza lo siguiente.
 
-\begin{lstlisting}[language=Python, caption={Import necesarios}]
+\begin{lstlisting}[language=Python, caption={Import necesarios filtrado de datos}]
 	import json
 	from datetime import date, datetime
 	from pathlib import Path
@@ -889,14 +960,24 @@ La función prueba a abrir el fichero anteriormente declarado (datos\_aemet.json
 
 Recibiendo como argumento el directorio sobre el que se desea guardar el fichero (jsonDir) y un diccionario JSON con los datos a guardar (DataFile), esta función, comprueba la existencia del directorio y en caso de no hacerlo lo crea. Tras ello, guarda los datos en el directorio con el uso de \textit{json.dump()}.
 
+\begin{lstlisting}[language=Python, caption={Declaración función searchEstacionData()}]
+	def searchEstacionData(code, dataFile):
+		for data in dataFile:
+			if data['estacion'] == code:
+				return data["datos"]
+\end{lstlisting}
+
+Como no es seguro que los datos recibidos estén siempre en el mismo orden, se ha definido esta función para asegurarse de trabajar siempre con los datos de la estación correcta. Recorre el fichero viejo y cuando encuentra la estación con el mismo código devuelve los datos de esta.
+
 \begin{lstlisting}[language=Python, caption={Declaración función refinedData()}]
 	def refineData(newFile, oldFile):
 		refinedFile = []
 		
 		for i, item in enumerate(newFile):
 			newData = []
+			oldData = searchEstacionData(item['estacion'], oldFile)
 			for data in item["datos"]:
-				if data["fecha y hora"] not in [x["fecha y hora"] for x in oldFile[i]["datos"]]:
+				if data["fecha y hora"] not in [x["fecha y hora"] for x in oldData]:
 					newData.append(data)
 		if newData:
 			refinedFile.append(
@@ -912,7 +993,7 @@ Recibiendo como argumento el directorio sobre el que se desea guardar el fichero
 
 Esta se encarga de la comparación de los ficheros, recibidos en los argumentos newFile y oldFile.\newline
 \newline
-Empezando con la explicación, se define la lista vacía refinedFile, encargada de almacenar los datos nuevos de todas las estaciones; se itera por cada estación en newFile; se define una segunda lista newData para almacenar los nuevos datos por estación; se itera por todos los datos de los presentes en la estación; se comprueba que no exista previamente en los datos de esa misma estación en oldFile; en caso de que el dato no este presente, se almacena en newData; en caso de que exista algún dato nuevo (newData no esta vacía), se crea un objeto JSON que sigue la estructuración definida para los ficheros de datos y, se almacena en refinedData; finalmente los datos se guardan en un fichero en la ruta especificada RefinedDir.
+Empezando con la explicación, se define la lista vacía refinedFile, encargada de almacenar los datos nuevos de todas las estaciones; se itera por cada estación en newFile; se define una segunda lista newData para almacenar los nuevos datos por estación; se llama a \textit{searchEstacionData()} para buscar los datos viejos de la estación; se itera por todos los datos de los presentes en la estación; se comprueba que no exista previamente en los datos de esa misma estación en oldData; en caso de que el dato no este presente, se almacena en newData; si existe algún dato nuevo (newData no esta vacía), se crea un objeto JSON que sigue la estructuración definida para los ficheros de datos y, se almacena en refinedData; finalmente los datos se guardan en un fichero en la ruta especificada RefinedDir.
 
 \begin{lstlisting}[language=Python, caption={Declaración rutas JSONs}]
 	def main():
@@ -927,3 +1008,37 @@ Empezando con la explicación, se define la lista vacía refinedFile, encargada 
 \end{lstlisting}
 
 La función \textit{main()}, abre los ficheros indicados en las rutas ParsedDir y OldDir, en caso de que oldFile sea None, guarda los nuevos datos directamente en el directorio refinedDir y el programa finaliza. Si se dispone de datos en oldFile, llama a \textit{refineData()}.
+
+\section{Posts}
+Como Posts, se hace referencia a los Scripts code\_post.py y data\_post.py. Como ambos comparten la misma codificación se explicaran de forma general y, se mostraran las diferencias.
+
+\begin{lstlisting}[language=Python, caption={Import necesarios post}]
+	import json
+	import sys
+	import requests
+\end{lstlisting}
+
+Se importan las dependencias.
+
+\begin{lstlisting}[language=Python, caption={Declaración variables code\_post.py}]
+	url = "http://localhost:8000/appAPI/storeCode"
+	
+	with open(f"JSONs/ParsedCode/codigos_{sys.argv[1]}.json", encoding="utf-8") as f:
+		data = json.load(f)
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python, caption={Declaración variables data\_post.py}]
+	url = "http://localhost:8000/appAPI/storeData"
+	
+	with open(f"JSONs/ParsedData/datos_{sys.argv[1]}.json", encoding="utf-8") as f:
+		data = json.load(f)
+\end{lstlisting}
+
+Se declara la url a la que se desea hacer la llamada y, se lee el fichero que se ha indicado al pararlo por argumento a la hora de ejecutar el Script.
+
+\begin{lstlisting}[language=Python, caption={Llamada POST}]
+	headers = {'content-type': 'application/json'}
+	r = requests.post(url, json=data, headers=headers)
+\end{lstlisting}
+
+Finalmente, se indica en headers el tipo de contenido que dispone la llamada, en este caso JSON y, se realiza la llamada con el método \textit{post()} proporcionado por la librería requests.
