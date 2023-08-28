@@ -18,7 +18,7 @@
 \contentsline {lstlisting}{\numberline {5.5}{\ignorespaces Spider de ejemplo (Aemet Code Spider)}}{47}{lstlisting.5.5}%
 \contentsline {lstlisting}{\numberline {5.6}{\ignorespaces Sobre-escritura de \textit {start\_requests()}}}{48}{lstlisting.5.6}%
 \contentsline {lstlisting}{\numberline {5.7}{\ignorespaces Configurar LOG}}{49}{lstlisting.5.7}%
-\contentsline {lstlisting}{\numberline {5.8}{\ignorespaces Selector en \textit {parse()} de Aemet Data Spider}}{50}{lstlisting.5.8}%
+\contentsline {lstlisting}{\numberline {5.8}{\ignorespaces Selector en \textit {parse()} de Aemet Data Spider}}{49}{lstlisting.5.8}%
 \contentsline {lstlisting}{\numberline {5.9}{\ignorespaces Trabajar sobre los datos de Aemet Data Spider}}{50}{lstlisting.5.9}%
 \contentsline {lstlisting}{\numberline {5.10}{\ignorespaces Guardado de datos de Aemet Data Spider}}{50}{lstlisting.5.10}%
 \contentsline {lstlisting}{\numberline {5.11}{\ignorespaces Selector en \textit {parse()} de CHCantábrico Code Spider}}{51}{lstlisting.5.11}%
@@ -64,22 +64,28 @@
 \contentsline {lstlisting}{\numberline {5.51}{\ignorespaces Ejecucion de entorno virtual y selección de proyecto Scrapy}}{71}{lstlisting.5.51}%
 \contentsline {lstlisting}{\numberline {5.52}{\ignorespaces Ejecución de data\_spider\_runner.py}}{71}{lstlisting.5.52}%
 \contentsline {lstlisting}{\numberline {5.53}{\ignorespaces Ejecución de code\_spider\_runner.py}}{71}{lstlisting.5.53}%
-\contentsline {lstlisting}{\numberline {5.54}{\ignorespaces Import necesarios formateo de datos}}{72}{lstlisting.5.54}%
-\contentsline {lstlisting}{\numberline {5.55}{\ignorespaces Declaración variable del JSON}}{72}{lstlisting.5.55}%
-\contentsline {lstlisting}{\numberline {5.56}{\ignorespaces Declaración función \textit {openFile()}}}{72}{lstlisting.5.56}%
-\contentsline {lstlisting}{\numberline {5.57}{\ignorespaces Declaración función \textit {saveFile()}}}{72}{lstlisting.5.57}%
-\contentsline {lstlisting}{\numberline {5.58}{\ignorespaces Declaración función \textit {main()}}}{72}{lstlisting.5.58}%
-\contentsline {lstlisting}{\numberline {5.59}{\ignorespaces Declaración función \textit {searchEstacionCoords()}}}{73}{lstlisting.5.59}%
-\contentsline {lstlisting}{\numberline {5.60}{\ignorespaces Declaración función \textit {searchEstacionData()}}}{75}{lstlisting.5.60}%
-\contentsline {lstlisting}{\numberline {5.61}{\ignorespaces Declaración función \textit {searchDateData()}}}{75}{lstlisting.5.61}%
-\contentsline {lstlisting}{\numberline {5.62}{\ignorespaces Import necesarios filtrado de datos}}{78}{lstlisting.5.62}%
-\contentsline {lstlisting}{\numberline {5.63}{\ignorespaces Declaración rutas JSONs y nombre de fichero}}{78}{lstlisting.5.63}%
-\contentsline {lstlisting}{\numberline {5.64}{\ignorespaces Declaración función openFile()}}{78}{lstlisting.5.64}%
-\contentsline {lstlisting}{\numberline {5.65}{\ignorespaces Declaración función saveFile()}}{79}{lstlisting.5.65}%
-\contentsline {lstlisting}{\numberline {5.66}{\ignorespaces Declaración función searchEstacionData()}}{79}{lstlisting.5.66}%
-\contentsline {lstlisting}{\numberline {5.67}{\ignorespaces Declaración función refinedData()}}{79}{lstlisting.5.67}%
-\contentsline {lstlisting}{\numberline {5.68}{\ignorespaces Declaración rutas JSONs}}{80}{lstlisting.5.68}%
-\contentsline {lstlisting}{\numberline {5.69}{\ignorespaces Import necesarios post}}{80}{lstlisting.5.69}%
-\contentsline {lstlisting}{\numberline {5.70}{\ignorespaces Declaración variables code\_post.py}}{80}{lstlisting.5.70}%
-\contentsline {lstlisting}{\numberline {5.71}{\ignorespaces Declaración variables data\_post.py}}{81}{lstlisting.5.71}%
-\contentsline {lstlisting}{\numberline {5.72}{\ignorespaces Llamada POST}}{81}{lstlisting.5.72}%
+\contentsline {lstlisting}{\numberline {5.54}{\ignorespaces Declaración variable del JSON que se desea usar}}{72}{lstlisting.5.54}%
+\contentsline {lstlisting}{\numberline {5.55}{\ignorespaces Declaración función \textit {openFile()}}}{72}{lstlisting.5.55}%
+\contentsline {lstlisting}{\numberline {5.56}{\ignorespaces Declaración función \textit {saveFile()}}}{72}{lstlisting.5.56}%
+\contentsline {lstlisting}{\numberline {5.57}{\ignorespaces Declaración función \textit {main()}}}{72}{lstlisting.5.57}%
+\contentsline {lstlisting}{\numberline {5.58}{\ignorespaces {Declaración función \textit {searchEstacionCoords()}} usada para formatear los JSON de códigos en CHCantábrico y MeteoNavarra}}{73}{lstlisting.5.58}%
+\contentsline {lstlisting}{\numberline {5.59}{\ignorespaces Declaración función base \textit {searchEstacionCoords()}, concretamente esta versión es usada para formatear los datos de Aemet}}{73}{lstlisting.5.59}%
+\contentsline {lstlisting}{\numberline {5.60}{\ignorespaces Declaración función \textit {unifyData()} para el correcto funcionamiento del formateo de MeteoNavarra}}{74}{lstlisting.5.60}%
+\contentsline {lstlisting}{\numberline {5.61}{\ignorespaces Paso inicial en la función \textit {formatData()} de MeteoNavarra}}{74}{lstlisting.5.61}%
+\contentsline {lstlisting}{\numberline {5.62}{\ignorespaces Declaración función \textit {searchEstacionData()}, especifica en el formateo de datos de CHCantábrico y Agua en Navarra}}{75}{lstlisting.5.62}%
+\contentsline {lstlisting}{\numberline {5.63}{\ignorespaces Declaración función \textit {searchDateData()}}}{75}{lstlisting.5.63}%
+\contentsline {lstlisting}{\numberline {5.64}{\ignorespaces Lectura de los ficheros de datos de CHCantábrico}}{75}{lstlisting.5.64}%
+\contentsline {lstlisting}{\numberline {5.65}{\ignorespaces Dentro del bucle que itera por estaciones, obtención de los datos de la estacion y declaración de indices}}{75}{lstlisting.5.65}%
+\contentsline {lstlisting}{\numberline {5.66}{\ignorespaces Formato del diccionario lineData en caso de disponer de dos instancias de una misma estación}}{76}{lstlisting.5.66}%
+\contentsline {lstlisting}{\numberline {5.67}{\ignorespaces Modificación del bucle interno de \textit {formatData()}}}{76}{lstlisting.5.67}%
+\contentsline {lstlisting}{\numberline {5.68}{\ignorespaces Inclusion de los datos en el objeto JSON dato}}{77}{lstlisting.5.68}%
+\contentsline {lstlisting}{\numberline {5.69}{\ignorespaces Import necesarios filtrado de datos}}{77}{lstlisting.5.69}%
+\contentsline {lstlisting}{\numberline {5.70}{\ignorespaces Declaración rutas JSONs y nombre de fichero}}{77}{lstlisting.5.70}%
+\contentsline {lstlisting}{\numberline {5.71}{\ignorespaces Declaración función openFile()}}{78}{lstlisting.5.71}%
+\contentsline {lstlisting}{\numberline {5.72}{\ignorespaces Declaración función saveFile()}}{78}{lstlisting.5.72}%
+\contentsline {lstlisting}{\numberline {5.73}{\ignorespaces Declaración función searchEstacionData()}}{78}{lstlisting.5.73}%
+\contentsline {lstlisting}{\numberline {5.74}{\ignorespaces Declaración función refinedData()}}{78}{lstlisting.5.74}%
+\contentsline {lstlisting}{\numberline {5.75}{\ignorespaces Declaración rutas JSONs}}{79}{lstlisting.5.75}%
+\contentsline {lstlisting}{\numberline {5.76}{\ignorespaces Declaración variables code\_post.py}}{80}{lstlisting.5.76}%
+\contentsline {lstlisting}{\numberline {5.77}{\ignorespaces Declaración variables data\_post.py}}{80}{lstlisting.5.77}%
+\contentsline {lstlisting}{\numberline {5.78}{\ignorespaces Llamada POST}}{80}{lstlisting.5.78}%

@@ -189,9 +189,6 @@ Como se quiere obtener los datos de todas las estaciones dentro de un mismo domi
 El código quedaría de la siguiente manera.
 
 \begin{lstlisting}[language=Python, caption={Sobre-escritura de \textit{start\_requests()}}]
-	import json
-	
-	
 	def start_requests(self):
 		with open("JSONs/RawCode/codigos_aemet.json", encoding="utf-8") as f:
 			data = json.load(f)
@@ -493,8 +490,6 @@ A la hora de guardar los datos, se itera por filas y se filtra del código aquel
 La necesidad de recorrer múltiples estaciones, obliga como en el resto de Spiders de obtención de datos, a sobre escribir la función \textit{start\_requests()}.
 
 \begin{lstlisting}[language=Python, caption={Uso de fechas en función \textit{start\_requests()} MeteoNavarra Data Spider}]
-	import datetime
-
 	current_date = datetime.date.today()
 	delta = datetime.timedelta(days=1)
 	tomorrow_date = current_date + delta
@@ -957,53 +952,45 @@ En caso de data\_spider\_executer.sh, ejecuta el Runner encargado de obtener los
 Y en caso de code\_spider\_executer.sh, ejecuta el Runner encargado de obtener los códigos.
 
 \section{Formateo de datos}
-Para formatear los datos de forma global, cada proyecto individual dispone de dos scripts encargados de hacerlo, uno para los códigos y otro para los datos per se.\newline
+Cada proyecto individual dispone de dos Scripts encargados de formatear los datos, uno para los códigos y otro para los datos per se.\newline
 \newline
-El código compartido entre los Script es el siguiente. Aunque el código usado para la explicación sea el de formatear\_data\_JSONs.py, las diferencias respecto a formatear\_code\_JSONs.py se traducen a cambiar nombres de variables y los directorios, la única diferencia radica en la función principal donde se realiza el formateo.
+El código compartido entre los Script es el primero en ser explicado. Aunque en la explicación se ha usado código de formatear\_data\_JSONs.py, las diferencias respecto a formatear\_code\_JSONs.py se traducen a cambiar nombres de variables y los directorios, la única diferencia radica en la función principal donde se realiza el formateo.
 
-\begin{lstlisting}[language=Python, caption={Import necesarios formateo de datos}]
-	import json
-	from datetime import datetime
-	from pathlib import Path
-\end{lstlisting}
-
-Los import.
-
-\begin{lstlisting}[language=Python, caption={Declaración variable del JSON}]
+\begin{lstlisting}[language=Python, caption={Declaración variable del JSON que se desea usar}, label=cod:3]
 	DataJSON = "datos_pagina.json"
 \end{lstlisting}
 
-Una variable que indica el nombre o la ruta del fichero a leer.
+Una variable que indica el nombre o la ruta del fichero a leer. Código \ref{cod:3}.
 
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{openFile()}}]
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{openFile()}}, label=cod:4]
 	def openFile(filename):
 		with open(f'JSONs/RawData/{filename}', "r", encoding="utf-8") as f:
 			file = json.loads(f.read())
 		return file
 \end{lstlisting}
 
-Una función para abrir los ficheros.
+Una función para abrir los ficheros. Código \ref{cod:4}.
 
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{saveFile()}}]
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{saveFile()}}, label=cod:5]
 	def saveFile(filename, data):
 		Path("JSONs/ParsedData").mkdir(parents=True, exist_ok=True)
 		with open(f'JSONs/ParsedData/{filename}', 'w', encoding='utf-8') as outfile:
 			json.dump(data, outfile)
 \end{lstlisting}
 
-Una función para crear el directorio de guardado en caso de no existir y guardar los ficheros.
+Una función para crear el directorio de guardado en caso de no existir y guardar los ficheros. Código \ref{cod:5}.
 
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{main()}}]
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{main()}}, label=cod:6]
 	def main():
 		file = openFile(DataJSON)
 		formatData(file)
 \end{lstlisting}
 
-Una función \textit{main()} para iniciar el proceso.\newline
+Una función \textit{main()} para iniciar el proceso. Código \ref{cod:6}.\newline
 \newline
-CHCantábrico y MeteoNavarra al disponer de un JSON especifico con las coordenadas, comparten la siguiente función a la hora de formatear los códigos.
+CHCantábrico y MeteoNavarra al disponer de un JSON especifico con las coordenadas, comparten la función en el código \ref{cod:2} a la hora de formatear los códigos de estación.
 
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchEstacionCoords()}}]
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchEstacionCoords()}} usada para formatear los JSON de códigos en CHCantábrico y MeteoNavarra, label=cod:2]
 	def searchEstacionCoords(code, coordFile):
 		for data in coordFile:
 			if data['estacion'] == code:
@@ -1012,84 +999,67 @@ CHCantábrico y MeteoNavarra al disponer de un JSON especifico con las coordenad
 
 En ella se recibe el código de la estación a buscar y el fichero con las coordenadas, se itera sobre el y en caso de encontrar una estación con el mismo código enviado, re devuelven las coordenada. En caso de no encontrar la estación, al no especificar un \textit{return}, la variable se quedara como None.\newline
 \newline
+Con el fin de aligerar la explicación de la función principal, \textit{formatData()}, se va a explicar inicialmente el funcionamiento base de esta, código \ref{cod:1}.
 
-\subsection{Aemet}
-
-\begin{lstlisting}
+\begin{lstlisting}[language=Python, caption={Declaración función base \textit{searchEstacionCoords()}, concretamente esta versión es usada para formatear los datos de Aemet}, label=cod:1]
 	def formatData(file):
-	formattedJSON = []
-	for line in file:
-	datos = []
-	for data in line['datos']:
-	dato = {
-		'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
-		'temperatura (ºC)': data['temperatura (ºC)'],
-		'humedad (%)': data['humedad (%)'],
-		'precipitacion (mm)': data['precipitacion (mm)'],
-		'nivel (m)': None,
-		'caudal (m^3/s)': None,
-		'radiacion (W/m^2)': None,
-	}
-	datos.append(dato)
-	header = {
-		'estacion': line['estacion'],
-		'datos': datos
-	}
-	formattedJSON.append(header)
-	saveFile(DataJSON, formattedJSON)
+		formattedJSON = []
+		for line in file:
+			datos = []
+			for data in line['datos']:
+				dato = {
+					'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
+					'temperatura (C)': data['temperatura (C)'],
+					'humedad (%)': data['humedad (%)'],
+					'precipitacion (mm)': data['precipitacion (mm)'],
+					'nivel (m)': None,
+					'caudal (m^3/s)': None,
+					'radiacion (W/m^2)': None,
+				}
+				datos.append(dato)
+			header = {
+				'estacion': line['estacion'],
+				'datos': datos
+			}
+			formattedJSON.append(header)
+		saveFile(DataJSON, formattedJSON)
 \end{lstlisting}
 
-\subsection{MeteoNavarra}
+La función del código \ref{cod:1}, recibe como argumento el archivo de datos con el que trabajar, file; crea una lista vacía para almacenar el JSON formateado, formattedJSON; itera por cada estación en el fichero; itera por los datos de las estaciones, creando con ellos objetos JSON, dato, con el formato deseado, la temperatura antes de almacenarse se convierte de String a DateTime con el uso de \textit{strptime()} y posteriormente se cambia al formato usado por PosrGreSQL con \textit{strftime()}, los datos que no se dispongan se ponen a None; almacena cada objeto en la lista datos; cuando terminan los datos de una estación, crea un segundo objeto JSON, header, en el que se almacena el código y los datos de esta. Finalmente se incluyen en formattedJSON hasta terminar con todas las estaciones y se guarda el fichero.\newline
+\newline
+MeteoNavarra, dispone de un formateo de datos en bruto peculiar, pudiendo aparecer la misma estación múltiples veces, es por eso, que se ha definido la función del código \ref{cod:7}.
 
-\begin{lstlisting}
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{unifyData()} para el correcto funcionamiento del formateo de MeteoNavarra}, label=cod:7]
 	def unifyData(dataFile, cod):
-	datos = []
-	for line in dataFile:
-	if line['estacion'] == cod:
-	for dato in line['datos']:
-	datos.append(dato)
-	
-	unifiedData = {
-		'estacion': cod,
-		'datos': datos
-	}
-	return unifiedData
-	
-	
-	def formatData(file):
-	coordFile = openFile('coordenadas_meteoNavarra.json')
-	unifiedJSON = []
-	for cod in coordFile:
-	data = unifyData(file, cod['estacion'])
-	unifiedJSON.append(data)
-	
-	formattedJSON = []
-	for line in unifiedJSON:
-	datos = []
-	for data in line['datos']:
-	dato = {
-		'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
-		'temperatura (ºC)': data['temperatura (ªC)'],
-		'humedad (%)': data['humedad relativa (%)'],
-		'precipitacion (mm)': data['precipitacion (l/mm^2)'],
-		'nivel (m)': None,
-		'caudal (m^3/s)': None,
-		'radiacion (W/m^2)': data['radiacion global (W/m^2)'],
-	}
-	datos.append(dato)
-	header = {
-		'estacion': line['estacion'],
-		'datos': datos
-	}
-	formattedJSON.append(header)
-	saveFile('datos_meteoNavarra.json', formattedJSON)
+		datos = []
+		for line in dataFile:
+			if line['estacion'] == cod:
+				for dato in line['datos']:
+					datos.append(dato)
+		
+		unifiedData = {
+			'estacion': cod,
+			'datos': datos
+		}
+		return unifiedData
 \end{lstlisting}
 
-\subsection{CHCantábrico y Agua en Navarra}
+Lo que hace el código \ref{cod:7} es, recorrer las estaciones en busca de aquella que comparta el mismo código y crea un nuevo diccionario con los datos de esta estación, posteriormente devuelve el diccionario.
 
-CHCantábrico y Agua en Navarra comparten la misma estructuración de script. CHCantábrico por tener los datos en dos ficheros y Agua en Navarra por el formato de los datos recibido de la web, apareciendo dos veces cada estación, una con los datos del caudal y otra con los de nivel.
+\begin{lstlisting}[language=Python, caption={Paso inicial en la función \textit{formatData()} de MeteoNavarra}, label=cod:8]
+	codes = [x["estacion"] for x in file]
+	uniqueCodes = pd.Series(codes).drop_duplicates().tolist()
+	unifiedJSON = []
+	for code in uniqueCodes:
+		data = unifyData(file, code)
+		unifiedJSON.append(data)
+\end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchEstacionData()}}]
+Antes de realizar el procedimiento del código \ref{cod:1}, se incluye el código \ref{cod:8}, se obtiene una lista de todos los códigos de estación; con el uso del objeto \textit{Series} de pandas, elimina la duplicidad con \textit{drop\_duplicates()} y lo vuelve a convertir en una lista, \textit{tolist()}. Luego itera por los códigos mientras llama a la función \textit{unifyData()} y almacena el resultado en unifiedJSON.\newline
+\newline
+CHCantábrico y Agua en Navarra comparten la misma estructuración de Script. CHCantábrico por tener los datos en dos ficheros y Agua en Navarra por el formato de los datos recibido de la web, apareciendo dos veces cada estación, pero a diferencia de MeteoNavarra, una con los datos del caudal y otra con los de nivel.
+
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchEstacionData()}, especifica en el formateo de datos de CHCantábrico y Agua en Navarra}, label=cod:9]
 	def searchEstacionData(code, dataFile1=[], dataFile2=[]):
 		datos = []
 		for data in dataFile1:
@@ -1101,7 +1071,7 @@ CHCantábrico y Agua en Navarra comparten la misma estructuración de script. CH
 		return datos
 \end{lstlisting}
 
-\textit{searchEstacionData()} se encarga de recibir de uno a dos fichero y generar un diccionario JSON con todos los datos encontrados de una misma estación, para ello recorre los ficheros estación por estación comparando los códigos y en caso de coincidir se guardan en la variable datos, la cual se devolverá al final.
+\textit{searchEstacionData()}, en código \ref{cod:9}, se encarga de recibir de uno a dos ficheros y generar un diccionario JSON con todos los datos encontrados de una misma estación, para ello recorre los ficheros estación por estación comparando los códigos y en caso de coincidir se guardan en la variable datos, la cual se devolverá al final.
 
 \begin{lstlisting}[language=Python, caption={Declaración función \textit{searchDateData()}}]
 	def searchDateData(dataFile, date):
@@ -1110,118 +1080,77 @@ CHCantábrico y Agua en Navarra comparten la misma estructuración de script. CH
 				return data
 \end{lstlisting}
 
-Esta asegura que la fecha de los datos obtenidos de los JSON coincidan.
+Esta asegura que la fecha de los datos obtenidos de los JSON coincidan, iterando por los datos en busca de la fecha que coincida y devolver el dato correspondiente. \newline
+\newline
+Como el código en la función \textit{formatData()} es virtualmente el mismo, se explicará el caso de CHCantábrico.
 
-\begin{lstlisting}	
-	def formatData(file):
+\begin{lstlisting}[language=Python, caption={Lectura de los ficheros de datos de CHCantábrico}, label=cod:10]
 	levelDataFile = openFile('datos_nivel_chcantabrico.json')
 	pluvioDataFile = openFile('datos_pluvio_chcantabrico.json')
-	formattedJSON = []
-	for line in file:
+\end{lstlisting}
+
+Código \ref{cod:10}. En este caso, el fichero que recibe la funcion \textit{formatData()} es el de los códigos de estación, es por eso que lo primero a hacer en la función es abrir los ficheros con los datos.
+
+\begin{lstlisting}[language=Python, caption={Dentro del bucle que itera por estaciones, obtención de los datos de la estacion y declaración de indices}, label=cod:11]
 	lineData = searchEstacionData(line['codigo'], levelDataFile, pluvioDataFile)
-	datos = []
 	index = 0
 	indexSecundario = 1
 	if len(lineData) == 2:
-	if len(lineData[0]) < len(lineData[1]):
-	index = 1
-	indexSecundario = 0
-	for i, data in enumerate(lineData[index]['datos']):
-	dato = {
-		'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
-		'temperatura (ºC)': None,
-		'humedad (%)': None,
-		'precipitacion (mm)': None,
-		'nivel (m)': None,
-		'caudal (m^3/s)': None,
-		'radiacion (W/m^2)': None,
-	}
-	
-	if 'nivel (m)' in data:
-	dato['nivel (m)'] = data['nivel (m)']
-	elif 'precipitacion (mm)' in data:
-	dato['precipitacion (mm)'] = data['precipitacion (mm)']
-	
-	if len(lineData) == 2:
-	try:
-	dateData = lineData[indexSecundario]['datos'][i]
-	if data['fecha y hora'] != dateData['fecha y hora']:
-	dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
-	except IndexError:
-	dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
-	try:
-	if 'nivel (m)' in dateData:
-	dato['nivel (m)'] = dateData['nivel (m)']
-	dato['complement'] = dateData['fecha y hora']
-	if 'precipitacion (mm)' in dateData:
-	dato['precipitacion (mm)'] = dateData['precipitacion (mm)']
-	dato['complement'] = dateData['fecha y hora']
-	except TypeError:
-	pass
-	
-	datos.append(dato)
-	header = {
-		'estacion': line['codigo'],
-		'datos': datos
-	}
-	formattedJSON.append(header)
-	saveFile('datos_chcantabrico.json', formattedJSON)
+		if len(lineData[0]) < len(lineData[1]):
+			index = 1
+			indexSecundario = 0
 \end{lstlisting}
 
-\subsection{Agua en Navarra}
+Código \ref{cod:11}. Dentro del bucle principal, se llama a \textit{searchEstacionData()} para obtener los datos de ambos ficheros en una única lista \ref{cod:12}, lineData; index e indexSecundario representan los elementos presentes en esta, que, en caso de tener dos instancias de una misma estación, se comprueba cual es más extensa para indicar la instancia principal. Se hace así ya que no siempre aparecen la misma cantidad de datos, de esta forma, trabajar aquel con más datos hace que sea menos probable dejar datos sin tratar.
 
-\begin{lstlisting}
-	def formatData(file):
-	dataFile = openFile('datos_aguaEnNavarra.json')
-	formattedJSON = []
-	for line in file:
-	lineData = searchEstacionData(line['estacion'], dataFile)
-	datos = []
-	index = 0
-	indexSecundario = 1
-	if len(lineData) == 2:
-	if len(lineData[0]) < len(lineData[1]):
-	index = 1
-	indexSecundario = 0
-	for i, data in enumerate(lineData[index]['datos']):
-	dato = {
-		'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
-		'temperatura (ºC)': None,
-		'humedad (%)': None,
-		'precipitacion (mm)': None,
-		'nivel (m)': None,
-		'caudal (m^3/s)': None,
-		'radiacion (W/m^2)': None,
-	}
-	
-	if 'nivel (m)' in data:
-	dato['nivel (m)'] = data['nivel (m)'].replace(',', '.')
-	elif 'caudal (m^3/s)' in data:
-	dato['caudal (m^3/s)'] = data['caudal (m^3/s)'].replace(',', '.')
-	
-	if len(lineData) == 2:
-	try:
-	dateData = lineData[indexSecundario]['datos'][i]
-	if data['fecha y hora'] != dateData['fecha y hora']:
-	dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
-	except IndexError:
-	dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
-	try:
-	if 'nivel (m)' in dateData:
-	dato['nivel (m)'] = dateData['nivel (m)'].replace(',', '.')
-	if 'caudal (m^3/s)' in dateData:
-	dato['caudal (m^3/s)'] = dateData['caudal (m^3/s)'].replace(',', '.')
-	except TypeError:
-	pass
-	
-	datos.append(dato)
-	header = {
-		'estacion': line['estacion'],
-		'datos': datos
-	}
-	formattedJSON.append(header)
-	saveFile('datos_aguaEnNavarra.json', formattedJSON)
+\begin{lstlisting}[language=Python, caption={Formato del diccionario lineData en caso de disponer de dos instancias de una misma estación}, label=cod:12]
+	[
+		[
+			estacion: ...
+			datos: [...]
+		],
+		[
+			estacion: ...
+			datos: [...]
+		],
+	]
 \end{lstlisting}
+
+Trabajar con lineData supone tener que cambiar el bucle interno de \textit{formatData()}, mostrado en el código \ref{cod:13}.
+
+\begin{lstlisting}[language=Python, caption={Modificación del bucle interno de \textit{formatData()}}, label=cod:13]
+	for data in lineData[index]['datos']:
+		dato = {
+			'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
+			'temperatura (C)': None,
+			'humedad (%)': None,
+			'precipitacion (mm)': None,
+			'nivel (m)': None,
+			'caudal (m^3/s)': None,
+			'radiacion (W/m^2)': None,
+		}
+\end{lstlisting}
+
+Código \ref{cod:13}. El bucle se realiza indicando el indice de la instancia principal y, excepto la hora, todos los datos son indicados como None. Posteriormente, aun dentro del bucle se incluyen los datos con el código \ref{cod:14}.
+
+\begin{lstlisting}[language=Python, caption={Inclusion de los datos en el objeto JSON dato}, label=cod:14]
+		if 'nivel (m)' in data:
+			dato['nivel (m)'] = data['nivel (m)']
+		elif 'precipitacion (mm)' in data:
+			dato['precipitacion (mm)'] = data['precipitacion (mm)']
+		
+		if len(lineData) == 2:
+			dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
+			try:
+				if 'nivel (m)' in dateData:
+					dato['nivel (m)'] = dateData['nivel (m)']
+				if 'precipitacion (mm)' in dateData:
+					dato['precipitacion (mm)'] = dateData['precipitacion (mm)']
+			except TypeError:
+				pass
+\end{lstlisting}
+
+Primero comprueba que tipo de dato esta presente en los datos de instancia principal y, guarda el dato presente; luego, en caso de existir una segunda instancia, llama a \textit{searchDateData()} para buscar el dato correspondiente a la fecha en la instancia secundaria; si no se recibe el error \textit{TypeError}, pues indicaría que no existe registro para esa fecha sobre la instancia secundaria, realiza nuevamente la comprobación de tipo y lo guarda.
 
 \section{Filtrado de datos}
 El siguienta paso a realizar, es el paso de los JSON por el script filtras\_datos\_JSONs.py. En el se realiza lo siguiente.
@@ -1316,14 +1245,6 @@ La función \textit{main()}, abre los ficheros indicados en las rutas ParsedDir 
 \section{Posts}
 Como Posts, se hace referencia a los Scripts code\_post.py y data\_post.py. Como ambos comparten la misma codificación se explicaran de forma general y, se mostraran las diferencias.
 
-\begin{lstlisting}[language=Python, caption={Import necesarios post}]
-	import json
-	import sys
-	import requests
-\end{lstlisting}
-
-Se importan las dependencias.
-
 \begin{lstlisting}[language=Python, caption={Declaración variables code\_post.py}]
 	url = "http://localhost:8000/appAPI/storeCode"
 	
@@ -1338,7 +1259,7 @@ Se importan las dependencias.
 		data = json.load(f)
 \end{lstlisting}
 
-Se declara la url a la que se desea hacer la llamada y, se lee el fichero que se ha indicado al pararlo por argumento a la hora de ejecutar el Script.
+Se declara la URL a la que se desea hacer la llamada y, se lee el fichero que se ha indicado al pararlo por argumento a la hora de ejecutar el Script.
 
 \begin{lstlisting}[language=Python, caption={Llamada POST}]
 	headers = {'content-type': 'application/json'}

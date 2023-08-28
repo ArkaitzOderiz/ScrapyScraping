@@ -266,7 +266,7 @@ Ahora quedaría configurar el permiso de comunicación entre dispositivos, más 
 	# IPv4 local connections: 
 	host    all             all             127.0.0.1/32            md5 
 	
-	#Configuararemos el permiso de conexion remota desde cualquier IP añadiendo
+	#Configuararemos el permiso de conexion remota desde cualquier IP anyadiendo
 	la siguiente linea debajo de la anterior
 	host    all             all             0.0.0.0/0            md5 
 	
@@ -302,7 +302,7 @@ Una vez realizado lo siguiente, quedaría configurar la API.
 	#Abrimos el archivo settings.py con un editor
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano djangoAPI/settings.py
 	
-	#Añadimos nuestra app en la lista de INSTALLED_APPS
+	#Anyadimos nuestra app en la lista de INSTALLED_APPS
 	INSTALLED_APPS = [
 		'django.contrib.admin',
 		'django.contrib.auth',
@@ -340,7 +340,7 @@ Una vez realizado lo siguiente, quedaría configurar la API.
 	#Configuramos la zona horaria
 	TIME_ZONE = 'Europe/Madrid'
 	
-	#Configuramos el tamaño maximo de datos a None, con el fin de poder
+	#Configuramos el tamanyo maximo de datos a None, con el fin de poder
 	enviar cualquier cantidad de datos
 	DATA_UPLOAD_MAX_MEMORY_SIZE = None
 	
@@ -473,7 +473,7 @@ Dentro se incluye el siguiente código.
 		for estacion in data:
 			for datos in estacion['datos']:
 				dato = Data(
-					temperatura=datos['temperatura (ºC)'],
+					temperatura=datos['temperatura (C)'],
 					humedad=datos['humedad (%)'],
 					precipitacion=datos['precipitacion (mm)'],
 					nivel=datos['nivel (m)'],

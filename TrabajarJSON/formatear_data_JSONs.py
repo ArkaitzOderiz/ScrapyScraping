@@ -1,11 +1,12 @@
 import json
 from datetime import datetime
+import pandas as pd
 
 jsonsDir = [
     "../JSONs/RawData/datos_aemet.json",
     "../JSONs/RawData/datos_meteoNavarra.json",
     "../Scrapy/aguaEnNavarra/codigos_datos_aguaEnNavarra.json",
-    "../JSONs/Codigos/codigos_chcantabrico.json",
+    "../JSONs/RawCode/codigos_chcantabrico.json",
 ]
 
 
@@ -30,9 +31,18 @@ def unifyData(dataFile, cod):
     datos = []
     for line in dataFile:
         if line['estacion'] == cod:
-            for dato in line['datos']:
+            for data in line['datos']:
+                dato = {
+                    'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime(
+                        "%Y-%m-%d %H:%M"),
+                    'temperatura (ºC)': data['temperatura (ªC)'],
+                    'humedad (%)': data['humedad relativa (%)'],
+                    'precipitacion (mm)': data['precipitacion (l/mm^2)'],
+                    'nivel (m)': None,
+                    'caudal (m^3/s)': None,
+                    'radiacion (W/m^2)': data['radiacion global (W/m^2)'],
+                }
                 datos.append(dato)
-
     unifiedData = {
         'estacion': cod,
         'datos': datos
@@ -82,32 +92,11 @@ def formatAemet(file):
 
 
 def formatMeteoNavarra(file):
-    coordFile = openFile('coordenadas_meteoNavarra.json')
-    unifiedJSON = []
-    for cod in coordFile:
-        data = unifyData(file, cod['estacion'])
-        unifiedJSON.append(data)
-
+    codes = [x["estacion"] for x in file]
+    uniqueCodes = pd.Series(codes).drop_duplicates().tolist()
     formattedJSON = []
-    for line in unifiedJSON:
-        lineCoords = searchEstacionCoords(line['estacion'], coordFile)
-        datos = []
-        for data in line['datos']:
-            dato = {
-                'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
-                'temperatura (ºC)': data['temperatura (ªC)'],
-                'humedad (%)': data['humedad relativa (%)'],
-                'precipitacion (mm)': data['precipitacion (l/mm^2)'],
-                'nivel (m)': None,
-                'caudal (m^3/s)': None,
-                'radiacion (W/m^2)': data['radiacion global (W/m^2)'],
-            }
-            datos.append(dato)
-        header = {
-            'coordenadas': lineCoords,
-            'estacion': line['estacion'],
-            'datos': datos
-        }
+    for code in uniqueCodes:
+        header = unifyData(file, code)
         formattedJSON.append(header)
     saveFile('datos_meteoNavarra.json', formattedJSON)
 
@@ -124,7 +113,7 @@ def formatAguaEnNavarra(file):
             if len(lineData[0]) < len(lineData[1]):
                 index = 1
                 indexSecundario = 0
-        for i, data in enumerate(lineData[index]['datos']):
+        for data in lineData[index]['datos']:
             dato = {
                 'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
                 'temperatura (ºC)': None,
@@ -141,12 +130,7 @@ def formatAguaEnNavarra(file):
                 dato['caudal (m^3/s)'] = data['caudal (m^3/s)'].replace(',', '.')
 
             if len(lineData) == 2:
-                try:
-                    dateData = lineData[indexSecundario]['datos'][i]
-                    if data['fecha y hora'] != dateData['fecha y hora']:
-                        dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
-                except IndexError:
-                    dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
+                dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
                 try:
                     if 'nivel (m)' in dateData:
                         dato['nivel (m)'] = dateData['nivel (m)'].replace(',', '.')
@@ -157,7 +141,6 @@ def formatAguaEnNavarra(file):
 
             datos.append(dato)
         header = {
-            'coordenadas': line['coordenadas'],
             'estacion': line['estacion'],
             'datos': datos
         }
@@ -168,11 +151,9 @@ def formatAguaEnNavarra(file):
 def formatChcantabrico(file):
     levelDataFile = openFile('datos_nivel_chcantabrico.json')
     pluvioDataFile = openFile('datos_pluvio_chcantabrico.json')
-    coordFile = openFile('coordenadas_chcantabrico.json')
     formattedJSON = []
     for line in file:
         lineData = searchEstacionData(line['codigo'], levelDataFile, pluvioDataFile)
-        lineCoords = searchEstacionCoords(line['codigoSecundario'], coordFile)
         datos = []
         index = 0
         indexSecundario = 1
@@ -180,7 +161,7 @@ def formatChcantabrico(file):
             if len(lineData[0]) < len(lineData[1]):
                 index = 1
                 indexSecundario = 0
-        for i, data in enumerate(lineData[index]['datos']):
+        for data in lineData[index]['datos']:
             dato = {
                 'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
                 'temperatura (ºC)': None,
@@ -197,25 +178,17 @@ def formatChcantabrico(file):
                 dato['precipitacion (mm)'] = data['precipitacion (mm)']
 
             if len(lineData) == 2:
-                try:
-                    dateData = lineData[indexSecundario]['datos'][i]
-                    if data['fecha y hora'] != dateData['fecha y hora']:
-                        dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
-                except IndexError:
-                    dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
+                dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
                 try:
                     if 'nivel (m)' in dateData:
                         dato['nivel (m)'] = dateData['nivel (m)']
-                        dato['complement'] = dateData['fecha y hora']
                     if 'precipitacion (mm)' in dateData:
                         dato['precipitacion (mm)'] = dateData['precipitacion (mm)']
-                        dato['complement'] = dateData['fecha y hora']
                 except TypeError:
                     pass
 
             datos.append(dato)
         header = {
-            'coordenadas': lineCoords,
             'estacion': line['codigo'],
             'datos': datos
         }
