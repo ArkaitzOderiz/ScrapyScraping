@@ -865,19 +865,67 @@ Primero se incluyen las dependencias, entre ellas la Spider a usar, en caso de q
 	process.crawl(ChcantabricoCoordSpider)
 \end{lstlisting}
 
+Ejecuta ChcantabricoPluvioSpider, ChcantabricoNivelSpider y ChcantabricoCoordSpider.
+
+\begin{lstlisting}[language=Python, caption={CHCantábrico Code Runner}]
+	from chcantabricoSpider.spiders.chcantabrico_code_spider import ChcantabricoCodeSpider
+
+	process.crawl(ChcantabricoCodeSpider)
+\end{lstlisting}
+
+Ejecuta ChcantabricoCodeSpider.
+
 \begin{lstlisting}[language=Python, caption={Aemet Data Runner}]
-	from datosEstaciones.spiders.aemet_spider import AemetDataSpider
+	from aemetSpider.spiders.aemet_spider import AemetDataSpider
 
 	process.crawl(AemetDataSpider)
 \end{lstlisting}
 
+Ejecuta AemetDataSpider.
+
+\begin{lstlisting}[language=Python, caption={Aemet Code Runner}]
+	from aemetSpider.spiders.aemet_code_spider import AemetCodeSpider
+	
+	process.crawl(AemetCodeSpider)
+\end{lstlisting}
+
+Ejecuta AemetCodeSpider.
+
 \begin{lstlisting}[language=Python, caption={MeteoNavarra Data Runner}]
-	from datosEstaciones.spiders.meteoNavarra_coord_spider import MeteonavarraCoordSpider
-	from datosEstaciones.spiders.meteoNavarra_spider import MeteonavarraDataSpider
+	from meteoNavarraSpider.spiders.meteoNavarra_coord_spider import MeteoNavarraCoordSpider
+	from meteoNavarraSpider.spiders.meteoNavarra_spider import MeteoNavarraDataSpider
 
 	process.crawl(MeteonavarraDataSpider)
 	process.crawl(MeteonavarraCoordSpider)	
 \end{lstlisting}
+
+Ejecuta MeteoNavarraDataSpider y MeteoNavarraCoordSpider.
+
+\begin{lstlisting}[language=Python, caption={MeteoNavarra Code Runner}]
+	from meteoNavarraSpider.spiders.meteoNavarra_code_spider import MeteoNavarraCodeSpider
+
+	process.crawl(MeteoNavarraCodeSpider)
+\end{lstlisting}
+
+Ejecuta MeteoNavarraCodeSpider.
+
+\begin{lstlisting}[language=Python, caption={Agua en Navarra Data Runner}]
+	from aguaEnNavarraSpider.spiders.aguaEnNavarra_data_spider import AguaEnNavarraDataSpider
+	
+	process.crawl(AguaEnNavarraDataSpider)
+\end{lstlisting}
+
+Ejecuta AguaEnNavarraDataSpider.
+
+\begin{lstlisting}[language=Python, caption={Agua en Navarra Code Runner}]
+	from aguaEnNavarraSpider.spiders.aguaEnNavarra_code_spider import AguaEnNavarraCodeSpider
+
+	process.crawl(AguaEnNavarraCodeSpider)
+\end{lstlisting}
+
+Ejecuta AguaEnNavarraCodeSpider.\newline
+\newline
+El hecho de que las Spider de obtencion de coordenadas se ejecuten junto a las de datos tiene dos motivos, el primero, que son dependientes de los códigos de las estaciones, y como se ejecutan en paralelo sin el JSON con los códigos no funcionan, el segundo, que algunas Spider obtengan los datos a la par que los datos.
 
 \section{Executers}
 Ficheros data\_spider\_executer.sh y code\_spider\_executer.sh
@@ -911,13 +959,269 @@ Y en caso de code\_spider\_executer.sh, ejecuta el Runner encargado de obtener l
 \section{Formateo de datos}
 Para formatear los datos de forma global, cada proyecto individual dispone de dos scripts encargados de hacerlo, uno para los códigos y otro para los datos per se.\newline
 \newline
+El código compartido entre los Script es el siguiente. Aunque el código usado para la explicación sea el de formatear\_data\_JSONs.py, las diferencias respecto a formatear\_code\_JSONs.py se traducen a cambiar nombres de variables y los directorios, la única diferencia radica en la función principal donde se realiza el formateo.
+
+\begin{lstlisting}[language=Python, caption={Import necesarios formateo de datos}]
+	import json
+	from datetime import datetime
+	from pathlib import Path
+\end{lstlisting}
+
+Los import.
+
+\begin{lstlisting}[language=Python, caption={Declaración variable del JSON}]
+	DataJSON = "datos_pagina.json"
+\end{lstlisting}
+
+Una variable que indica el nombre o la ruta del fichero a leer.
+
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{openFile()}}]
+	def openFile(filename):
+		with open(f'JSONs/RawData/{filename}', "r", encoding="utf-8") as f:
+			file = json.loads(f.read())
+		return file
+\end{lstlisting}
+
+Una función para abrir los ficheros.
+
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{saveFile()}}]
+	def saveFile(filename, data):
+		Path("JSONs/ParsedData").mkdir(parents=True, exist_ok=True)
+		with open(f'JSONs/ParsedData/{filename}', 'w', encoding='utf-8') as outfile:
+			json.dump(data, outfile)
+\end{lstlisting}
+
+Una función para crear el directorio de guardado en caso de no existir y guardar los ficheros.
+
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{main()}}]
+	def main():
+		file = openFile(DataJSON)
+		formatData(file)
+\end{lstlisting}
+
+Una función \textit{main()} para iniciar el proceso.\newline
+\newline
+CHCantábrico y MeteoNavarra al disponer de un JSON especifico con las coordenadas, comparten la siguiente función a la hora de formatear los códigos.
+
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchEstacionCoords()}}]
+	def searchEstacionCoords(code, coordFile):
+		for data in coordFile:
+			if data['estacion'] == code:
+				return data['coordenadas']
+\end{lstlisting}
+
+En ella se recibe el código de la estación a buscar y el fichero con las coordenadas, se itera sobre el y en caso de encontrar una estación con el mismo código enviado, re devuelven las coordenada. En caso de no encontrar la estación, al no especificar un \textit{return}, la variable se quedara como None.\newline
+\newline
+
 \subsection{Aemet}
 
-\subsection{CHCantábrico}
+\begin{lstlisting}
+	def formatData(file):
+	formattedJSON = []
+	for line in file:
+	datos = []
+	for data in line['datos']:
+	dato = {
+		'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
+		'temperatura (ºC)': data['temperatura (ºC)'],
+		'humedad (%)': data['humedad (%)'],
+		'precipitacion (mm)': data['precipitacion (mm)'],
+		'nivel (m)': None,
+		'caudal (m^3/s)': None,
+		'radiacion (W/m^2)': None,
+	}
+	datos.append(dato)
+	header = {
+		'estacion': line['estacion'],
+		'datos': datos
+	}
+	formattedJSON.append(header)
+	saveFile(DataJSON, formattedJSON)
+\end{lstlisting}
 
-\subsection{MateoNavarra}
+\subsection{MeteoNavarra}
+
+\begin{lstlisting}
+	def unifyData(dataFile, cod):
+	datos = []
+	for line in dataFile:
+	if line['estacion'] == cod:
+	for dato in line['datos']:
+	datos.append(dato)
+	
+	unifiedData = {
+		'estacion': cod,
+		'datos': datos
+	}
+	return unifiedData
+	
+	
+	def formatData(file):
+	coordFile = openFile('coordenadas_meteoNavarra.json')
+	unifiedJSON = []
+	for cod in coordFile:
+	data = unifyData(file, cod['estacion'])
+	unifiedJSON.append(data)
+	
+	formattedJSON = []
+	for line in unifiedJSON:
+	datos = []
+	for data in line['datos']:
+	dato = {
+		'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
+		'temperatura (ºC)': data['temperatura (ªC)'],
+		'humedad (%)': data['humedad relativa (%)'],
+		'precipitacion (mm)': data['precipitacion (l/mm^2)'],
+		'nivel (m)': None,
+		'caudal (m^3/s)': None,
+		'radiacion (W/m^2)': data['radiacion global (W/m^2)'],
+	}
+	datos.append(dato)
+	header = {
+		'estacion': line['estacion'],
+		'datos': datos
+	}
+	formattedJSON.append(header)
+	saveFile('datos_meteoNavarra.json', formattedJSON)
+\end{lstlisting}
+
+\subsection{CHCantábrico y Agua en Navarra}
+
+CHCantábrico y Agua en Navarra comparten la misma estructuración de script. CHCantábrico por tener los datos en dos ficheros y Agua en Navarra por el formato de los datos recibido de la web, apareciendo dos veces cada estación, una con los datos del caudal y otra con los de nivel.
+
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchEstacionData()}}]
+	def searchEstacionData(code, dataFile1=[], dataFile2=[]):
+		datos = []
+		for data in dataFile1:
+			if data['estacion'] == code:
+				datos.append(data)
+		for data in dataFile2:
+			if data['estacion'] == code:
+				datos.append(data)
+		return datos
+\end{lstlisting}
+
+\textit{searchEstacionData()} se encarga de recibir de uno a dos fichero y generar un diccionario JSON con todos los datos encontrados de una misma estación, para ello recorre los ficheros estación por estación comparando los códigos y en caso de coincidir se guardan en la variable datos, la cual se devolverá al final.
+
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchDateData()}}]
+	def searchDateData(dataFile, date):
+		for data in dataFile:
+			if data['fecha y hora'] == date:
+				return data
+\end{lstlisting}
+
+Esta asegura que la fecha de los datos obtenidos de los JSON coincidan.
+
+\begin{lstlisting}	
+	def formatData(file):
+	levelDataFile = openFile('datos_nivel_chcantabrico.json')
+	pluvioDataFile = openFile('datos_pluvio_chcantabrico.json')
+	formattedJSON = []
+	for line in file:
+	lineData = searchEstacionData(line['codigo'], levelDataFile, pluvioDataFile)
+	datos = []
+	index = 0
+	indexSecundario = 1
+	if len(lineData) == 2:
+	if len(lineData[0]) < len(lineData[1]):
+	index = 1
+	indexSecundario = 0
+	for i, data in enumerate(lineData[index]['datos']):
+	dato = {
+		'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
+		'temperatura (ºC)': None,
+		'humedad (%)': None,
+		'precipitacion (mm)': None,
+		'nivel (m)': None,
+		'caudal (m^3/s)': None,
+		'radiacion (W/m^2)': None,
+	}
+	
+	if 'nivel (m)' in data:
+	dato['nivel (m)'] = data['nivel (m)']
+	elif 'precipitacion (mm)' in data:
+	dato['precipitacion (mm)'] = data['precipitacion (mm)']
+	
+	if len(lineData) == 2:
+	try:
+	dateData = lineData[indexSecundario]['datos'][i]
+	if data['fecha y hora'] != dateData['fecha y hora']:
+	dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
+	except IndexError:
+	dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
+	try:
+	if 'nivel (m)' in dateData:
+	dato['nivel (m)'] = dateData['nivel (m)']
+	dato['complement'] = dateData['fecha y hora']
+	if 'precipitacion (mm)' in dateData:
+	dato['precipitacion (mm)'] = dateData['precipitacion (mm)']
+	dato['complement'] = dateData['fecha y hora']
+	except TypeError:
+	pass
+	
+	datos.append(dato)
+	header = {
+		'estacion': line['codigo'],
+		'datos': datos
+	}
+	formattedJSON.append(header)
+	saveFile('datos_chcantabrico.json', formattedJSON)
+\end{lstlisting}
 
 \subsection{Agua en Navarra}
+
+\begin{lstlisting}
+	def formatData(file):
+	dataFile = openFile('datos_aguaEnNavarra.json')
+	formattedJSON = []
+	for line in file:
+	lineData = searchEstacionData(line['estacion'], dataFile)
+	datos = []
+	index = 0
+	indexSecundario = 1
+	if len(lineData) == 2:
+	if len(lineData[0]) < len(lineData[1]):
+	index = 1
+	indexSecundario = 0
+	for i, data in enumerate(lineData[index]['datos']):
+	dato = {
+		'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
+		'temperatura (ºC)': None,
+		'humedad (%)': None,
+		'precipitacion (mm)': None,
+		'nivel (m)': None,
+		'caudal (m^3/s)': None,
+		'radiacion (W/m^2)': None,
+	}
+	
+	if 'nivel (m)' in data:
+	dato['nivel (m)'] = data['nivel (m)'].replace(',', '.')
+	elif 'caudal (m^3/s)' in data:
+	dato['caudal (m^3/s)'] = data['caudal (m^3/s)'].replace(',', '.')
+	
+	if len(lineData) == 2:
+	try:
+	dateData = lineData[indexSecundario]['datos'][i]
+	if data['fecha y hora'] != dateData['fecha y hora']:
+	dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
+	except IndexError:
+	dateData = searchDateData(lineData[indexSecundario]['datos'], data['fecha y hora'])
+	try:
+	if 'nivel (m)' in dateData:
+	dato['nivel (m)'] = dateData['nivel (m)'].replace(',', '.')
+	if 'caudal (m^3/s)' in dateData:
+	dato['caudal (m^3/s)'] = dateData['caudal (m^3/s)'].replace(',', '.')
+	except TypeError:
+	pass
+	
+	datos.append(dato)
+	header = {
+		'estacion': line['estacion'],
+		'datos': datos
+	}
+	formattedJSON.append(header)
+	saveFile('datos_aguaEnNavarra.json', formattedJSON)
+\end{lstlisting}
 
 \section{Filtrado de datos}
 El siguienta paso a realizar, es el paso de los JSON por el script filtras\_datos\_JSONs.py. En el se realiza lo siguiente.
@@ -984,7 +1288,7 @@ Como no es seguro que los datos recibidos estén siempre en el mismo orden, se h
 				{
 					"coordenadas": item["coordenadas"],
 					"estacion": item["estacion"],
-					"dato": newData
+					"datos": newData
 				}
 			)
 		

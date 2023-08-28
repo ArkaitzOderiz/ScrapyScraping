@@ -224,11 +224,11 @@ Los comandos necesarios para la instalación inicial de PostGreSQL, la creación
 	#Iniciamos sesion usando el role postgres y accedemos a PostGreSQL
 	user@host:~$ sudo -u postgres psql
 	
-	#Si todo esta bien la terminal deberia mostrarse así
+	#Si todo esta bien la terminal deberia mostrarse asi
 	postgres=# 
 	
 	#Creamos un nuevo usuario
-	postgres=# CREATE USER miusuario WITH PASSWORD 'micontraseña';
+	postgres=# CREATE USER miusuario WITH PASSWORD 'micontrasena';
 	
 	#Configuramos varios parametros del usuario para una mejor integracion con Django
 	postgres=# ALTER ROLE miusuario SET client_encoding TO 'utf8';
@@ -328,7 +328,7 @@ Una vez realizado lo siguiente, quedaría configurar la API.
 			'ENGINE': 'django.db.backends.postgresql_psycopg2',
 			'NAME': 'bbddmiproyecto',
 			'USER': 'miusuario',
-			'PASSWORD': 'micontraseña',
+			'PASSWORD': 'micontrasena',
 			'HOST': '172.18.83.197',
 			'PORT': '5432',
 		}
