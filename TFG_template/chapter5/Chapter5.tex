@@ -5,9 +5,9 @@
 El proyecto se dividirá en dos ordenadores (maquinas virtuales). Uno de ellos será el responsable de la base de datos en PostGreSQL, mientras que, el otro, se encargara de la ejecución del código de obtención de datos, tratarlos y enviarlos a la base de datos.
 
 \subsection{Preparación de entorno virtual}
-Primero instalaremos las dependencias para crear y activar un entorno virtual sobre el que trabajar, para ello ejecutaremos los siguientes comandos:
+Primero instalaremos las dependencias para crear y activar un entorno virtual sobre el que trabajar, para ello se deben ejecutar los comandos mostrados en código \ref{cod:88}.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Instrucciones por consola para la creacion de un entrono virtual}, label=cod:88]
 	#Instalamos las dependencias
 	user@host:~$ sudo apt install python3-venv python3-dev
 	
@@ -28,9 +28,9 @@ Primero instalaremos las dependencias para crear y activar un entorno virtual so
 Cada Spider dispondrá de su propio entorno virtual, nombrado tras la pagina web a la que representa, de esta forma, por ejemplo, el entorno virtual para la web de CHcantábrico se llamará chcantabrico. Otro entorno virtual es usado para el servidor Django y los scripts encargados del envío de datos.
 
 \subsection{Instalación y configuración de PostGreSQL}
-Los comandos necesarios para la instalación inicial de PostGreSQL, la creación de un usuario y una base de datos son.
+Los comandos necesarios para la instalación inicial de PostGreSQL, la creación de un usuario y una base de datos están presentes en código \ref{cod:89}.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Instrucciones por consola para iniciar una base de datos en PostGreSQL}, label=cod:89]
 	#Instalamos PostGreSQL y las dependencias
 	user@host:~$ sudo apt install libpq-dev postgresql postgresql-contrib
 	
@@ -58,11 +58,9 @@ Los comandos necesarios para la instalación inicial de PostGreSQL, la creación
 	postqres=# \q
 \end{lstlisting}
 
-En este punto ya se dispondría de una base de datos (aun sin tablas en ella) y de un usuario con el que conectarse a esta desde Django.\newline
-\newline
-Ahora quedaría configurar el permiso de comunicación entre dispositivos, más concretamente la conexión remota de Django con PostGreSQL.
+En este punto ya se dispondría de una base de datos (aun sin tablas en ella) y de un usuario con el que conectarse a esta desde Django. Ahora quedaría configurar el permiso de comunicación entre dispositivos, más concretamente la conexión remota de Django con PostGreSQL. Los pasos a seguir se muestra en código \ref{cod:90}.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Instrucciones por consola y editor de texto para permitir la conexión remota en PostGreSQL}, label=cod:90]
 	#Abrimos el archivo postgresql.conf con un editor
 	user@host:~$ sudo nano /etc/postgresql/11/main/postgresql.conf
 	
@@ -92,12 +90,10 @@ Ahora quedaría configurar el permiso de comunicación entre dispositivos, más 
 	user@host:~$ sudo ufw allow 5432/tcp
 \end{lstlisting}
 
-Una vez realizados los siguientes pasos ya está la instancia de PostGreSQL configurada.
-
 \subsection{Instalación y configuración de Django}
-Antes de instalar Django, es necesario generar un entorno virtual sobre el que trabajar.
+Antes de instalar y crear un proyecto en Django con los comandos en código \ref{cod:91}, es necesario generar un entorno virtual sobre el que trabajar como se muestra en código \ref{cod:88}.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Instrucciones por consola de instalación y creación de un proyecto en Django}, label=cod:91]
 	#Instalamos Django y las dependencias
 	(envdemiproyecto) user@host:~/dirdemiproyecto$ pip install django psycopg2
 	
@@ -109,21 +105,21 @@ Antes de instalar Django, es necesario generar un entorno virtual sobre el que t
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ python manage.py startapp appAPI
 \end{lstlisting}
 
-Una vez realizado lo siguiente, quedaría configurar la API.
+Una vez se dispone del proyecto y la app de Django, quedaría configurar la API, indicando la base de datos a usar y configurando la conexión remota en Django. Configuración presente en código \ref{cod:92}.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Instrucciones por consola y editor de texto para la configuración de la API Django}, label=cod:92]
 	#Abrimos el archivo settings.py con un editor
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano djangoAPI/settings.py
 	
 	#Anyadimos nuestra app en la lista de INSTALLED_APPS
 	INSTALLED_APPS = [
-	'django.contrib.admin',
-	'django.contrib.auth',
-	'django.contrib.contenttypes',
-	'django.contrib.sessions',
-	'django.contrib.messages',
-	'django.contrib.staticfiles',
-	'appAPI.apps.AppapiConfig',
+		'django.contrib.admin',
+		'django.contrib.auth',
+		'django.contrib.contenttypes',
+		'django.contrib.sessions',
+		'django.contrib.messages',
+		'django.contrib.staticfiles',
+		'appAPI.apps.AppapiConfig',
 	]
 	
 	#Configuramos la base de datos sutituyendo
@@ -163,40 +159,38 @@ Una vez realizado lo siguiente, quedaría configurar la API.
 	user@host:~$ sudo ufw allow 8000
 \end{lstlisting}
 
-Tras configurar la API, toca crear los modelos de la base de datos.
+Tras configurar la API, toca crear los modelos de la base de datos. Primero se accede al archivo models.py con el comando indicado en código \ref{cod:93}. Inicialmente se encontrara vacio, por lo que  se incluye el código en \ref{cod:94}, definiendo los modelos Data y Code.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Instrucción por consola para abrir models.py en un editor de texto}, label=cod:93]
 	#Abrimos el archivo models.py dentro de la carpeta appAPI con un editor
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano appAPI/models.py
 \end{lstlisting}
 
-Dentro definimos los modelos Data y Code.
-
-\begin{lstlisting}[language=Python, caption={Modelos API Django}]
+\begin{lstlisting}[language=Python, caption={Modelos API Django}, label=cod:94]
 	from django.db import models
 	
 	class Data(models.Model):
-	temperatura = models.FloatField(null=True)
-	humedad = models.FloatField(null=True)
-	precipitacion = models.FloatField(null=True)
-	nivel = models.FloatField(null=True)
-	caudal = models.FloatField(null=True)
-	radiacion = models.FloatField(null=True)
-	fecha = models.DateTimeField()
-	estacion = models.ForeignKey("Code", on_delete=models.CASCADE)
+		temperatura = models.FloatField(null=True)
+		humedad = models.FloatField(null=True)
+		precipitacion = models.FloatField(null=True)
+		nivel = models.FloatField(null=True)
+		caudal = models.FloatField(null=True)
+		radiacion = models.FloatField(null=True)
+		fecha = models.DateTimeField()
+		estacion = models.ForeignKey("Code", on_delete=models.CASCADE)
 	
 	class Code(models.Model):
-	estacion = models.CharField(max_length=50)
-	codigo = models.CharField(max_length=20, primary_key=True)
-	coodenadas = models.CharField(max_length=50)
-	seguimiento = models.FloatField(null=True)
-	prealerta = models.FloatField(null=True)
-	alerta = models.FloatField(null=True)
+		estacion = models.CharField(max_length=50)
+		codigo = models.CharField(max_length=20, primary_key=True)
+		coodenadas = models.CharField(max_length=50)
+		seguimiento = models.FloatField(null=True)
+		prealerta = models.FloatField(null=True)
+		alerta = models.FloatField(null=True)
 \end{lstlisting}
 
-Para importar los modelos a la base de datos, con el fin de crear las respectivas tablas.
+Para importar los modelos a la base de datos, con el fin de crear las respectivas tablas, se requieren de los comandos en código \ref{cod:95}.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Instrucción por consola para abrir models.py en un editor de texto}, label=cod:95]
 	#Actualizamos los datos realizados en models.py
 	(envdemiproyecto) user@host:~/dirdemiproyecto$ python3 manage.py makemigrations
 	
@@ -204,17 +198,15 @@ Para importar los modelos a la base de datos, con el fin de crear las respectiva
 	envdemiproyecto) user@host:~/dirdemiproyecto$ python3 manage.py migrate
 \end{lstlisting}
 
-Si se quiere confirmar la correcta creación de las tablas, desde la terminal de PostGre.
+Si se quiere confirmar la correcta creación de las tablas, desde la terminal de PostGreSQL, se ejecutaran los comando de código \ref{cod:96}. Si todo a ido bien, se deberían mostrar como en la figura \ref{fig:ej34}.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Instrucción por consola para abrir models.py en un editor de texto}, label=cod:96]
 	#Nos conectamos a la base de datos
 	postgres=# \c bbddmiproyecto
 	
 	#Mostramos las tablas
 	postgres=# \d
 \end{lstlisting}
-
-Si todo a ido bien, se deberían mostrar como en la figura \ref{fig:ej34}.
 
 \begin{figure} [H]
 	\centering
@@ -223,16 +215,14 @@ Si todo a ido bien, se deberían mostrar como en la figura \ref{fig:ej34}.
 	\label{fig:ej34}
 \end{figure}
 
-Tras configurar la API y crear las tablas de la base de datos, se creará la API como tal.
+Tras configurar la API y crear las tablas de la base de datos, se creará la API como tal. Para ello se creara el archivo urls.py mediante el comando en código \ref{cod:97}. Dentro se incluye el código en \ref{cod:98}, que define las rutas para realizar una llamada a la API, en este caso storeData y storeCode.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Instrucción por consola para crear y abrir el fichero urls.py dentro de la carpeta de la app en un editor de texto}, label=cod:97]
 	#Creamos el archivo urls.py con un editor dentro de la carpeta appAPI
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano appAPI/urls.py
 \end{lstlisting}
 
-Dentro se incluye el siguiente código.
-
-\begin{lstlisting}[language=Python, caption={Definición URLs API}]
+\begin{lstlisting}[language=Python, caption={Definición URLs API}, label=cod:98]
 	from django.urls import path
 	from django.views.decorators.csrf import csrf_exempt
 	
@@ -244,37 +234,31 @@ Dentro se incluye el siguiente código.
 	]
 \end{lstlisting}
 
-Aquí se definen las rutas para realizar una llamada a la API, en este caso storeData y storeCode.\newline
-\newline
-Si se quiere que el proyecto tenga constancia de ellas.
+Si se quiere que el proyecto tenga constancia de ellas. Se debe modificar el fichero urls.py incluido dentro de la carpeta del proyecto, por lo que se abre con el comando del código \ref{cod:99}. y se escribe el contenido de código \ref{cod:100}.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Instrucción por consola para abrir el fichero urls.py dentro de la carpeta del proyecto en un editor de texto}, label=cod:99]
 	#Abrimos el archivo urls.py dentro de la carpeta djangoAPI con un editor
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano djangoAPI/urls.py
 \end{lstlisting}
 
-Dentro se incluye el siguiente código.
-
-\begin{lstlisting}[language=Python, caption={Configuración URLs API}]
+\begin{lstlisting}[language=Python, caption={Configuración URLs API}, label=cod:100]
 	from django.contrib import admin
 	from django.urls import path, include
 	
 	urlpatterns = [
-	path('admin/', admin.site.urls),
-	path('appapi/', include('appapi.urls'))
+		path('admin/', admin.site.urls),
+		path('appapi/', include('appapi.urls'))
 	]
 \end{lstlisting}
 
-Para finalizar, se crean las vistas a las que dirigen las rutas.
+Para finalizar, se crean las vistas a las que dirigen las rutas dentro del archivo views.py, abriéndolo con el comando en código \ref{cod:101}. El archivo se encontrara vacio y, ce incluye el codigo en \ref{cod:102}. Estas funciones se encargan de recibir los datos enviados, iterar por ellos y subirlos a la base de datos con el método \textit{save()}. Concluyendo la creación y configuración de la API.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Instrucción por consola para abrir el fichero views.py dentro de la carpeta de la app en un editor de texto}, label=cod:101]
 	#Abrimos el archivo views.py dentro de la carpeta appAPI con un editor
 	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano appAPI/views.py
 \end{lstlisting}
 
-Dentro se incluye el siguiente código.
-
-\begin{lstlisting}[language=Python, caption={Definición funciones de recepción y almacenamiento de datos API}]
+\begin{lstlisting}[language=Python, caption={Definición funciones de recepción y almacenamiento de datos API}, label=cod:102]
 	import json
 	
 	from django.http import JsonResponse
@@ -282,38 +266,36 @@ Dentro se incluye el siguiente código.
 	
 	# Create your views here.
 	def storeData(request):
-	data = json.loads(request.body.decode("utf-8"))
-	for estacion in data:
-	for datos in estacion['datos']:
-	dato = Data(
-	temperatura=datos['temperatura (C)'],
-	humedad=datos['humedad (%)'],
-	precipitacion=datos['precipitacion (mm)'],
-	nivel=datos['nivel (m)'],
-	caudal=datos['caudal (m^3/s)'],
-	radiacion=datos['radiacion (W/m^2)'],
-	fecha=datos['fecha y hora'],
-	estacion=estacion['estacion']
-	)
-	dato.save()
-	return JsonResponse(data, safe=False)
+		data = json.loads(request.body.decode("utf-8"))
+		for estacion in data:
+			for datos in estacion['datos']:
+				dato = Data(
+					temperatura=datos['temperatura (C)'],
+					humedad=datos['humedad (%)'],
+					precipitacion=datos['precipitacion (mm)'],
+					nivel=datos['nivel (m)'],
+					caudal=datos['caudal (m^3/s)'],
+					radiacion=datos['radiacion (W/m^2)'],
+					fecha=datos['fecha y hora'],
+					estacion=estacion['estacion']
+				)
+				dato.save()
+		return JsonResponse(data, safe=False)
 	
 	def storeCode(request):
-	data = json.loads(request.body.decode("utf-8"))
-	for estacion in data:
-	dato = Code(
-	estacion=estacion['estacion'],
-	codigo=estacion['codigo'],
-	coodenadas=estacion['coodenadas'],
-	seguimiento=estacion['seguimiento'],
-	prealerta=estacion['prealerta'],
-	alerta=estacion['alerta'],
-	)
-	dato.save()
+		data = json.loads(request.body.decode("utf-8"))
+		for estacion in data:
+			dato = Code(
+				estacion=estacion['estacion'],
+				codigo=estacion['codigo'],
+				coodenadas=estacion['coodenadas'],
+				seguimiento=estacion['seguimiento'],
+				prealerta=estacion['prealerta'],
+				alerta=estacion['alerta'],
+			)
+			dato.save()
 	return JsonResponse(data, safe=False)
 \end{lstlisting}
-
-Estas funciones se encargan de recibir los datos enviados, iterar por ellos y subirlos a la base de datos con el método \textit{save()}. Concluyendo la creación y configuración de la API.
 
 \section{Creación de Spiders}
 Una vez instalado Scrapy, en el directorio escogido, se usa el comando \ref{cod:1} para generar un nuevo proyecto de Scrapy.
@@ -955,16 +937,16 @@ Tras realizar el mismo proceso que antes, \ref{Chap524}, la Spider llega a la fu
 \newline
 Como el link proporcionado dirige a una página que muestra los datos en forma de gráfica y, para acceder a los datos numéricos es necesario pulsar un botón, \textit{SeleniumRequest} se configura de tal forma que, espera a que este esté correctamente cargado con el argumento \textit{wait\_until}, indicando que elemento deseas esperar a ser cargado; en caso de que no se cargue, es recomendable usar el argumento \textit{wait\_time}, que usado junto al anterior, establece el tiempo antes de dar la llamada por errónea; si el botón se carga correctamente, en el argumento \textit{script} indicamos que se debe pulsar sobre este, llevándonos finalmente a los datos numéricos.
 
-\begin{lstlisting}[language=Python, caption={Selector en \textit{parse\_data()} de Agua en Navarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse\_data()} de Agua en Navarra Data Spider}, label=43]
 	tipo = response.css('span#lblSenal::text').get()
 	estacion = response.css('li#cabecera_nombreEstacion a::attr(href)').get()
 	fechas = response.css('span.cont_fecha_gra::text').getall()
 	valores = response.css('span.cont_valor_gra::text').getall()
 \end{lstlisting}
 
-En la función \textit{parse\_data()}, se obtienen los datos por columna en vez de fila, pues la web no hace un correcto uso formateo por tabla, pues no existe esta tabla, insertando los datos sobre un elemento div y formateandolos posteriormente con CSS. Esta forma de mostrar los datos fuerza tener que obtener las fechas por un lado y los valores por otro, resultando en dos listas que debemos unir. La variable tipo (Nivel o caudal) es necesaria para posteriormente guardar los datos de forma correcta.
+En la función \textit{parse\_data()} mostrada en el código \ref{cod:43}, se obtienen los datos por columna en vez de fila, pues la web no hace un correcto uso formateo por tabla, pues no existe esta tabla, insertando los datos sobre un elemento div y formateandolos posteriormente con CSS. Esta forma de mostrar los datos fuerza tener que obtener las fechas por un lado y los valores por otro, resultando en dos listas que debemos unir. La variable tipo (Nivel o caudal) es necesaria para posteriormente guardar los datos de forma correcta.
 
-\begin{lstlisting}[language=Python, caption={Selector en \textit{parse\_data()} de Agua en Navarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse\_data()} de Agua en Navarra Data Spider}, label=cod:44]
 	datos = []
 	if tipo == "Nivel Rio":
 		for i, fecha in enumerate(fechas):
@@ -987,12 +969,12 @@ En la función \textit{parse\_data()}, se obtienen los datos por columna en vez 
 	}
 \end{lstlisting}
 
-Al hacer uso de una Spider para obtener todos los datos, estando presentes en distintas páginas, hace necesaria la comprobación inicial con la variable tipo de que datos estamos recibiendo, para poder almacenarlos correctamente. Una vez realizada, se itera la lista de fechas y se unen con su respectivo valor (el orden de los valores corresponde con el de las fechas) y se insertan el la lista datos. Finalmente son guardados.
+Al hacer uso de una Spider para obtener todos los datos, estando presentes en distintas páginas, hace necesaria la comprobación inicial con la variable tipo de que datos estamos recibiendo, para poder almacenarlos correctamente. Una vez realizada, se itera la lista de fechas y se unen con su respectivo valor (el orden de los valores corresponde con el de las fechas) y se insertan el la lista datos. Finalmente son guardados. Este proceso se puede ver en el código \ref{cod:44}.
 
 \subsubsection{Configuración Selenium}
 Para que Selenium funcione, es necesario incluir las siguientes lineas de código en el archivo settings.py generado por Scrapy.
 
-\begin{lstlisting}[language=Python, caption={Agua en Navarra configuración Selenium}]
+\begin{lstlisting}[language=Python, caption={Agua en Navarra configuración Selenium}, label=cod:45]
 	from shutil import which
 	
 	SELENIUM_DRIVER_NAME = 'chrome'
@@ -1009,13 +991,9 @@ Para que Selenium funcione, es necesario incluir las siguientes lineas de códig
 	}
 \end{lstlisting}
 
-En este caso se indica que el navegador deseado para realizar el trabajo es Chrome y mediante el método which selecciona la ruta del ejecutable del driver de chrome.\newline
+En el código \ref{cod:45} se indica que el navegador deseado para realizar el trabajo es Chrome y mediante el método which selecciona la ruta del ejecutable del driver de chrome. Los argumentos usados indican, \textit{--headless} significa que las instancias de Chrome creadas sean sin interfaz, de esta forma no tendremos cientos de ventanas de Chrome abriéndose y cerrándose cada vez que se ejecute la Spider; \textit{--disable-logging} como su nombre indica elimina el Log; \textit{--disable-in-process-stack-traces} desactiva el stack-trace del navegador, esto se realiza unicamente con el fin de intentar mejorar el rendimiento; \textit{--log-level} indica el tipo de log que se desea mostrar, siendo INFO = 0, ALERTA = 1, ERROR = 2 y FATAL = 3, aunque el Log este desactivado esta bien indicar que clase de Log aparezca en caso de que se vuelva a activar; \textit{--disable-extensions} desactiva todas las extensiones que podamos tener instaladas, nuevamente con el fin de mejorar el rendimiento.\newline
 \newline
-Los argumentos usados indican, --headless significa que las instancias de Chrome creadas sean sin interfaz, de esta forma no tendremos cientos de ventanas de Chrome abriéndose y cerrándose cada vez que se ejecute la Spider; --disable-logging como su nombre indica elimina el Log; --disable-in-process-stack-traces desactiva el stack-trace, esto se realiza unicamente con el fin de intentar mejorar el rendimiento; --log-level indica el tipo de log que se desea mostrar, siendo INFO = 0, ALERTA = 1, ERROR = 2 y FATAL = 3, aunque el Log este desactivado esta bien indicar que clase de Log deseas que aparezca en caso de que se vuelva a activar; --disable-extensions desactiva todas las extensiones que podamos tener instaladas, nuevamente con el fin de mejorar el rendimiento.\newline
-\newline
-Una vez incluido el middleware, ya solo quedaría descargar el driver de chrome.\newline
-\newline
-Chromedriver.exe puede ser obtenido en la web \url{https://chromedriver.chromium.org/downloads}, descargando aquel que corresponda a la versión de Chrome instalada. Una vez descomprimido debe ser incluido dentro de la carpeta de proyecto de Scrapy.
+Una vez incluido el middleware, ya solo quedaría descargar el driver de chrome. Chromedriver.exe puede ser obtenido en la web \url{https://chromedriver.chromium.org/downloads}, descargando aquel que corresponda a la versión de Chrome instalada. Una vez descomprimido debe ser incluido dentro de la carpeta de proyecto de Scrapy como se muestra en la figura \ref{fig:ej15}.
 
 \begin{figure} [h!]
 	\centering
@@ -1024,9 +1002,9 @@ Chromedriver.exe puede ser obtenido en la web \url{https://chromedriver.chromium
 	\label{fig:ej15}
 \end{figure}
 
-En caso de estar en Windows con esto ya es suficiente, aunque al usar Debian son necesarios unos paso más para configurar chromedriver.
+En caso de estar en Windows con esto ya es suficiente, aunque al usar Debian son necesarios unos paso más para configurar chromedriver. Los pasos a seguir se muestran en el código \ref{cod:46}.
 
-\begin{lstlisting}[caption={Configuración chromedriver Debian}]
+\begin{lstlisting}[caption={Instrucciones por consola para la configuración de chromedriver en Debian}, label=cod:46]
 	#Otorgamos permiso de ejecucion a chromedriver
 	sudo chmod +x chromedriver
 	
@@ -1036,7 +1014,7 @@ En caso de estar en Windows con esto ya es suficiente, aunque al usar Debian son
 	#Creamos la relacion entre el .exe y el directorio
 	sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
 	
-	#Ejecutamos
+	#Ejecutamos para comprobar si esta bien configurado
 	chromedriver --version
 	
 	#En caso de haber realizado correctamente el proceso deberia aparecer
@@ -1044,8 +1022,6 @@ En caso de estar en Windows con esto ya es suficiente, aunque al usar Debian son
 	ChromeDriver 115.0.5790.110
 	(5e87dfef0c85687ea835e444d33466745cc0725f-refs/branch-heads/5790_90@{#20})
 \end{lstlisting}
-
-Hecho esto ya estaría configurado chromedriver.
 
 \subsubsection{Alternativas probadas}
 Antes de saber que es necesario dirigirse a la pagina donde se muestra la gráfica para poder acceder a la página con los datos numéricos, se probo con una Spider que accedía directamente a esta. Visto que el resultado obtenido estaba vacío y, que en apariencia la Spider era correcta, obteniendo teóricamente aquellos datos deseados, se comprobó la web manualmente, resultando en la obtención del error mostrado en la figura \ref{fig:ej5}.\newline
@@ -1065,7 +1041,7 @@ Al ser código destinado a ejecutarse en intervalos de quince minutos, un tiempo
 \newline
 Antes que nada, cabe mencionar que Playwright no es compatible con Windows y, tampoco lo es con Debian 11 en su versión actual, resultando ser Debian 11 la versión usada para este proyecto, por lo que no se ha podido llegar a comprobar el funcionamiento del siguiente código, aunque debería ser correcto.
 
-\begin{lstlisting}[caption={Instalación Playwright}]
+\begin{lstlisting}[caption={Instalación Playwright}, label=cod:47]
 	#Instalamos scrapy-playwright
 	pip install scrapy-playwright
 	
@@ -1073,9 +1049,9 @@ Antes que nada, cabe mencionar que Playwright no es compatible con Windows y, ta
 	playwright install
 \end{lstlisting}
 
-Para hacer uso de Playwrith con Scrapy, primero que todo es configurar las dependencias de Playwright, implementadas mediante custom\_settings en una Spider o, si se desea, en settings.py.
+Al ejecutar los comandos del código \ref{cod:47}], se instalaran Playwright junto a sus dependencias necesarias. Si se quiere hacer uso de Playwrith con Scrapy, primero que todo es configurar las dependencias de Playwright, indicándolas mediante \textit{custom\_settings} en una Spider o, si se desea, en settings.py. Como se ve en código \ref{cod:48}.
 
-\begin{lstlisting}[language=Python, caption={Configuración Playwright}]
+\begin{lstlisting}[language=Python, caption={Configuración Playwright con Scrapy}, label=cod:48]
 	custom_settings = {
 		"TWISTED_REACTOR": "twisted.internet.asyncioreactor.AsyncioSelectorReactor",
 		"DOWNLOAD_HANDLERS": {
@@ -1085,9 +1061,9 @@ Para hacer uso de Playwrith con Scrapy, primero que todo es configurar las depen
 	}
 \end{lstlisting}
 
-Finalmente, para hacer uso de la herramienta, a diferencia de con Selenium, esta no dispone de un nuevo objeto Request, si no que hace uso del Request implementado en Scrapy indicándole por argumento que debe usar Playwright.
+A diferencia de Selenium, Playwright no dispone de un nuevo objeto \textit{Request}, si no que hace uso del \textit{Request} implementado en Scrapy indicándole por argumento que debe usar Playwright. Como se ve en código \ref{cod:49}.
 
-\begin{lstlisting}[language=Python, caption={Playwright basic Request}]
+\begin{lstlisting}[language=Python, caption={Playwright basic Request}, label=cod:49]
 	yield Request(
 		url=url,
 		callback=self.parse,
@@ -1097,11 +1073,8 @@ Finalmente, para hacer uso de la herramienta, a diferencia de con Selenium, esta
 	)
 \end{lstlisting}
 
-Para obtener el comportamiento previsto, la Request configurada es la siguiente.
-
-\begin{lstlisting}[language=Python, caption={Agua en Navarra Playwright Request}]
+\begin{lstlisting}[language=Python, caption={Agua en Navarra Playwright Request}, label=cod:50]
 	from scrapy_playwright.page import PageMethod
-	
 	
 	yield Request(
 		url=url,
@@ -1117,14 +1090,12 @@ Para obtener el comportamiento previsto, la Request configurada es la siguiente.
 	)
 \end{lstlisting}
 
-Los PageMethods indican las acciones a realizar una vez se hace la request, la alternativa optada por Playwright al uso de JavaScript. Primero, espera a que el botón esté cargado dentro de la página, pulsa sobre el y, espera a que la acción de pulsar sea realizada.\newline
-\newline
-Según la documentación y los ejemplos estudiados, esta alternativa debería funcionar, pero puesto que no se ha podido ejecutar no es seguro su funcionamiento.
+Para obtener el comportamiento previsto, la Request configurada se muestra en el código \ref{cod:50}. Los PageMethods indican las acciones a realizar una vez se hace la request, la alternativa optada por Playwright al uso de JavaScript. Primero, espera a que el botón esté cargado dentro de la página, pulsa sobre el y, espera a que la acción de pulsar sea realizada. Según la documentación y los ejemplos estudiados, esta alternativa debería funcionar, pero puesto que no se ha podido ejecutar no es seguro su funcionamiento.
 
 \section{Runners}
-Todos los Runners comparten la misma estructura que se explica. Posteriormente, se indicará el código de los Runners usados.
+Todos los Runners comparten la misma estructura que se explica en código \ref{cod:51}. Posteriormente, se indicará el código de los Runners usados.
 
-\begin{lstlisting}
+\begin{lstlisting}[language=Python, caption={Esctructura básica de un Runner}, label=cod:51]
 	from pagina.spiders.pagina_spider import PaginaSpider
 	from scrapy.crawler import CrawlerProcess
 	from scrapy.utils.project import get_project_settings
@@ -1137,45 +1108,45 @@ Todos los Runners comparten la misma estructura que se explica. Posteriormente, 
 		process.start()
 \end{lstlisting}
 
-Primero se incluyen las dependencias, entre ellas la Spider a usar, en caso de querer ejecutar múltiples Spider se deberán importar todas ellas y se ejecutaran en paralelo. En la función \textit{main()}, se toma la configuración del fichero settings.py y en caso de existir de la variable custom\_settings, CrawlerProcess prepara el proceso requerido para ejecutar las Spider, se indica con el método \textit{crawl()} la Spider a usar y, se da comienzo al proceso con \textit{start()}.
+El código que compone un Runner se muestra en el código \ref{cod:51}. Primero se incluyen las dependencias, entre ellas la Spider a usar, en caso de querer ejecutar múltiples Spider se deberán importar todas ellas y se ejecutaran en paralelo. En la función \textit{main()}, se toma la configuración del fichero settings.py y en caso de existir de la variable custom\_settings, CrawlerProcess prepara el proceso requerido para ejecutar las Spider, se indica con el método \textit{crawl()} la Spider a usar y, se da comienzo al proceso con \textit{start()}.
 
-\begin{lstlisting}[language=Python, caption={CHCantábrico Data Runner}]
-	from datosEstaciones.spiders.chcantabrico_pluvio_spider import ChcantabricoPluvioSpider
-	from datosEstaciones.spiders.chcantabrico_nivel_spider import ChcantabricoNivelSpider
-	from datosEstaciones.spiders.chcantabrico_coord_spider import ChcantabricoCoordSpider
+\begin{lstlisting}[language=Python, caption={CHCantábrico Data Runner}, label=cod:52]
+	from chcantabricoSpider.spiders.chcantabrico_pluvio_spider import ChcantabricoPluvioSpider
+	from chcantabricoSpider.spiders.chcantabrico_nivel_spider import ChcantabricoNivelSpider
+	from chcantabricoSpider.spiders.chcantabrico_coord_spider import ChcantabricoCoordSpider
 
 	process.crawl(ChcantabricoPluvioSpider)
 	process.crawl(ChcantabricoNivelSpider)
 	process.crawl(ChcantabricoCoordSpider)
 \end{lstlisting}
 
-Ejecuta ChcantabricoPluvioSpider, ChcantabricoNivelSpider y ChcantabricoCoordSpider.
+El código mostrado en \ref{cod:52}, ejecuta ChcantabricoPluvioSpider, ChcantabricoNivelSpider y ChcantabricoCoordSpider.
 
-\begin{lstlisting}[language=Python, caption={CHCantábrico Code Runner}]
+\begin{lstlisting}[language=Python, caption={CHCantábrico Code Runner}, label=cod:53]
 	from chcantabricoSpider.spiders.chcantabrico_code_spider import ChcantabricoCodeSpider
 
 	process.crawl(ChcantabricoCodeSpider)
 \end{lstlisting}
 
-Ejecuta ChcantabricoCodeSpider.
+El Code Runner de código \ref{cod:53} ejecuta ChcantabricoCodeSpider.
 
-\begin{lstlisting}[language=Python, caption={Aemet Data Runner}]
+\begin{lstlisting}[language=Python, caption={Aemet Data Runner}, label=cod:54]
 	from aemetSpider.spiders.aemet_spider import AemetDataSpider
 
 	process.crawl(AemetDataSpider)
 \end{lstlisting}
 
-Ejecuta AemetDataSpider.
+AemetDataSpider es ejecutada en el código \ref{cod:54}.
 
-\begin{lstlisting}[language=Python, caption={Aemet Code Runner}]
+\begin{lstlisting}[language=Python, caption={Aemet Code Runner}, label=cod:55]
 	from aemetSpider.spiders.aemet_code_spider import AemetCodeSpider
 	
 	process.crawl(AemetCodeSpider)
 \end{lstlisting}
 
-Ejecuta AemetCodeSpider.
+En el código \ref{cod:55} se ejecuta AemetCodeSpider.
 
-\begin{lstlisting}[language=Python, caption={MeteoNavarra Data Runner}]
+\begin{lstlisting}[language=Python, caption={MeteoNavarra Data Runner}, label=cod:56]
 	from meteoNavarraSpider.spiders.meteoNavarra_coord_spider import MeteoNavarraCoordSpider
 	from meteoNavarraSpider.spiders.meteoNavarra_spider import MeteoNavarraDataSpider
 
@@ -1183,38 +1154,38 @@ Ejecuta AemetCodeSpider.
 	process.crawl(MeteonavarraCoordSpider)	
 \end{lstlisting}
 
-Ejecuta MeteoNavarraDataSpider y MeteoNavarraCoordSpider.
+En código \ref{cod:56} se muestra lo necesario para ejecutar MeteoNavarraDataSpider y MeteoNavarraCoordSpider.
 
-\begin{lstlisting}[language=Python, caption={MeteoNavarra Code Runner}]
+\begin{lstlisting}[language=Python, caption={MeteoNavarra Code Runner}, label=cod:57]
 	from meteoNavarraSpider.spiders.meteoNavarra_code_spider import MeteoNavarraCodeSpider
 
 	process.crawl(MeteoNavarraCodeSpider)
 \end{lstlisting}
 
-Ejecuta MeteoNavarraCodeSpider.
+MeteoNavarraCodeSpider es ejecutada en el código \ref{cod:57}.
 
-\begin{lstlisting}[language=Python, caption={Agua en Navarra Data Runner}]
+\begin{lstlisting}[language=Python, caption={Agua en Navarra Data Runner}, label=cod:58]
 	from aguaEnNavarraSpider.spiders.aguaEnNavarra_data_spider import AguaEnNavarraDataSpider
 	
 	process.crawl(AguaEnNavarraDataSpider)
 \end{lstlisting}
 
-Ejecuta AguaEnNavarraDataSpider.
+El Code Runner de código \ref{cod:58} ejecuta AguaEnNavarraDataSpider.
 
-\begin{lstlisting}[language=Python, caption={Agua en Navarra Code Runner}]
+\begin{lstlisting}[language=Python, caption={Agua en Navarra Code Runner}, label=cod:59]
 	from aguaEnNavarraSpider.spiders.aguaEnNavarra_code_spider import AguaEnNavarraCodeSpider
 
 	process.crawl(AguaEnNavarraCodeSpider)
 \end{lstlisting}
 
-Ejecuta AguaEnNavarraCodeSpider.\newline
+El código mostrado en \ref{cod:59}, ejecuta AguaEnNavarraCodeSpider.\newline
 \newline
-El hecho de que las Spider de obtencion de coordenadas se ejecuten junto a las de datos tiene dos motivos, el primero, que son dependientes de los códigos de las estaciones, y como se ejecutan en paralelo sin el JSON con los códigos no funcionan, el segundo, que algunas Spider obtengan los datos a la par que los datos.
+El hecho de que las Spider de obtención de coordenadas se ejecuten junto a las de datos tiene dos motivos, el primero, que son dependientes de los códigos de las estaciones, y como se ejecutan en paralelo sin el JSON con los códigos no funcionan, el segundo, que algunas Spider obtengan los datos a la par que los datos.
 
 \section{Executers}
 Ficheros data\_spider\_executer.sh y code\_spider\_executer.sh
 
-\begin{lstlisting}[caption={Ejecucion de entorno virtual y selección de proyecto Scrapy}]
+\begin{lstlisting}[caption={Ejecucion de entorno virtual y selección de proyecto Scrapy}, label=cod:60]
 	#!/bin/bash
 	
 	# Activate the virtual environment
@@ -1224,73 +1195,50 @@ Ficheros data\_spider\_executer.sh y code\_spider\_executer.sh
 	cd Scrapy/$1Spider
 \end{lstlisting}
 
-Primero ejecutan el comando para activar el entorno virtual indicada por argumento y se desplazan al directorio del proyecto Scrapy requerido.
+Primero ejecutan el comando para activar el entorno virtual indicada por argumento y se desplazan al directorio del proyecto Scrapy requerido. Se pueden ven en código \ref{cod:60}.
 
-\begin{lstlisting}[caption={Ejecución de data\_spider\_runner.py}]
+\begin{lstlisting}[caption={Ejecución de data\_spider\_runner.py}, label=cod:61]
 	# Run the Python script
 	python3 data_spider_runner.py
 \end{lstlisting}
 
-En caso de data\_spider\_executer.sh, ejecuta el Runner encargado de obtener los datos.
-
-\begin{lstlisting}[caption={Ejecución de code\_spider\_runner.py}]
+\begin{lstlisting}[caption={Ejecución de code\_spider\_runner.py}, label=cod:62]
 	# Run the Python script
 	python3 code_spider_runner.py
 \end{lstlisting}
 
-Y en caso de code\_spider\_executer.sh, ejecuta el Runner encargado de obtener los códigos.
+En caso de data\_spider\_executer.sh, ejecuta el Runner encargado de obtener los datos. Como se ve en el código \ref{cod:61}. Y en caso de code\_spider\_executer.sh, ejecuta el Runner encargado de obtener los códigos. Presente en código \ref{cod:62}.
 
 \section{Formateo de datos}
-Cada proyecto individual dispone de dos Scripts encargados de formatear los datos, uno para los códigos y otro para los datos per se.\newline
-\newline
-El código compartido entre los Script es el primero en ser explicado. Aunque en la explicación se ha usado código de formatear\_data\_JSONs.py, las diferencias respecto a formatear\_code\_JSONs.py se traducen a cambiar nombres de variables y los directorios, la única diferencia radica en la función principal donde se realiza el formateo.
+Cada proyecto individual dispone de dos Scripts encargados de formatear los datos, uno para los códigos y otro para los datos per se. El código compartido entre los Script es el primero en ser explicado. Aunque en la explicación se ha usado código de formatear\_data\_JSONs.py, las diferencias respecto a formatear\_code\_JSONs.py se traducen a cambiar nombres de variables y los directorios, la única diferencia radica en la función principal donde se realiza el formateo.
 
-\begin{lstlisting}[language=Python, caption={Declaración variable del JSON que se desea usar}, label=cod:300]
+\begin{lstlisting}[language=Python, caption={Declaración variable del JSON que se desea usar}, label=cod:63]
 	DataJSON = "datos_pagina.json"
 \end{lstlisting}
 
-Una variable que indica el nombre o la ruta del fichero a leer. Código \ref{cod:300}.
-
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{openFile()}}, label=cod:400]
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{openFile()}}, label=cod:64]
 	def openFile(filename):
 		with open(f'JSONs/RawData/{filename}', "r", encoding="utf-8") as f:
 			file = json.loads(f.read())
 		return file
 \end{lstlisting}
 
-Una función para abrir los ficheros. Código \ref{cod:400}.
-
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{saveFile()}}, label=cod:50]
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{saveFile()}}, label=cod:65]
 	def saveFile(filename, data):
 		Path("JSONs/ParsedData").mkdir(parents=True, exist_ok=True)
 		with open(f'JSONs/ParsedData/{filename}', 'w', encoding='utf-8') as outfile:
 			json.dump(data, outfile)
 \end{lstlisting}
 
-Una función para crear el directorio de guardado en caso de no existir y guardar los ficheros. Código \ref{cod:50}.
-
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{main()}}, label=cod:60]
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{main()}}, label=cod:66]
 	def main():
 		file = openFile(DataJSON)
 		formatData(file)
 \end{lstlisting}
 
-Una función \textit{main()} para iniciar el proceso. Código \ref{cod:60}.\newline
-\newline
-CHCantábrico y MeteoNavarra al disponer de un JSON especifico con las coordenadas, comparten la función en el código \ref{cod:200} a la hora de formatear los códigos de estación.
+Una variable que indica el nombre o la ruta del fichero a leer, siguiendo el ejemplo de código \ref{cod:63}; una función para abrir los ficheros, como en código \ref{cod:64}; otra función para crear el directorio de guardado en caso de no existir y guardar los ficheros, mostrada en código \ref{cod:65} y una función \textit{main()} para iniciar el proceso, visible en código \ref{cod:66}. Con el fin de aligerar la explicación de la función principal, \textit{formatData()}, se va a explicar inicialmente el funcionamiento base de esta, código \ref{cod:67}.
 
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchEstacionCoords()}} usada para formatear los JSON de códigos en CHCantábrico y MeteoNavarra, label=cod:200]
-	def searchEstacionCoords(code, coordFile):
-		for data in coordFile:
-			if data['estacion'] == code:
-				return data['coordenadas']
-\end{lstlisting}
-
-En ella se recibe el código de la estación a buscar y el fichero con las coordenadas, se itera sobre el y en caso de encontrar una estación con el mismo código enviado, re devuelven las coordenada. En caso de no encontrar la estación, al no especificar un \textit{return}, la variable se quedara como None.\newline
-\newline
-Con el fin de aligerar la explicación de la función principal, \textit{formatData()}, se va a explicar inicialmente el funcionamiento base de esta, código \ref{cod:59}.
-
-\begin{lstlisting}[language=Python, caption={Declaración función base \textit{formatData()}, concretamente esta versión es usada para formatear los datos de Aemet}, label=cod:59]
+\begin{lstlisting}[language=Python, caption={Declaración función base \textit{formatData()}, concretamente esta versión es usada para formatear los datos de Aemet}, label=cod:67]
 	def formatData(file):
 		formattedJSON = []
 		for line in file:
@@ -1314,11 +1262,11 @@ Con el fin de aligerar la explicación de la función principal, \textit{formatD
 		saveFile(DataJSON, formattedJSON)
 \end{lstlisting}
 
-La función del código \ref{cod:59}, recibe como argumento el archivo de datos con el que trabajar, file; crea una lista vacía para almacenar el JSON formateado, formattedJSON; itera por cada estación en el fichero; itera por los datos de las estaciones, creando con ellos objetos JSON, dato, con el formato deseado, la temperatura antes de almacenarse se convierte de String a DateTime con el uso de \textit{strptime()} y posteriormente se cambia al formato usado por PosrGreSQL con \textit{strftime()}, los datos que no se dispongan se ponen a None; almacena cada objeto en la lista datos; cuando terminan los datos de una estación, crea un segundo objeto JSON, header, en el que se almacena el código y los datos de esta. Finalmente se incluyen en formattedJSON hasta terminar con todas las estaciones y se guarda el fichero.\newline
+La función del código \ref{cod:67}, recibe como argumento el archivo de datos con el que trabajar, file; crea una lista vacía para almacenar el JSON formateado, formattedJSON; itera por cada estación en el fichero; itera por los datos de las estaciones, creando con ellos objetos JSON, dato, con el formato deseado, la temperatura antes de almacenarse se convierte de String a DateTime con el uso de \textit{strptime()} y posteriormente se cambia al formato usado por PosrGreSQL con \textit{strftime()}, los datos que no se dispongan se ponen a None; almacena cada objeto en la lista datos; cuando terminan los datos de una estación, crea un segundo objeto JSON, header, en el que se almacena el código y los datos de esta. Finalmente se incluyen en formattedJSON hasta terminar con todas las estaciones y se guarda el fichero.\newline
 \newline
-MeteoNavarra, dispone de un formateo de datos en bruto peculiar, pudiendo aparecer la misma estación múltiples veces, es por eso, que se ha definido la función del código \ref{cod:70}.
+MeteoNavarra, dispone de un formateo de datos en bruto peculiar, pudiendo aparecer la misma estación múltiples veces, es por eso, que se ha definido la función del código \ref{cod:68}.
 
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{unifyData()} para el correcto funcionamiento del formateo de MeteoNavarra}, label=cod:70]
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{unifyData()} para el correcto funcionamiento del formateo de MeteoNavarra}, label=cod:68]
 	def unifyData(dataFile, cod):
 		datos = []
 		for line in dataFile:
@@ -1333,9 +1281,9 @@ MeteoNavarra, dispone de un formateo de datos en bruto peculiar, pudiendo aparec
 		return unifiedData
 \end{lstlisting}
 
-Lo que hace el código \ref{cod:70} es, recorrer las estaciones en busca de aquella que comparta el mismo código y crea un nuevo diccionario con los datos de esta estación, posteriormente devuelve el diccionario.
+Lo que hace el código \ref{cod:68} es, recorrer las estaciones en busca de aquella que comparta el mismo código y crea un nuevo diccionario con los datos de esta estación, posteriormente devuelve el diccionario.
 
-\begin{lstlisting}[language=Python, caption={Paso inicial en la función \textit{formatData()} de MeteoNavarra}, label=cod:80]
+\begin{lstlisting}[language=Python, caption={Paso inicial en la función \textit{formatData()} de MeteoNavarra}, label=cod:69]
 	codes = [x["estacion"] for x in file]
 	uniqueCodes = pd.Series(codes).drop_duplicates().tolist()
 	unifiedJSON = []
@@ -1344,11 +1292,11 @@ Lo que hace el código \ref{cod:70} es, recorrer las estaciones en busca de aque
 		unifiedJSON.append(data)
 \end{lstlisting}
 
-Antes de realizar el procedimiento del código \ref{cod:59}, se incluye el código \ref{cod:80}, se obtiene una lista de todos los códigos de estación; con el uso del objeto \textit{Series} de pandas, elimina la duplicidad con \textit{drop\_duplicates()} y lo vuelve a convertir en una lista, \textit{tolist()}. Luego itera por los códigos mientras llama a la función \textit{unifyData()} y almacena el resultado en unifiedJSON.\newline
+Antes de realizar el procedimiento del código \ref{cod:67}, se incluye el código \ref{cod:69}, se obtiene una lista de todos los códigos de estación; con el uso del objeto \textit{Series} de pandas, elimina la duplicidad con \textit{drop\_duplicates()} y lo vuelve a convertir en una lista, \textit{tolist()}. Luego itera por los códigos mientras llama a la función \textit{unifyData()} y almacena el resultado en unifiedJSON.\newline
 \newline
-CHCantábrico y Agua en Navarra comparten la misma estructuración de Script. CHCantábrico por tener los datos en dos ficheros y Agua en Navarra por el formato de los datos recibido de la web, apareciendo dos veces cada estación, pero a diferencia de MeteoNavarra, una con los datos del caudal y otra con los de nivel.
+CHCantábrico y Agua en Navarra comparten la misma estructuración de Script. CHCantábrico por tener los datos en dos ficheros y Agua en Navarra por el formato de los datos recibido de la web, apareciendo dos veces cada estación dentro del JSON, pero a diferencia de MeteoNavarra, una con los datos del caudal y otra con los de nivel.
 
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchEstacionData()}, especifica en el formateo de datos de CHCantábrico y Agua en Navarra}, label=cod:90]
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchEstacionData()}, especifica en el formateo de datos de CHCantábrico y Agua en Navarra}, label=cod:70]
 	def searchEstacionData(code, dataFile1=[], dataFile2=[]):
 		datos = []
 		for data in dataFile1:
@@ -1360,27 +1308,27 @@ CHCantábrico y Agua en Navarra comparten la misma estructuración de Script. CH
 		return datos
 \end{lstlisting}
 
-\textit{searchEstacionData()}, en código \ref{cod:90}, se encarga de recibir de uno a dos ficheros y generar un diccionario JSON con todos los datos encontrados de una misma estación, para ello recorre los ficheros estación por estación comparando los códigos y en caso de coincidir se guardan en la variable datos, la cual se devolverá al final.
+\textit{searchEstacionData()}, en código \ref{cod:70}, se encarga de recibir de uno a dos ficheros y generar un diccionario JSON con todos los datos encontrados de una misma estación, para ello recorre los ficheros estación por estación comparando los códigos y en caso de coincidir se guardan en la variable datos, la cual se devolverá al final.
 
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchDateData()}}]
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchDateData()}}, label=cod:71]
 	def searchDateData(dataFile, date):
 		for data in dataFile:
 			if data['fecha y hora'] == date:
 				return data
 \end{lstlisting}
 
-Esta asegura que la fecha de los datos obtenidos de los JSON coincidan, iterando por los datos en busca de la fecha que coincida y devolver el dato correspondiente. \newline
+La función en código \ref{cod:71}, asegura que la fecha de los datos obtenidos de los JSON coincidan, iterando por los datos en busca de la fecha que coincida y devolver el dato correspondiente. \newline
 \newline
 Como el código en la función \textit{formatData()} es virtualmente el mismo, se explicará el caso de CHCantábrico.
 
-\begin{lstlisting}[language=Python, caption={Lectura de los ficheros de datos de CHCantábrico}, label=cod:100]
+\begin{lstlisting}[language=Python, caption={Lectura de los ficheros de datos de CHCantábrico}, label=cod:72]
 	levelDataFile = openFile('datos_nivel_chcantabrico.json')
 	pluvioDataFile = openFile('datos_pluvio_chcantabrico.json')
 \end{lstlisting}
 
-Código \ref{cod:100}. En este caso, el fichero que recibe la funcion \textit{formatData()} es el de los códigos de estación, es por eso que lo primero a hacer en la función es abrir los ficheros con los datos.
+En este caso, el fichero que recibe la función \textit{formatData()} es el de los códigos de estación, es por eso que lo primero a hacer en la función es abrir los ficheros con los datos. Como se ve en \ref{cod:72}.
 
-\begin{lstlisting}[language=Python, caption={Dentro del bucle que itera por estaciones, obtención de los datos de la estacion y declaración de indices}, label=cod:110]
+\begin{lstlisting}[language=Python, caption={Dentro del bucle que itera por estaciones, obtención de los datos de la estacion y declaración de indices}, label=cod:73]
 	lineData = searchEstacionData(line['codigo'], levelDataFile, pluvioDataFile)
 	index = 0
 	indexSecundario = 1
@@ -1390,9 +1338,9 @@ Código \ref{cod:100}. En este caso, el fichero que recibe la funcion \textit{fo
 			indexSecundario = 0
 \end{lstlisting}
 
-Código \ref{cod:110}. Dentro del bucle principal, se llama a \textit{searchEstacionData()} para obtener los datos de ambos ficheros en una única lista \ref{cod:120}, lineData; index e indexSecundario representan los elementos presentes en esta, que, en caso de tener dos instancias de una misma estación, se comprueba cual es más extensa para indicar la instancia principal. Se hace así ya que no siempre aparecen la misma cantidad de datos, de esta forma, trabajar aquel con más datos hace que sea menos probable dejar datos sin tratar.
+Dentro del bucle principal, se llama a \textit{searchEstacionData()} para obtener los datos de ambos ficheros en una única lista \ref{cod:74}, lineData; index e indexSecundario representan los elementos presentes en esta, que, en caso de tener dos instancias de una misma estación, se comprueba cual es más extensa para indicar la instancia principal. Se hace así ya que no siempre aparecen la misma cantidad de datos, de esta forma, trabajar aquel con más datos hace que sea menos probable dejar datos sin tratar. Se puede ver en código \ref{cod:73}.
 
-\begin{lstlisting}[language=Python, caption={Formato del diccionario lineData en caso de disponer de dos instancias de una misma estación}, label=cod:120]
+\begin{lstlisting}[language=Python, caption={Formato del diccionario lineData en caso de disponer de dos instancias de una misma estación}, label=cod:74]
 	[
 		[
 			estacion: ...
@@ -1405,9 +1353,7 @@ Código \ref{cod:110}. Dentro del bucle principal, se llama a \textit{searchEsta
 	]
 \end{lstlisting}
 
-Trabajar con lineData supone tener que cambiar el bucle interno de \textit{formatData()}, mostrado en el código \ref{cod:130}.
-
-\begin{lstlisting}[language=Python, caption={Modificación del bucle interno de \textit{formatData()}}, label=cod:130]
+\begin{lstlisting}[language=Python, caption={Modificación del bucle interno de \textit{formatData()}}, label=cod:75]
 	for data in lineData[index]['datos']:
 		dato = {
 			'fecha y hora': datetime.strptime(data['fecha y hora'], "%d/%m/%Y %H:%M:%S").strftime("%Y-%m-%d %H:%M"),
@@ -1420,9 +1366,9 @@ Trabajar con lineData supone tener que cambiar el bucle interno de \textit{forma
 		}
 \end{lstlisting}
 
-Código \ref{cod:130}. El bucle se realiza indicando el indice de la instancia principal y, excepto la hora, todos los datos son indicados como None. Posteriormente, aun dentro del bucle se incluyen los datos con el código \ref{cod:140}.
+Trabajar con lineData supone tener que cambiar el bucle interno de \textit{formatData()}, mostrado en el código \ref{cod:75}. El bucle se realiza indicando el indice de la instancia principal y, excepto la hora, todos los datos son indicados como None. Posteriormente, aun dentro del bucle, se incluyen los datos con el código \ref{cod:76}.
 
-\begin{lstlisting}[language=Python, caption={Inclusion de los datos en el objeto JSON dato}, label=cod:140]
+\begin{lstlisting}[language=Python, caption={Inclusion de los datos en el objeto JSON dato}, label=cod:76]
 		if 'nivel (m)' in data:
 			dato['nivel (m)'] = data['nivel (m)']
 		elif 'precipitacion (mm)' in data:
@@ -1439,11 +1385,20 @@ Código \ref{cod:130}. El bucle se realiza indicando el indice de la instancia p
 				pass
 \end{lstlisting}
 
-Primero comprueba que tipo de dato esta presente en los datos de instancia principal y, guarda el dato presente; luego, en caso de existir una segunda instancia, llama a \textit{searchDateData()} para buscar el dato correspondiente a la fecha en la instancia secundaria; si no se recibe el error \textit{TypeError}, pues indicaría que no existe registro para esa fecha sobre la instancia secundaria, realiza nuevamente la comprobación de tipo y lo guarda.\newline
+Primero comprueba que tipo de dato esta presente en los datos de instancia principal y, guarda el dato presente; luego, en caso de existir una segunda instancia, llama a \textit{searchDateData()} para buscar el dato correspondiente a la fecha en la instancia secundaria; si no se recibe el error \textit{TypeError}, pues indicaría que no existe registro para esa fecha sobre la instancia secundaria, realiza nuevamente la comprobación de tipo y lo guarda. El código \ref{cod:76} corresponde a la explicación.\newline
 \newline
-El código \ref{cod:150} de formateo de códigos de estación es el mismo para todas las webs, con la excepción de CHCantábrico y MeteoNavarra, que obtiene las coordenadas abriendo el fichero correspondiente con \textit{openFile()} y las buscan con \textit{searchEstacionCoords()}.
+El código \ref{cod:78} de formateo de códigos de estación es el mismo para todas las webs, con la excepción de CHCantábrico y MeteoNavarra, que obtiene las coordenadas abriendo el fichero correspondiente con \textit{openFile()} y las buscan con \textit{searchEstacionCoords()}.
 
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{formatCode()}}, label=cod:150]
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{searchEstacionCoords()}} usada para formatear los JSON de códigos en CHCantábrico y MeteoNavarra, label=cod:77]
+	def searchEstacionCoords(code, coordFile):
+		for data in coordFile:
+			if data['estacion'] == code:
+				return data['coordenadas']
+\end{lstlisting}
+
+En ella se recibe el código de la estación a buscar y el fichero con las coordenadas, se itera sobre el y en caso de encontrar una estación con el mismo código enviado, re devuelven las coordenada. En caso de no encontrar la estación, al no especificar un \textit{return}, la variable se quedara como None. Visible en código \ref{cod:77}.
+
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{formatCode()}}, label=cod:78]
 	def formatCode(file):
 		formattedJSON = []
 		for line in file:
@@ -1463,16 +1418,14 @@ El código \ref{cod:150} de formateo de códigos de estación es el mismo para t
 \section{Filtrado de datos}
 El siguiente paso a realizar, es el filtrado de los JSON por el script filtras\_datos\_JSONs.py. En el se realiza lo siguiente.
 
-\begin{lstlisting}[language=Python, caption={Declaración rutas JSONs y nombre de fichero}]
+\begin{lstlisting}[language=Python, caption={Declaración rutas JSONs y nombre de fichero}, label=cod:79]
 	OldDir = "JSONs/OldData/"
 	ParsedDir = "JSONs/ParsedData/"
 	RefinedDir = "JSONs/RefinedData/"
 	DataJSON = "datos_aemet.json"
 \end{lstlisting}
 
-Se declaran las variables representativas de las rutas y el nombre del fichero JSON.
-
-\begin{lstlisting}[language=Python, caption={Declaración función openFile()}]
+\begin{lstlisting}[language=Python, caption={Declaración función openFile()}, label=cod:80]
 	def openFile(fileDir):
 		try:
 			with open(fileDir + DataJSON, "r", encoding="utf-8") as f:
@@ -1482,27 +1435,27 @@ Se declaran las variables representativas de las rutas y el nombre del fichero J
 		return file
 \end{lstlisting}
 
-La función prueba a abrir el fichero anteriormente declarado (datos\_aemet.json) sobre la ruta indicada (fileDir), en caso de no existir, se marca el fichero como None, finalmente devuelve el fichero. El tratado de la excepción FileNotFoundError se realiza pensada en la primera vez que se haga uso de la plataforma, ya que esta no dispondría de datos posteriores con los que hacer una comparación.
+Se declaran las variables representativas de las rutas y el nombre del fichero JSON. Como se muestra en código \ref{cod:79}. La función en código \ref{cod:80}, prueba a abrir el fichero anteriormente declarado (datos\_aemet.json) sobre la ruta indicada (fileDir), en caso de no existir, se marca el fichero como None, finalmente devuelve el fichero. El tratado de la excepción FileNotFoundError se realiza pensada en la primera vez que se haga uso de la plataforma, ya que esta no dispondría de datos posteriores con los que hacer una comparación.
 
-\begin{lstlisting}[language=Python, caption={Declaración función saveFile()}]
+\begin{lstlisting}[language=Python, caption={Declaración función saveFile()}, label=cod:81]
 	def saveData(jsonDir, DataFile):
 		Path(jsonDir).mkdir(parents=True, exist_ok=True)
 		with open(jsonDir + DataJSON, 'w', encoding='utf-8') as outfile:
 			json.dump(DataFile, outfile)
 \end{lstlisting}
 
-Recibiendo como argumento el directorio sobre el que se desea guardar el fichero (jsonDir) y un diccionario JSON con los datos a guardar (DataFile), esta función, comprueba la existencia del directorio y en caso de no hacerlo lo crea. Tras ello, guarda los datos en el directorio con el uso de \textit{json.dump()}.
+Recibiendo como argumento el directorio sobre el que se desea guardar el fichero (jsonDir) y un diccionario JSON con los datos a guardar (DataFile), esta función, comprueba la existencia del directorio y en caso de no hacerlo lo crea. Tras ello, guarda los datos en el directorio con el uso de \textit{json.dump()}. Función en código \ref{cod:81}.
 
-\begin{lstlisting}[language=Python, caption={Declaración función searchEstacionData()}]
+\begin{lstlisting}[language=Python, caption={Declaración función searchEstacionData()}, label=cod:82]
 	def searchEstacionData(code, dataFile):
 		for data in dataFile:
 			if data['estacion'] == code:
 				return data["datos"]
 \end{lstlisting}
 
-Como no es seguro que los datos recibidos estén siempre en el mismo orden, se ha definido esta función para asegurarse de trabajar siempre con los datos de la estación correcta. Recorre el fichero viejo y cuando encuentra la estación con el mismo código devuelve los datos de esta.
+Como no es seguro que los datos recibidos estén siempre en el mismo orden, se ha definido esta función para asegurarse de trabajar siempre con los datos de la estación correcta. Recorre el fichero viejo y cuando encuentra la estación con el mismo código devuelve los datos de esta. Función mostrada en código \ref{cod:82}.
 
-\begin{lstlisting}[language=Python, caption={Declaración función refinedData()}]
+\begin{lstlisting}[language=Python, caption={Declaración función refinedData()}, label=cod:83]
 	def refineData(newFile, oldFile):
 		refinedFile = []
 		
@@ -1524,11 +1477,9 @@ Como no es seguro que los datos recibidos estén siempre en el mismo orden, se h
 		saveData(RefinedDir, refinedFile)
 \end{lstlisting}
 
-Esta se encarga de la comparación de los ficheros, recibidos en los argumentos newFile y oldFile.\newline
-\newline
-Empezando con la explicación, se define la lista vacía refinedFile, encargada de almacenar los datos nuevos de todas las estaciones; se itera por cada estación en newFile; se define una segunda lista newData para almacenar los nuevos datos por estación; se llama a \textit{searchEstacionData()} para buscar los datos viejos de la estación; se itera por todos los datos de los presentes en la estación; se comprueba que no exista previamente en los datos de esa misma estación en oldData; en caso de que el dato no este presente, se almacena en newData; si existe algún dato nuevo (newData no esta vacía), se crea un objeto JSON que sigue la estructuración definida para los ficheros de datos y, se almacena en refinedData; finalmente los datos se guardan en un fichero en la ruta especificada RefinedDir.
+La función \textit{refinedData()} en código \ref{cod:83}, se encarga de la comparación de los ficheros, recibidos en los argumentos newFile y oldFile. Empezando con la explicación, se define la lista vacía refinedFile, encargada de almacenar los datos nuevos de todas las estaciones; se itera por cada estación en newFile; se define una segunda lista newData para almacenar los nuevos datos por estación; se llama a \textit{searchEstacionData()} para buscar los datos viejos de la estación; se itera por todos los datos de los presentes en la estación; se comprueba que no exista previamente en los datos de esa misma estación en oldData; en caso de que el dato no este presente, se almacena en newData; si existe algún dato nuevo (newData no esta vacía), se crea un objeto JSON que sigue la estructuración definida para los ficheros de datos y, se almacena en refinedData; finalmente los datos se guardan en un fichero en la ruta especificada RefinedDir.
 
-\begin{lstlisting}[language=Python, caption={Declaración rutas JSONs}]
+\begin{lstlisting}[language=Python, caption={Declaración rutas JSONs}, label=cod:84]
 	def main():
 		newFile = openFile(ParsedDir)
 		oldFile = openFile(OldDir)
@@ -1540,30 +1491,39 @@ Empezando con la explicación, se define la lista vacía refinedFile, encargada 
 		refineData(newFile, oldFile)
 \end{lstlisting}
 
-La función \textit{main()}, abre los ficheros indicados en las rutas ParsedDir y OldDir, en caso de que oldFile sea None, guarda los nuevos datos directamente en el directorio refinedDir y el programa finaliza. Si se dispone de datos en oldFile, llama a \textit{refineData()}.
+La función \textit{main()}, vista en código \ref{cod:84}, abre los ficheros indicados en las rutas ParsedDir y OldDir, en caso de que oldFile sea None, guarda los nuevos datos directamente en el directorio refinedDir y el programa finaliza. Si se dispone de datos en oldFile, llama a \textit{refineData()}.
 
 \section{Posts}
 Como Posts, se hace referencia a los Scripts code\_post.py y data\_post.py. Como ambos comparten la misma codificación se explicaran de forma general y, se mostraran las diferencias.
 
-\begin{lstlisting}[language=Python, caption={Declaración variables code\_post.py}]
+\begin{lstlisting}[language=Python, caption={Declaración variables code\_post.py}, label=cod:85]
 	url = "http://localhost:8000/appAPI/storeCode"
 	
 	with open(f"JSONs/ParsedCode/codigos_{sys.argv[1]}.json", encoding="utf-8") as f:
 		data = json.load(f)
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption={Declaración variables data\_post.py}]
+\begin{lstlisting}[language=Python, caption={Declaración variables data\_post.py}, label=cod:86]
 	url = "http://localhost:8000/appAPI/storeData"
 	
 	with open(f"JSONs/ParsedData/datos_{sys.argv[1]}.json", encoding="utf-8") as f:
 		data = json.load(f)
 \end{lstlisting}
 
-Se declara la URL a la que se desea hacer la llamada y, se lee el fichero que se ha indicado al pararlo por argumento a la hora de ejecutar el Script.
-
-\begin{lstlisting}[language=Python, caption={Llamada POST}]
+\begin{lstlisting}[language=Python, caption={Llamada POST}, label=cod:87]
 	headers = {'content-type': 'application/json'}
 	r = requests.post(url, json=data, headers=headers)
 \end{lstlisting}
 
-Finalmente, se indica en headers el tipo de contenido que dispone la llamada, en este caso JSON y, se realiza la llamada con el método \textit{post()} proporcionado por la librería requests.
+Se declara la URL a la que se desea hacer la llamada y, se lee el fichero que se ha indicado al pararlo por argumento a la hora de ejecutar el Script. como se muestra en los códigos \ref{cod:85} y \ref{cod:86}. Finalmente, se indica en headers el tipo de contenido que dispone la llamada, en este caso JSON y, se realiza la llamada con el método \textit{post()} proporcionado por la librería requests, como en código \ref{cod:87}.
+
+\section{Cron}
+Dentro del archivo crontab se han definido los comandos presentes en 
+
+\begin{lstlisting}[caption={Trabajos configurados para ser ejecutados por Cron}, label=cod:103]
+	*/30 * * * * /path/to/your_script.sh
+	*/30 * * * * /path/to/your_script.sh
+	*/30 * * * * /path/to/your_script.sh
+	0 * * * * /path/to/your_script.sh
+	0 3 1 * * /path/to/your_script.sh
+\end{lstlisting}
