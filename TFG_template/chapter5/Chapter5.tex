@@ -462,13 +462,13 @@ Con el fin de obtener los datos de MeteoNavarra han sido creadas tres Spider, Me
 \subsubsection{Code Spider}
 La estructuración HTML de la web y la falta de experiencia son el motivo principal asociado a la complejidad de esta Spider, la mayor parte del tiempo a la hora de crearla ha sido invertido explorando el código HTML buscando la forma más optima de lograr los datos necesarios. Son múltiples las iteraciones sufridas hasta llegar a la versión actual.
 
-\begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de MeteoNavarra Code Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de MeteoNavarra Code Spider}, label=cod:23]
 	rows = response.css('div#tabAUTO script::text').getall()
 \end{lstlisting}
 
-Del selector se obtiene el código JavaScript perteneciente a cada fila de la tabla, siendo la forma mas sencilla de lograr tanto el nombre como el código de la estación.
+Del selector en el código \ref{cod:23} se obtiene el JavaScript perteneciente a cada fila de la tabla, siendo la forma mas sencilla de lograr tanto el nombre como el código de la estación.
 
-\begin{lstlisting}[language=Python, caption={Guardado de datos de MeteoNavarra Code Spider}]	
+\begin{lstlisting}[language=Python, caption={Guardado de datos de MeteoNavarra Code Spider}, label=cod:24]	
 	for row in rows:
 		yield {
 			'estacion': row.split(',')[3],
@@ -476,12 +476,12 @@ Del selector se obtiene el código JavaScript perteneciente a cada fila de la ta
 		}
 \end{lstlisting}
 
-A la hora de guardar los datos, se itera por filas y se filtra del código aquellos deseados.
+A la hora de guardar los datos, se itera por filas y se filtra aquellos datos deseados. Código \ref{cod:24}.
 
 \subsubsection{Data Spider}
 La necesidad de recorrer múltiples estaciones, obliga como en el resto de Spiders de obtención de datos, a sobre escribir la función \textit{start\_requests()}.
 
-\begin{lstlisting}[language=Python, caption={Uso de fechas en función \textit{start\_requests()} MeteoNavarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Uso de fechas en función \textit{start\_requests()} MeteoNavarra Data Spider}, label=cod:25]
 	current_date = datetime.date.today()
 	delta = datetime.timedelta(days=1)
 	tomorrow_date = current_date + delta
@@ -490,19 +490,19 @@ La necesidad de recorrer múltiples estaciones, obliga como en el resto de Spide
 	yesterday_date_format = yesterday_date.strftime(" %d%%2F %m%%2F%Y").replace(' 0', '')
 \end{lstlisting}
 
-La curiosidad en esta radica en que, a diferencia del resto de páginas, que definen automáticamente una franja de fechas a mostrar, meteoNavarra fuerza la necesidad de que el usuario elija las fechas que desee ver, es por eso que hace uso de la librería datetime, pues facilita el trabajo con fechas.\newline
+La curiosidad en el código \ref{cod:25} radica en que, a diferencia del resto de páginas, que definen automáticamente una franja de fechas a mostrar, meteoNavarra fuerza la necesidad de que el usuario elija las fechas que desee ver, es por eso que hace uso de la librería datetime, pues facilita el trabajo con fechas.\newline
 \newline
 Con la intención de que funcione proporcionando fechas distintas cada día se realiza el siguiente proceso. Se obtiene la fecha actual con la función today(), con el método timedelta(days=1) se crea un objeto timedelta que representa una duración de un día, gracia a el, se calcula el día de mañana y el de ayer, sumando y restando esa duración al día de hoy. Para terminar, puesto que la fecha debe ir incluida en una URL, mediante el método strftime(), formateamos los datetime calculados para que correspondan con el codificado URL.\newline
 \newline
 
-\begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de MeteoNavarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de MeteoNavarra Data Spider}, label=cod:26]
 	rows = response.css('table.border tr:not([bgcolor*="#FFFFFF"])')
 	estacion = response.css('table a::attr(href)')[7].get()
 \end{lstlisting}
 
-De los siguientes selectores cabe mencionar el primero. Aunque en la web se hace uso del elemento HTML table, este no indica que elementos tr pertenecen a la cabecera o al cuerpo de la tabla con el uso de thead y tbody, por el contrario, las filas correspondientes a la cabecera se muestran con el color de fondo representado hexadecimalmente \#FFFFFF. Es por eso que se indica explícitamente no obtener esas filas con el uso de tr:not([bgcolor*="\#FFFFFF"]).
+De los selectores en el código \ref{cod:26} cabe mencionar el primero. Aunque en la web se hace uso del elemento HTML table, este no indica que elementos tr pertenecen a la cabecera o al cuerpo de la tabla con el uso de \textit{thead} y \textit{tbody}, por el contrario, las filas correspondientes a la cabecera se muestran con el color de fondo representado hexadecimalmente \textit{\#FFFFFF}. Es por eso que se indica explícitamente no obtener esas filas con el uso de \textit{tr:not([bgcolor*="\#FFFFFF"])}.
 
-\begin{lstlisting}[language=Python, caption={Trabajar sobre los datos de MeteoNavarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Trabajar sobre los datos de MeteoNavarra Data Spider}, label=cod:27]
 	datos = []
 	for row in rows:
 		dato = {
@@ -520,12 +520,9 @@ De los siguientes selectores cabe mencionar el primero. Aunque en la web se hace
 			datos.append(dato)
 \end{lstlisting}
 
-En la función \textit{parse()}, como en otras Spider, se crea una lista datos vacía que es llenada con los objetos JSON obtenidos al recorrer cada fila de las anteriormente obtenidas y, filtrar mediante selectores aquellos datos de utilidad.\newline
-\newline
-Luego, se comprueba la disponibilidad de un valor numérico de radiación global, pues en caso de no existir, la web proporciona '- -'. Posteriormente, puesto que la web muestra todas las franjas horarias dentro del que se corresponde con el día actual, se eliminan todas esas horas sin datos con la comprobación respecto a la precipitación.\newline
-\newline
+En el código \ref{cod:27}, se crea una lista datos vacía que es llenada con los objetos JSON obtenidos al recorrer cada fila de las anteriormente obtenidas y, filtrar mediante selectores aquellos datos de utilidad. Luego, se comprueba la disponibilidad de un valor numérico de radiación global, pues en caso de no existir, la web proporciona '- -'. Posteriormente, puesto que la web muestra todas las franjas horarias dentro del que se corresponde con el día actual, se eliminan todas esas horas sin datos con la comprobación respecto a la precipitación.
 
-\begin{lstlisting}[language=Python, caption={Comprobacion exitencia de datos y guardado de MeteoNavarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Comprobacion exitencia de datos y guardado de MeteoNavarra Data Spider}, label=cod:28]
 	if datos:
 		yield {
 			'estacion': estacion.split('idestacion=')[1].split('&')[0],
@@ -533,9 +530,9 @@ Luego, se comprueba la disponibilidad de un valor numérico de radiación global
 		}
 \end{lstlisting}
 
-A continuación, en caso de que existan datos a guardar, pues algunas de las estaciones puedes llegar a no disponer de datos, se realiza el \textit{yield}.
+A continuación, con el código \ref{cod:28} en caso de que existan datos a guardar, pues algunas de las estaciones puedes llegar a no disponer de datos, se realiza el \textit{yield}.
 
-\begin{lstlisting}[language=Python, caption={Navegacion a segunda página de datos en MeteoNavarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Navegacion a segunda página de datos en MeteoNavarra Data Spider}, label=cod:29]
 	next_page = response.css("table a::attr(href)").getall()
 	page_number = response.xpath("//b/text()").getall()
 	if not page_number[0] == page_number[1]:
@@ -543,67 +540,67 @@ A continuación, en caso de que existan datos a guardar, pues algunas de las est
 		yield scrapy.Request(next_page, callback=self.parse)
 \end{lstlisting}
 
-Finalmente, aun dentro de \textit{parse()}, como los datos de ciertas estaciones están repartidos en dos páginas, adquiere la posible URL a la segunda página y, el numero de la página actual y siguiente, en caso de que los números sean distintos, navega a esa segunda página para realizar el mismo proceso descrito anteriormente.\newline
+Finalmente, aun dentro de \textit{parse()}, como los datos de ciertas estaciones están repartidos en dos páginas, se incluye el código \ref{cod:29}, este adquiere la posible URL a la segunda página y, el numero de la página actual y siguiente, en caso de que los números sean distintos, navega a esa segunda página para realizar el mismo proceso descrito anteriormente.\newline
 \newline
-Esto es posible gracias a que \textit{yield}, aunque a groso modo funcione como un return, no fuerza el final de la ejecución, por lo que todo código por debajo de este sera ejecutado, llegando a haber múltiples \textit{yield} en una misma función.
+Esto es posible gracias a que \textit{yield}, aunque a groso modo funcione como un \textit{return}, no fuerza el final de la ejecución, por lo que todo código por debajo de este sera ejecutado, llegando a haber múltiples \textit{yield} en una misma función.
 
 \subsubsection{Coordenates Spider}
-Por último, necesitamos de una Spider para la obtención de las coordenadas pues no están disponibles para obtener dentro de las páginas anteriores, aunque sí dentro del mismo dominio.\newline
+Por último, se necesita de una Spider para la obtención de las coordenadas, pues no están disponibles para obtener dentro de las páginas anteriores, aunque sí dentro del mismo dominio.\newline
 \newline
 Mediante \textit{start\_requests()}, realiza tantas llamadas como estaciones.
 
-\begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de MeteoNavarra Coordenates Spider}]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de MeteoNavarra Coordenates Spider}, label=cod:30]
 	coordenadas = response.css('td::text')[19].get()
 	estacion = response.css('input::attr(value)').get()
 \end{lstlisting}
 
-Una vez en la función \textit{parse()}, toma las coordenadas mostradas en una tabla y, obtiene el código de la estación del atributo value de un input.
+Una vez en la función \textit{parse()}, toma las coordenadas mostradas en una tabla y, obtiene el código de la estación del atributo \textit{value} de un elemento \textit{input}. Código \ref{cod:30}.
 
-\begin{lstlisting}[language=Python, caption={Guardado de datos de MeteoNavarra Coordenates Spider}]
+\begin{lstlisting}[language=Python, caption={Guardado de datos de MeteoNavarra Coordenates Spider}, label=cod:31]
 	yield {
 		'coordenadas': coordenadas.strip().replace('\r\n\t\t', ' ').replace(' (*)', ''),
 		'estacion': estacion,
 	}
 \end{lstlisting}
 
-Finalmente, las coordenadas, con el fin de verse bien en la web, en vez de estar estilizadas con CSS, vienen estilizadas con elementos textuales, los cuales son eliminados.
+Finalmente, las coordenadas, con el fin de verse bien en la web, en vez de estar estilizadas con CSS, vienen estilizadas con elementos textuales, los cuales son eliminados antes de ser guardadas. Código \ref{cod:31}.
 
 \subsection{Agua en Navarra}
 Las Spiders de Agua en Navarra son las más complejas entre todas, usando una filosofía ligeramente distinta al resto de Spiders y, por el uso de Selemiun para poder interactuar con la web mediante JavaScipt.\newline
 \newline
-Ambas Spider, Code y Data, parten de las misma \textit{start\_urls} y van recorriendo las páginas presentes hasta llegar a aquella que muestre los datos deseados. Esto se debe hasta cierto punto a la estructuración de la página, haciendo más sencillo navegar por ella que crear una Spider por cada página a visitar. La navegación por la web se realiza usando múltiples funciones de la misma naturaleza que \textit{parse()}.\newline
+\label{Chap524}
+Ambas Spider necesarias, AguaEnNavarraCodeSpider y AguaEnNavarraDataSpider, parten de las misma \textit{start\_urls} y van recorriendo las páginas presentes hasta llegar a aquella que muestre los datos deseados. Esto se debe hasta cierto punto a la estructuración de la página, haciendo más sencillo navegar por ella que crear una Spider por cada página a visitar. La navegación por la web se realiza usando múltiples funciones de la misma naturaleza que \textit{parse()}.\newline
 \newline
-Para Data Spider esto implica no necesitar de un fichero JSON del cual leer los códigos de las estaciones.\newline
-\newline
+Para Data Spider esto implica no necesitar de un fichero JSON del cual leer los códigos de las estaciones.
 
-\begin{lstlisting}[language=Python, caption={Función \textit{parse()} Agua en Navarra Spiders}]
+\begin{lstlisting}[language=Python, caption={Función \textit{parse()} Agua en Navarra Spiders}, label=cod:32]
 	def parse(self, response):
 		for link in response.css('dl#navarramap a::attr(href)'):
 			if link.get() != 'ctaMapa.aspx?IdMapa=1&IDOrigenDatos=1':
 				yield response.follow(link.get(), callback=self.parse_area)
 \end{lstlisting}
 
-La función \textit{parse()} es compartida por ambas Spider. Extrae los link representantes de cada área definida sobre el mapa y, navega por todos ellos a excepción del link de origen, aquel en el que se encuentra.\newline
+La función \textit{parse()}, código \ref{cod:32}, es compartida por ambas Spider. Extrae los link representantes de cada área definida sobre el mapa y, navega por todos ellos a excepción del link de origen, aquel en el que se encuentra.\newline
 \newline
-El uso de \textit{response.follow()} es equivalente a realizar un Request, pero no necesita pararle una URL completa, solo con la ruta es capaz de generar la llamada, en caso de necesitar explícitamente el uso de Request esta seria la manera.
+El uso de \textit{response.follow()} es equivalente a realizar un \textit{Request}, pero no necesita pararle una URL completa, solo con la ruta es capaz de generar la llamada, en caso de necesitar explícitamente el uso de \textit{Request} seria la manera mostrada en el código \ref{cod:33}.
 
-\begin{verbatim}
+\begin{lstlisting}[language=Python, caption={Alternativa a \textit{response.follow()}, mediante el uso de \textit{Request}}, label=cod:33]
 	yield Request(url=response.urljoin(link.get()), callback=self.parse_area)
-\end{verbatim}
+\end{lstlisting}
 
-De ambas formas, en el argumento callback se indica a que función debe realizar la llamada, pasando de \textit{parse()} a \textit{parse\_area()}.
+De ambas formas, código \ref{cod:32} y \ref{cod:33}, en el argumento \textit{callback} se indica a que función debe realizar la llamada, pasando de \textit{parse()} a \textit{parse\_area()}.
 
-\begin{lstlisting}[language=Python, caption={Función \textit{parse\_area()} Agua en Navarra Spiders}]
+\begin{lstlisting}[language=Python, caption={Función \textit{parse\_area()} Agua en Navarra Spiders}, label=cod:34]
 	def parse_area(self, response):
 		for link in response.css('area[shape="rect"]::attr(href)'):
 			yield response.follow(link.get(), callback=self.parse_estacion)
 \end{lstlisting}
 
-Siendo la última función implementada de la misma manera en las Spider. Se realiza el mismo proceso, obtiene todos los link a las webs, ya sí, de la estación y, llama a \textit{parse\_estacion()}.
+Siendo el código \ref{cod:34} la última función implementada de la misma manera en las Spider. Se realiza el mismo proceso que en el código \ref{cod:32}, obtiene todos los link a las webs, ya sí, de la estación y, llama a \textit{parse\_estacion()}.
 
 \subsubsection{Code Spider}
 
-\begin{lstlisting}[language=Python, caption={Función \textit{parse\_estacion()} Agua en Navarra Code Spider}]
+\begin{lstlisting}[language=Python, caption={Función \textit{parse\_estacion()} Agua en Navarra Code Spider}, label=cod:38]
 	def parse_estacion(self, response):
 		urls = response.xpath('//span/a/@href').getall()
 		estacion = response.css('div#bloq_iconos span span::text').getall()
@@ -614,13 +611,9 @@ Siendo la última función implementada de la misma manera en las Spider. Se rea
 			codigos.append(url.split('=')[1])
 \end{lstlisting}
 
-Una vez en la función \textit{parse\_estacion()} de Code Spider, como ocurre con CHCantábrico, la estación dispone de múltiples códigos, aquel que referencia la estación, uno para el nivel y aunque no en todas, otro para el caudal del río.\newline
-\newline
-Tanto el código de nivel y caudal del río originalmente se almacenan en la variable urls, almacenando las direcciones en las cuales están presentes. Posteriormente, se toma de la URL y se guardan en la lista codigos.\newline
-\newline
-La variable estación es una lista que almacena, la descripción de la estación, el municipio al que pertenece, el río y, las coordenadas.
+Una vez en la función \textit{parse\_estacion()} de Code Spider, código \ref{cod:38}, la estación dispone de múltiples códigos, aquel que referencia la estación, uno para el nivel y aunque no en todas, otro para el caudal del río. Tanto el código de nivel y caudal del río originalmente se almacenan en la variable urls, almacenando las direcciones en las cuales están presentes. Posteriormente, se toma de la URL y se guardan en la lista codigos. La variable estación es una lista que almacena, la descripción de la estación, el municipio al que pertenece, el río y, las coordenadas.
 
-\begin{lstlisting}[language=Python, caption={Guardado de datos de Agua en Navarra Code Spider}]
+\begin{lstlisting}[language=Python, caption={Guardado de datos de Agua en Navarra Code Spider}, label=cod:39]
 	yield {
 		'descripcion': estacion[0],
 		'municipio': estacion[1],
@@ -631,11 +624,11 @@ La variable estación es una lista que almacena, la descripción de la estación
 	}
 \end{lstlisting}
 
-Al final estos datos son almacenados.
+Al final estos datos son almacenados como se muestra en el código \ref{cod:39}.
 
 \subsubsection{Data Spider}
 
-\begin{lstlisting}[language=Python, caption={Función \textit{parse\_estacion()} Agua en Navarra Data Spider}]
+\begin{lstlisting}[language=Python, caption={Función \textit{parse\_estacion()} Agua en Navarra Data Spider}, label=cod:40]
 	from scrapy_selenium import SeleniumRequest
 	from selenium.webdriver.common.by import By
 	from selenium.webdriver.support import expected_conditions as EC
@@ -651,12 +644,11 @@ Al final estos datos son almacenados.
 			)
 \end{lstlisting}
 
-Lo primero que llama la atención de esta Spider respecto al resto, es el uso de SeleniumRequest, este tipo de objeto Request pertenece a la librería scrapy\_selenium, siendo una alternativa sencilla de unificar las funcionalidades de Selenium en Scrapy, de esta forma, se lidia con la falta de integración de interacción con JavaScript en Scrapy.\newline
+Lo primero que llama la atención de esta Spider respecto al resto, es el uso de \textit{SeleniumRequest}, este tipo de objeto \textit{Request} pertenece a la librería scrapy\_selenium, siendo una alternativa sencilla de unificar las funcionalidades de Selenium en Scrapy, de esta forma, se lidia con la falta de integración de interacción con JavaScript en Scrapy.\newline
 \newline
-Tras realizar el mismo proceso que antes, la Spider llega a la función \textit{parse\_estacion()}, esta vez, en vez de obtener los datos de la estación, accedemos a los links que permiten mostrar los datos mediante SeleniumRequest y llama a la función \textit{parse\_data()}.\newline
+Tras realizar el mismo proceso que antes, \ref{Chap524}, la Spider llega a la función \textit{parse\_estacion()}, esta vez, en el código \ref{cod:40}, en vez de obtener los datos de la estación, accedemos a los links que permiten mostrar los datos mediante SeleniumRequest y llama a la función \textit{parse\_data()}.\newline
 \newline
-Como el link proporcionado dirige a una página que muestra los datos en forma de gráfica y, para acceder a los datos numéricos es necesario pulsar un botón, SeleniumRequest se configura de tal forma que, espera a que este esté correctamente cargado con el argumento wait\_until, indicando que elemento deseas esperar a ser cargado; en caso de que no se cargue, es recomendable usar el argumento wait\_time, que usado junto al anterior, establece el tiempo antes de dar la llamada por errónea; si el botón se carga correctamente, en el argumento script indicamos que se debe pulsar sobre este, llevándonos finalmente a los datos numéricos.\newline
-\newline
+Como el link proporcionado dirige a una página que muestra los datos en forma de gráfica y, para acceder a los datos numéricos es necesario pulsar un botón, \textit{SeleniumRequest} se configura de tal forma que, espera a que este esté correctamente cargado con el argumento \textit{wait\_until}, indicando que elemento deseas esperar a ser cargado; en caso de que no se cargue, es recomendable usar el argumento \textit{wait\_time}, que usado junto al anterior, establece el tiempo antes de dar la llamada por errónea; si el botón se carga correctamente, en el argumento \textit{script} indicamos que se debe pulsar sobre este, llevándonos finalmente a los datos numéricos.
 
 \begin{lstlisting}[language=Python, caption={Selector en \textit{parse\_data()} de Agua en Navarra Data Spider}]
 	tipo = response.css('span#lblSenal::text').get()
@@ -948,20 +940,20 @@ Cada proyecto individual dispone de dos Scripts encargados de formatear los dato
 \newline
 El código compartido entre los Script es el primero en ser explicado. Aunque en la explicación se ha usado código de formatear\_data\_JSONs.py, las diferencias respecto a formatear\_code\_JSONs.py se traducen a cambiar nombres de variables y los directorios, la única diferencia radica en la función principal donde se realiza el formateo.
 
-\begin{lstlisting}[language=Python, caption={Declaración variable del JSON que se desea usar}, label=cod:30]
+\begin{lstlisting}[language=Python, caption={Declaración variable del JSON que se desea usar}, label=cod:300]
 	DataJSON = "datos_pagina.json"
 \end{lstlisting}
 
-Una variable que indica el nombre o la ruta del fichero a leer. Código \ref{cod:30}.
+Una variable que indica el nombre o la ruta del fichero a leer. Código \ref{cod:300}.
 
-\begin{lstlisting}[language=Python, caption={Declaración función \textit{openFile()}}, label=cod:40]
+\begin{lstlisting}[language=Python, caption={Declaración función \textit{openFile()}}, label=cod:400]
 	def openFile(filename):
 		with open(f'JSONs/RawData/{filename}', "r", encoding="utf-8") as f:
 			file = json.loads(f.read())
 		return file
 \end{lstlisting}
 
-Una función para abrir los ficheros. Código \ref{cod:40}.
+Una función para abrir los ficheros. Código \ref{cod:400}.
 
 \begin{lstlisting}[language=Python, caption={Declaración función \textit{saveFile()}}, label=cod:50]
 	def saveFile(filename, data):

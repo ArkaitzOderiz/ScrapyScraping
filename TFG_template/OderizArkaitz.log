@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  29 AUG 2023 10:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  29 AUG 2023 12:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -871,7 +871,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--9
 
  []
 
-<fig/global-co2-fossil-plus-land-use.png, id=607, 3412.75pt x 2409.0pt>
+<fig/global-co2-fossil-plus-land-use.png, id=609, 3412.75pt x 2409.0pt>
 File: fig/global-co2-fossil-plus-land-use.png Graphic file (type png)
 <use fig/global-co2-fossil-plus-land-use.png>
 Package pdftex.def Info: fig/global-co2-fossil-plus-land-use.png  used on input
@@ -902,7 +902,7 @@ l.16 ...https://ourworldindata.org/co2-emissions}}
                                                    [1
 
 ]
-<fig/climate-change_greenhouse-effect_steps.png, id=615, 762.85pt x 371.3875pt>
+<fig/climate-change_greenhouse-effect_steps.png, id=617, 762.85pt x 371.3875pt>
 
 File: fig/climate-change_greenhouse-effect_steps.png Graphic file (type png)
 <use fig/climate-change_greenhouse-effect_steps.png>
@@ -923,7 +923,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--29
  []
 
 <fig/ClimateDashboard-global-surface-temperature-graph-20230118-1400px.png, id=
-621, 622.325pt x 532.99126pt>
+623, 622.325pt x 532.99126pt>
 File: fig/ClimateDashboard-global-surface-temperature-graph-20230118-1400px.png
  Graphic file (type png)
 <use fig/ClimateDashboard-global-surface-temperature-graph-20230118-1400px.png>
@@ -960,7 +960,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--47
 
 [3 <./fig/ClimateDashboard-global-surface-temperature-graph-20230118-1400px.png
 >]
-<fig/map-prcp-202201-202212.png, id=647, 993.7125pt x 767.86874pt>
+<fig/map-prcp-202201-202212.png, id=649, 993.7125pt x 767.86874pt>
 File: fig/map-prcp-202201-202212.png Graphic file (type png)
 <use fig/map-prcp-202201-202212.png>
 Package pdftex.def Info: fig/map-prcp-202201-202212.png  used on input line 52.
@@ -968,7 +968,7 @@ Package pdftex.def Info: fig/map-prcp-202201-202212.png  used on input line 52.
 (pdftex.def)             Requested size: 192.05478pt x 148.40395pt.
 LaTeX Font Info:    Font shape `T1/fve/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 53.
-<fig/map-prcp-percent-202201-202212.png, id=648, 993.7125pt x 767.86874pt>
+<fig/map-prcp-percent-202201-202212.png, id=650, 993.7125pt x 767.86874pt>
 File: fig/map-prcp-percent-202201-202212.png Graphic file (type png)
 <use fig/map-prcp-percent-202201-202212.png>
 Package pdftex.def Info: fig/map-prcp-percent-202201-202212.png  used on input 
@@ -1038,7 +1038,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 66--84
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
-<fig/estructura_general.png, id=672, 357.335pt x 349.305pt>
+<fig/estructura_general.png, id=674, 357.335pt x 349.305pt>
 File: fig/estructura_general.png Graphic file (type png)
 <use fig/estructura_general.png>
 Package pdftex.def Info: fig/estructura_general.png  used on input line 87.
@@ -1066,7 +1066,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--9
 
  []
 
-<fig/ConfederacionesHidrogrÃ¡ficas.jpg, id=678, 3854.4pt x 2168.1pt>
+<fig/ConfederacionesHidrogrÃ¡ficas.jpg, id=680, 3854.4pt x 2168.1pt>
 File: fig/ConfederacionesHidrogrÃ¡ficas.jpg Graphic file (type jpg)
 <use fig/ConfederacionesHidrogrÃ¡ficas.jpg>
 Package pdftex.def Info: fig/ConfederacionesHidrogrÃ¡ficas.jpg  used on input l
@@ -1080,7 +1080,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--20
 [7
 
  <./fig/ConfederacionesHidrogrÃ¡ficas.jpg>]
-<fig/CHCantabricoCode.png, id=684, 842.54774pt x 390.86024pt>
+<fig/CHCantabricoCode.png, id=686, 842.54774pt x 390.86024pt>
 File: fig/CHCantabricoCode.png Graphic file (type png)
 <use fig/CHCantabricoCode.png>
 Package pdftex.def Info: fig/CHCantabricoCode.png  used on input line 26.
@@ -1088,7 +1088,7 @@ Package pdftex.def Info: fig/CHCantabricoCode.png  used on input line 26.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 31.
  [8 <./fig/CHCantabricoCode.png>]
-<fig/AemetData.png, id=712, 590.95781pt x 316.93407pt>
+<fig/AemetData.png, id=714, 590.95781pt x 316.93407pt>
 File: fig/AemetData.png Graphic file (type png)
 <use fig/AemetData.png>
 Package pdftex.def Info: fig/AemetData.png  used on input line 61.
@@ -1109,7 +1109,7 @@ Overfull \hbox (12.15996pt too wide) in paragraph at lines 104--104
 []\T1/fve/b/n/14.4 Meteorología y cli-ma-tología de Navarra (Me-teoN-avarra) 
  []
 
-<fig/MeteoNavarraCode.png, id=738, 450.483pt x 432.4155pt>
+<fig/MeteoNavarraCode.png, id=740, 450.483pt x 432.4155pt>
 File: fig/MeteoNavarraCode.png Graphic file (type png)
 <use fig/MeteoNavarraCode.png>
 Package pdftex.def Info: fig/MeteoNavarraCode.png  used on input line 109.
@@ -1136,12 +1136,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 142--145
 
  []
 
-<fig/DatosMeteoNavarra.png, id=782, 583.42969pt x 603.0028pt>
+<fig/DatosMeteoNavarra.png, id=784, 583.42969pt x 603.0028pt>
 File: fig/DatosMeteoNavarra.png Graphic file (type png)
 <use fig/DatosMeteoNavarra.png>
 Package pdftex.def Info: fig/DatosMeteoNavarra.png  used on input line 148.
 (pdftex.def)             Requested size: 256.0774pt x 264.67798pt.
-<fig/MeteoNavarraData.png, id=784, 478.78876pt x 239.09325pt>
+<fig/MeteoNavarraData.png, id=786, 478.78876pt x 239.09325pt>
 File: fig/MeteoNavarraData.png Graphic file (type png)
 <use fig/MeteoNavarraData.png>
 Package pdftex.def Info: fig/MeteoNavarraData.png  used on input line 157.
@@ -1159,7 +1159,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 188--194
 
  []
 
-<fig/AguaEnNavarraCode.png, id=792, 584.1825pt x 556.32843pt>
+<fig/AguaEnNavarraCode.png, id=794, 584.1825pt x 556.32843pt>
 File: fig/AguaEnNavarraCode.png Graphic file (type png)
 <use fig/AguaEnNavarraCode.png>
 Package pdftex.def Info: fig/AguaEnNavarraCode.png  used on input line 197.
@@ -1176,7 +1176,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 214--217
 
  []
 
-<fig/AguaEnNavarraEstacion.png, id=821, 557.83406pt x 193.47281pt>
+<fig/AguaEnNavarraEstacion.png, id=823, 557.83406pt x 193.47281pt>
 File: fig/AguaEnNavarraEstacion.png Graphic file (type png)
 <use fig/AguaEnNavarraEstacion.png>
 Package pdftex.def Info: fig/AguaEnNavarraEstacion.png  used on input line 220.
@@ -1190,7 +1190,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 258--261
 
  []
 
-<fig/AguaEnNavarraGrafica.png, id=838, 473.97075pt x 184.2885pt>
+<fig/AguaEnNavarraGrafica.png, id=840, 473.97075pt x 184.2885pt>
 File: fig/AguaEnNavarraGrafica.png Graphic file (type png)
 <use fig/AguaEnNavarraGrafica.png>
 Package pdftex.def Info: fig/AguaEnNavarraGrafica.png  used on input line 264.
@@ -1199,12 +1199,12 @@ Package pdftex.def Info: fig/AguaEnNavarraGrafica.png  used on input line 264.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15 <./fig/AguaEnNavarraEstacion.png>]
-<fig/ErrorAguaEnNavarra.png, id=875, 587.19376pt x 182.93344pt>
+<fig/ErrorAguaEnNavarra.png, id=877, 587.19376pt x 182.93344pt>
 File: fig/ErrorAguaEnNavarra.png Graphic file (type png)
 <use fig/ErrorAguaEnNavarra.png>
 Package pdftex.def Info: fig/ErrorAguaEnNavarra.png  used on input line 271.
 (pdftex.def)             Requested size: 298.75262pt x 93.0715pt.
-<fig/AguaEnNavarraData.png, id=877, 575.90157pt x 159.59625pt>
+<fig/AguaEnNavarraData.png, id=879, 575.90157pt x 159.59625pt>
 File: fig/AguaEnNavarraData.png Graphic file (type png)
 <use fig/AguaEnNavarraData.png>
 Package pdftex.def Info: fig/AguaEnNavarraData.png  used on input line 280.
@@ -1306,7 +1306,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 64--68
 
  []
 
-<fig/DjangoMVT.png, id=941, 542.025pt x 239.89626pt>
+<fig/DjangoMVT.png, id=943, 542.025pt x 239.89626pt>
 File: fig/DjangoMVT.png Graphic file (type png)
 <use fig/DjangoMVT.png>
 Package pdftex.def Info: fig/DjangoMVT.png  used on input line 71.
@@ -1341,7 +1341,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 90--97
 
  []
 
-<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=956, 853.1875pt
+<fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png, id=958, 853.1875pt
  x 302.12875pt>
 File: fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png Graphic file (
 type png)
@@ -1416,7 +1416,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 138--147
  []
 
 [25]
-<fig/estructura_descartada.png, id=979, 298.11375pt x 299.1175pt>
+<fig/estructura_descartada.png, id=981, 298.11375pt x 299.1175pt>
 File: fig/estructura_descartada.png Graphic file (type png)
 <use fig/estructura_descartada.png>
 Package pdftex.def Info: fig/estructura_descartada.png  used on input line 153.
@@ -1444,7 +1444,7 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-<fig/estructura_usada.png, id=992, 472.76625pt x 369.38pt>
+<fig/estructura_usada.png, id=994, 472.76625pt x 369.38pt>
 File: fig/estructura_usada.png Graphic file (type png)
 <use fig/estructura_usada.png>
 Package pdftex.def Info: fig/estructura_usada.png  used on input line 8.
@@ -1482,7 +1482,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--54
  []
 
 [28]
-<fig/arquitectura.png, id=1016, 781.92125pt x 1075.01625pt>
+<fig/arquitectura.png, id=1018, 781.92125pt x 1075.01625pt>
 File: fig/arquitectura.png Graphic file (type png)
 <use fig/arquitectura.png>
 Package pdftex.def Info: fig/arquitectura.png  used on input line 83.
@@ -1500,7 +1500,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 94--97
 
  []
 
-<fig/estructura_basica_spider.png, id=1044, 169.38281pt x 196.48407pt>
+<fig/estructura_basica_spider.png, id=1046, 169.38281pt x 196.48407pt>
 File: fig/estructura_basica_spider.png Graphic file (type png)
 <use fig/estructura_basica_spider.png>
 Package pdftex.def Info: fig/estructura_basica_spider.png  used on input line 1
@@ -1563,7 +1563,7 @@ Overfull \hbox (2.69533pt too wide) in paragraph at lines 173--174
 anto recibir los datos obtenidos
  []
 
-<fig/TablasBBDD.png, id=1063, 251.7405pt x 145.7445pt>
+<fig/TablasBBDD.png, id=1065, 251.7405pt x 145.7445pt>
 File: fig/TablasBBDD.png Graphic file (type png)
 <use fig/TablasBBDD.png>
 Package pdftex.def Info: fig/TablasBBDD.png  used on input line 180.
@@ -1612,7 +1612,7 @@ Package textcomp Info: Symbol \textminus not provided by
 (C:\Users\Oderiz\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) [38]
-<fig/comprobacionTablasBBDD.png, id=1230, 496.85625pt x 100.12407pt>
+<fig/comprobacionTablasBBDD.png, id=1232, 496.85625pt x 100.12407pt>
 File: fig/comprobacionTablasBBDD.png Graphic file (type png)
 <use fig/comprobacionTablasBBDD.png>
 Package pdftex.def Info: fig/comprobacionTablasBBDD.png  used on input line 408
@@ -1644,14 +1644,14 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
 [][][][][][][][][]  
  []
 
-<fig/estructura_proyecto_scrapy.png, id=1338, 134.00063pt x 152.06813pt>
+<fig/estructura_proyecto_scrapy.png, id=1340, 134.00063pt x 152.06813pt>
 File: fig/estructura_proyecto_scrapy.png Graphic file (type png)
 <use fig/estructura_proyecto_scrapy.png>
 Package pdftex.def Info: fig/estructura_proyecto_scrapy.png  used on input line
  15.
 (pdftex.def)             Requested size: 128.0387pt x 145.30154pt.
 [43 <./fig/estructura_proyecto_scrapy.png>]
-<fig/primera_spider.png, id=1349, 98.61844pt x 48.18pt>
+<fig/primera_spider.png, id=1351, 98.61844pt x 48.18pt>
 File: fig/primera_spider.png Graphic file (type png)
 <use fig/primera_spider.png>
 Package pdftex.def Info: fig/primera_spider.png  used on input line 31.
@@ -1666,7 +1666,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--55
 
  []
 
-<fig/AemetCode.png, id=1353, 593.21625pt x 310.91156pt>
+<fig/AemetCode.png, id=1355, 593.21625pt x 310.91156pt>
 File: fig/AemetCode.png Graphic file (type png)
 <use fig/AemetCode.png>
 Package pdftex.def Info: fig/AemetCode.png  used on input line 61.
@@ -1882,318 +1882,278 @@ Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
 (textcomp)             Default family used instead on input line 519.
 
-Underfull \hbox (badness 10000) in paragraph at lines 523--527
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 523--527
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 523--527
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 546--549
+Underfull \hbox (badness 10000) in paragraph at lines 543--546
 
  []
 
 [59]
-Underfull \hbox (badness 10000) in paragraph at lines 551--554
+Underfull \hbox (badness 10000) in paragraph at lines 548--551
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 572--578
+Underfull \hbox (badness 10000) in paragraph at lines 569--575
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 572--578
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 572--578
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 572--578
+Underfull \hbox (badness 10000) in paragraph at lines 569--575
 
  []
 
 [60]
-Underfull \hbox (badness 10000) in paragraph at lines 586--589
+Underfull \hbox (badness 10000) in paragraph at lines 583--586
 
- []
-
-
-Overfull \hbox (6.29306pt too wide) in paragraph at lines 592--592
-[]\T1/fvm/m/n/10.95 yield Request(url=response.urljoin(link.get()), callback=se
-lf.parse_area)[] 
  []
 
 [61]
-Underfull \hbox (badness 10000) in paragraph at lines 617--622
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 617--622
-
- []
-
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 629.
-[62]
-Underfull \hbox (badness 10000) in paragraph at lines 654--660
+(textcomp)             Default family used instead on input line 622.
+ [62]
+Underfull \hbox (badness 10000) in paragraph at lines 647--652
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 654--660
-
+Overfull \hbox (29.42569pt too wide) in paragraph at lines 647--652
+\T1/fve/m/n/10.95 Tras re-alizar el mismo pro-ceso que antes, [][]5.2.4[][], la
+ Spi-der llega a la fun-ción \T1/fve/m/sl/10.95 parse_estacion()\T1/fve/m/n/10.
+95 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 654--660
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 654--660
+Underfull \hbox (badness 10000) in paragraph at lines 647--652
 
  []
 
 [63]
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 688.
+(textcomp)             Default family used instead on input line 680.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 703.
+(textcomp)             Default family used instead on input line 695.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 703.
+(textcomp)             Default family used instead on input line 695.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 704.
+(textcomp)             Default family used instead on input line 696.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 704.
+(textcomp)             Default family used instead on input line 696.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 704.
+(textcomp)             Default family used instead on input line 696.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 705.
+(textcomp)             Default family used instead on input line 697.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 705.
+(textcomp)             Default family used instead on input line 697.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 705.
+(textcomp)             Default family used instead on input line 697.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 705.
+(textcomp)             Default family used instead on input line 697.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 705.
+(textcomp)             Default family used instead on input line 697.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 705.
+(textcomp)             Default family used instead on input line 697.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 706.
+(textcomp)             Default family used instead on input line 698.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 706.
+(textcomp)             Default family used instead on input line 698.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 706.
+(textcomp)             Default family used instead on input line 698.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 707.
+(textcomp)             Default family used instead on input line 699.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 707.
+(textcomp)             Default family used instead on input line 699.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 707.
+(textcomp)             Default family used instead on input line 699.
 
-Underfull \hbox (badness 10000) in paragraph at lines 715--722
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 715--722
+Underfull \hbox (badness 10000) in paragraph at lines 707--714
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 715--722
+Underfull \hbox (badness 10000) in paragraph at lines 707--714
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--714
 
  []
 
 [64]
-<fig/chromedriver.png, id=1799, 166.37157pt x 183.68625pt>
+<fig/chromedriver.png, id=1821, 166.37157pt x 183.68625pt>
 File: fig/chromedriver.png Graphic file (type png)
 <use fig/chromedriver.png>
-Package pdftex.def Info: fig/chromedriver.png  used on input line 725.
+Package pdftex.def Info: fig/chromedriver.png  used on input line 717.
 (pdftex.def)             Requested size: 170.71393pt x 188.49261pt.
+Package textcomp Info: Symbol \textminus not provided by
+(textcomp)             font family fve in TS1 encoding.
+(textcomp)             Default family used instead on input line 732.
  [65 <./fig/chromedriver.png>]
+Package textcomp Info: Symbol \textminus not provided by
+(textcomp)             font family fve in TS1 encoding.
+(textcomp)             Default family used instead on input line 735.
+Package textcomp Info: Symbol \textminus not provided by
+(textcomp)             font family fve in TS1 encoding.
+(textcomp)             Default family used instead on input line 735.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
 (textcomp)             Default family used instead on input line 740.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 743.
-Package textcomp Info: Symbol \textminus not provided by
-(textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 743.
-Package textcomp Info: Symbol \textminus not provided by
-(textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 748.
-Package textcomp Info: Symbol \textminus not provided by
-(textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 748.
+(textcomp)             Default family used instead on input line 740.
 
-Underfull \hbox (badness 10000) in paragraph at lines 754--766
+Underfull \hbox (badness 10000) in paragraph at lines 746--758
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 754--766
+Underfull \hbox (badness 10000) in paragraph at lines 746--758
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 754--766
+Underfull \hbox (badness 10000) in paragraph at lines 746--758
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 754--766
+Underfull \hbox (badness 10000) in paragraph at lines 746--758
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 754--766
+Underfull \hbox (badness 10000) in paragraph at lines 746--758
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 754--766
+Underfull \hbox (badness 10000) in paragraph at lines 746--758
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 754--766
+Underfull \hbox (badness 10000) in paragraph at lines 746--758
 
  []
 
 [66]
-Underfull \hbox (badness 10000) in paragraph at lines 767--770
+Underfull \hbox (badness 10000) in paragraph at lines 759--762
 
  []
 
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 772.
+(textcomp)             Default family used instead on input line 764.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 773.
+(textcomp)             Default family used instead on input line 765.
 [67]
-Underfull \hbox (badness 10000) in paragraph at lines 823--826
+Underfull \hbox (badness 10000) in paragraph at lines 815--818
 
  []
 
 [68]
-Overfull \hbox (2.75653pt too wide) in paragraph at lines 855--856
+Overfull \hbox (2.75653pt too wide) in paragraph at lines 847--848
 []\T1/fve/m/n/10.95 Ejecuta Chcantabri-coPlu-vioSpi-der, Chcantabri-coNivel-Spi
 -der y Chcantabric-o-Co-ord-Spi-
  []
 
 [69]
-Underfull \hbox (badness 10000) in paragraph at lines 913--916
+Underfull \hbox (badness 10000) in paragraph at lines 905--908
 
  []
 
 [70]
-Underfull \hbox (badness 10000) in paragraph at lines 947--950
+Underfull \hbox (badness 10000) in paragraph at lines 939--942
 
  []
 
 [71]
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 959.
+(textcomp)             Default family used instead on input line 951.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 969.
+(textcomp)             Default family used instead on input line 961.
 
-Underfull \hbox (badness 10000) in paragraph at lines 981--984
+Underfull \hbox (badness 10000) in paragraph at lines 973--976
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 992--995
+Underfull \hbox (badness 10000) in paragraph at lines 984--987
 
  []
 
 [72]
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1003.
+(textcomp)             Default family used instead on input line 995.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1003.
+(textcomp)             Default family used instead on input line 995.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1020--1023
+Underfull \hbox (badness 10000) in paragraph at lines 1012--1015
 
  []
 
 [73]
-Underfull \hbox (badness 10000) in paragraph at lines 1050--1053
+Underfull \hbox (badness 10000) in paragraph at lines 1042--1045
 
  []
 
 
-Overfull \hbox (10.45775pt too wide) in paragraph at lines 1050--1053
+Overfull \hbox (10.45775pt too wide) in paragraph at lines 1042--1045
 \T1/fve/m/n/10.95 CHCantábrico y Agua en Navarra com-parten la misma es-truc-tu
 ración de Script. CHCan-
  []
 
-[74]
-Underfull \hbox (badness 10000) in paragraph at lines 1075--1078
+
+Underfull \vbox (badness 1097) has occurred while \output is active []
+
+ [74]
+Underfull \hbox (badness 10000) in paragraph at lines 1067--1070
 
  []
 
 
-Overfull \hbox (0.66386pt too wide) in paragraph at lines 1096--1097
-[]\T1/fve/m/n/10.95 Código [][]5.70[][]. Den-tro del bu-cle prin-ci-pal, se lla
+Overfull \hbox (0.66386pt too wide) in paragraph at lines 1088--1089
+[]\T1/fve/m/n/10.95 Código [][]5.71[][]. Den-tro del bu-cle prin-ci-pal, se lla
 ma a \T1/fve/m/sl/10.95 search-Esta-cionData() \T1/fve/m/n/10.95 para obtener
  []
 
 [75]
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1116.
+(textcomp)             Default family used instead on input line 1108.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1116.
+(textcomp)             Default family used instead on input line 1108.
  [76]
-Underfull \hbox (badness 10000) in paragraph at lines 1145--1148
+Underfull \hbox (badness 10000) in paragraph at lines 1137--1140
 
  []
 
 
-Overfull \hbox (13.01456pt too wide) in paragraph at lines 1167--1168
+Overfull \hbox (13.01456pt too wide) in paragraph at lines 1159--1160
 \T1/fve/m/n/10.95 El sigu-iente paso a re-alizar, es el fil-trado de los JSON p
 or el script fil-tras_datos_JSONs.py.
  []
@@ -2201,25 +2161,25 @@ or el script fil-tras_datos_JSONs.py.
 [77]
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1181.
+(textcomp)             Default family used instead on input line 1173.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1193.
+(textcomp)             Default family used instead on input line 1185.
  [78]
-Underfull \hbox (badness 10000) in paragraph at lines 1230--1233
+Underfull \hbox (badness 10000) in paragraph at lines 1222--1225
 
  []
 
 [79]
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1254.
+(textcomp)             Default family used instead on input line 1246.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1261.
+(textcomp)             Default family used instead on input line 1253.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1268.
+(textcomp)             Default family used instead on input line 1260.
 ) (chapter6/Chapter6.tex [80]
 Chapter 6.
 
@@ -2313,10 +2273,10 @@ Package rerunfilecheck Info: File `OderizArkaitz.out' has not changed.
 (rerunfilecheck)             Checksum: 8C4F60E7923F2E8B2A565CFA2037C440;8918.
  ) 
 Here is how much of TeX's memory you used:
- 18460 strings out of 475385
- 305745 string characters out of 2776436
- 931421 words of memory out of 3000000
- 38039 multiletter control sequences out of 15000+600000
+ 18478 strings out of 475385
+ 305907 string characters out of 2776436
+ 932793 words of memory out of 3000000
+ 38055 multiletter control sequences out of 15000+600000
  531685 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,13n,77p,912b,2166s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -2333,9 +2293,9 @@ ra/fver8a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/f
 vmr8a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvsb8
 a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfchan/u
 zcmi8a.pfb>
-Output written on OderizArkaitz.pdf (97 pages, 5660121 bytes).
+Output written on OderizArkaitz.pdf (97 pages, 5665364 bytes).
 PDF statistics:
- 2560 PDF objects out of 2984 (max. 8388607)
- 1340 named destinations out of 1440 (max. 500000)
+ 2582 PDF objects out of 2984 (max. 8388607)
+ 1342 named destinations out of 1440 (max. 500000)
  623 words of extra memory for PDF output out of 10000 (max. 10000000)
 
