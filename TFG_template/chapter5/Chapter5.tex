@@ -1,6 +1,320 @@
 \chapter[Implementación]{Implementación}
 \label{Chap5}
 
+\section{Entorno de ejecución}
+El proyecto se dividirá en dos ordenadores (maquinas virtuales). Uno de ellos será el responsable de la base de datos en PostGreSQL, mientras que, el otro, se encargara de la ejecución del código de obtención de datos, tratarlos y enviarlos a la base de datos.
+
+\subsection{Preparación de entorno virtual}
+Primero instalaremos las dependencias para crear y activar un entorno virtual sobre el que trabajar, para ello ejecutaremos los siguientes comandos:
+
+\begin{lstlisting}
+	#Instalamos las dependencias
+	user@host:~$ sudo apt install python3-venv python3-dev
+	
+	#Creamos un nuevo directorio sobre el que trabajar
+	user@host:~$ mkdir ~/dirdemiproyecto
+	user@host:~$ cd ~/dirdemiproyecto
+	
+	#Creamos el entorno virtual
+	user@host:~/dirdemiproyecto$ python3 -m venv envdemiproyecto
+	
+	#Activamos el entorno virtual
+	user@host:~/dirdemiproyecto$ source envdemiproyecto/bin/activate
+	
+	#Una vez seguidos los pasos nuestra terminal debe mostrarse asi
+	(envdemiproyecto) user@host:~/dirdemiproyecto$
+\end{lstlisting}
+
+Cada Spider dispondrá de su propio entorno virtual, nombrado tras la pagina web a la que representa, de esta forma, por ejemplo, el entorno virtual para la web de CHcantábrico se llamará chcantabrico. Otro entorno virtual es usado para el servidor Django y los scripts encargados del envío de datos.
+
+\subsection{Instalación y configuración de PostGreSQL}
+Los comandos necesarios para la instalación inicial de PostGreSQL, la creación de un usuario y una base de datos son.
+
+\begin{lstlisting}
+	#Instalamos PostGreSQL y las dependencias
+	user@host:~$ sudo apt install libpq-dev postgresql postgresql-contrib
+	
+	#Iniciamos sesion usando el role postgres y accedemos a PostGreSQL
+	user@host:~$ sudo -u postgres psql
+	
+	#Si todo esta bien la terminal deberia mostrarse asi
+	postgres=# 
+	
+	#Creamos un nuevo usuario
+	postgres=# CREATE USER miusuario WITH PASSWORD 'micontrasena';
+	
+	#Configuramos varios parametros del usuario para una mejor integracion con Django
+	postgres=# ALTER ROLE miusuario SET client_encoding TO 'utf8';
+	postgres=# ALTER ROLE miusuario SET default_transaction_isolation TO 'read committed';
+	postgres=# ALTER ROLE miusuario SET timezone TO 'Europe/Madrid';
+	
+	#Creamos la Base de Datos
+	postgres=# CREATE DATABASE bbddmiproyecto;
+	
+	#Otorgamos permisos de administrador a nuestro usuario en la base de datos
+	postgres=# GRANT ALL PRIVILEGES ON DATABASE bbddmiproyecto TO miusuario;
+	
+	#Una vez finalizado
+	postqres=# \q
+\end{lstlisting}
+
+En este punto ya se dispondría de una base de datos (aun sin tablas en ella) y de un usuario con el que conectarse a esta desde Django.\newline
+\newline
+Ahora quedaría configurar el permiso de comunicación entre dispositivos, más concretamente la conexión remota de Django con PostGreSQL.
+
+\begin{lstlisting}
+	#Abrimos el archivo postgresql.conf con un editor
+	user@host:~$ sudo nano /etc/postgresql/11/main/postgresql.conf
+	
+	#Buscamos la linea "#listen_addresses = 'localhost'", borramos la almohadilla y
+	sustituimos localhost por *, permitiendo la escucha de cualquier direccion IP
+	listen_addresses = '*'
+	
+	#Guardamos y cerramos el fichero
+	
+	#Abrimos el archivo pg_hba.conf con un editor
+	user@host:~$ sudo nano /etc/postgresql/11/main/pg_hba.conf
+	
+	#Por defecto solo permite conexiones desde localhost
+	# IPv4 local connections: 
+	host    all             all             127.0.0.1/32            md5 
+	
+	#Configuararemos el permiso de conexion remota desde cualquier IP anyadiendo
+	la siguiente linea debajo de la anterior
+	host    all             all             0.0.0.0/0            md5 
+	
+	#O podemos configurar el permiso unicamente para la IP de la otra maquina virtual
+	host    all             all             127.18.83.198/19            md5 
+	
+	#Guardamos y cerramos el fichero
+	
+	#Finalmete permitimos el trafico mediante el puerto 5432 (puesto por defecto)
+	user@host:~$ sudo ufw allow 5432/tcp
+\end{lstlisting}
+
+Una vez realizados los siguientes pasos ya está la instancia de PostGreSQL configurada.
+
+\subsection{Instalación y configuración de Django}
+Antes de instalar Django, es necesario generar un entorno virtual sobre el que trabajar.
+
+\begin{lstlisting}
+	#Instalamos Django y las dependencias
+	(envdemiproyecto) user@host:~/dirdemiproyecto$ pip install django psycopg2
+	
+	#Creamos un nuevo proyecto de Django
+	(envdemiproyecto) user@host:~/dirdemiproyecto$ django-admin startproject djangoAPI
+	(envdemiproyecto) user@host:~/dirdemiproyecto$ cd djangoAPI
+	
+	#Creamos una nueva app Django
+	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ python manage.py startapp appAPI
+\end{lstlisting}
+
+Una vez realizado lo siguiente, quedaría configurar la API.
+
+\begin{lstlisting}
+	#Abrimos el archivo settings.py con un editor
+	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano djangoAPI/settings.py
+	
+	#Anyadimos nuestra app en la lista de INSTALLED_APPS
+	INSTALLED_APPS = [
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
+	'appAPI.apps.AppapiConfig',
+	]
+	
+	#Configuramos la base de datos sutituyendo
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.sqlite3',
+			'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+		}
+	}
+	
+	por
+	
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.postgresql_psycopg2',
+			'NAME': 'bbddmiproyecto',
+			'USER': 'miusuario',
+			'PASSWORD': 'micontrasena',
+			'HOST': '172.18.83.197',
+			'PORT': '5432',
+		}
+	}
+	
+	#Configuramos las IP admitidas
+	ALLOWED_HOSTS = ['172.18.83.197', 'localhost']
+	
+	#Configuramos la zona horaria
+	TIME_ZONE = 'Europe/Madrid'
+	
+	#Configuramos el tamanyo maximo de datos a None, con el fin de poder
+	enviar cualquier cantidad de datos
+	DATA_UPLOAD_MAX_MEMORY_SIZE = None
+	
+	#Guardamos y cerramos el fichero
+	
+	#Finalmete permitimos el trafico mediante el puerto 8000 (puesto por defecto)
+	user@host:~$ sudo ufw allow 8000
+\end{lstlisting}
+
+Tras configurar la API, toca crear los modelos de la base de datos.
+
+\begin{lstlisting}
+	#Abrimos el archivo models.py dentro de la carpeta appAPI con un editor
+	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano appAPI/models.py
+\end{lstlisting}
+
+Dentro definimos los modelos Data y Code.
+
+\begin{lstlisting}[language=Python, caption={Modelos API Django}]
+	from django.db import models
+	
+	class Data(models.Model):
+	temperatura = models.FloatField(null=True)
+	humedad = models.FloatField(null=True)
+	precipitacion = models.FloatField(null=True)
+	nivel = models.FloatField(null=True)
+	caudal = models.FloatField(null=True)
+	radiacion = models.FloatField(null=True)
+	fecha = models.DateTimeField()
+	estacion = models.ForeignKey("Code", on_delete=models.CASCADE)
+	
+	class Code(models.Model):
+	estacion = models.CharField(max_length=50)
+	codigo = models.CharField(max_length=20, primary_key=True)
+	coodenadas = models.CharField(max_length=50)
+	seguimiento = models.FloatField(null=True)
+	prealerta = models.FloatField(null=True)
+	alerta = models.FloatField(null=True)
+\end{lstlisting}
+
+Para importar los modelos a la base de datos, con el fin de crear las respectivas tablas.
+
+\begin{lstlisting}
+	#Actualizamos los datos realizados en models.py
+	(envdemiproyecto) user@host:~/dirdemiproyecto$ python3 manage.py makemigrations
+	
+	#Migramos los datos
+	envdemiproyecto) user@host:~/dirdemiproyecto$ python3 manage.py migrate
+\end{lstlisting}
+
+Si se quiere confirmar la correcta creación de las tablas, desde la terminal de PostGre.
+
+\begin{lstlisting}
+	#Nos conectamos a la base de datos
+	postgres=# \c bbddmiproyecto
+	
+	#Mostramos las tablas
+	postgres=# \d
+\end{lstlisting}
+
+Si todo a ido bien, se deberían mostrar como en la figura \ref{fig:ej34}.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{fig/comprobacionTablasBBDD.png}
+	\caption[Lista de tablas en PostGreSQL]{Lista de tablas en PostGreSQL}
+	\label{fig:ej34}
+\end{figure}
+
+Tras configurar la API y crear las tablas de la base de datos, se creará la API como tal.
+
+\begin{lstlisting}
+	#Creamos el archivo urls.py con un editor dentro de la carpeta appAPI
+	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano appAPI/urls.py
+\end{lstlisting}
+
+Dentro se incluye el siguiente código.
+
+\begin{lstlisting}[language=Python, caption={Definición URLs API}]
+	from django.urls import path
+	from django.views.decorators.csrf import csrf_exempt
+	
+	from . import views
+	
+	urlpatterns = [
+	path("storeData", csrf_exempt(views.storeData), name="storeData"),
+	path("storeCode", csrf_exempt(views.storeCode), name="storeCode"),
+	]
+\end{lstlisting}
+
+Aquí se definen las rutas para realizar una llamada a la API, en este caso storeData y storeCode.\newline
+\newline
+Si se quiere que el proyecto tenga constancia de ellas.
+
+\begin{lstlisting}
+	#Abrimos el archivo urls.py dentro de la carpeta djangoAPI con un editor
+	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano djangoAPI/urls.py
+\end{lstlisting}
+
+Dentro se incluye el siguiente código.
+
+\begin{lstlisting}[language=Python, caption={Configuración URLs API}]
+	from django.contrib import admin
+	from django.urls import path, include
+	
+	urlpatterns = [
+	path('admin/', admin.site.urls),
+	path('appapi/', include('appapi.urls'))
+	]
+\end{lstlisting}
+
+Para finalizar, se crean las vistas a las que dirigen las rutas.
+
+\begin{lstlisting}
+	#Abrimos el archivo views.py dentro de la carpeta appAPI con un editor
+	(envdemiproyecto) user@host:~/dirdemiproyecto/djangoAPI$ nano appAPI/views.py
+\end{lstlisting}
+
+Dentro se incluye el siguiente código.
+
+\begin{lstlisting}[language=Python, caption={Definición funciones de recepción y almacenamiento de datos API}]
+	import json
+	
+	from django.http import JsonResponse
+	from .models import Data, Code
+	
+	# Create your views here.
+	def storeData(request):
+	data = json.loads(request.body.decode("utf-8"))
+	for estacion in data:
+	for datos in estacion['datos']:
+	dato = Data(
+	temperatura=datos['temperatura (C)'],
+	humedad=datos['humedad (%)'],
+	precipitacion=datos['precipitacion (mm)'],
+	nivel=datos['nivel (m)'],
+	caudal=datos['caudal (m^3/s)'],
+	radiacion=datos['radiacion (W/m^2)'],
+	fecha=datos['fecha y hora'],
+	estacion=estacion['estacion']
+	)
+	dato.save()
+	return JsonResponse(data, safe=False)
+	
+	def storeCode(request):
+	data = json.loads(request.body.decode("utf-8"))
+	for estacion in data:
+	dato = Code(
+	estacion=estacion['estacion'],
+	codigo=estacion['codigo'],
+	coodenadas=estacion['coodenadas'],
+	seguimiento=estacion['seguimiento'],
+	prealerta=estacion['prealerta'],
+	alerta=estacion['alerta'],
+	)
+	dato.save()
+	return JsonResponse(data, safe=False)
+\end{lstlisting}
+
+Estas funciones se encargan de recibir los datos enviados, iterar por ellos y subirlos a la base de datos con el método \textit{save()}. Concluyendo la creación y configuración de la API.
+
 \section{Creación de Spiders}
 Una vez instalado Scrapy, en el directorio escogido, se usa el comando \ref{cod:1} para generar un nuevo proyecto de Scrapy.
 
@@ -24,7 +338,7 @@ En el directorio recientemente creado, se ejecuta el comando \ref{cod:2} encarga
 	scrapy genspider mispider webausar.com
 \end{lstlisting}
 
-En caso de no especificar el protocolo usado por la web, Scrapy asumirá que usa HTTPS. Tras ejecutar el comando la Spider habrá sido generada dentro de la carpeta spiders. Figura \ref{fig:ej12}.
+En caso de no especificar el protocolo usado por la web, Scrapy asumirá que usa HTTPS. Tras ejecutar el comando la Spider habrá sido generada dentro de la carpeta spiders. Visto en la figura \ref{fig:ej12}.
 
 \begin{figure} [h!]
 	\centering
@@ -51,10 +365,10 @@ Scrapy usa una programación orientada a objetos, siendo cada Spider una clase r
 \newline
 Analizando las variables definidas en el código \ref{cod:3} vemos las siguientes, \textit{name}, nombre por el que referenciar la Spider a la hora de ejecutarla; \textit{allowed\_domains}, indica que dominios están permitidos, es importante no especificar protocolo, de esta manera funcionara para cualquier web ya sea HTTP como HTTPS que pertenezca a ese dominio, de lo contrario se limitara al protocolo indicado; \textit{start\_urls}, URL inicial sobre la que se hará la request de petición de datos.\newline
 \newline
-El método \textit{parse()} es aquel al que se envía la respuesta obtenida de la web, para realizar el filtrado de la información deseada. Este método es invocado automáticamente por la Spider, sin necesidad real de hacerlo manualmente. Puede ser un método recursivo en caso de así quererlo o incluso se pueden definir nuevas funciones \textit{parse()} (usando un nombre distinto) en caso de necesitarlas.
+El método \textit{parse()} es aquel al que se envía la respuesta obtenida de la web, para realizar el filtrado de la información deseada. Este método es invocado automáticamente por la Spider, sin necesidad real de hacerlo manualmente. Puede ser un método recursivo en caso de así quererlo o incluso se pueden definir nuevas funciones \textit{parse()} en caso de necesitarlas.
 
 \subsection{Proceso de obtención de datos}
-La extracción de los datos, requiere ir a la web deseada e inspeccionar su estructuración HTML. Para ello, como ejemplo, se va a usar la web de Aemet. Figura \ref{fig:ej13}.
+La extracción de los datos, requiere ir a la web deseada e inspeccionar su estructuración HTML. Para ello, como ejemplo, se va a usar la web de Aemet. Como muestra la figura \ref{fig:ej13}.
 
 \begin{figure} [H]
 	\centering
@@ -63,7 +377,7 @@ La extracción de los datos, requiere ir a la web deseada e inspeccionar su estr
 	\label{fig:ej13}
 \end{figure}
 
-Accedes a la información en formato texto sin renderizar, se busca el elemento representativo de los datos deseados. En este caso, el nombre y código de la estación. Ambos se encuentran en el mismo elemento que forma la primera columna de la tabla. Código \ref{cod:4}
+Accedes a la información en formato texto sin renderizar, se busca el elemento representativo de los datos deseados. En este caso, el nombre y código de la estación. Ambos se encuentran en el mismo elemento que forma la primera columna de la tabla. Como se ve en el código \ref{cod:4}
 
 \begin{lstlisting}[caption={Estructura HTML de los datos deseados Aemet. Los puntos suspensivos de las líneas 10 y 12 representan código omitido.}, label=cod:4]
 	<table id="table">
@@ -84,7 +398,7 @@ Accedes a la información en formato texto sin renderizar, se busca el elemento 
 
 En este caso es posible filtrar fácilmente los datos, obteniendo todos directamente, aunque lo más común sería obtener las filas primero para luego iterar por cada una de ellas. Para obtenerlos se puede hacer mediante el selector de XPath como con el de CSS.\newline
 \newline
-Ambos se pueden obtener fácilmente en la herramienta de inspección, una vez seleccionado el elemento deseado, click derecho sobre el y, en el apartado copiar se mostrará la posibilidad de copiar ambos selectores. Es probable que el selector proporcionado no sea del todo lo que se busque o se pueda simplificar, por lo que es recomendable comprobarlo manualmente. Código \ref{cod:5}.
+Ambos se pueden obtener fácilmente en la herramienta de inspección, una vez seleccionado el elemento deseado, click derecho sobre el y, en el apartado copiar se mostrará la posibilidad de copiar ambos selectores. Es probable que el selector proporcionado no sea del todo lo que se busque o se pueda simplificar, por lo que es recomendable comprobarlo manualmente. Visto en el código \ref{cod:5}.
 
 \begin{lstlisting}[language=Python, caption={Selectores posibles para la obtención de los datos de código y nombre de estación en Aemet}, label=cod:5]
 	rows = response.xpath('//div[@id="contenedor_tabla"]/table/tbody/tr/td/a')
@@ -92,7 +406,7 @@ Ambos se pueden obtener fácilmente en la herramienta de inspección, una vez se
 	rows = response.css("div#contenedor_tabla tbody tr a")
 \end{lstlisting}
 
-Esto devuelve una lista de objetos tipo Selector, cosa que permite conforme se itera por cada elemento, volver a usar un selector para filtrar unicamente los datos deseados. En este caso, código \ref{cod:6}
+Esto devuelve una lista de objetos tipo Selector, cosa que permite conforme se itera por cada elemento, volver a usar un selector para filtrar unicamente los datos deseados. En este caso, código \ref{cod:6} muestra esto.
 
 \begin{lstlisting}[language=Python, caption={Selectores posibles para el filtrado de los datos de código y nombre de estación en Aemet}, label=cod:6]
 	path = rows[i].xpath("@href").get()
@@ -108,14 +422,14 @@ Finalmente, como de la URL obtenida,
 \begin{verbatim}
 	('/es/eltiempo/observacion/ultimosdatos?k=nav&l=9263X&w=0&datos=det&f=precipitacion')
 \end{verbatim}
-solo es de interés el código de la estación (parámetro l de la query empezando por 0), se filtra mediante \textit{split()}. Código \ref{cod:7}
+solo es de interés el código de la estación (parámetro l de la query empezando por 0), se filtra mediante \textit{split()}. Como se ve en el código \ref{cod:7}
 
 \begin{lstlisting}[language=Python, caption={Filtrado del código de estación de la URL en Aemet}, label=cod:7]
 	code = path.split('&')[1].split('=')[1]
 \end{lstlisting}
 
 \subsection{Guardado de datos}
-Scrapy almacena los datos en forma de múltiples diccionarios, tantos como webs usadas. Para acceder a esta información Scrapy proporciona dos alternativas, el uso de \textit{Items} junto a \textit{ItemLoaders}, siendo clases especificas de Scrapy o, mediante la palabra reservada \textit{yield} de Python, que tiene una funcionalidad parecida a \textit{return}, siendo esta la opción elegida debido a su fácil implementación. Código \ref{cod:8}.
+Scrapy almacena los datos en forma de múltiples diccionarios, tantos como webs usadas. Para acceder a esta información Scrapy proporciona dos alternativas, el uso de \textit{Items} junto a \textit{ItemLoaders}, siendo clases especificas de Scrapy o, mediante la palabra reservada \textit{yield} de Python, que tiene una funcionalidad parecida a \textit{return}, siendo esta la opción elegida debido a su fácil implementación. Esto se muestra en el código \ref{cod:8}.
 
 \begin{lstlisting}[language=Python, caption={Guardar datos mediante el uso de \textit{yield}}, label=cod:8]
 	yield {
@@ -126,7 +440,7 @@ Scrapy almacena los datos en forma de múltiples diccionarios, tantos como webs 
 
 Actualmente, si se ejecuta la Spider imprimirá los datos obtenidos por pantalla, aunque pueden ser almacenados en un fichero tanto CSV como JSON, a la hora de ejecutar la Spider añadiendo en el comando \textit{-o nombre.csv} ó \textit{-o nombre.json}.\newline
 \newline
-Para un uso ligero de forma manual, esa alternativa es más que suficiente, pero en este proyecto, como se quieren ejecutar de forma automática mediante el uso de Runners, se debe se implementar una variable llamada \textit{custom\_settings} para cada una de las Spider. Esta permite, sin la necesidad de modificar el archivo settings.py, añadir configuraciones o dependencias independientes en las Spiders. Código \ref{cod:9}.
+Para un uso ligero de forma manual, esa alternativa es más que suficiente, pero en este proyecto, como se quieren ejecutar de forma automática mediante el uso de Runners, se debe se implementar una variable llamada \textit{custom\_settings} para cada una de las Spider. Esta permite, sin la necesidad de modificar el archivo settings.py, añadir configuraciones o dependencias independientes en las Spiders. Se puede ver en el Código \ref{cod:9}.
 
 \begin{lstlisting}[language=Python, caption={Confugurar guardado en JSON mediante \textit{custom\_settings}}, label=cod:9]
 	custom_settings = {
@@ -182,7 +496,7 @@ Tras realizar los pasos, esta es la Spider básica terminada.
 \label{Chap514}
 El método \textit{start\_requests()} es llamado de forma automática al iniciar la Spider, siendo el encargado de hacer la llamada a la web indicada en \textit{start\_urls} y, una vez obtenidos los datos llamar a la función \textit{parse()}. Todo mediante un objeto Request de Scrapy, el cual devolverá un objeto tipo \textit{HTMLResponse}. En caso de querer alterar el funcionamiento de la Spider este es el método a sobre-escribir.\newline
 \newline
-Como se quiere obtener los datos de todas las estaciones dentro de un mismo dominio, se sobre-escribe la función para recorrer el JSON con los códigos de estas y, hacer una llamada por estación con Request. Código \ref{cod:10}
+Como se quiere obtener los datos de todas las estaciones dentro de un mismo dominio, se sobre-escribe la función para recorrer el JSON con los códigos de estas y, hacer una llamada por estación con Request. Como se indica en el código \ref{cod:10}.
 
 \begin{lstlisting}[language=Python, caption={Sobre-escritura de \textit{start\_requests()}}, label=cod:10]
 	def start_requests(self):
@@ -198,7 +512,7 @@ Como se quiere obtener los datos de todas las estaciones dentro de un mismo domi
 Si se define la función de esta manera, no es necesario declarar la variable \textit{start\_urls}, por lo que siempre que se necesite sobre-escribir la función, no se usará la variable.
 
 \subsection{Eliminar Log}
-Una vez verificado el correcto funcionamiento de la Spider, es recomendable quitar el máximo numero de Log por pantalla posible, es por eso que, en el fichero settings.py se escribirá el código \ref{cod:11}.
+Una vez verificado el correcto funcionamiento de la Spider, es recomendable quitar el máximo numero de Log por pantalla posible, es por eso que, en el fichero settings.py se escribirá el código en \ref{cod:11}.
 
 \begin{lstlisting}[language=Python, caption={Configurar desactivado del LOG de las Spider}, label=cod:11]
 	LOG_LEVEL = 'WARNING'
@@ -206,13 +520,13 @@ Una vez verificado el correcto funcionamiento de la Spider, es recomendable quit
 \end{lstlisting}
 
 \section{Spiders usadas}
-En este proyecto se han creado cuatro proyectos de Scrapy, uno por cada web.
+En este proyecto se han creado cuatro proyectos de Scrapy, uno por cada web, Agencia estatal de Meteorología (Aemet), CHCantábrico, Meteorología y climatología de Navarra (MeteoNavarra) y Agua En Navarra.
 
-\subsection{Aemet}
+\subsection{Agencia estatal de Meteorología (Aemet)}
 Aemet a requerido de dos Spider para obtener los datos deseados, AemetCodeSpider y AemetDataSpider. Siendo la Spider de obtención de códigos la usada como ejemplo, no hay mucho más que comentar al respecto de ella, obtiene los nombres y códigos de cada estación.
 
 \subsubsection{Data Spider}
-La Spider de obtención de datos es un poco más compleja, necesitando sobre-escribir la función de \textit{start\_requests()} como se muestra en el ejemplo del apartado \ref{Chap514}. Primero lee el fichero JSON con los códigos de las estaciones, itera por ellos y, crea una llamada Request por cada estación.
+La Spider de obtención de datos es un poco más compleja, necesitando sobre-escribir la función de \textit{start\_requests()} como se muestra en el ejemplo del apartado \ref{Chap514}. Primero lee el fichero JSON con los códigos de las estaciones, itera por ellos y, crea una llamada \textit{Request} por cada estación.
 
 Dentro de la función \textit{parse()}:
 
@@ -223,7 +537,7 @@ Dentro de la función \textit{parse()}:
 	rows = response.css('tbody tr')
 \end{lstlisting}
 
-El código \ref{cod:12} obtiene tiene las coordenadas, latitud, longitud; una URL con el código de la estación, variable estacion y, todas las filas presentes en el cuerpo de la tabla de datos, rows.
+El código en \ref{cod:12} obtiene tiene las coordenadas, latitud, longitud; una URL con el código de la estación, variable estacion y, todas las filas presentes en el cuerpo de la tabla de datos, rows.
 
 \begin{lstlisting}[language=Python, caption={Trabajar sobre los datos de Aemet Data Spider}, label=cod:13]
 	datos = []
@@ -239,7 +553,7 @@ El código \ref{cod:12} obtiene tiene las coordenadas, latitud, longitud; una UR
 			datos.append(dato)
 \end{lstlisting}
 
-Código \ref{cod:13}. Se crea una lista datos vacía para almacenar los datos. Posteriormente, se recorren las filas obtenidas, creando un objeto JSON llamado dato, que almacena, obteniendo mediante selectores, la fecha y hora (añadiendo :00 al final para tener el mismo formato dd/mm/aa hh:mm:ss que en el resto de webs), la temperatura, la humedad y la precipitación.\newline
+En el código mostrado en \ref{cod:13}. Se crea una lista datos vacía para almacenar los datos. Posteriormente, se recorren las filas obtenidas, creando un objeto JSON llamado dato, que almacena, obteniendo mediante selectores, la fecha y hora (añadiendo :00 al final para tener el mismo formato dd/mm/aa hh:mm:ss que en el resto de webs), la temperatura, la humedad y la precipitación.\newline
 \newline
 En caso de que el apartado precipitación no esté vació, pues puede darse el caso en el que la web aun no disponga de el a cierta hora, pero si muestre esta franja horaria pues dispone de otros datos como pueden ser aquellos relacionados con el viento, el objeto dato sera almacenado en la lista datos.
 
@@ -251,7 +565,7 @@ En caso de que el apartado precipitación no esté vació, pues puede darse el c
 	}
 \end{lstlisting}
 
-Finalmente se almacenan las coordenadas con un formato global para todas las plataformas y, se filtra mediante splits el código de la estación. Código \ref{cod:14}.
+Finalmente se almacenan las coordenadas con un formato global para todas las plataformas y, se filtra mediante splits el código de la estación. Realizado en el código \ref{cod:14}.
 
 \subsection{CHCantábrico}
 En esta web ha sido necesaria la creación de cuatro Spiders, ChcantabricoCodeSpider, ChcantabricoNivelSpider, ChcantabricoPluvioSpider y ChcantabricoCoordSpider.
@@ -263,7 +577,7 @@ La Spider para la adquisición de códigos de CHCantábrico no necesita de sobre
 	rows = response.xpath('//table[@class="tablefixedheader niveles"]/tbody/tr')
 \end{lstlisting}
 
-Puesto que la estructuración HTML de la web no proporciona una manera clara de lograr los datos mediante un selector CSS, los datos se logran filtrar por su selector XPath. De este, se obtendrán las filas que representan cada estación. Código \ref{cod:15}.
+Puesto que la estructuración HTML de la web no proporciona una manera clara de lograr los datos mediante un selector CSS, los datos se logran filtrar por su selector XPath. De este, se obtendrán las filas que representan cada estación. Visto en el código \ref{cod:15}.
 
 \begin{lstlisting}[language=Python, caption={Trabajar sobre los datos de CHCantábrico Code Spider}, label=cod:16]
 	for row in rows:
@@ -283,7 +597,7 @@ Inicialmente, para las variables path y estacion, se obtienen todo los elementos
 			limites[i] = None
 \end{lstlisting}
 
-Aun dentro del bucle, se comprueba si los limites están definidos, marcando como None (null) aquellos que no lo estén. Código \ref{cod:17}.
+Aun dentro del bucle, se comprueba si los limites están definidos, marcando como None (null) aquellos que no lo estén. Como se ve en el código \ref{cod:17}.
 
 \begin{lstlisting}[language=Python, caption={Guardado de datos de CHCantábrico Code Spider}, label=cod:18]
 	yield {
@@ -296,7 +610,7 @@ Aun dentro del bucle, se comprueba si los limites están definidos, marcando com
 	}
 \end{lstlisting}
 
-Por ultimo, se filtra el código de la estación (aquel usado para acceder los datos) de la URL y, se guardan los datos. Código \ref{cod:18}.
+Por ultimo, se filtra el código de la estación (aquel usado para acceder los datos) de la URL y, se guardan los datos. Se ve en código \ref{cod:18}.
 
 \subsubsection{Data Spiders}
 CHCantábrico muestra datos tanto del nivel del río como de la precipitación, aunque lo hace en dos direcciones distintas, haciendo necesario el uso de dos Spider. Puesto que ambas comparten la misma estructuración de código, solo se explicara una de ellas. La de nivel del río.
@@ -346,29 +660,27 @@ El uso del argumento \textit{cb\_kwargs} sirve para enviar un mayor numero de ar
 			parsedData = rawData.to_json(orient="records")
 \end{lstlisting}
 
-Debido al argumento \textit{cb\_kwargs}, la función \textit{parse()} del código \ref{cod:20} recibe un tercer argumento, estación. En este caso, para poder enviar a cada conjunto de datos recibidos el código de la estación a la que pertenecen, pues dentro de la respuesta obtenida solo se proporciona el nombre de esta. Dentro de la función \textit{parse()} lo primero que se hace es comprobar que realmente se ha recibido una respuesta correcta, pues, aunque todas la estaciones disponen de datos del nivel del río, no todas disponen los de precipitación. El problema viene cuando a estas estaciones se les piden los datos, ya que en vez de enviar un error 404 como seria esperado.
+Debido al argumento \textit{cb\_kwargs}, la función \textit{parse()} del código \ref{cod:20} recibe un tercer argumento, estación. En este caso, para poder enviar a cada conjunto de datos recibidos el código de la estación a la que pertenecen, pues dentro de la respuesta obtenida solo se proporciona el nombre de esta. Dentro de la función \textit{parse()} lo primero que se hace es comprobar que realmente se ha recibido una respuesta correcta, pues, aunque todas la estaciones disponen de datos del nivel del río, no todas disponen los de precipitación. El problema viene cuando a estas estaciones se les piden los datos, ya que en vez de enviar un error 404 como seria esperado. en ese caso, se recibe la respuesta del código \ref{cod:41}.
 
-\begin{verbatim}
+\begin{lstlisting}[caption={Respuesta recibida en caso de que la web pedida no exista}, label=cod:41]
 	-
 	FECHA;VALOR(mm)
-\end{verbatim}
+\end{lstlisting}
 
-Una alternativa para deshacerse de esta comprobación sería eliminar aquellas estaciones que no proporcionen datos o filtrandolas para no hacer la llamada directamente, aunque esto no solo resultaría más complejo, si no que crearía el problema de que cada cierto tiempo habría que comprobar si alguna estación ha empezado a proporcionar datos para incluirla nuevamente en la lista de estaciones a las cuales hacer llamada.\newline
-\newline
-Una vez hecha la comprobación, en caso de que no sea una respuesta vacía, el texto viene proporcionado con el siguiente formato.
+Una vez hecha la comprobación, en caso de que no sea una respuesta vacía, el texto viene proporcionado con el formato del código \ref{cod:42}.
 
-\begin{verbatim}
-	Ribera de Piquín
+\begin{lstlisting}[caption={Respuesta recibida en caso de que la web pedida exista}, label=cod:42]
+	Ribera de Piquin
 	FECHA;VALOR(m)
 	03/08/2023 11:30:00;0.153
 	03/08/2023 11:45:00;0.153
 	03/08/2023 12:00:00;0.153
 	...
-\end{verbatim}
+\end{lstlisting}
 
-El formato CSV se lee mediante la función read\_csv() incluida en la librería pandas, se indica el delimitador, la codificación y la linea que representa la cabecera, empezando de la 0, en este caso la 1, pues no nos interesa el nombre de la estación. Finalmente, como la función espera que se le pase una ruta a un fichero, lo que hacemos mediante io.StringIO() es crear un objeto con el que simular un fichero en memoria, pasando de disponer texto plano a un DataFrame de pandas.\newline
+Continuando con el codigo de \ref{cod:20}. El formato CSV se lee mediante la función \textit{read\_csv()} incluida en la librería pandas, se indica el delimitador, la codificación y la linea que representa la cabecera, empezando de la 0, en este caso la 1, pues no nos interesa el nombre de la estación. Finalmente, como la función espera que se le pase una ruta a un fichero, lo que hacemos mediante \textit{io.StringIO()} es crear un objeto con el que simular un fichero en memoria, pasando de disponer texto plano a un \textit{DataFrame} de pandas.\newline
 \newline
-Como últimos pasos, se cambian los nombres de las cabeceras a aquellos definidos de forma global para todas las webs y, se convierte el DataFrame en un JSON con la función to\_json() indicando que el formato sea "records", esto implica que cada linea del DataFrame va a representar un objeto JSON.
+Como últimos pasos, se cambian los nombres de las cabeceras a aquellos definidos de forma global para todas las webs y, se convierte el \textit{DataFrame} en un JSON con la función \textit{to\_json()} indicando que el formato sea \textit{records}, esto implica que cada linea del \textit{DataFrame} va a representar un objeto JSON.
 
 \begin{lstlisting}[language=Python, caption={Guardado de datos de CHCantábrico Nivel Spider}, label=cod:21]
 	yield {
@@ -377,12 +689,12 @@ Como últimos pasos, se cambian los nombres de las cabeceras a aquellos definido
 	}
 \end{lstlisting}
 
-Con el uso de la función loads() de la librería json nos aseguramos el correcto formato del JSON. Código \ref{cod:21}.
+Con el uso de la función \textit{loads()} de la librería json nos aseguramos el correcto formato del JSON. Visto en el código \ref{cod:21}.
 
 \subsubsection{Coordenates Spider}
 Aunque en la web misma de CHCantárico se proporciona un mapa indicando la localización de cada estación, las coordenadas de esta no están disponibles para adquirir dentro de la web, es por eso que es necesario el uso de la web del centro de estudios hidrológicos para poder obtener las coordenadas.\newline
 \newline
-En esta página se pueden encontrar mediante el "codigoSecundario" anteriormente obtenido, desgraciadamente, no todas las estaciones incluidas en CHCantábrico están listadas en esta página, siendo el mayor inconveniente para el correcto funcionamiento del apartado de predicción.
+En esta página se pueden encontrar mediante el codigoSecundario anteriormente obtenido con el código \ref{cod:18}, aunque, no todas las estaciones incluidas en CHCantábrico están listadas en esta página, siendo el mayor inconveniente para el correcto funcionamiento del apartado de predicción. Exceptuando el uso del codigoSecundario para referenciar estaciones, esta es una Spider muy simple la cual no dispone de nada que no haya sido anteriormente explicado.
 
 \begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de CHCantábrico Coordinates Spider}]
 	longitud = response.css('p::text')[6].get().strip()
@@ -396,8 +708,6 @@ En esta página se pueden encontrar mediante el "codigoSecundario" anteriormente
 		'estacion': estacion,
 	}
 \end{lstlisting}
-
-Exceptuando el uso del "codigoSecundario" para referenciar estaciones, esta es una Spider muy simple la cual no dispone de nada que no haya sido anteriormente explicado.
 
 \subsubsection{Código descartado}
 Siendo CHCantábrico la primera web de la que se obtuvo los datos, sin gran conocimiento de Scrapy y sobre todo, sin saber realmente como sería la plataforma, el planteamiento de la obtención de datos se realizo de forma ajena a las Spider de Scrapy.\newline
@@ -448,7 +758,7 @@ Viendo que los datos no están presentes en la web y, que Scrapy no dispone de i
 		json.dump(datos, outfile)
 \end{lstlisting}
 
-Sobre el código \ref{cod:22} cabe decir que, el apartado de tratamiento de los datos es prácticamente idéntico al realizado con la Spider, solo que en vez de usar \textit{FormRequest}, se hace uso de la librería requests para realizar la llamada \textit{get()}, tras realizarla, se comprueba que haya sido exitosa (esta comprobación la realiza Scrapy automáticamente) y, en caso de serlo se realiza todo el tratamiento, guardando los datos en la lista datos. Una vez realizadas todas las llamadas, guardamos los datos obtenidos usando la función json.dump().\newline
+Sobre el código \ref{cod:22} cabe decir que, el apartado de tratamiento de los datos es prácticamente idéntico al realizado con la Spider, solo que en vez de usar \textit{FormRequest}, se hace uso de la librería requests para realizar la llamada \textit{get()}, tras realizarla, se comprueba que haya sido exitosa (esta comprobación la realiza Scrapy automáticamente) y, en caso de serlo se realiza todo el tratamiento, guardando los datos en la lista datos. Una vez realizadas todas las llamadas, guardamos los datos obtenidos usando la función \textit{json.dump()}.\newline
 \newline
 Aunque en esta versión se almacenan todos los datos en un mismo JSON, originalmente los datos eran guardados en un CSV por cada estación, de tal manera que el nombre del CSV era el mismo que el de la estación perteneciente. Más adelante al consolidar la plataforma, sobre todo el uso de Django para la creación de una API, se vio que era más útil guardar los datos no solo en formato JSON si no disponer de un único fichero por estación, de esta forma solo seria necesario realizar una única llamada por estación a la API para cargar los datos. Llegando a esta versión del script.\newline
 \newline
@@ -456,7 +766,7 @@ Posteriormente, llegado el momento de la automatización quedo claro que, aun si
 \newline
 Es por eso que se investigo la posibilidad de obtener los datos mediante Scrapy, estudiando los diferentes objetos \textit{Request} proporcionados, hasta llegar a la versión actual con el uso de \textit{FormRequest}.
 
-\subsection{MeteoNavarra}
+\subsection{Meteorología y climatología de Navarra (MeteoNavarra)}
 Con el fin de obtener los datos de MeteoNavarra han sido creadas tres Spider, MeteoNavarraCodeSpider, MeteoNavarraDataSpider y MeteoNavarraCoordSpider.
 
 \subsubsection{Code Spider}
@@ -476,7 +786,7 @@ Del selector en el código \ref{cod:23} se obtiene el JavaScript perteneciente a
 		}
 \end{lstlisting}
 
-A la hora de guardar los datos, se itera por filas y se filtra aquellos datos deseados. Código \ref{cod:24}.
+A la hora de guardar los datos, se itera por filas y se filtra aquellos datos deseados. Como se ve en código \ref{cod:24}.
 
 \subsubsection{Data Spider}
 La necesidad de recorrer múltiples estaciones, obliga como en el resto de Spiders de obtención de datos, a sobre escribir la función \textit{start\_requests()}.
@@ -490,10 +800,9 @@ La necesidad de recorrer múltiples estaciones, obliga como en el resto de Spide
 	yesterday_date_format = yesterday_date.strftime(" %d%%2F %m%%2F%Y").replace(' 0', '')
 \end{lstlisting}
 
-La curiosidad en el código \ref{cod:25} radica en que, a diferencia del resto de páginas, que definen automáticamente una franja de fechas a mostrar, meteoNavarra fuerza la necesidad de que el usuario elija las fechas que desee ver, es por eso que hace uso de la librería datetime, pues facilita el trabajo con fechas.\newline
+La curiosidad en el código \ref{cod:25} radica en que, a diferencia del resto de páginas, que definen automáticamente una franja de fechas a mostrar, MeteoNavarra fuerza la necesidad de que el usuario elija las fechas que desee ver, es por eso que hace uso de la librería datetime, pues facilita el trabajo con fechas.\newline
 \newline
-Con la intención de que funcione proporcionando fechas distintas cada día se realiza el siguiente proceso. Se obtiene la fecha actual con la función today(), con el método timedelta(days=1) se crea un objeto timedelta que representa una duración de un día, gracia a el, se calcula el día de mañana y el de ayer, sumando y restando esa duración al día de hoy. Para terminar, puesto que la fecha debe ir incluida en una URL, mediante el método strftime(), formateamos los datetime calculados para que correspondan con el codificado URL.\newline
-\newline
+Con la intención de que funcione proporcionando fechas distintas cada día se realiza el siguiente proceso. Se obtiene la fecha actual con la función \textit{today()}, con el método \textit{timedelta(days=1)} se crea un objeto \textit{timedelta} que representa una duración de un día, gracia a el, se calcula el día de mañana y el de ayer, sumando y restando esa duración al día de hoy. Para terminar, puesto que la fecha debe ir incluida en una URL, mediante el método \textit{strftime()}, formateamos los datetime calculados para que correspondan con el codificado URL.
 
 \begin{lstlisting}[language=Python, caption={Selector en \textit{parse()} de MeteoNavarra Data Spider}, label=cod:26]
 	rows = response.css('table.border tr:not([bgcolor*="#FFFFFF"])')
@@ -554,7 +863,7 @@ Mediante \textit{start\_requests()}, realiza tantas llamadas como estaciones.
 	estacion = response.css('input::attr(value)').get()
 \end{lstlisting}
 
-Una vez en la función \textit{parse()}, toma las coordenadas mostradas en una tabla y, obtiene el código de la estación del atributo \textit{value} de un elemento \textit{input}. Código \ref{cod:30}.
+Una vez en la función \textit{parse()}, toma las coordenadas mostradas en una tabla y, obtiene el código de la estación del atributo \textit{value} de un elemento \textit{input}. Se puede ver en código \ref{cod:30}.
 
 \begin{lstlisting}[language=Python, caption={Guardado de datos de MeteoNavarra Coordenates Spider}, label=cod:31]
 	yield {
@@ -563,15 +872,13 @@ Una vez en la función \textit{parse()}, toma las coordenadas mostradas en una t
 	}
 \end{lstlisting}
 
-Finalmente, las coordenadas, con el fin de verse bien en la web, en vez de estar estilizadas con CSS, vienen estilizadas con elementos textuales, los cuales son eliminados antes de ser guardadas. Código \ref{cod:31}.
+Finalmente, las coordenadas, con el fin de verse bien en la web, en vez de estar estilizadas con CSS, vienen estilizadas con elementos textuales, los cuales son eliminados antes de ser guardadas. Como se muestra en código \ref{cod:31}.
 
 \subsection{Agua en Navarra}
 Las Spiders de Agua en Navarra son las más complejas entre todas, usando una filosofía ligeramente distinta al resto de Spiders y, por el uso de Selemiun para poder interactuar con la web mediante JavaScipt.\newline
 \newline
 \label{Chap524}
-Ambas Spider necesarias, AguaEnNavarraCodeSpider y AguaEnNavarraDataSpider, parten de las misma \textit{start\_urls} y van recorriendo las páginas presentes hasta llegar a aquella que muestre los datos deseados. Esto se debe hasta cierto punto a la estructuración de la página, haciendo más sencillo navegar por ella que crear una Spider por cada página a visitar. La navegación por la web se realiza usando múltiples funciones de la misma naturaleza que \textit{parse()}.\newline
-\newline
-Para Data Spider esto implica no necesitar de un fichero JSON del cual leer los códigos de las estaciones.
+Ambas Spider necesarias, AguaEnNavarraCodeSpider y AguaEnNavarraDataSpider, parten de las misma \textit{start\_urls} y van recorriendo las páginas presentes hasta llegar a aquella que muestre los datos deseados. Esto se debe hasta cierto punto a la estructuración de la página, haciendo más sencillo navegar por ella que crear una Spider por cada página a visitar. La navegación por la web se realiza usando múltiples funciones de la misma naturaleza que \textit{parse()}. Para Data Spider esto implica no necesitar de un fichero JSON del cual leer los códigos de las estaciones.
 
 \begin{lstlisting}[language=Python, caption={Función \textit{parse()} Agua en Navarra Spiders}, label=cod:32]
 	def parse(self, response):
@@ -580,7 +887,7 @@ Para Data Spider esto implica no necesitar de un fichero JSON del cual leer los 
 				yield response.follow(link.get(), callback=self.parse_area)
 \end{lstlisting}
 
-La función \textit{parse()}, código \ref{cod:32}, es compartida por ambas Spider. Extrae los link representantes de cada área definida sobre el mapa y, navega por todos ellos a excepción del link de origen, aquel en el que se encuentra.\newline
+La función \textit{parse()}, vista en código \ref{cod:32}, es compartida por ambas Spider. Extrae los link representantes de cada área definida sobre el mapa y, navega por todos ellos a excepción del link de origen, aquel en el que se encuentra.\newline
 \newline
 El uso de \textit{response.follow()} es equivalente a realizar un \textit{Request}, pero no necesita pararle una URL completa, solo con la ruta es capaz de generar la llamada, en caso de necesitar explícitamente el uso de \textit{Request} seria la manera mostrada en el código \ref{cod:33}.
 
@@ -588,7 +895,7 @@ El uso de \textit{response.follow()} es equivalente a realizar un \textit{Reques
 	yield Request(url=response.urljoin(link.get()), callback=self.parse_area)
 \end{lstlisting}
 
-De ambas formas, código \ref{cod:32} y \ref{cod:33}, en el argumento \textit{callback} se indica a que función debe realizar la llamada, pasando de \textit{parse()} a \textit{parse\_area()}.
+De ambas formas, usando lo visto en código \ref{cod:32} y \ref{cod:33}, en el argumento \textit{callback} se indica a que función debe realizar la llamada, pasando de \textit{parse()} a \textit{parse\_area()}.
 
 \begin{lstlisting}[language=Python, caption={Función \textit{parse\_area()} Agua en Navarra Spiders}, label=cod:34]
 	def parse_area(self, response):
@@ -611,7 +918,7 @@ Siendo el código \ref{cod:34} la última función implementada de la misma mane
 			codigos.append(url.split('=')[1])
 \end{lstlisting}
 
-Una vez en la función \textit{parse\_estacion()} de Code Spider, código \ref{cod:38}, la estación dispone de múltiples códigos, aquel que referencia la estación, uno para el nivel y aunque no en todas, otro para el caudal del río. Tanto el código de nivel y caudal del río originalmente se almacenan en la variable urls, almacenando las direcciones en las cuales están presentes. Posteriormente, se toma de la URL y se guardan en la lista codigos. La variable estación es una lista que almacena, la descripción de la estación, el municipio al que pertenece, el río y, las coordenadas.
+Una vez en la función \textit{parse\_estacion()} de Code Spider, código \ref{cod:38}, la estación dispone de múltiples códigos, aquel que referencia la estación, uno para el nivel y aunque no en todas, otro para el caudal del río. Tanto el código de nivel y caudal del río originalmente se almacenan en la variable urls, almacenando las direcciones en las cuales están presentes. Posteriormente, se toma de la URL y se guardan en la lista codigos. La variable estación es una lista que almacena, la descripción de la estación, el municipio al que pertenece, el río y, las coordenadas. Al final estos datos son almacenados como se muestra en el código \ref{cod:39}.
 
 \begin{lstlisting}[language=Python, caption={Guardado de datos de Agua en Navarra Code Spider}, label=cod:39]
 	yield {
@@ -623,8 +930,6 @@ Una vez en la función \textit{parse\_estacion()} de Code Spider, código \ref{c
 		'codigos': codigos,
 	}
 \end{lstlisting}
-
-Al final estos datos son almacenados como se muestra en el código \ref{cod:39}.
 
 \subsubsection{Data Spider}
 
