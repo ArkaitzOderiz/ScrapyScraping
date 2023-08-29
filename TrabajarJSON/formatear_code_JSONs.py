@@ -1,5 +1,4 @@
 import json
-from datetime import datetime
 
 jsonsDir = [
     "../JSONs/RawCode/codigos_aemet.json",
@@ -24,37 +23,6 @@ def searchEstacionCoords(code, coordFile):
     for data in coordFile:
         if data['estacion'] == code:
             return data['coordenadas']
-
-
-def unifyData(dataFile, cod):
-    datos = []
-    for line in dataFile:
-        if line['estacion'] == cod:
-            for dato in line['datos']:
-                datos.append(dato)
-
-    unifiedData = {
-        'estacion': cod,
-        'datos': datos
-    }
-    return unifiedData
-
-
-def searchEstacionData(code, dataFile1=[], dataFile2=[]):
-    datos = []
-    for data in dataFile1:
-        if data['estacion'] == code:
-            datos.append(data)
-    for data in dataFile2:
-        if data['estacion'] == code:
-            datos.append(data)
-    return datos
-
-
-def searchDateData(dataFile, date):
-    for data in dataFile:
-        if data['fecha y hora'] == date:
-            return data
 
 
 def formatAemet(file):
