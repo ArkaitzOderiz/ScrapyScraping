@@ -38,16 +38,16 @@
 \contentsline {subsection}{\numberline {4.3.3}Instalación y configuración de Django}{37}{subsection.4.3.3}%
 \contentsline {chapter}{\numberline {5}Implementación}{43}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Creación de Spiders}{43}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Proceso de obtención de datos}{45}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Guardado de datos}{47}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.1}Proceso de obtención de datos}{44}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Guardado de datos}{46}{subsection.5.1.2}%
 \contentsline {subsection}{\numberline {5.1.3}Spider básica}{47}{subsection.5.1.3}%
 \contentsline {subsection}{\numberline {5.1.4}Método \textit {start\_requests()}}{48}{subsection.5.1.4}%
 \contentsline {subsection}{\numberline {5.1.5}Eliminar Log}{49}{subsection.5.1.5}%
 \contentsline {section}{\numberline {5.2}Spiders usadas}{49}{section.5.2}%
 \contentsline {subsection}{\numberline {5.2.1}Aemet}{49}{subsection.5.2.1}%
 \contentsline {subsubsection}{Data Spider}{49}{section*.30}%
-\contentsline {subsection}{\numberline {5.2.2}CHCantábrico}{51}{subsection.5.2.2}%
-\contentsline {subsubsection}{Code Spider}{51}{section*.31}%
+\contentsline {subsection}{\numberline {5.2.2}CHCantábrico}{50}{subsection.5.2.2}%
+\contentsline {subsubsection}{Code Spider}{50}{section*.31}%
 \contentsline {subsubsection}{Data Spiders}{52}{section*.32}%
 \contentsline {subsubsection}{Coordenates Spider}{54}{section*.33}%
 \contentsline {subsubsection}{Código descartado}{55}{section*.34}%
@@ -55,14 +55,14 @@
 \contentsline {subsubsection}{Code Spider}{57}{section*.35}%
 \contentsline {subsubsection}{Data Spider}{58}{section*.36}%
 \contentsline {subsubsection}{Coordenates Spider}{60}{section*.37}%
-\contentsline {subsection}{\numberline {5.2.4}Agua en Navarra}{61}{subsection.5.2.4}%
-\contentsline {subsubsection}{Code Spider}{62}{section*.38}%
+\contentsline {subsection}{\numberline {5.2.4}Agua en Navarra}{60}{subsection.5.2.4}%
+\contentsline {subsubsection}{Code Spider}{61}{section*.38}%
 \contentsline {subsubsection}{Data Spider}{62}{section*.39}%
 \contentsline {subsubsection}{Configuración Selenium}{64}{section*.40}%
 \contentsline {subsubsection}{Alternativas probadas}{66}{section*.42}%
-\contentsline {section}{\numberline {5.3}Runners}{69}{section.5.3}%
+\contentsline {section}{\numberline {5.3}Runners}{68}{section.5.3}%
 \contentsline {section}{\numberline {5.4}Executers}{71}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Formateo de datos}{72}{section.5.5}%
+\contentsline {section}{\numberline {5.5}Formateo de datos}{71}{section.5.5}%
 \contentsline {section}{\numberline {5.6}Filtrado de datos}{77}{section.5.6}%
 \contentsline {section}{\numberline {5.7}Posts}{80}{section.5.7}%
 \contentsline {chapter}{\numberline {6}Conclusiones y Trabajo Futuro}{81}{chapter.6}%
