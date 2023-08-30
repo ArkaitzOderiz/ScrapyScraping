@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 OldData = [
     "../JSONs/OldData/old_datos_aemet.json",
@@ -27,6 +28,12 @@ def saveRefinedData(i, refinedFile):
         json.dump(refinedFile, outfile)
 
 
+def markAsOldData(i, newFile):
+    Path(OldData).mkdir(parents=True, exist_ok=True)
+    with open(OldData[i], 'w', encoding='utf-8') as outfile:
+        json.dump(newFile, outfile)
+
+
 def searchEstacionData(code, dataFile):
     for data in dataFile:
         if data['estacion'] == code:
@@ -45,18 +52,12 @@ def refineData(index, newFile, oldFile):
         if newData:
             refinedFile.append(
                 {
-                    "coordenadas": item["coordenadas"],
                     "estacion": item["estacion"],
                     "dato": newData
                 }
             )
 
     saveRefinedData(index, refinedFile)
-
-
-def markAsOldData(i, newFile):
-    with open(OldData[i], 'w', encoding='utf-8') as outfile:
-        json.dump(newFile, outfile)
 
 
 for i in range(len(ParsedData)):
