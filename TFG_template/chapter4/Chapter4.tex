@@ -14,7 +14,7 @@ Pasa solventar el problema, inicialmente se encontró el pluggin scrapy\_djangoi
 
 \section{Trabajar con los Datos}
 
-\begin{lstlisting}[caption={Flujo de obtencion y tratamiento de los datos}]
+\begin{lstlisting}[caption={Flujo de obtencion y tratamiento de los datos}, label=cod:112]
 	Pedir datos
 	Formatear datos
 	Mandar datos a la BBDD
@@ -28,31 +28,14 @@ Pasa solventar el problema, inicialmente se encontró el pluggin scrapy\_djangoi
 		Marcar datos como old
 \end{lstlisting}
 
-El flujo que realizan los datos es el siguiente, inicialmente se pedirán los datos, como los datos obtenidos no son los mismos para cada web, se formatean para compartir una estructura heterogénea, en caso de ser la primera iteración, se mandan directamente los datos a la BBDD, de no ser la primera iteración, se filtran los nuevos datos de aquellos mascados como old (viejo), se envían los datos a la base de datos y, una vez enviados son marcados como old para ser el punto de comparación respecto a los datos que se obtendrán en la próxima iteración.
-
-\subsection{Datos obtenidos por página}
-Aemet:\newline
-temperatura, humedad, precipitación
-\newline\newline
-meteoNavarra:\newline
-temperatura, humedad, precipitación, radiación
-\newline\newline
-aguaEnNavarra:\newline
-nivel, caudal
-\newline\newline
-chcantabrico:\newline
-nivel, precipitación, seguimiento, alerta, pre-alerta
-\newline\newline
-En todas las webs se proporciona las coordenadas junto con la fecha y hora en la que se ha hecho la medida.
+El flujo que realizan los datos es el mostrado en el código \ref{cod:112}, inicialmente se pedirán los datos, como los datos obtenidos no son los mismos para cada web, se formatean para compartir una estructura heterogénea, en caso de ser la primera iteración, se mandan directamente los datos a la BBDD, de no ser la primera iteración, se filtran los nuevos datos de aquellos mascados como old (viejo), se envían los datos a la base de datos y, una vez enviados son marcados como old para ser el punto de comparación respecto a los datos que se obtendrán en la próxima iteración.
 
 \subsection{Formato de Datos}
-No todas las webs presentan sus datos de la misma manera, es por eso que nos encontramos con que los datos que hemos obtenido pueden llegar a estar repartidos en distintas páginas, haciendo necesario el uso de múltiples Spiders, resultando en multiples JSON.\newline
+No todas las webs presentan sus datos de la misma manera, es por eso que los datos a obtener pueden llegar a estar repartidos en distintas páginas, haciendo necesario el uso de múltiples Spiders, resultando en múltiples JSON. A su vez, cada web esta especializada en unos tipos de datos en concreto, lo que hace que el JSON resultante de cada web difiere en formato.\newline
 \newline
-Debido a ello, para cada web se ha creado una función para parsear (formatear) los datos obtenidos, de esta manera se dispone de una estructura única para los datos recibidos, haciendo su uso posterior más fácil, ya sea a la hora de tratarlos como para almacenarlos en la base de datos.\newline
-\newline
-Esquema obtenido:
+Debido a ello, para cada web se ha creado una función para parsear (formatear) los datos obtenidos, de esta manera se dispone de una estructura única para los datos recibidos, haciendo su uso posterior más fácil, ya sea a la hora de tratarlos como para almacenarlos en la base de datos. El esquema obtenido se observa en el código \ref{cod:113}.
 
-\begin{lstlisting}[language=json, basicstyle=\small]
+\begin{lstlisting}[language=json, basicstyle=\small, label=cod:113]
 [
 {
 	"coordenadas": "X. 598270,3 | Y. 4659333 | Z. 37928",
@@ -73,10 +56,10 @@ Esquema obtenido:
 \end{lstlisting}
 
 \subsection{Filtrado de Datos}
-Una vez formateados los datos, con el fin de reducir la carga a la base de datos, estos son filtrados mediante la comparación con los ficheros anteriormente marcados como old, de esta forma, nos aseguramos de mandar a la base de datos unicamente las instancias nuevas de los datos recogidos, pues no disponemos de ninguna manera de filtrar los datos a la hora de obtenerlos. Estos datos serán guardados en un tercer JSON.
+A fin de reducir la carga a la base de datos, los JSON resultantes del proceso de formateo, son filtrados mediante la comparación con los ficheros anteriormente marcados como old, de esta forma, nos aseguramos de mandar a la base de datos unicamente las instancias nuevas de los datos recogidos, pues no disponemos de ninguna manera de filtrar los datos a la hora de obtenerlos. Estos datos serán guardados en un tercer JSON.
 
 \section{Arquitectura}
-Para poder realizar el trabajo se ha diseñado la siguiente arquitectura.\ref{fig:ej7}
+Llevando a delante el trabajo, se ha diseñado la arquitectura de la figura \ref{fig:ej7}.
 
 \begin{figure} [h]
 	\centering
@@ -91,21 +74,10 @@ Con el fin de que la plataforma sea lo mas fácilmente ampliable, se ha decidido
 Actualmente la plataforma dispone de cuatro entornos virtuales para cada Spider y un entorno virtual sobre el que ejecutar el servidor de Django.
 
 \subsection{Spiders}
-Cada Spider representa una web, de tal forma que cada una de ellas obtiene los datos de la web sobre la que se ha diseñado exclusivamente, para poder realizar esta tarea por cada web han sido necesarias varias Spider, aunque de forma simplificada se pueden agrupar por, aquellas que obtienen las estaciones junto con sus códigos y, las de obtención de datos.\newline
-\newline
-De esta forma, se dividen las tareas con la posibilidad de ejecutar aquella que mejor venga en cada momento.
-
-\begin{figure} [H]
-	\centering
-	\includegraphics[width=0.3\textwidth]{fig/estructura_basica_spider.png}
-	\caption[Estructuración básica de una Spider]{Estructuración básica de una Spider}
-	\label{fig:ej8}
-\end{figure}
+Cada Spider representa una web, de tal forma que cada una de ellas obtiene los datos de la web sobre la que se ha diseñado exclusivamente, para poder realizar esta tarea por cada web han sido necesarias varias Spider, aunque de forma simplificada se pueden agrupar por, aquellas que obtienen las estaciones junto con sus códigos y, las de obtención de datos. De esta forma, se dividen las tareas con la posibilidad de ejecutar aquella que mejor venga en cada momento.
 
 \subsection{Runners}
-Runner es la forma en la que han sido nombrados los Scripts cuya función es posibilitar la ejecución en nuestro caso asíncrona de una o múltiples Spiders mediante un único comando.\newline
-\newline
-Es un Script simple en el que una vez dispones de la estructura básica en caso de necesitar añadir o eliminar una Spider solo tienes que agregar o eliminar la Spider en cuestión y ya estaría listo.\newline
+Runner es la forma en la que han sido nombrados los Scripts cuya función es posibilitar la ejecución en nuestro caso asíncrona de una o múltiples Spiders mediante un único comando. Es un Script simple en el que una vez dispones de la estructura básica en caso de necesitar añadir o eliminar una Spider solo tienes que agregar o eliminar la Spider en cuestión y ya estaría listo.\newline
 \newline
 A su vez, al añadir un intermediario el comando de ejecución pasa de ser, scrapy crawl nombreSpider por cada Spider que se desea ejecutar, a, python nombreRunner.py facilitando la automatización de ejecución de las Spider.
 
@@ -117,9 +89,7 @@ Estos existen (en mayor medida que los Runners) con el fin de ayudar con el mant
 Están diseñados de tal forma que funcionen pasandoles un único argumento representando la web de la que quieres obtener los datos, haciendo que la agregación de nuevas Spiders junto con sus entornos sea tan sencillo como respetar las rutas y nombres predefinidos.
 
 \subsection{Directorios de los JSONs de datos}
-Este apartado es un conjunto de directorios en los que se van almacenando los JSON obtenidos tras los distintos procesos a los que son sometidos.\newline
-\newline
-Los directorios en cuestión, siguiendo orden de creación para los JSON de datos son los siguientes:
+Este apartado es un conjunto de directorios en los que se van almacenando los JSON obtenidos tras los distintos procesos a los que son sometidos. Los directorios en cuestión, siguiendo orden de creación para los JSON de datos son:
 
 \begin{multicols}{2}
 Directorios de los datos de estación:
@@ -144,9 +114,7 @@ Directorios de los códigos de estación:
 El primer nivel es aquel que almacena los JSON que genera la llamada con la Spider a la web. El segundo, los resultantes tras ejecutar ya sea formatear\_data\_JSONs.py en caso de querer parsear los datos o formatear\_code\_JSONs.py para los códigos. El tercero almacena los ficheros generados tras eliminar la duplicidad de datos en comparación con los ya almacenados en la base de datos, mediante la ejecución de filtrar\_data\_JSONs.py. Finalmente el cuarto guarda el fichero original ya formateado tras la comparación.
 
 \subsection{Posts}
-Estos Scripts son los encargado de enviar los datos mediante un Post Request al servidor Django.\newline
-\newline
-Diseñados bajo el mismo principio de fomentar la ampliabilidad del proyecto que los Executer, reciben el nombre de la web de la cual deseas enviar los datos a la hora de ejecutarlo junto al comando en forma de argumento.
+Estos Scripts son los encargado de enviar los datos mediante un Post Request al servidor Django. Diseñados bajo el mismo principio de fomentar la ampliabilidad del proyecto que los Executer, reciben el nombre de la web de la cual deseas enviar los datos a la hora de ejecutarlo junto al comando en forma de argumento.
 
 \subsection{Cron}
 Cron es un administrador regular de procesos en segundo plano presente en los sistemas basados en Unix. Con el es posible programar la automatización de ejecución de procesos en intervalos de tiempo, pudiendo indicar el minuto, hora, día, mes e incluso día de la semana.\newline
@@ -163,11 +131,9 @@ La especificación de los procesos se realiza en el archivo crontab y, su estruc
 *  *  *  *  *  comando a ejecutar
 \end{verbatim}
 
-En nuestro caso queremos el equivalente a dos instancias de Cron, una que se encargue de obtener los datos ya sea cada quince minutos, media hora y una hora manteniendo la base de datos actualizada para poder realizar las posteriores predicciones y otra que mensualmente compruebe la existencia de nuevas estaciones o el cese del uso de alguna de las ya disponibles.\newline
+Para este proyecto se quiere el equivalente a dos instancias de Cron, una que se encargue de obtener los datos ya sea cada quince minutos, media hora y una hora manteniendo la base de datos actualizada para poder realizar las posteriores predicciones y, otra que mensualmente compruebe la existencia de nuevas estaciones o el cese del uso de alguna de las ya disponibles.\newline
 \newline
-Así pues, Cron es el encargado de ejecutar cada proceso necesario dentro de la plataforma, ya sea, ejecutar las Spiders, los Scripts de formateo como de filtrado y, el envío de los datos a Django para su inserción en PostGreSQL.\newline
-\newline
-De esta forma dispondríamos de un sistema cerrado automático, el cual nos permitiría trabajar en otros apartados como puede ser la integración de mas webs en la plataforma o la mejora del sistema de predicción.
+Así pues, Cron es el encargado de ejecutar cada proceso necesario dentro de la plataforma, ya sea, ejecutar las Spiders, los Scripts de formateo como de filtrado y, el envío de los datos a Django para su inserción en PostGreSQL. De esta forma dispondríamos de un sistema cerrado automático, el cual nos permitiría trabajar en otros apartados como puede ser la integración de mas webs en la plataforma o la mejora del sistema de predicción.
 
 \subsection{API Django}
 La instancia del servidor de Django es la encargada de tanto recibir los datos obtenidos como de enviarlos a la base de datos. Finalmente, una vez se dispusiera de una aplicación de predicción, se encargaría de pedir los datos almacenados y enviarlos mediante POST a la aplicación.

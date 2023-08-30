@@ -1183,7 +1183,7 @@ El código mostrado en \ref{cod:59}, ejecuta AguaEnNavarraCodeSpider.\newline
 El hecho de que las Spider de obtención de coordenadas se ejecuten junto a las de datos tiene dos motivos, el primero, que son dependientes de los códigos de las estaciones, y como se ejecutan en paralelo sin el JSON con los códigos no funcionan, el segundo, que algunas Spider obtengan los datos a la par que los datos.
 
 \section{Executers}
-Ficheros data\_spider\_executer.sh y code\_spider\_executer.sh
+Los Executers son ficheros bash, estos se reparten en dos secciones, obtención de datos data\_spider\_executer.sh y code\_spider\_executer.sh y, tratamiento de datos data\_work\_executer.sh y code\_work\_executer.sh.
 
 \begin{lstlisting}[caption={Ejecucion de entorno virtual y selección de proyecto Scrapy}, label=cod:60]
 	#!/bin/bash
@@ -1202,12 +1202,13 @@ Primero ejecutan el comando para activar el entorno virtual indicada por argumen
 	python3 data_spider_runner.py
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Ejecución de code\_spider\_runner.py}, label=cod:62]
+\begin{lstlisting}[caption={Ejecución de data\_work\_runner.py}, label=cod:62]
 	# Run the Python script
-	python3 code_spider_runner.py
+	python3 TrabajarJSONs/formatear_data_JSONs.py
+	python3 TrabajarJSONs/filtrar_data_JSONs.py
 \end{lstlisting}
 
-En caso de data\_spider\_executer.sh, ejecuta el Runner encargado de obtener los datos. Como se ve en el código \ref{cod:61}. Y en caso de code\_spider\_executer.sh, ejecuta el Runner encargado de obtener los códigos. Presente en código \ref{cod:62}.
+En caso de data\_spider\_executer.sh, ejecuta el Runner encargado de obtener los datos. Como se ve en el código \ref{cod:61}. code\_spider\_executer.sh, de la misma manera ejecuta el Runner encargado de obtener los códigos. El fichero data\_work\_runner.py, presente en código \ref{cod:62}, ejecuta los script encargados del formateo y filtrado de los datos. Nuevamente, para el caso de code\_work\_runner.py, se realizaría lo mismo, indicando los ficheros para trabajar con los códigos. 
 
 \section{Formateo de datos}
 Cada proyecto individual dispone de dos Scripts encargados de formatear los datos, uno para los códigos y otro para los datos per se. El código compartido entre los Script es el primero en ser explicado. Aunque en la explicación se ha usado código de formatear\_data\_JSONs.py, las diferencias respecto a formatear\_code\_JSONs.py se traducen a cambiar nombres de variables y los directorios, la única diferencia radica en la función principal donde se realiza el formateo.
@@ -1416,7 +1417,7 @@ En ella se recibe el código de la estación a buscar y el fichero con las coord
 \end{lstlisting}
 
 \section{Filtrado de datos}
-El siguiente paso a realizar, es el filtrado de los JSON por el script filtras\_datos\_JSONs.py. En el se realiza lo siguiente.
+El siguiente paso a realizar, es el filtrado de los JSON por el script filtras\_data\_JSONs.py y filtras\_code\_JSONs.py
 
 \begin{lstlisting}[language=Python, caption={Declaración rutas JSONs y nombre de fichero}, label=cod:79]
 	OldDir = "JSONs/OldData/"
@@ -1455,6 +1456,22 @@ Recibiendo como argumento el directorio sobre el que se desea guardar el fichero
 
 Como no es seguro que los datos recibidos estén siempre en el mismo orden, se ha definido esta función para asegurarse de trabajar siempre con los datos de la estación correcta. Recorre el fichero viejo y cuando encuentra la estación con el mismo código devuelve los datos de esta. Función mostrada en código \ref{cod:82}.
 
+\begin{lstlisting}[language=Python, caption={Declaración rutas JSONs}, label=cod:84]
+	def main():
+		newFile = openFile(ParsedDir)
+		oldFile = openFile(OldDir)
+		
+		if oldFile is None:
+			saveData(RefinedDir, newFile)
+			saveData(OldDir, newFile)
+			return
+		
+		refineData(newFile, oldFile)
+		saveData(OldDir, newFile)
+\end{lstlisting}
+
+La función \textit{main()}, vista en código \ref{cod:84}, abre los ficheros indicados en las rutas ParsedDir y OldDir, en caso de que oldFile sea None, guarda los datos refinados en el directorio refinedDir, el fichero con los datos nuevos pasa al directorio OldDir y en el programa finaliza. Si se dispone de datos en oldFile, llama a \textit{refineData()} y posteriormente se marca newFile como viejo al guardarlo en OldDir.
+
 \begin{lstlisting}[language=Python, caption={Declaración función refinedData()}, label=cod:83]
 	def refineData(newFile, oldFile):
 		refinedFile = []
@@ -1479,19 +1496,19 @@ Como no es seguro que los datos recibidos estén siempre en el mismo orden, se h
 
 La función \textit{refinedData()} en código \ref{cod:83}, se encarga de la comparación de los ficheros, recibidos en los argumentos newFile y oldFile. Empezando con la explicación, se define la lista vacía refinedFile, encargada de almacenar los datos nuevos de todas las estaciones; se itera por cada estación en newFile; se define una segunda lista newData para almacenar los nuevos datos por estación; se llama a \textit{searchEstacionData()} para buscar los datos viejos de la estación; se itera por todos los datos de los presentes en la estación; se comprueba que no exista previamente en los datos de esa misma estación en oldData; en caso de que el dato no este presente, se almacena en newData; si existe algún dato nuevo (newData no esta vacía), se crea un objeto JSON que sigue la estructuración definida para los ficheros de datos y, se almacena en refinedData; finalmente los datos se guardan en un fichero en la ruta especificada RefinedDir.
 
-\begin{lstlisting}[language=Python, caption={Declaración rutas JSONs}, label=cod:84]
-	def main():
-		newFile = openFile(ParsedDir)
-		oldFile = openFile(OldDir)
+\begin{lstlisting}[language=Python, caption={Declaración función refinedCode()}, label=cod:114]
+	def refineCode(newFile, oldFile):
+		refinedFile = []
 		
-		if oldFile is None:
-			saveData(RefinedDir, newFile)
-			return
+		for item in newFile:
+			newCode = []
+			if item["codigo"] not in [x["codigo"] for x in oldFile]:
+				newCode.append(item)
 		
-		refineData(newFile, oldFile)
+		saveCode(RefinedDir, refinedFile)
 \end{lstlisting}
 
-La función \textit{main()}, vista en código \ref{cod:84}, abre los ficheros indicados en las rutas ParsedDir y OldDir, en caso de que oldFile sea None, guarda los nuevos datos directamente en el directorio refinedDir y el programa finaliza. Si se dispone de datos en oldFile, llama a \textit{refineData()}.
+En el código \ref{cod:114}, se puede ver la implementación de la función \textit{refineCode()}, la cual recorre el fichero de códigos buscando si existe alguna nueva estación. El resto de funciones usadas tienen la misma implementación que para filtras\_datos\_JSONs.py.
 
 \section{Posts}
 Como Posts, se hace referencia a los Scripts code\_post.py y data\_post.py. Como ambos comparten la misma codificación se explicaran de forma general y, se mostraran las diferencias.
@@ -1521,7 +1538,7 @@ Se declara la URL a la que se desea hacer la llamada y, se lee el fichero que se
 Dentro del archivo crontab se han definido los comandos presentes en 
 
 \begin{lstlisting}[caption={Trabajos configurados para ser ejecutados por Cron}, label=cod:103]
-	*/30 * * * * /path/to/your_script.sh
+	*/15 * * * * /path/to/your_script.sh
 	*/30 * * * * /path/to/your_script.sh
 	*/30 * * * * /path/to/your_script.sh
 	0 * * * * /path/to/your_script.sh

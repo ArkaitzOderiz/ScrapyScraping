@@ -19,19 +19,18 @@
 \contentsline {subsection}{\numberline {3.4.2}Arquitectura Preliminar}{26}{subsection.3.4.2}%
 \contentsline {chapter}{\numberline {4}Diseño de la Plataforma}{27}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Trabajar con los Datos}{28}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Datos obtenidos por página}{28}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Formato de Datos}{29}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}Filtrado de Datos}{29}{subsection.4.1.3}%
-\contentsline {section}{\numberline {4.2}Arquitectura}{30}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Entornos virtuales}{30}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Spiders}{31}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Runners}{31}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Executers}{32}{subsection.4.2.4}%
-\contentsline {subsection}{\numberline {4.2.5}Directorios de los JSONs de datos}{32}{subsection.4.2.5}%
-\contentsline {subsection}{\numberline {4.2.6}Posts}{32}{subsection.4.2.6}%
-\contentsline {subsection}{\numberline {4.2.7}Cron}{33}{subsection.4.2.7}%
-\contentsline {subsection}{\numberline {4.2.8}API Django}{33}{subsection.4.2.8}%
-\contentsline {subsection}{\numberline {4.2.9}Base de datos PostGreSQL}{34}{subsection.4.2.9}%
+\contentsline {subsection}{\numberline {4.1.1}Formato de Datos}{28}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Filtrado de Datos}{29}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Arquitectura}{29}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Entornos virtuales}{29}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Spiders}{29}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Runners}{30}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Executers}{30}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.5}Directorios de los JSONs de datos}{30}{subsection.4.2.5}%
+\contentsline {subsection}{\numberline {4.2.6}Posts}{31}{subsection.4.2.6}%
+\contentsline {subsection}{\numberline {4.2.7}Cron}{31}{subsection.4.2.7}%
+\contentsline {subsection}{\numberline {4.2.8}API Django}{32}{subsection.4.2.8}%
+\contentsline {subsection}{\numberline {4.2.9}Base de datos PostGreSQL}{32}{subsection.4.2.9}%
 \contentsline {chapter}{\numberline {5}Implementación}{35}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Entorno de ejecución}{35}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}Preparación de entorno virtual}{35}{subsection.5.1.1}%
@@ -41,31 +40,30 @@
 \contentsline {subsection}{\numberline {5.2.1}Proceso de obtención de datos}{44}{subsection.5.2.1}%
 \contentsline {subsection}{\numberline {5.2.2}Guardado de datos}{46}{subsection.5.2.2}%
 \contentsline {subsection}{\numberline {5.2.3}Spider básica}{47}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Método \textit {start\_requests()}}{47}{subsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.2.4}Método \textit {start\_requests()}}{48}{subsection.5.2.4}%
 \contentsline {subsection}{\numberline {5.2.5}Eliminar Log}{48}{subsection.5.2.5}%
-\contentsline {section}{\numberline {5.3}Spiders usadas}{48}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Agencia estatal de Meteorología (Aemet)}{48}{subsection.5.3.1}%
-\contentsline {subsubsection}{Data Spider}{48}{section*.30}%
+\contentsline {section}{\numberline {5.3}Spiders usadas}{49}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Agencia estatal de Meteorología (Aemet)}{49}{subsection.5.3.1}%
+\contentsline {subsubsection}{Data Spider}{49}{section*.29}%
 \contentsline {subsection}{\numberline {5.3.2}CHCantábrico}{50}{subsection.5.3.2}%
-\contentsline {subsubsection}{Code Spider}{50}{section*.31}%
-\contentsline {subsubsection}{Data Spiders}{51}{section*.32}%
-\contentsline {subsubsection}{Coordenates Spider}{54}{section*.33}%
-\contentsline {subsubsection}{Código descartado}{54}{section*.34}%
-\contentsline {subsection}{\numberline {5.3.3}Meteorología y climatología de Navarra (MeteoNavarra)}{56}{subsection.5.3.3}%
-\contentsline {subsubsection}{Code Spider}{56}{section*.35}%
-\contentsline {subsubsection}{Data Spider}{57}{section*.36}%
-\contentsline {subsubsection}{Coordenates Spider}{59}{section*.37}%
+\contentsline {subsubsection}{Code Spider}{50}{section*.30}%
+\contentsline {subsubsection}{Data Spiders}{51}{section*.31}%
+\contentsline {subsubsection}{Coordenates Spider}{54}{section*.32}%
+\contentsline {subsubsection}{Código descartado}{55}{section*.33}%
+\contentsline {subsection}{\numberline {5.3.3}Meteorología y climatología de Navarra (MeteoNavarra)}{57}{subsection.5.3.3}%
+\contentsline {subsubsection}{Code Spider}{57}{section*.34}%
+\contentsline {subsubsection}{Data Spider}{57}{section*.35}%
+\contentsline {subsubsection}{Coordenates Spider}{59}{section*.36}%
 \contentsline {subsection}{\numberline {5.3.4}Agua en Navarra}{60}{subsection.5.3.4}%
-\contentsline {subsubsection}{Code Spider}{61}{section*.38}%
-\contentsline {subsubsection}{Data Spider}{61}{section*.39}%
-\contentsline {subsubsection}{Configuración Selenium}{63}{section*.40}%
-\contentsline {subsubsection}{Alternativas probadas}{65}{section*.42}%
+\contentsline {subsubsection}{Code Spider}{61}{section*.37}%
+\contentsline {subsubsection}{Data Spider}{62}{section*.38}%
+\contentsline {subsubsection}{Configuración Selenium}{64}{section*.39}%
+\contentsline {subsubsection}{Alternativas probadas}{65}{section*.41}%
 \contentsline {section}{\numberline {5.4}Runners}{68}{section.5.4}%
 \contentsline {section}{\numberline {5.5}Executers}{70}{section.5.5}%
 \contentsline {section}{\numberline {5.6}Formateo de datos}{71}{section.5.6}%
 \contentsline {section}{\numberline {5.7}Filtrado de datos}{77}{section.5.7}%
-\contentsline {section}{\numberline {5.8}Posts}{79}{section.5.8}%
+\contentsline {section}{\numberline {5.8}Posts}{80}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Cron}{80}{section.5.9}%
 \contentsline {chapter}{\numberline {6}Conclusiones y Trabajo Futuro}{81}{chapter.6}%
-\contentsline {chapter}{Referencias}{83}{section*.43}%
-\contentsline {chapter}{Glosario}{87}{section*.44}%
-\contentsline {chapter}{Anexos}{87}{section*.44}%
+\contentsline {chapter}{Referencias}{83}{section*.42}%

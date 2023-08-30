@@ -22,13 +22,12 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Idea original de la estructura de datos planteada}}{26}{figure.caption.21}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Estructura de datos usada en el proyecto}}{27}{figure.caption.22}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Arquitectura de obtención y tratamiento de datos}}{30}{figure.caption.23}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Estructuración básica de una Spider}}{31}{figure.caption.24}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Tablas de la base de datos}}{34}{figure.caption.25}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Tablas de la base de datos}}{32}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Arquitectura de obtención y tratamiento de datos}}{33}{figure.caption.23}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Lista de tablas en PostGreSQL}}{40}{figure.caption.26}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Pantalla del IDE donde se ve la estructura del proyecto}}{43}{figure.caption.27}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Directorio de almacenamiento de las Spider}}{43}{figure.caption.28}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces URL de inicio para obtener los códigos de las estaciones de Aemet}}{44}{figure.caption.29}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Ruta chromedriver.exe}}{64}{figure.caption.41}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Lista de tablas en PostGreSQL}}{40}{figure.caption.25}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Pantalla del IDE donde se ve la estructura del proyecto}}{43}{figure.caption.26}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Directorio de almacenamiento de las Spider}}{43}{figure.caption.27}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces URL de inicio para obtener los códigos de las estaciones de Aemet}}{44}{figure.caption.28}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Ruta chromedriver.exe}}{65}{figure.caption.40}%
 \addvspace {10\p@ }
