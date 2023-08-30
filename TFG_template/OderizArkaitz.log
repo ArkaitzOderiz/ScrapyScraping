@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  30 AUG 2023 13:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  30 AUG 2023 13:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2057,16 +2057,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--118
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--118
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--118
-
- []
-
 [83] [84] (bibliography/Bibliography.tex (OderizArkaitz.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 4--7
 []\T1/fve/m/n/10.95 ``United Na-tions what is cli-mate change.'' [][]$\T1/fvm/m
@@ -2120,9 +2110,9 @@ ra/fver8a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/f
 vmr8a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvsb8
 a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfchan/u
 zcmi8a.pfb>
-Output written on OderizArkaitz.pdf (97 pages, 5695931 bytes).
+Output written on OderizArkaitz.pdf (97 pages, 5696688 bytes).
 PDF statistics:
- 2712 PDF objects out of 2984 (max. 8388607)
+ 2714 PDF objects out of 2984 (max. 8388607)
  1387 named destinations out of 1440 (max. 500000)
  602 words of extra memory for PDF output out of 10000 (max. 10000000)
 
