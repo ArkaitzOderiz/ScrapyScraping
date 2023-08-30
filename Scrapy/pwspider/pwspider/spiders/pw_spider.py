@@ -32,8 +32,8 @@ class PwSpiderSpider(scrapy.Spider):
                 meta=dict(
                     playwright=True,
                     playwright_page_methods=[PageMethod("wait_for_selector", selector="div.botoneraGrafico", state="visible"),
-                                             PageMethod("click", selector="input#btnDatosNumericos"),
-                                             PageMethod("waitForEvent", event="click"),
+                                            PageMethod("click", selector="input#btnDatosNumericos"),
+                                            PageMethod("waitForEvent", event="click"),
                 ),
             )
 
