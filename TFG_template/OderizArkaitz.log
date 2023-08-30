@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  30 AUG 2023 11:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.1)  30 AUG 2023 13:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1244,118 +1244,88 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4--7
+Underfull \hbox (badness 10000) in paragraph at lines 7--12
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--16
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--16
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--16
+Underfull \hbox (badness 10000) in paragraph at lines 7--12
 
  []
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 24--42
+Underfull \hbox (badness 10000) in paragraph at lines 20--30
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 24--42
+Underfull \hbox (badness 10000) in paragraph at lines 20--30
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 24--42
+Underfull \hbox (badness 10000) in paragraph at lines 20--30
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 24--42
+Underfull \hbox (badness 10000) in paragraph at lines 32--44
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 24--42
+Underfull \hbox (badness 10000) in paragraph at lines 32--44
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 24--42
+Underfull \hbox (badness 10000) in paragraph at lines 32--44
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--44
 
  []
 
 [20]
-Underfull \hbox (badness 10000) in paragraph at lines 44--56
+Underfull \hbox (badness 10000) in paragraph at lines 46--50
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--56
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--56
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--56
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--62
-
- []
-
-
-Overfull \hbox (10.98528pt too wide) in paragraph at lines 58--62
+Overfull \hbox (10.98528pt too wide) in paragraph at lines 46--50
 \T1/fve/m/n/10.95 Por el con-trario, los frame-work tienen en cuenta las posi-b
 les necesi-dades de tu proyecto,
  []
 
 [21]
-Underfull \hbox (badness 10000) in paragraph at lines 64--68
+Underfull \hbox (badness 10000) in paragraph at lines 52--56
 
  []
 
 <fig/DjangoMVT.png, id=979, 542.025pt x 239.89626pt>
 File: fig/DjangoMVT.png Graphic file (type png)
 <use fig/DjangoMVT.png>
-Package pdftex.def Info: fig/DjangoMVT.png  used on input line 71.
+Package pdftex.def Info: fig/DjangoMVT.png  used on input line 59.
 (pdftex.def)             Requested size: 298.75262pt x 132.22885pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--88
+Underfull \hbox (badness 10000) in paragraph at lines 65--74
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--88
+Underfull \hbox (badness 10000) in paragraph at lines 65--74
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--88
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 77--88
+Underfull \hbox (badness 10000) in paragraph at lines 65--74
 
  []
 
 [22 <./fig/DjangoMVT.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 90--94
+Underfull \hbox (badness 10000) in paragraph at lines 76--80
 
  []
 
@@ -1365,83 +1335,53 @@ File: fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png Graphic file (
 type png)
 <use fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png>
 Package pdftex.def Info: fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018
-.png  used on input line 103.
+.png  used on input line 89.
 (pdftex.def)             Requested size: 298.75262pt x 105.79274pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--108
-
- []
-
-[23]
-Underfull \hbox (badness 10000) in paragraph at lines 110--130
+Underfull \hbox (badness 10000) in paragraph at lines 82--94
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--130
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--105
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--130
+Underfull \hbox (badness 10000) in paragraph at lines 96--105
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--130
+Underfull \hbox (badness 10000) in paragraph at lines 96--105
+
+ []
+
+[23] [24 <./fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 110--115
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--130
+Underfull \hbox (badness 10000) in paragraph at lines 110--115
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--130
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--130
-
- []
-
-[24 <./fig/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 135--144
-
- []
-
-
-Overfull \hbox (2.48244pt too wide) in paragraph at lines 135--144
-\T1/fve/m/n/10.95 Además, ofrece una am-plia gama de tipos de datos, in-cluyend
-o geoes-pa-ciales y JSONB,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 135--144
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 135--144
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 135--144
-
- []
-
-[25]
-<fig/estructura_descartada.png, id=1017, 298.11375pt x 299.1175pt>
+<fig/estructura_descartada.png, id=1013, 298.11375pt x 299.1175pt>
 File: fig/estructura_descartada.png Graphic file (type png)
 <use fig/estructura_descartada.png>
-Package pdftex.def Info: fig/estructura_descartada.png  used on input line 150.
+Package pdftex.def Info: fig/estructura_descartada.png  used on input line 121.
 
 (pdftex.def)             Requested size: 128.0387pt x 128.46739pt.
-) (chapter4/Chapter4.tex
-Underfull \hbox (badness 10000) in paragraph at lines 155--1
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [25])
+(chapter4/Chapter4.tex
+Underfull \hbox (badness 10000) in paragraph at lines 126--1
 
  []
 
@@ -1523,22 +1463,13 @@ Overfull \hbox (2.69533pt too wide) in paragraph at lines 139--140
 anto recibir los datos obtenidos
  []
 
-<fig/TablasBBDD.png, id=1096, 251.7405pt x 145.7445pt>
+<fig/TablasBBDD.png, id=1095, 251.7405pt x 145.7445pt>
 File: fig/TablasBBDD.png Graphic file (type png)
 <use fig/TablasBBDD.png>
-Package pdftex.def Info: fig/TablasBBDD.png  used on input line 146.
+Package pdftex.def Info: fig/TablasBBDD.png  used on input line 145.
 (pdftex.def)             Requested size: 298.75262pt x 172.97554pt.
-) (chapter5/Chapter5.tex
-Underfull \hbox (badness 10000) in paragraph at lines 151--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--1
-
- []
-
-[32 <./fig/TablasBBDD.png>] [33 <./fig/arquitectura.png>] [34
+) (chapter5/Chapter5.tex [32 <./fig/TablasBBDD.png>] [33 <./fig/arquitectura.pn
+g>] [34
 
 ]
 Chapter 5.
@@ -1867,19 +1798,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 934--939
  []
 
 [62]
-
-LaTeX Warning: Reference `cod:43' on page 63 undefined on input line 947.
-
-
-Overfull \hbox (1.67241pt too wide) in paragraph at lines 947--948
-[]\T1/fve/m/n/10.95 En la fun-ción \T1/fve/m/sl/10.95 parse_data() \T1/fve/m/n/
-10.95 mostrada en el código [], se ob-tienen los datos por columna
- []
-
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
 (textcomp)             Default family used instead on input line 967.
-[63]
+ [63]
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
 (textcomp)             Default family used instead on input line 982.
@@ -1936,7 +1858,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 994--997
 
  []
 
-<fig/chromedriver.png, id=1858, 166.37157pt x 183.68625pt>
+<fig/chromedriver.png, id=1859, 166.37157pt x 183.68625pt>
 File: fig/chromedriver.png Graphic file (type png)
 <use fig/chromedriver.png>
 Package pdftex.def Info: fig/chromedriver.png  used on input line 1000.
@@ -2024,73 +1946,76 @@ atamiento de datos data_work_executer.sh
 [70]
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1222.
-Package textcomp Info: Symbol \textminus not provided by
-(textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1230.
+(textcomp)             Default family used instead on input line 1228.
  [71]
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1249.
+(textcomp)             Default family used instead on input line 1236.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1249.
-
-Underfull \hbox (badness 10000) in paragraph at lines 1266--1269
-
- []
-
-[72]
-Underfull \hbox (badness 10000) in paragraph at lines 1296--1299
+(textcomp)             Default family used instead on input line 1255.
+Package textcomp Info: Symbol \textminus not provided by
+(textcomp)             font family fve in TS1 encoding.
+(textcomp)             Default family used instead on input line 1255.
+ [72]
+Underfull \hbox (badness 10000) in paragraph at lines 1272--1275
 
  []
 
+[73]
+Underfull \hbox (badness 10000) in paragraph at lines 1302--1305
 
-Overfull \hbox (10.45775pt too wide) in paragraph at lines 1296--1299
+ []
+
+
+Overfull \hbox (10.45775pt too wide) in paragraph at lines 1302--1305
 \T1/fve/m/n/10.95 CHCantábrico y Agua en Navarra com-parten la misma es-truc-tu
 ración de Script. CHCan-
  []
 
-[73]
-Underfull \hbox (badness 10000) in paragraph at lines 1321--1324
+
+Underfull \hbox (badness 10000) in paragraph at lines 1327--1330
 
  []
 
 [74]
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1360.
+(textcomp)             Default family used instead on input line 1366.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1360.
+(textcomp)             Default family used instead on input line 1366.
  [75]
-Underfull \hbox (badness 10000) in paragraph at lines 1389--1392
+Underfull \hbox (badness 10000) in paragraph at lines 1395--1398
 
  []
 
 [76]
-Overfull \hbox (6.07672pt too wide) in paragraph at lines 1420--1421
+Overfull \hbox (6.07672pt too wide) in paragraph at lines 1425--1426
 \T1/fve/m/n/10.95 El sigu-iente paso a re-alizar, es el fil-trado de los JSON p
 or el script fil-tras_data_JSONs.py
  []
 
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1432.
+(textcomp)             Default family used instead on input line 1437.
+[77]
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1444.
-[77] [78] [79]
+(textcomp)             Default family used instead on input line 1449.
+ [78] [79]
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1519.
-Package textcomp Info: Symbol \textminus not provided by
-(textcomp)             font family fve in TS1 encoding.
-(textcomp)             Default family used instead on input line 1526.
+(textcomp)             Default family used instead on input line 1524.
 Package textcomp Info: Symbol \textminus not provided by
 (textcomp)             font family fve in TS1 encoding.
 (textcomp)             Default family used instead on input line 1531.
-) (chapter6/Chapter6.tex [80]
+Package textcomp Info: Symbol \textminus not provided by
+(textcomp)             font family fve in TS1 encoding.
+(textcomp)             Default family used instead on input line 1536.
+ [80]) (chapter6/Chapter6.tex [81] [82
+
+]
 Chapter 6.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 1--1
@@ -2142,9 +2067,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--118
 
  []
 
-[81
-
-] [82] (bibliography/Bibliography.tex (OderizArkaitz.bbl
+[83] [84] (bibliography/Bibliography.tex (OderizArkaitz.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 4--7
 []\T1/fve/m/n/10.95 ``United Na-tions what is cli-mate change.'' [][]$\T1/fvm/m
 /n/10.95 https : / / www . un . org / es /
@@ -2162,7 +2085,7 @@ Underfull \hbox (badness 1502) in paragraph at lines 34--38
 -nual 2022 global cli-
  []
 
-[83
+[85
 
 
 
@@ -2172,18 +2095,15 @@ Underfull \hbox (badness 1142) in paragraph at lines 74--77
 ian.'' [][]$\T1/fvm/m/n/10.95 https : / / www .
  []
 
-[84]) [85]) (OderizArkaitz.aux)
-
-LaTeX Warning: There were undefined references.
-
+[86]) [87]) (OderizArkaitz.aux)
 Package rerunfilecheck Info: File `OderizArkaitz.out' has not changed.
 (rerunfilecheck)             Checksum: 456AEA5DD89E5B029E3C43FCB1B65385;9050.
  ) 
 Here is how much of TeX's memory you used:
- 18551 strings out of 475385
- 306435 string characters out of 2776436
+ 18578 strings out of 475385
+ 306849 string characters out of 2776436
  928567 words of memory out of 3000000
- 38115 multiletter control sequences out of 15000+600000
+ 38121 multiletter control sequences out of 15000+600000
  531685 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,13n,77p,1085b,2076s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -2200,9 +2120,9 @@ ra/fver8a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/f
 vmr8a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvsb8
 a.pfb><C:/Users/Oderiz/AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfchan/u
 zcmi8a.pfb>
-Output written on OderizArkaitz.pdf (95 pages, 5689683 bytes).
+Output written on OderizArkaitz.pdf (97 pages, 5695931 bytes).
 PDF statistics:
- 2677 PDF objects out of 2984 (max. 8388607)
- 1366 named destinations out of 1440 (max. 500000)
+ 2712 PDF objects out of 2984 (max. 8388607)
+ 1387 named destinations out of 1440 (max. 500000)
  602 words of extra memory for PDF output out of 10000 (max. 10000000)
 

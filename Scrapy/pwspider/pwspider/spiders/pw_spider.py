@@ -34,12 +34,10 @@ class PwSpiderSpider(scrapy.Spider):
                     playwright_page_methods=[PageMethod("wait_for_selector", selector="div.botoneraGrafico", state="visible"),
                                              PageMethod("click", selector="input#btnDatosNumericos"),
                                              PageMethod("waitForEvent", event="click"),
-                                             PageMethod("screenshot", path="example.png", full_page=True), ],
                 ),
             )
 
     def parse_data(self, response):
-        screenshot = response.meta["playwright_page_methods"][0]
         tipo = response.css('span#lblSenal::text').get()
         estacion = response.css('li#cabecera_nombreEstacion a::attr(href)').get()
         fechas = response.css('span.cont_fecha_gra::text').getall()

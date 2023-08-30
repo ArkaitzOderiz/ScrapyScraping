@@ -16,7 +16,7 @@
 \contentsline {subsection}{\numberline {3.3.2}Scrapy Framework}{24}{subsection.3.3.2}%
 \contentsline {section}{\numberline {3.4}Base de Datos}{25}{section.3.4}%
 \contentsline {subsection}{\numberline {3.4.1}PostGreSQL}{25}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Arquitectura Preliminar}{26}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.2}Arquitectura Preliminar}{25}{subsection.3.4.2}%
 \contentsline {chapter}{\numberline {4}Diseño de la Plataforma}{27}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Trabajar con los Datos}{28}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Formato de Datos}{28}{subsection.4.1.1}%
@@ -64,6 +64,6 @@
 \contentsline {section}{\numberline {5.6}Formateo de datos}{71}{section.5.6}%
 \contentsline {section}{\numberline {5.7}Filtrado de datos}{77}{section.5.7}%
 \contentsline {section}{\numberline {5.8}Posts}{80}{section.5.8}%
-\contentsline {section}{\numberline {5.9}Cron}{80}{section.5.9}%
-\contentsline {chapter}{\numberline {6}Conclusiones y Trabajo Futuro}{81}{chapter.6}%
-\contentsline {chapter}{Referencias}{83}{section*.42}%
+\contentsline {section}{\numberline {5.9}Cron}{81}{section.5.9}%
+\contentsline {chapter}{\numberline {6}Conclusiones y Trabajo Futuro}{83}{chapter.6}%
+\contentsline {chapter}{Referencias}{85}{section*.42}%

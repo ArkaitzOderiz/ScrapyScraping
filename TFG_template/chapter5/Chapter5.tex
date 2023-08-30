@@ -937,7 +937,7 @@ Tras realizar el mismo proceso que antes, \ref{Chap524}, la Spider llega a la fu
 \newline
 Como el link proporcionado dirige a una página que muestra los datos en forma de gráfica y, para acceder a los datos numéricos es necesario pulsar un botón, \textit{SeleniumRequest} se configura de tal forma que, espera a que este esté correctamente cargado con el argumento \textit{wait\_until}, indicando que elemento deseas esperar a ser cargado; en caso de que no se cargue, es recomendable usar el argumento \textit{wait\_time}, que usado junto al anterior, establece el tiempo antes de dar la llamada por errónea; si el botón se carga correctamente, en el argumento \textit{script} indicamos que se debe pulsar sobre este, llevándonos finalmente a los datos numéricos.
 
-\begin{lstlisting}[language=Python, caption={Selector en \textit{parse\_data()} de Agua en Navarra Data Spider}, label=43]
+\begin{lstlisting}[language=Python, caption={Selector en \textit{parse\_data()} de Agua en Navarra Data Spider}, label=cod:43]
 	tipo = response.css('span#lblSenal::text').get()
 	estacion = response.css('li#cabecera_nombreEstacion a::attr(href)').get()
 	fechas = response.css('span.cont_fecha_gra::text').getall()
@@ -1188,14 +1188,20 @@ Los Executers son ficheros bash, estos se reparten en dos secciones, obtención 
 \begin{lstlisting}[caption={Ejecucion de entorno virtual y selección de proyecto Scrapy}, label=cod:60]
 	#!/bin/bash
 	
-	# Activate the virtual environment
-	source Scrapy/$1/bin/activate
-	
-	# Change to the directory containing the Python script
-	cd Scrapy/$1Spider
+	for ((i = 1; i <= $#; i++ )); do
+		# Activate the virtual environment
+		source Scrapy/${!i}/bin/activate
+		
+		# Change to the directory containing the Python script
+		cd Scrapy/${!i}Spider
+		
+		# Run the Python script
+		
+		cd ../..
+	done
 \end{lstlisting}
 
-Primero ejecutan el comando para activar el entorno virtual indicada por argumento y se desplazan al directorio del proyecto Scrapy requerido. Se pueden ven en código \ref{cod:60}.
+Mediante el uso de un bucle se van recorriendo los argumentos pasados en el momento de ejecución. Primero ejecutan el comando para activar el entorno virtual indicada por argumento y se desplazan al directorio del proyecto Scrapy requerido. Para permitir iterar entre los argumentos, una vez ejecutado el script indicado, vuelve al directorio de origen. Se puede ver en código \ref{cod:60}.
 
 \begin{lstlisting}[caption={Ejecución de data\_spider\_runner.py}, label=cod:61]
 	# Run the Python script
@@ -1409,8 +1415,7 @@ En ella se recibe el código de la estación a buscar y el fichero con las coord
 				'coordenadas': line['coordenadas'],
 				'seguimiento': None,
 				'prealerta': None,
-				'alerta': None,
-				
+				'alerta': None,	
 			}
 			formattedJSON.append(header)
 		saveFile('codigos_aguaEnNavarra.json', formattedJSON)
@@ -1535,12 +1540,26 @@ Como Posts, se hace referencia a los Scripts code\_post.py y data\_post.py. Como
 Se declara la URL a la que se desea hacer la llamada y, se lee el fichero que se ha indicado al pararlo por argumento a la hora de ejecutar el Script. como se muestra en los códigos \ref{cod:85} y \ref{cod:86}. Finalmente, se indica en headers el tipo de contenido que dispone la llamada, en este caso JSON y, se realiza la llamada con el método \textit{post()} proporcionado por la librería requests, como en código \ref{cod:87}.
 
 \section{Cron}
-Dentro del archivo crontab se han definido los comandos presentes en 
+Dentro del archivo crontab se han definido los comandos presentes en código \ref{cod:103}. Estos representan las rutinas de ejecución, ejecutando cada quince minutos el código relacionado con los datos de las estaciones de Agua En Navarra y CHCantábrico; cada treinta minutos el de MeteoNavarra; cada hora el de Aemet y cada primeros de mes se ejecutará el código para la obtención de códigos de estación para comprobar si ha habido algún cambio en estas.
 
 \begin{lstlisting}[caption={Trabajos configurados para ser ejecutados por Cron}, label=cod:103]
-	*/15 * * * * /path/to/your_script.sh
-	*/30 * * * * /path/to/your_script.sh
-	*/30 * * * * /path/to/your_script.sh
-	0 * * * * /path/to/your_script.sh
-	0 3 1 * * /path/to/your_script.sh
+	#Cada 15 minutos
+	*/15 * * * * data_spider_executer.sh aguaEnNavarra chcantabrico
+	*/15 * * * * data_work_executer.sh aguaEnNavarra chcantabrico
+	*/15 * * * * data_post.py aguaEnNavarra chcantabrico
+	
+	#Cada 30 minutos
+	*/30 * * * * data_spider_executer.sh meteoNavarra
+	*/30 * * * * data_work_executer.sh meteoNavarra
+	*/30 * * * * data_post.py meteoNavarra
+	
+	#Cada hora
+	0 * * * * data_spider_executer.sh aemet
+	0 * * * * data_work_executer.sh aemet
+	0 * * * * data_post.py aemet
+
+	#Cada primeros del mes a las 03:00
+	0 3 1 * * code_spider_executer.sh aguaEnNavarra chcantabrico aemet meteoNavarra
+	0 3 1 * * code_work_executer.sh aguaEnNavarra chcantabrico aemet meteoNavarra
+	0 3 1 * * code_post.py aguaEnNavarra chcantabrico aemet meteoNavarra
 \end{lstlisting}

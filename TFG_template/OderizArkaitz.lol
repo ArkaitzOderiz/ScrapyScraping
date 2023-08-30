@@ -86,28 +86,28 @@
 \contentsline {lstlisting}{\numberline {5.77}{\ignorespaces Ejecución de data\_work\_runner.py}}{71}{lstlisting.5.77}%
 \contentsline {lstlisting}{\numberline {5.78}{\ignorespaces Declaración variable del JSON que se desea usar}}{71}{lstlisting.5.78}%
 \contentsline {lstlisting}{\numberline {5.79}{\ignorespaces Declaración función \textit {openFile()}}}{71}{lstlisting.5.79}%
-\contentsline {lstlisting}{\numberline {5.80}{\ignorespaces Declaración función \textit {saveFile()}}}{71}{lstlisting.5.80}%
+\contentsline {lstlisting}{\numberline {5.80}{\ignorespaces Declaración función \textit {saveFile()}}}{72}{lstlisting.5.80}%
 \contentsline {lstlisting}{\numberline {5.81}{\ignorespaces Declaración función \textit {main()}}}{72}{lstlisting.5.81}%
 \contentsline {lstlisting}{\numberline {5.82}{\ignorespaces Declaración función base \textit {formatData()}, concretamente esta versión es usada para formatear los datos de Aemet}}{72}{lstlisting.5.82}%
 \contentsline {lstlisting}{\numberline {5.83}{\ignorespaces Declaración función \textit {unifyData()} para el correcto funcionamiento del formateo de MeteoNavarra}}{73}{lstlisting.5.83}%
 \contentsline {lstlisting}{\numberline {5.84}{\ignorespaces Paso inicial en la función \textit {formatData()} de MeteoNavarra}}{73}{lstlisting.5.84}%
 \contentsline {lstlisting}{\numberline {5.85}{\ignorespaces Declaración función \textit {searchEstacionData()}, especifica en el formateo de datos de CHCantábrico y Agua en Navarra}}{74}{lstlisting.5.85}%
 \contentsline {lstlisting}{\numberline {5.86}{\ignorespaces Declaración función \textit {searchDateData()}}}{74}{lstlisting.5.86}%
-\contentsline {lstlisting}{\numberline {5.87}{\ignorespaces Lectura de los ficheros de datos de CHCantábrico}}{74}{lstlisting.5.87}%
-\contentsline {lstlisting}{\numberline {5.88}{\ignorespaces Dentro del bucle que itera por estaciones, obtención de los datos de la estacion y declaración de indices}}{74}{lstlisting.5.88}%
+\contentsline {lstlisting}{\numberline {5.87}{\ignorespaces Lectura de los ficheros de datos de CHCantábrico}}{75}{lstlisting.5.87}%
+\contentsline {lstlisting}{\numberline {5.88}{\ignorespaces Dentro del bucle que itera por estaciones, obtención de los datos de la estacion y declaración de indices}}{75}{lstlisting.5.88}%
 \contentsline {lstlisting}{\numberline {5.89}{\ignorespaces Formato del diccionario lineData en caso de disponer de dos instancias de una misma estación}}{75}{lstlisting.5.89}%
 \contentsline {lstlisting}{\numberline {5.90}{\ignorespaces Modificación del bucle interno de \textit {formatData()}}}{75}{lstlisting.5.90}%
 \contentsline {lstlisting}{\numberline {5.91}{\ignorespaces Inclusion de los datos en el objeto JSON dato}}{76}{lstlisting.5.91}%
 \contentsline {lstlisting}{\numberline {5.92}{\ignorespaces {Declaración función \textit {searchEstacionCoords()}} usada para formatear los JSON de códigos en CHCantábrico y MeteoNavarra}}{76}{lstlisting.5.92}%
-\contentsline {lstlisting}{\numberline {5.93}{\ignorespaces Declaración función \textit {formatCode()}}}{76}{lstlisting.5.93}%
+\contentsline {lstlisting}{\numberline {5.93}{\ignorespaces Declaración función \textit {formatCode()}}}{77}{lstlisting.5.93}%
 \contentsline {lstlisting}{\numberline {5.94}{\ignorespaces Declaración rutas JSONs y nombre de fichero}}{77}{lstlisting.5.94}%
 \contentsline {lstlisting}{\numberline {5.95}{\ignorespaces Declaración función openFile()}}{77}{lstlisting.5.95}%
-\contentsline {lstlisting}{\numberline {5.96}{\ignorespaces Declaración función saveFile()}}{77}{lstlisting.5.96}%
+\contentsline {lstlisting}{\numberline {5.96}{\ignorespaces Declaración función saveFile()}}{78}{lstlisting.5.96}%
 \contentsline {lstlisting}{\numberline {5.97}{\ignorespaces Declaración función searchEstacionData()}}{78}{lstlisting.5.97}%
 \contentsline {lstlisting}{\numberline {5.98}{\ignorespaces Declaración rutas JSONs}}{78}{lstlisting.5.98}%
-\contentsline {lstlisting}{\numberline {5.99}{\ignorespaces Declaración función refinedData()}}{78}{lstlisting.5.99}%
+\contentsline {lstlisting}{\numberline {5.99}{\ignorespaces Declaración función refinedData()}}{79}{lstlisting.5.99}%
 \contentsline {lstlisting}{\numberline {5.100}{\ignorespaces Declaración función refinedCode()}}{79}{lstlisting.5.100}%
 \contentsline {lstlisting}{\numberline {5.101}{\ignorespaces Declaración variables code\_post.py}}{80}{lstlisting.5.101}%
 \contentsline {lstlisting}{\numberline {5.102}{\ignorespaces Declaración variables data\_post.py}}{80}{lstlisting.5.102}%
 \contentsline {lstlisting}{\numberline {5.103}{\ignorespaces Llamada POST}}{80}{lstlisting.5.103}%
-\contentsline {lstlisting}{\numberline {5.104}{\ignorespaces Trabajos configurados para ser ejecutados por Cron}}{80}{lstlisting.5.104}%
+\contentsline {lstlisting}{\numberline {5.104}{\ignorespaces Trabajos configurados para ser ejecutados por Cron}}{81}{lstlisting.5.104}%

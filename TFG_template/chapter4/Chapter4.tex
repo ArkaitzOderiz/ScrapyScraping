@@ -139,7 +139,6 @@ Así pues, Cron es el encargado de ejecutar cada proceso necesario dentro de la 
 La instancia del servidor de Django es la encargada de tanto recibir los datos obtenidos como de enviarlos a la base de datos. Finalmente, una vez se dispusiera de una aplicación de predicción, se encargaría de pedir los datos almacenados y enviarlos mediante POST a la aplicación.
 
 \subsection{Base de datos PostGreSQL}
-La base de datos, dispone de las siguientes dos tablas de la figura \ref{fig:ej33}.
 
 \begin{figure} [H]
 	\centering
@@ -148,8 +147,4 @@ La base de datos, dispone de las siguientes dos tablas de la figura \ref{fig:ej3
 	\label{fig:ej33}
 \end{figure}
 
-Tienen una relación uno a muchos, siendo el campo estacion de la tabla Data la ForeingKey usada.\newline
-\newline
-Para la tabla Data, al almacenar miles de datos, se ha optado por usar una PrimaryKey auto incremental. A su vez, a excepción del campo fecha, cualquiera de los campos pueden ser nulos, pues cada web proporciona unicamente un conjunto de los datos.\newline
-\newline
-En la tabla Code, exceptuando la clave primaria y el nombre de la estación, el resto de campos tienen la posibilidad de ser nulos.
+Las tablas de la figura \ref{fig:ej33}, tienen una relación uno a muchos, siendo el campo estacion de la tabla Data la ForeingKey usada. Para la tabla Data, al almacenar miles de datos, se ha optado por usar una PrimaryKey auto incremental. A su vez, a excepción del campo fecha, cualquiera de los campos pueden ser nulos, pues cada web proporciona unicamente un conjunto de los datos. En la tabla Code, exceptuando la clave primaria y el nombre de la estación, el resto de campos tienen la posibilidad de ser nulos.

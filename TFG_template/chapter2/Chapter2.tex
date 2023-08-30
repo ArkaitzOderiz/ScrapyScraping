@@ -1,18 +1,14 @@
 \chapter[Tecnologías]{Tecnologías}
 \label{Chap3}
 
-Para este proyecto, es necesario el uso de dos maquinas virtuales para crear los servidores necesarios, un servidor de base de datos y otro para el despliegue de una API y la obtencion de datos. Aunque hacer uso de una única máquina no solo es viable, si no más sencillo, disponer de ellas, no solo aparta la plataforma de un diseño centralizado más vulnerable, ademas, a nivel de proyecto, proporciona un mayor grado de complejidad, necesitando configurar la comunicación por red de estas.\newline
-\newline
-Primero que todo es necesario un sistema operativo capaz de servir este propósito.
+Para este proyecto, es necesario el uso de dos maquinas virtuales para crear los servidores necesarios, un servidor de base de datos y otro para el despliegue de una API y la obtencion de datos. Aunque hacer uso de una única máquina no solo es viable, si no más sencillo, disponer de ellas, no solo aparta la plataforma de un diseño centralizado más vulnerable, ademas, a nivel de proyecto, proporciona un mayor grado de complejidad, necesitando configurar la comunicación por red de estas. Primero que todo es necesario un sistema operativo capaz de servir este propósito.
 
 \section{Sistema Operativo Debian}
 En 1993, tras varios intento fallidos por distintas empresas de solucionar el problema, Ian Murdock, por aquel entonces estudiante de la Universidad Purdue, encontró la solución al problema basándose en el reciente proyecto de Linus Torvalds, el kernel Linux. tras el anuncio de Ian para crear un sistema operativo de forma descentralizada en paralelo como es el caso del kernel Linux, docenas de usuarios se unieron para formar el proyecto Debian Linux con la intención de crear un sistema operativo de gran calidad y mantenimiento, publicando en enero de 1994 la primera versión de Debian 0.91 \cite{krafft2005debian} \cite{DebHis}.\newline
 \newline
 Debian no intenta seguir ni competir con los lideres del sector, por el contrario, desde sus inicios el proyecto se ha basado en una filosofía centrada en la robustez y estabilidad del sistema guiada por unos estrictos estándares de calidad, actualizándose conforme las necesidades de sus usuarios a la vez que promueve el software gratuito, lo que le ha ayudado a obtener fama entre los usuarios \cite{DebFil} \cite{pollei2013debian}.\newline
 \newline
-A su vez, debido al apoyo del software libre, hace uso de múltiples licencias de software como la Licencia Pública General GNU (GPL), licencias artísticas o del tipo BSD, lo cual ha llevado al desarrollo de las Directrices de Software Libre de Debian (DFSG) con el fin de definir la construcción del software libre \cite{DebFree}.\newline
-\newline
-Definido por estas licencias, el software libre debe cumplir al menos las que están consideradas la cuatro libertades esenciales \cite{GnuFS}:
+A su vez, debido al apoyo del software libre, hace uso de múltiples licencias de software como la Licencia Pública General GNU (GPL), licencias artísticas o del tipo BSD, lo cual ha llevado al desarrollo de las Directrices de Software Libre de Debian (DFSG) con el fin de definir la construcción del software libre \cite{DebFree}. Definido por estas licencias, el software libre debe cumplir al menos las que están consideradas la cuatro libertades esenciales \cite{GnuFS}:
 
 \begin{itemize}
 	\item Ejecutar el programa como se desee, con cualquier propósito.
@@ -21,24 +17,16 @@ Definido por estas licencias, el software libre debe cumplir al menos las que es
 	\item Distribuir copias de sus versiones modificadas a terceros permitiendo ofrecer a toda la comunidad la oportunidad de beneficiarse de las modificaciones.
 \end{itemize}
 
-El mercado está repleto de distintas posibles alternativas a Debian, ya sean de pago, Windows Server OS o Red Hat Enterprise Linux (RHEL), gratuitos, Ubuntu Server y Fedora Server, o incluso en la nube, Amazon Web Services (AWS), Google’s Cloud Platform.
-\newline
-\newline
-Descartando todo sistema de pago, aunque las posibilidades se reducen, aun hay múltiples opciones sobre las que elegir, pero son pocas las que ofrecen la misma usabilidad que Debian con sus más de 59000 paquetes en su versión estable \cite{DebWhy}.
+El mercado está repleto de distintas posibles alternativas a Debian, ya sean de pago, Windows Server OS o Red Hat Enterprise Linux (RHEL), gratuitos, Ubuntu Server y Fedora Server, o incluso en la nube, Amazon Web Services (AWS), Google’s Cloud Platform. Descartando todo sistema de pago, aunque las posibilidades se reducen, aun hay múltiples opciones sobre las que elegir, pero son pocas las que ofrecen la misma usabilidad que Debian con sus más de 59000 paquetes en su versión estable \cite{DebWhy}.
 \newline
 \newline
 Aunque todos los sistemas basados en Linux disponen de las mismas características, siendo software libre y gratuito con soporte multi-usuario, multi-proceso y uso en tiempo real, Debian siendo uno de los sistemas más longevos del mercado a tomado fama entre la competencia por su seguridad y estabilidad. Siendo la base para muchas de las distribuciones más populares contra las que compite, como Ubuntu, Knoppix, PureOS o Tails.
 \newline
 \newline
-Cabe mencionar, que parte de esta seguridad y estabilidad puede llegar a ser un limitante a la hora de elegir Debian como sistema operativo dependiendo de tus necesidades a nivel de uso pues el software compatible igual no es la versión más reciente.
+Cabe mencionar, que parte de esta seguridad y estabilidad puede llegar a ser un limitante a la hora de elegir Debian como sistema operativo dependiendo de tus necesidades a nivel de uso pues el software compatible igual no es la versión más reciente. Una característica distintiva de Debian frente a la competencia gratuita es su compatibilidad con un uso 24/7, pues otras alternativas gratuitas o no dan soporte a esta característica, Fedora Server o, necesitas disponer de una licencia de pago como es el caso de Ubuntu Server mediante Ubuntu Pro.
 \newline
 \newline
-Finalmente, una característica distintiva de Debian frente a la competencia gratuita es su compatibilidad con un uso 24/7, pues otras alternativas gratuitas o no dan soporte a esta característica, Fedora Server o, necesitas disponer de una licencia de pago como es el caso de Ubuntu Server mediante Ubuntu Pro.
-\newline
-\newline
-Puesto que no afecta negativamente al proyecto no disponer de las versiones más recientes de software y debido a la necesidad de un sistema 24/7 gratuito, parece lógica la elección de Debian como sistema operativo para usar en el servidor.\newline
-\newline
-Una vez seleccionado sistema operativo, hace falta selecionar un Framework para crear y trabajar con una API.
+Puesto que no afecta negativamente al proyecto no disponer de las versiones más recientes de software y debido a la necesidad de un sistema 24/7 gratuito, parece lógica la elección de Debian como sistema operativo para usar en el servidor. Una vez seleccionado sistema operativo, hace falta selecionar un Framework para crear y trabajar con una API.
 
 \section{Framework necesarios}
 Un framework es software que provee una infraestructura básica sobre la que desarrollar tus proyectos. Aportan las funcionalidades y estructuras básicas necesarias para este sin la necesidad de programar todo desde cero, ahorrando tiempo de desarrollo y aportando robustez al proyecto \cite{ghimire2020comparative}.
@@ -82,9 +70,7 @@ Django es uno de los frameworks más reputados en Python, teniendo en cuanta su 
 El que sea un framework full-stack no va a aportar la flexibilidad, libertad y ligereza que da el uso de un microframework, sobre todo a la hora de agregar únicamente aquellas herramientas que considere necesarias, pero si que atenuará la carga de trabajo que puede suponer un microframework si no se dispone de la experiencia necesaria para usarlo.
 \newline
 \newline
-Otra característica por la que decantarse por Django, aunque no sea única de él, es su compatibilidad con bases de datos relacionales de forma nativa, cosa que facilitará el uso de estas en el proyecto.\newline
-\newline
-A su vez, con el fin de obtener los datos, se necesita de una herramienta centrada en el scrapeo de datos.
+Otra característica por la que decantarse por Django, aunque no sea única de él, es su compatibilidad con bases de datos relacionales de forma nativa, cosa que facilitará el uso de estas en el proyecto. A su vez, con el fin de obtener los datos, se necesita de una herramienta centrada en el scrapeo de datos.
 
 \section{Herramienta para Web Scraping}
 Web scraping, también conocido como web extraction o web harvesting, es una técnica de extracción de datos desestructurados de la World Wide web (WWW) y guardarlos de forma estructurada en una base de datos o en un sistema de ficheros en formato XML, JSON o CSV para su posterior recuperación o análisis. Generalmente, los datos web son adquiridos mediante el uso de Hyper-text Transfer Protocol (HTTP) o a través de un navegador web, ya sea de forma manual o automática mediante web crawlers, herramientas diseñadas con este propósito, siendo capaces de convertir páginas web enteras en información bien estructurada \cite{zhao2017web} \cite{krotov2018legality}.
@@ -107,38 +93,23 @@ El primer paso consiste en mirar la estructuración de la web para seleccionar a
 \footnotetext{\url{https://www.researchgate.net/figure/Web-Scraping-Adapted-from-Krotov-and-Tennyson-2018_fig1_324907302}}
 
 \subsection{Scrapy Framework}
-Scrapy es un framework asíncrono para web crawling y web scraping gratuito y de código abierto. Por defecto proporciona todas las herramientas necesarias para realizar la tarea de extracción, procesado y estructurado de los datos adquiridos, ademas de dar la opción de extender funcionalidades en caso necesario, haciéndolo extremadamente versátil \cite{yang2019design}.
+Scrapy es un framework asíncrono para web crawling y web scraping gratuito y de código abierto. Por defecto proporciona todas las herramientas necesarias para realizar la tarea de extracción, procesado y estructurado de los datos adquiridos, ademas de dar la opción de extender funcionalidades en caso necesario, haciéndolo extremadamente versátil \cite{yang2019design}. Pensado para navegar entre webs y extraer información de forma estructurada de ellas, Scrapy se usa para múltiples ámbitos, por ejemplo, el minado de datos o la monitorización y análisis de datos.\newline
+\newline
+A la hora de buscar herramientas para web scraping en Python, fueron tres la alternativas principales encontradas, BeautifulSoup, Selenium y Scrapy. La primera es una librería de parseo de HTML y XML, que, aunque podría haber servido para cumplir el propósito del proyecto inicialmente, a la larga su sencillez hubiera sido más un problema que una ayuda.
 \newline
 \newline
-Pensado para navegar entre webs y extraer información de forma estructurada de ellas, Scrapy se usa para múltiples ámbitos, por ejemplo, el minado de datos o la monitorización y análisis de datos.\newline
-\newline
-A la hora de buscar herramientas para web scraping en Python, fueron tres la alternativas principales encontradas, BeautifulSoup, Selenium y Scrapy.
+La segunda por el contrario, no es una herramienta de web scraping como tal y, se centra en la automatización de la navegación web como entorno de pruebas. Debido a esto, no es una herramienta que haya usado para el web scraping, pero si que ha sido usada junto con Scrapy para navegar entre webs y sacar los datos de estas. Proporcionando la posibilidad de hacer uso de JavaScript sobre las páginas, pues Scrapy no dispone de renderizado JavaScript de forma nativa. Cabe mencionar que Scrapy no dispone de rotación de IP, ni geolocalización como pueden tener las alternativas de pago, cosa que no es un impedimento para llevar a cabo el proyecto.
 \newline
 \newline
-La primera es una librería de parseo de HTML y XML, que, aunque podría haber servido para cumplir el propósito del proyecto inicialmente, a la larga su sencillez hubiera sido más un problema que una ayuda.
-\newline
-\newline
-La segunda por el contrario, no es una herramienta de web scraping como tal y, se centra en la automatización de la navegación web como entorno de pruebas. Debido a esto, no es una herramienta que haya usado para el web scraping, pero si que ha sido usada junto con Scrapy para navegar entre webs y sacar los datos de estas. Proporcionando la posibilidad de hacer uso de JavaScript sobre las páginas, pues Scrapy no dispone de renderizado JavaScript de forma nativa.
-\newline
-\newline
-Scrapy fue elegido gracias a la flexibilidad y versatilidad que proporciona a la hora de trabajar, pudiendo crear proyectos sencillos en cuestión de minutos con las herramientas base proporcionadas o investigar como trabajar con estas herramientas y crear proyectos complejos que satisfagan tus necesidades de la manera que desees. Esto implica que la curva de aprendizaje de Scrapy sea mayor que la que puede tener BeautifulSoup, sobre todo al inicio, llegando a parecer abrumador. A su vez, la naturaleza de Scrapy le hace tener el mejor rendimiento de entre las tres \cite{glez2014web}.
-\newline
-\newline
-Finalmente, cabe mencionar que Scrapy no dispone de rotación de IP, ni geolocalización como pueden tener las alternativas de pago, cosa que no es un impedimento para llevar a cabo el proyecto.\newline
-\newline
-Para satisfacer el segundo servicio necesario se requerirá de una base de datos.
+Scrapy fue elegido gracias a la flexibilidad y versatilidad que proporciona a la hora de trabajar, pudiendo crear proyectos sencillos en cuestión de minutos con las herramientas base proporcionadas o investigar como trabajar con estas herramientas y crear proyectos complejos que satisfagan tus necesidades de la manera que desees. Esto implica que la curva de aprendizaje de Scrapy sea mayor que la que puede tener BeautifulSoup, sobre todo al inicio, llegando a parecer abrumador. A su vez, la naturaleza de Scrapy le hace tener el mejor rendimiento de entre las tres \cite{glez2014web}. finalmente, con el fin de satisfacer el segundo servicio necesario, se requerirá de una base de datos.
 
 \section{Base de Datos}
 Debido a la naturaleza de los JSON obtenidos, se pueden trasladar fácilmente a tablas relacionales, por lo que se hará uso de una base de datos relacional.
 
 \subsection{PostGreSQL}
-PostGreSQL, es un sistema de gestión de bases de datos relacional de código abierto. PostgreSQL destaca por su sistema de gestión de bases de datos, su soporte para consultas complejas, transacciones ACID, integridad referencial y escalabilidad.\newline
+PostGreSQL, es un sistema de gestión de bases de datos relacional de código abierto. PostgreSQL destaca por su sistema de gestión de bases de datos, su soporte para consultas complejas, transacciones ACID, integridad referencial y escalabilidad. Además, ofrece una amplia gama de tipos de datos, incluyendo geoespaciales y JSONB, almacenando JSONs de forma binaria (de ahí la B) para su fácil acceso.\newline
 \newline
-Además, ofrece una amplia gama de tipos de datos, incluyendo geoespaciales y JSONB, almacenando JSONs de forma binaria (de ahí la B) para su fácil acceso.\newline
-\newline
-La comunidad activa detrás de PostgreSQL contribuye continuamente con mejoras y extensiones, lo que lo convierte en una solución versátil y confiable. Lo que la hace popular tanto para aplicaciones empresariales como para proyectos web.\newline
-\newline
-Entre las bases de datos con soporte oficial en Django se encuentran, PostgreSQL, MariaDB, MySQL, Oracle y SQLite. A excepción de Oracle, la única base de datos comercial, el resto son de código abierto, aunque puedan disponer de versiones de pago.\newline
+La comunidad activa detrás de PostgreSQL contribuye continuamente con mejoras y extensiones, lo que lo convierte en una solución versátil y confiable. Lo que la hace popular tanto para aplicaciones empresariales como para proyectos web. Entre las bases de datos con soporte oficial en Django se encuentran, PostgreSQL, MariaDB, MySQL, Oracle y SQLite. A excepción de Oracle, la única base de datos comercial, el resto son de código abierto, aunque puedan disponer de versiones de pago.\newline
 \newline
 A nivel de funcionalidades, todas ofrecen implementadas de una forma u otra una misma gama de estas. Es por eso que, la elección se hizo en base a la flexibilidad y robustez de estas. Lo que hace a PostGreSQL una opción interesante en proyectos que lleguen a requerir de datos geoespaciales y JSON.
 
