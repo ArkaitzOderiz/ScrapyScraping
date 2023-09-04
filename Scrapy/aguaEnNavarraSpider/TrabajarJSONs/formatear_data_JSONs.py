@@ -79,7 +79,6 @@ def formatData(file):
 
             datos.append(dato)
         header = {
-            'coordenadas': line['coordenadas'],
             'estacion': line['estacion'],
             'datos': datos
         }

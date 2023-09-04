@@ -17,12 +17,6 @@ def saveFile(filename, data):
         json.dump(data, outfile)
 
 
-def searchEstacionCoords(code, coordFile):
-    for data in coordFile:
-        if data['estacion'] == code:
-            return data['coordenadas']
-
-
 def searchEstacionData(code, dataFile1=[], dataFile2=[]):
     datos = []
     for data in dataFile1:
@@ -43,11 +37,9 @@ def searchDateData(dataFile, date):
 def formatData(file):
     levelDataFile = openFile('datos_nivel_chcantabrico.json')
     pluvioDataFile = openFile('datos_pluvio_chcantabrico.json')
-    coordFile = openFile('coordenadas_chcantabrico.json')
     formattedJSON = []
     for line in file:
         lineData = searchEstacionData(line['codigo'], levelDataFile, pluvioDataFile)
-        lineCoords = searchEstacionCoords(line['codigoSecundario'], coordFile)
         datos = []
         index = 0
         indexSecundario = 1
@@ -81,16 +73,13 @@ def formatData(file):
                 try:
                     if 'nivel (m)' in dateData:
                         dato['nivel (m)'] = dateData['nivel (m)']
-                        dato['complement'] = dateData['fecha y hora']
                     if 'precipitacion (mm)' in dateData:
                         dato['precipitacion (mm)'] = dateData['precipitacion (mm)']
-                        dato['complement'] = dateData['fecha y hora']
                 except TypeError:
                     pass
 
             datos.append(dato)
         header = {
-            'coordenadas': lineCoords,
             'estacion': line['codigo'],
             'datos': datos
         }

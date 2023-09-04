@@ -44,7 +44,7 @@ class ChcantabricoPluvioSpider(scrapy.Spider):
         if not response.text.startswith('-'):
             urlData = response.text
             rawData = pd.read_csv(io.StringIO(urlData), delimiter=';', encoding='utf-8', header=1)
-            rawData.columns = ['fecha y hora', 'nivel (m)']
+            rawData.columns = ['fecha y hora', 'precipitacion (mm)']
             parsedData = rawData.to_json(orient="records")
 
             yield {
