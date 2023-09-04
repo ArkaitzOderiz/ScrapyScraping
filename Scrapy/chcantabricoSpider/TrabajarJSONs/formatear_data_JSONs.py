@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-DataJSON = "JSONs/Codigos/codigos_chcantabrico.json"
+DataJSON = "JSONs/RawCode/codigos_chcantabrico.json"
 
 
 def openFile(filename):
